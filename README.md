@@ -1,5 +1,7 @@
 # General-Info
 
+[Team Page](admin/team.md)
+
 Sahil Dadhwal
 
 Nikhil Rao 
