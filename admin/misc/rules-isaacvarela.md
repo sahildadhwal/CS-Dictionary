@@ -63,9 +63,5 @@
     <li>Inform the instructors</li>
 </ol>
 
-## **Member Signature**
-<ul>
-   
-##### <li> *Liam Nguyen* </li>
-
-</ul>
+## **Member Signature**   
+### Signiture: Isaac Varela 
