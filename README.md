@@ -3,7 +3,7 @@ CSE 110 Team 2 Project.
 
 # Team Page
 
-[Team Page](admin/team.md)
+[Team Page](https://cse110-fa22-group2.github.io/general-info/admin/team.html)
 
 # Team Members
 
