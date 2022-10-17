@@ -1,15 +1,17 @@
-# The Domino's Pizza Party
+# The Pizza Party
 
 ## Brand:
-![image](./images/warren_bear.JPG)
+### Logo:
+![image](/admin/images/THEPIZZAPARTY.png)
 
-![image](./images/group_circle.JPG)
-
+### Slogan:
+> [*Pizza Time.*](https://www.youtube.com/watch?v=TRgdA9_FsXM)
 
 ## Values:
-- Be fun and try new things
-- Live, love, laugh
-- Work hard, play hard!
+- **Have fun**
+- **Try new things**
+- **Live, love, laugh**
+- **Work hard, play hard!**
 
 ## Members:
 ### [*Sahil Dadhwal*](https://github.com/sahildadhwal)
@@ -121,8 +123,3 @@
 - second year, Sixth college
 - Computer Engineering major
 - likes table tennis and Overwatch
-
-
-
-
-

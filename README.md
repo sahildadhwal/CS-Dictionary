@@ -1,5 +1,5 @@
-# Title???
-short description of the project. This will serve as the landing page for your project and should be updated as you add code, tests, documentation and other important artifacts.
+# The Pizza Party
+CSE 110 Team 2 Project.
 
 # Team Page
 
