@@ -2,7 +2,7 @@
 
 ## Brand:
 ### Logo:
-![image](./admin/images/THEPIZZAPARTY.png)
+![image](./images/THEPIZZAPARTY.png)
 
 ### Slogan:
 > [*Pizza Time.*](https://www.youtube.com/watch?v=TRgdA9_FsXM)
