@@ -1,5 +1,5 @@
-# Team Meeting: Brainstorming Activity 1 ![image](./images/THEPIZZAPARTY.png)
-![image](./images/THEPIZZAPARTY.png)
+# Team Meeting: Brainstorming Activity 1!
+
 [About Us](#about-us)
 
 [Meeting Info](#meeting-info)
