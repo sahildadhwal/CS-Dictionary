@@ -1,4 +1,4 @@
-# The Pizza Party
+# 🍕 The Pizza Party 🍕
 CSE 110 Team 2 Project.
 
 # Team Page
