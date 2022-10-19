@@ -1,5 +1,5 @@
-# Team Meeting: Brainstorming Activity 1
-
+# Team Meeting: Brainstorming Activity 1 ![image](./images/THEPIZZAPARTY.png)
+![image](./images/THEPIZZAPARTY.png)
 [About Us](#about-us)
 
 [Meeting Info](#meeting-info)
@@ -75,7 +75,7 @@
 </ul>	
 
 ## **Attendance**
-##### <li> *9 out of 10* </li>
+##### <li> *10 out of 10* </li>
 - [x] Sahil Dadhwal
 - [x] Nikhil Rao
 - [x] Yingqi Cao
@@ -85,7 +85,7 @@
 - [x] Liam Nguyen
 - [x] Chieh-hsiu Hung
 - [x] Amaar Valliani
-- [ ] Andrew Jia
+- [x] Andrew Jia
 
 ## **Agenda**
 - [ ] Rename repository from general info to something such as team2-fa22-cse110.
