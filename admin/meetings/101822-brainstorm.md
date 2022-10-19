@@ -22,14 +22,14 @@
 ##### <li> *Sahil Dadhwal* </li>
 ##### <li> *Nikhil Rao* </li>
 ##### <li> *Yingqi Cao* </li>
-##### <li> *Chieh-hsiu Hung* </li>
 ##### <li> *Isaac Varela* </li>
-##### <li> *Liam Nguyen* </li>
 ##### <li> *Thomas Koon* </li>
 ##### <li> *Yunxiao Xu* </li> 
+##### <li> *Liam Nguyen* </li>
+##### <li> *Chieh-hsiu Hung* </li>
 ##### <li> *Amaar Valliani* </li>
 ##### <li> *Andrew Jia* </li>
-
+  
 </ul>
 
 ## **Meeting Info**
@@ -85,7 +85,6 @@
 - [x] Liam Nguyen
 - [x] Chieh-hsiu Hung
 - [x] Amaar Valliani
-
 - [ ] Andrew Jia
 
 ## **Agenda**
