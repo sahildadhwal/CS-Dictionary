@@ -14,7 +14,7 @@
 
 [Todo](#todo)
 
-[Previous Meeting](admin/meetings/101822-brainstorm.md)
+[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/101822-brainstorm.md)
 
 ## **Team 2 Members**
 <ul>
