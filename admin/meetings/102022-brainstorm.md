@@ -1,6 +1,6 @@
 # Team Meeting: Brainstorming Activity 1!
 
-[Team 2](#team-2-members:)
+[Team 2](#team-2-members)
 
 [Meeting Info](#meeting-info)
 
@@ -14,9 +14,8 @@
 
 [Todo](#todo)
 
-## **About Us**
 
-## **Team 2 Members:**
+## **Team 2 Members**
 <ul>
 
 ##### <li> *Sahil Dadhwal* </li>
