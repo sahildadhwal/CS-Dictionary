@@ -1,6 +1,6 @@
 # Team Meeting: Brainstorming Activity 2!
 
-[Team 2](#team-2-members)
+[Team 2 Members](#team-2-members)
 
 [Meeting Info](#meeting-info)
 
