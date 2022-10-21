@@ -142,9 +142,9 @@ Recap of the meeting with the TA:
 
 
 ## **Todo**
-- [x] Complete Group Kickoff Assignment
-- [x] Make a team brand
-- [x] Make a team group page
-- [x] Make team intro video
-- [x] Make Group Contract
-- [x] Complete Group Bonding Activity
+- [ ] Complete Group Kickoff Assignment
+- [ ] Make a team brand
+- [ ] Make a team group page
+- [ ] Make team intro video
+- [ ] Make Group Contract
+- [ ] Complete Group Bonding Activity
