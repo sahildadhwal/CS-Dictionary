@@ -80,11 +80,12 @@
 - [] Yingqi Cao
 - [] Isaac Varela
 - [] Thomas Koon
-- [] Yunxiao Xu
 - [] Liam Nguyen
 - [] Chieh-hsiu Hung
 - [] Amaar Valliani
 - [] Andrew Jia
+
+- [] Yunxiao Xu
 
 ## **Agenda**
 - [ ] Rename repository from general info to something such as team2-fa22-cse110.
