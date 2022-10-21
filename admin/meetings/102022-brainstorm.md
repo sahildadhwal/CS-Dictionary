@@ -14,6 +14,7 @@
 
 [Todo](#todo)
 
+[Previous Meeting](admin/meetings/101822-brainstorm.md)
 
 ## **Team 2 Members**
 <ul>
