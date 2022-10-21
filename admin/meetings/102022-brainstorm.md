@@ -185,6 +185,7 @@
 
 
 ## **Todo**
+- [ ] Change repo image to our group logo.
 - [ ] Go over our project proposal with the T.A.
 - [ ] Take notes on the feedback and recommendations the T.A. provides.
 - [ ] Choose the best project to pursue given the T.A. recommendations.
