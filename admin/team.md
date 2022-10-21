@@ -1,5 +1,5 @@
 # The Pizza Party
-### [*Team Intro*](https://youtu.be/iMRoQklh57Q)
+## [Team Intro](https://youtu.be/iMRoQklh57Q)
 
 ## Brand:
 ### Logo:
