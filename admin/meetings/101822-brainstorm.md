@@ -143,7 +143,7 @@ We need to present our top idea to the T.A. so he can accept or deny our proposa
 
 
 ## **Todo**
-- [ ] Rename repository from general info to something such as team2-fa22-cse110.
-- [ ] Go over the 5 brainstorming ideas and how they relate to C.R.U.D. and Local First.
-- [ ] Narrow down the 5 brainstorming ideas to 2.
-- [ ] Choose the top idea to pitch to the T.A. and keep the backup ready as a precaution.
+- [x] Rename repository from general-info to team2-fa22-cse110.
+- [x] Go over the brainstorming ideas and how they relate to C.R.U.D. and Local First.
+- [x] Narrow down the brainstorming ideas to 2.
+- [x] Choose the top idea to pitch to the T.A. and keep the backup ready as a precaution.
