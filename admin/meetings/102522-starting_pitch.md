@@ -14,6 +14,8 @@
 
 [Todo](#todo)
 
+[Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
+
 [Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/102022-brainstorm.md)
 
 ## **Team 2 Members**
