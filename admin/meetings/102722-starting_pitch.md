@@ -1,4 +1,4 @@
-# Team Meeting: Brainstorming Activity 2!
+# Team Meeting: Starting Pitch 2!
 
 [Team 2 Members](#team-2-members)
 
