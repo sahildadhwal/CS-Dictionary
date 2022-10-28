@@ -236,7 +236,7 @@ Debrief tasks completed since last meeting.
     </ul>
 </ul>
 
-8) **Team roles (will finish assigning on Saturday)**
+9) **Team roles (will finish assigning on Saturday)**
 <ul>
     <ul>
         <li>Yingqi: team lead</li>
