@@ -1,4 +1,4 @@
-# Team Meeting: Starting Pitch 2!
+# Team Meeting: Starting Pitch 3!
 
 [Team 2 Members](#team-2-members)
 
@@ -9,8 +9,6 @@
 [Agenda](#agenda)
 
 [Meeting Notes](#meeting-notes)
-
-[Accomplished](#accomplished)
 
 [Todo](#todo)
 
@@ -39,8 +37,8 @@
 <ul>
   <li>October 29, 2022</li>
   <ul>
-    <li>Duration: 2 hour and 4 minutes</li>
-        <ol>10:00am to 0:00pm<ol>
+    <li>Duration: 2 hour and 5 minutes</li>
+        <ol>10:00am to 12:05pm<ol>
   </ul>
 </ul>
 
@@ -92,14 +90,23 @@
     
 ## **Agenda**
 - [ ] Change repo image to our group logo.
-- [x] Discuss everyones individual progress.
-- [x] Use Miro for diagrams, charts, etc...
-- [x] Create wireframes structure
-- [x] Create general roadmap of project
-- [x] Make a list of technologies you would use for frontend and backend
-- [x] Make a list to risks, rabbit holes, and no go's
-- [x] Assign team roles
+- [x] Discuss everyones individual task status' from this meeting.
+- [x] R&D on Competitor apps
+    - Thomas
+    - Andrew
 
+- [x] Create Wireframes    
+    - Sahil
+
+- [x] Create a Roadmap of the project    
+
+- [x] Technologies you would use for frontend and backend    
+    - Yunxiao
+
+- [x] Risks, rabbit holes, and no gos    
+    - Isaac
+
+- [x] Update and re-assign team roles as needed.
     
 
 ## **Meeting Notes**
@@ -127,170 +134,39 @@
 
 
 > Tonight we will discuss any progress that was made from last meeting and as a group critic and adjust everyone's work.
-> We will then assign tasks to everyone that must be worked on and presented to the group on Saturday.
-> We will try to complete our Project Pitch Proposal by this weekend.
+> We will then assign tasks to everyone that must be worked on and completed by Monday evening.
+> We will compile our Project Pitch Proposal by Sunday and be ready for the Pitch Proposal on Monday!
 
 ## **Notes**
 Debrief tasks completed since last meeting.
-1) **User personas**
 <ul>
-    <ul>
-        <li>Persona 1</li>
-            <ul>
-                <li>Hashtag feature is for specific terms</li>
-                    <ol>Ex. #graphs #java</ol>
-                    <ol>For quick lookups</ol>
-                <li>Category feature is more general</li>    
-                    <ol>Ex. Algorithms</ol>
-            </ul>
-        <li>Persona 2</li>
-            <ul>
-                <li>Remind user to write runtime if tag is #algorithm</li>
-                <li>Write specific templates for #programminglanguages</li>    
-            </ul>
-        <li>Persona 3</li>
-            <ul>
-                <li>Users writing categories</li>
-            </ul>
-        <li>Main priority is about user writing their own definitions</li>
-    </ul>
-</ul>
-
-2) **User interviews**
-<ul>
-    <ul>
-        <li>Add a date added feature.</li>
-        <li>Maybe have a recently added feature.</li>
-    </ul>
-</ul>
-
-3) **Competitors**
-<ul>
-    <ul>
-        <li>W3Schools and GeeksForGeeks</li>
-            <ul>
-                <li>They have great explanations of CS concepts</li>                
-            </ul>
-        <li>Quizlet</li>
-            <ul>
-                <li>They don't have tags/recent definitions.</li>                
-            </ul>
-    </ul>
-</ul>
-
-4) **System Diagrams**
-<ul>
-    <ul>
-        <li>Pop up preview of definition on hover (maybe, but not #1 priority)</li>
-        <li>Create a settings section.</li>
-    </ul>
-</ul>
-
-5) **Wireframe**
-<ul>
-    <ul>
-        <li>Sahil worked on this portion</li>
-        <li>Format the “add a term” section to be more like how Slack does it (bold, italics, etc...)</li>
-    </ul>
-</ul>
-
-6) **Roadmap of the project**
-<ul>
-    <ul>
-        <li>Sprint 1: brainstorming + pitch</li>
-        <li>Sprint 2: coding</li>
-        <li>Sprint 3: debugging/modifying</li>
-    </ul>
-</ul>
-
-7) **Technologies used for frontend and backend**
-<ul>
-    <ul>
-        <li>HTML, CSS, Javascript, VSCode</li>
-        <li>Data can be stored using JSON files</li>
-    </ul>
-</ul>
-
-- [There is a service that allows you to upload files and host your website/deploy your cloud service](https://ucsdservicedesk.service-now.com/its?id=kb_article_view&sysparm_article=KB0030548&sys_kb_id=d25241d287d25150825ac807cebb3535)
-
-8) **Risks, rabbit holes, and no gos**  
-<ul>
-    <ul>
-        <li>No one person is assigned a portion of the website</li>
-            <ul>
-                <li>Everyone is assigned tasks in groups of 2</li>
-                <li>Each team of 2 can decide how to work together</li>
-            </ul>
-        <li>Create a development branch</li>
-            <ul>
-                <li>Each feature gets their own branch branched off from development</li>
-                <li>Each feature gets merged into development</li>
-                <li>Every so often, development branch gets merged into masters branch</li>
-            </ul>
-        <li>Everyone adds issues and the person approving the pull request will connect an issue to the pull request</li>
-        <li>Everyone pulls from the development branch, then deal with conflicts if they exist, and merge with development branch with a pull request</li>
-        <li>Make sure to always collaborate, communicate, and do your part!</li>
-        <li>If a certain feature is really hard to implement, then the team can decide not to do it</li>
-            <ul>
-                <li>Always consult the TA if the problem gets too difficult</li>
-            </ul>
-    </ul>
-</ul>
-
-9) **Team roles (will finish assigning on Saturday)**
-<ul>
-    <ul>
-        <li>Yingqi: team lead</li>
-        <li>Nikhil: team lead</li>
-            <ul>
-                <li>Approve pull requests</li>
-            </ul>
-        <li>Designers and Frontend (HTML, CSS)</li>
-            <ul>
-                <li>Sahil</li>
-            </ul>
-        <li>Backend (JavaScript)</li>
-            <ul>
-                <li>Ex. retrieving files from local storage, putting data in JSON files</li>
-                <li>Thomas</li>
-            </ul>
-        <li>Testing</li>
-            <ul>
-                <li>Isaac</li>
-            </ul>
-        <li>Advisors</li>
-            <ul>
-                <li>Jerry, Liam?</li>
-            </ul>
-        <li>Everyone</li>
-            <ul>
-                <li>Document everything (ask TA about this)</li>
-                <li>README.md file is necessary for our entire project</li>
-                <li>In-line comments</li>
-                <li>At the start of every file, have a description of the file</li>
-            </ul>
-    </ul>
+    <li>If you haven't finished your part of the Miro board or need to edit it in any way, please do so before Monday as we will most likely present it to the TA. (I'll be finishing the project roadmap and edit the statement of purpose.)</li>
+    <br>
+    <li>Here are very preliminary project roles. If you have a specific role in mind, let us know! Also, some roles might be on a rotation basis, such as testing.</li>
+        <ul>
+            <li>Team leads (approving pull requests, other tasks TBA)</li>
+                <ol>Yingqi</ol>
+                <ol>Nikhil</ol>
+            <li>Designers and Frontend (HTML, CSS)</li>    
+                <ol>Sahil</ol>
+                <ol>Liam</ol>
+                <ol>Amaar</ol>
+        </ul>
+        <ul>
+            <li>Backend + some work to bridge backend and frontend (JavaScript)</li>
+                <ol>Ex. retrieving files from local storage, putting data in JSON files</ol>
+                <ol>Thomas</ol>
+                <ol>Jerry</ol>
+                <ol>Yunxiao</ol>
+            <li>Testing</li>
+                <ol>Isaac</ol>
+                <ol>Andrew</ol>
+            <li>Everyone</li>
+                <ol>Document your work</ol>
+        </ul>
 </ul>
 
 
 ## **Todo**
 - [ ] Change repo image to our group logo.
-- [ ] Discuss everyones individual task status' from this meeting.
-
-- [ ] R&D on Competitor apps
-    - Thomas
-    - Andrew
-
-- [ ] Create Wireframes    
-    - Sahil
-
-- [ ] Create a Roadmap of the project    
-    - Group meeting on Saturday to discuss this
-
-- [ ] Technologies you would use for frontend and backend    
-    - Yunxiao
-
-- [ ] Risks, rabbit holes, and no gos    
-    - Isaac
-
-- [ ] Update and re-assign team roles as needed.
+- [ ] Prepare for Project Proposal Pitch on Monday. 

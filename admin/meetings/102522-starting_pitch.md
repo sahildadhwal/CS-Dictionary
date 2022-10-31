@@ -10,7 +10,6 @@
 
 [Meeting Notes](#meeting-notes)
 
-[Accomplished](#accomplished)
 
 [Todo](#todo)
 
