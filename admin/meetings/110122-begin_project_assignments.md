@@ -8,13 +8,8 @@
 
 [Agenda](#agenda)
 
-[Meeting Notes](#meeting-notes)
+[Meeting Notes](#notes)
 
-[Todo](#todo)
-
-~~[Miro Board] (https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)~~
-
-~~[Previous Meeting] (https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/102522-starting_pitch.md)~~
 
 ## **Team 2 Members**
 <ul>
@@ -92,3 +87,58 @@
 - [x] Edit the pitch markdown file to include these update changes on the Miro board.
 - [x] Assign team roles.
 - [x] Assign first project assignments for this week.
+    
+## **Notes**
+1) **Team Roles**
+    <ul>
+        <li>Team Leads</li>
+            <ul>
+                <li>Yingqi Cao</li>
+                <li>Nikhil Rao</li>    
+            </ul>
+        <li>Designers and Frontend (HTML, CSS)</li>
+            <ul>
+                <li>Sahil Dadwhal</li>
+                <li>Liam Nguyen</li>
+                <li>Isaac Varela</li>
+            </ul>
+        <li>Backend (Javascript)</li>
+            <ul>
+                <li>Thomas Koon</li>
+                <li>Chieh-hsiu (Jerry) Hung</li>
+                <li>Yunxiao Xu</li>
+            </ul>
+        <li>Testing and Devops</li>
+            <ul>
+                <li>Amaar Valliani</li>
+                <li>Andrew Jia</li>
+            </ul>
+      <li>Everyone</li>
+            <ul>
+                <li>Document everything</li>
+            </ul>
+    </ul>
+
+2) **Mini Group Assignments**
+ <ul>
+       <li>Frontend</li>
+            <ul>
+                <li>Create preliminary webpages (2-3 html files)</li>
+            </ul>
+       <li>Backend (Javascript)</li>
+            <ul>
+                <li>Figure out how json files will be structured</li>
+            </ul>
+       <li>Testing and Devops</li>
+            <ul>
+                <li>Deploy html file viewable on the platform of your choosing</li>
+                <li>Figure out html validation</li>
+           </ul>
+   </ul>
+
+3) **Reminder**
+   <ul>
+     <li>Start branching off of the dev branch to add your work to the repository</li>
+   </ul>
+    
+4) **Reconvene on Thursday**
