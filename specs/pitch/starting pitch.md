@@ -65,29 +65,28 @@ Why these particular features?
 
 ### Project Roadmap
 Week 6
-- Have preliminary website up and running.
-- Get started on home page and term creation page.
-- Create search functionality.
-- Extract user input.
-- Start unit testing and adding features to GitHub Actions pipeline.
+- Have preliminary website pages up and running.
+- Get started planning the backend architecture.
+- Start basic GitHub Actions pipeline.
+- Deploy basic html files.
 
 Week 7
-- Continue on creating the search functionality and creating all of the webpages.
+- Continue creating all of the webpages.
+- Create search functionality.
+- Extract user input.
+- Begin unit testing.
 
 Week 8
 - Create tags feature.
 - Create draft and edit features.
 
-Week 9
-- Create public upvote feature.
-- Create public database of terms.
-
-Week 10
+Week 9-10
+- Add final webpages and backend functionalities.
 - Refactor all code in order to adhere to coding standards.
 - Final debugging and documenting.
 
 All Weeks
-- Adding to GitHub Actions pipeline.
+- Adding to GitHub Actions pipeline and unit tests.
 - Documenting code that is written.
 
 
