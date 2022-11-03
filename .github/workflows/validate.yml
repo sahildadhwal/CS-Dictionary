@@ -33,8 +33,6 @@ jobs:
           blacklist: admin/
           css: true
       - uses: actions/upload-artifact@v3
-        run: |
-          echo $(git rev-parse --short "$GITHUB_SHA")
         with:
           name: log
           path: source/actionsLogs/
