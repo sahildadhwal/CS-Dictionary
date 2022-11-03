@@ -32,6 +32,8 @@ jobs:
           root: source/
           blacklist: admin/
           css: true
+          log_level: DEBUG
+
       - uses: actions/upload-artifact@v3
         with:
           name: log
