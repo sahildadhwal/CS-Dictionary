@@ -33,6 +33,7 @@ jobs:
           blacklist: admin/
           css: true
           log_level: DEBUG
+        continue-on-error: true  
 
       - uses: actions/upload-artifact@v3
         with:
