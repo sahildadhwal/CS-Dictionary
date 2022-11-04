@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <header>
+        <h1><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/House_Bliss.png" alt="Home Image" height="70px">This is the Home Page</h1>
+    </header>
+    <hr>
+    <main>
+        <div class="top-buttons">
+            <!--TODO: some buttons are not linked to anything yet.-->   
+            <input type="text" name="search_bar" placeholder="Search"/>
+            <button onclick="jump_SearchHtml()">Search </button>             
+            <button onclick="jump_CreateTermHtml()">Create Term</button>
+            <button onclick="jump_SettingsHtml()">Settings </button>         
+        </div>
+
+
+
+        <div class="recently-added">
+            <h3>Recently added</h3>
+                <span style="display: flex;"> 
+                <span><fieldset><legend>1</legend><p>Term 1</p><img src="https://www.google.com/chrome/static/images/chrome-logo-m100.svg" alt="Job Site"><h5>Caption</h5></fieldset></span>
+                <span><fieldset><legend>2</legend><p>Term 2</p><img src="https://www.google.com/chrome/static/images/chrome-logo-m100.svg" alt="Job Site"><h5>Caption</h5></fieldset></span>
+                <span><fieldset><legend>3</legend><p>Term 3</p><img src="https://www.google.com/chrome/static/images/chrome-logo-m100.svg" alt="Job Site"><h5>Caption</h5></fieldset></span>
+            </span>
+            <p>Three boxes are shown above. Could be for our recently added terms.</p>
+        </div>    
+            
+        <div class="the-categories">
+            <h3>Categories</h3>
+            <span style="display: flex;"> 
+                <span><fieldset><legend>1</legend><p>Category 1</p><img src="https://www.google.com/chrome/static/images/chrome-logo-m100.svg" alt="Job Site"><h5>Caption</h5></fieldset></span>
+                <span><fieldset><legend>2</legend><p>Category 2</p><img src="https://www.google.com/chrome/static/images/chrome-logo-m100.svg" alt="Job Site"><h5>Caption</h5></fieldset></span>
+                <span><fieldset><legend>3</legend><p>Category 3</p><img src="https://www.google.com/chrome/static/images/chrome-logo-m100.svg" alt="Job Site"><h5>Caption</h5></fieldset></span>
+            </span>
+            <p>Three boxes are shown above. Could be for our categories the user will want to search for.</p>
+        </div>
+    </main>
+
+    <script>
+        function jump_CreateTermHtml() {
+            location.href="create-term.html"
+        }
+        function jump_HomeHtml() {
+            location.href="home.html"
+        }
+        function jump_PostHtml() {
+            location.href="post.html"
+        }
+        function jump_SettingsHtml() {
+            location.href="settings.html"
+        }
+        function jump_SearchHtml() {
+            location.href="search.html"
+        }
+
+        
+        
+        
+
+    </script>
+    
+  </body>
+</html>

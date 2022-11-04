@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Add Term Page</title>
+        </head>
+        <body>
+            <h1>Add Term</h1>
+    
+            <div class="text-box">
+                <h3>Term Name: <input type="text" name="term_name" placeholder="Pineapples"/> </h3>
+
+                <h3>Term Definition: <input type="text" name="term_def" placeholder="Pineapples are a large juicy tropical fruit."/> </h3>
+                
+                <h3>Example Sentence: <input type="text" name="term_ex_sent" placeholder="Who lives in a pineapple under the sea?"/> </h3>
+                
+                <h3>Tags: <input type="text" name="term_tags" placeholder="#pineapple #fruit #spongebob"/> </h3>
+                
+                <h3>Insert Links: <input type="text" name="term_links" placeholder="http://www.pineapple.com/"/> </h3>
+                
+                <h3>Name: <input type="text" name="user_name" placeholder="spiderman_is_cool"/> </h3>
+
+                
+                <!--Add Term Button takes user to post.html-->   
+                <button onclick="jump_PostHtml()">Post</button>
+                <!--Add Term Button takes user to draft.html-->   
+
+                <!--Add Term Button takes user to home.html-->   
+                <button onclick="jump_HomeHtml()">Home</button>
+                
+            </div>
+
+
+            <script>
+                function jump_HomeHtml() {
+                    location.href="home.html"
+                }
+                function jump_PostHtml() {
+                    location.href="post.html"
+                }
+
+            </script>
+
+    
+        </body>
+    </html>
+
+
+
+    
+
+<!----JavaScript for Toggle Menu---->
