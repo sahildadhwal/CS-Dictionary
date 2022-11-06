@@ -1,4 +1,4 @@
-# Team Meeting: Starting Pitch 3!
+# Team Meeting: Starting Pitch 2!
 
 [Team 2 Members](#team-2-members)
 
@@ -35,8 +35,8 @@
 <ul>
   <li>November 6, 2022</li>
   <ul>
-    <li>Duration:  hour and  minutes</li>
-        <ol>10:00am to 12:00pm<ol>
+    <li>Duration:  1 hour and 50 minutes</li>
+        <ol>10:00am to 11:50am<ol>
   </ul>
 </ul>
 
