@@ -79,3 +79,9 @@
 .basic-card-light .card-link a:after {
     background: #636363;
 }
+
+.basic-card:hover{
+    background: #eee;
+    transition: 1s;
+}
+
