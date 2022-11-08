@@ -5,4 +5,5 @@ function myFunction(p1, p2) {
     let product= p1 * p2;
      return product;
   }
-  console.log(myFunction(2, 2)) hiIamError
+  console.log(myFunction(2, 2)) ;
+  let hiIamError;
