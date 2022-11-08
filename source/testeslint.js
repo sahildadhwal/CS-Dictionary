@@ -7,4 +7,3 @@ function myFunction(p1, p2) {
   }
   console.log(myFunction(2, 2)) ;
   let hiIamError; */
-  
