@@ -6,9 +6,9 @@ name: validate
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main", "amaar" , "andrew", "dev"]
+    branches: [ "main", "amaar" , "andrew"]
   pull_request:
-    branches: [ "main", "amaar" , "dev"]
+    branches: [ "main", "amaar" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
