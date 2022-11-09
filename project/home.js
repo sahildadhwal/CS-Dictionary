@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded', init);
 
 function init() {
     let json = {
+        // shows all terms recently opened by user. note: newly created terms will be opened
         "recently_opened": [
             {
                 "id": "Guid1",
@@ -20,8 +21,18 @@ function init() {
                     "CSE 101"
                 ],
                 "short_description": "Some descript 2"
+            },
+            {
+                "id": "Guid3",
+                "term_name": "Terrm name 23",
+                "tags": [
+                    "ENG",
+                    "ENG 141"
+                ],
+                "short_description": "Some descript 3"
             }
         ],
+        // shows all terms associated with inputed hashtag
         "tag_category": [
             {
                 "tag_name": "CSE 110",
@@ -54,7 +65,8 @@ function init() {
         ]
     }
     addTermsToDocument(json);
-    
+    //addTermsToDocument(json);
+
 }
 
 
