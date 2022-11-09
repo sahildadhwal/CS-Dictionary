@@ -12,7 +12,7 @@
 
 [Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
 
-[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/102922-starting_pitch.md)
+[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/110122-begin_project_assignments.md)
 
 ## **Team 2 Members**
 <ul>
@@ -33,7 +33,7 @@
 ## **Meeting Info**
 #### Meeting Specs: 
 <ul>
-  <li>November 1, 2022</li>
+  <li>November 8, 2022</li>
   <ul>
     <li>Duration: 1 hour and 30 minutes</li>
         <ol>7:00pm to 8:30pm<ol>
@@ -47,7 +47,7 @@
 
 #### Meeting Type: 
 <ul>
-  <li>Begin Project Assignments</li>
+  <li>Converse our team individual groups progress</li>
     <ul>
       <li>
       Team Leads: 
@@ -73,23 +73,21 @@
 </ul>	
 
 ## **Attendance**
-##### <li> *8 out of 10* </li>
-- [ ] Sahil Dadhwal (Midterm)
+##### <li> *9 out of 10* </li>
+- [x] Sahil Dadhwal
 - [x] Nikhil Rao
 - [x] Yingqi Cao
 - [x] Isaac Varela
 - [x] Thomas Koon
 - [x] Liam Nguyen
 - [x] Amaar Valliani
-- [ ] Andrew Jia (Midterm)
+- [x] Andrew Jia
 - [x] Yunxiao Xu
-- [x] Chieh-hsiu Hung
+- [ ] Chieh-hsiu Hung 
 
 ## **Agenda**
-- [x] Update the Miro board to remove all upvote/public database references that were previously listed.
-- [x] Edit the pitch markdown file to include these update changes on the Miro board.
-- [x] Assign team roles.
-- [x] Assign first project assignments for this week.
+- [x] Discuss each groups progress and see what needs to be completed.
+- [x] Assign tasks and deadlines for each group.
     
 ## **Meeting Notes**
 1) **Team Roles**
@@ -126,11 +124,13 @@
  <ul>
        <li>Frontend</li>
             <ul>
-                <li>Create preliminary webpages (2-3 html files)</li>
+                <li>Meet with Backend Team to show and explain the code on the Frontend branch. </li>
+                <li>Merge Backend's ideas and concepts into Frontend code</li>
             </ul>
        <li>Backend (Javascript)</li>
             <ul>
-                <li>Figure out how json files will be structured</li>
+                <li>Meet with Frontend Team to see how the webpage is structured and how we need to format the input data</li>
+                <li>Merge our ideas and concepts into Frontend code</li>
             </ul>
        <li>Testing and Devops</li>
             <ul>
@@ -139,9 +139,40 @@
            </ul>
    </ul>
 
-3) **Reminder**
-   <ul>
-     <li>Start branching off of the dev branch to add your work to the repository</li>
-   </ul>
+3) **Notes**
     
-4) **Reconvene on Thursday**
+    IssueIssues (based on user stories?)
+   <ul>
+        <li>Integrate backend and frontend</li>
+        <li>Structure the JSON file</li>
+        <li>Add dummy data</li>
+        <li>Add unit testing and E2E testing</li>
+        <li>Adding validators</li>
+    </ul>
+    DevOps: Deployed app to Heroku and Firebase
+    <ul>
+        <li>Heroku</li>
+        <li>Heroku has stopped their free plan by end of November</li>
+        <li>GitHub student gives $12 per month for students</li>
+        <li>Firebase</li>
+    </ul>
+    Branch names should be feature-specific, not who is working on that branch
+    <br>    
+    Backend JSON storage for a term
+    <ul>
+        <li>Term storage file</li>
+        <ol>ID</ol>
+        <ol>Name</ol>
+        <ol>Array of tags</ol>
+        <ol>Short description</ol>
+        <ol>Image links</ol>
+        <ol>Video links</ol>
+        <ol>Code</ol>
+        <ol>Last opened/added time</ol>
+        <ol>Published: true/false</ol>
+        <ol>... any other necessary fields</ol>
+        <li>Tag storage file</li>
+        <ol>Name</ol>
+        <ol>Number of clicks</ol>
+    </ul>
+    Backend should branch from dev for their own
