@@ -91,7 +91,7 @@
 - [x] Assign team roles.
 - [x] Assign first project assignments for this week.
     
-## **Notes**
+## **Meeting Notes**
 1) **Team Roles**
     <ul>
         <li>Team Leads</li>
