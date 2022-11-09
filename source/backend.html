@@ -1,0 +1,66 @@
+<!DOCTYPE html>save_btn
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script type="text/javascript" src="DOMPurify/dist/purify.min.js"></script> -->
+    <title>Blog CRUD</title>
+    <script type="module">
+        import * as dict from './dict.js';
+        let create = document.getElementById('create');
+        let delete_all = document.getElementById('delete_all');
+        let save = document.getElementById('save_btn');
+        let cancel = document.getElementById('cancel_btn');
+        let recent_btn = document.getElementById('addRecent');
+        create.addEventListener('click', dict.showDialog);
+        save.addEventListener('click', dict.add);
+        cancel.addEventListener('click', dict.cancel);
+        delete_all.addEventListener('click', dict.deleteAll);
+        recent_btn.addEventListener('click', _=>dict.updateRecents(Math.random()));
+
+        document.addEventListener("DOMContentLoaded", () =>{
+            const termsContainer = document.getElementById("dict");
+            dict.renderAllTerms(termsContainer);
+        });
+    </script>
+    <template id="dict_template">
+        <dict_entry>
+            <term_name>
+                <h1><a href="" id="link">Title</a></h1>
+            </term_name>
+            <tags>
+                <ul>
+                </ul>
+            </tags>
+        </dict_entry>
+    </template>
+</head>
+<body>
+    <header>Prototype Dict</header>
+    <main>
+        <section id="dict"></section>
+    </main>
+    
+    <button id="create">Define a Term</button>
+    <button id="delete_all">Delete All Terms</button>
+    <button id="addRecent">Do something</button>
+    <dialog id="term_template">
+        <form>
+            <fieldset>
+                <label for="name">Term Name:</label>
+                <input type="text" id="name" placeholder="Please Enter name of Entry">
+                <br></br>
+                <label for="tags">Enter tags of the term (delimited by commas):</label>
+                <br></br>
+                <textarea id="tags" name="tags" rows="3" cols="50"></textarea>
+                <br></br>
+                <label for="definition">Define your term:</label>
+                <br></br>
+                <textarea id="definition" name="definition" rows="3" cols="50"></textarea>
+            </fieldset>
+            <button type="button" id="cancel_btn">Cancel</button>
+            <button type="button" id="save_btn">Save</button>
+        </form>
+    </dialog>
+</body>
+</html>
