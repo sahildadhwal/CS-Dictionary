@@ -12,6 +12,7 @@
  * }} term_data
  *
  * @typedef {{
+ *  id: string,
  *  term_name: string,
  *  tags: string[],
  *  short_description: string,
@@ -26,11 +27,94 @@
  */
 
 /**
+ * Get the most popular tags.
+ * @param {number=} [count] Number of popular tags to return
+ * @returns {string[]} An array of popular tags.
+ */
+export function getPopularTags(count) {
+    const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
+    let popular_tags = Object.keys(tag_counts).sort((t1, t2) => tag_counts[t2] - t[1]);
+    return popular_tags.slice(0, count);
+}
+
+/**
+ * Return all terms which has the specified tag.
+ * @param {string} tag Name of a tag
+ * @returns {term[]} An array of all terms with this tag
+ */
+export function getDataOfTag(tag) {
+    const dict = loadDict();
+    const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
+    let terms = [];
+    for(let uuid of uuids) {
+        let token = dict[uuid];
+        terms.push(token);
+    }
+    return terms;
+}
+
+/**
+ * Get some random terms with the specified tag.
+ * @param {string} tag Name of a tag that the terms have
+ * @param {number} [count=5] Number of terms to return
+ * @returns {term[]} An array of some terms that has the given tag
+ */
+export function getRandomTermsOfTag(tag, count=5) {
+    const dict = loadDict();
+    const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
+    // get some random uuids
+    let randomUuids = [];
+    for (let i = 0; i < Math.min(uuids.length, count); i++) {
+        let idx = Math.floor(Math.random() * uuids.length);
+        while (uuids[idx] in randomUuids) {
+            idx = Math.floor(Math.random() * uuids.length);
+        }
+        terms.push(uuids[idx]);
+    }
+    // convert uuid to term
+    let terms = [];
+    for(let uuid of randomUuids) {
+        let token = dict[uuid];
+        terms.push(token);
+    }
+    return terms;
+}
+
+/**
+ * Add uuid of a term to tags' uuid lists
+ * @param {term} term A term with some tags
+ */
+export function updateTags(term) {
+    const tags_dict = JSON.parse(localStorage.getItem("tags")) || {};
+
+    for (const tag of term.tags) {
+        tags_dict[tag] = tags_dict[tag] || [];
+        if (term.id in tags_dict[tag]) continue;
+        tags_dict[tag].push(term.id);
+    }
+    localStorage.setItem('tags', JSON.stringify(tags_dict));
+}
+
+/**
+ * Increase the number of views of the tags of a term
+ * @param {term} term 
+ */
+export function updateTagCount(term) {
+    const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
+
+    for (const tag of term.tags) {
+        tag_counts[tag] = tag_counts[tag] || 0;
+        tag_counts[tag]++;
+    }
+
+    localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
+}
+
+/**
  * Return term objects that are recently viewed by user.
  * @return {term[]} An array of term objects, size <= 5
  */
 export function getDataOfRecents() {
-    x = {1:2}
     const dict = loadDict();
     const recents = JSON.parse(localStorage.getItem('recents')) || [];
     let recently_opened = [];
@@ -90,15 +174,15 @@ function archiveDict(dict) {
 /**
  * Put the given term into the database.
  * @param {term} term A term object
- * @returns {string} The id of the ?
+ * @returns {string} The id of the new term
  */
 export function insertTerm(term) {
     const dict = loadDict();
-    const termId = generateTermId();
-    dict[termId] = term;
+    term.id = generateTermId();
+    dict[term.id] = term;
     archiveDict(dict);
     location.reload(); //FIXME: the website action after a term is inserted
-    return blogId; //FIXME: what to return after `insertItem`
+    return term.id;
 }
 
 /**
@@ -123,14 +207,13 @@ export function selectDict() {
 
 /**
  * Update an existing term.
- * @param {string} termId The uuid of a term
  * @param {term} term A term object
  */
-export function updateTerm(termId, term) {
+export function updateTerm(term) {
     const dict = loadDict();
     term.edit_count += 1;
     //FIXME: edited_by, edited_time
-    dict[termId] = term;
+    dict[term.id] = term;
     archiveDict(dict);
 }
 
@@ -163,15 +246,14 @@ export function termsCount() {
  * Return an html element that randered the given term using the template
  * specified in the html file.
  * @private
- * @param {string} termId The uuid of a term
  * @param {term} term A term object
  * @returns {HTMLElement} A `dict_entry` element of the term
  */
-export function renderTerm(termId, term) {
+export function renderTerm(term) {
     const template = document.getElementById("dict_template");
 
     const termE1 = template.content.cloneNode(true);
-    termE1.children[0].dataset.termId = termId;
+    termE1.children[0].dataset.termId = term.id;
 
 
     const nameH1 = termE1.querySelector('term_name > h1');
@@ -232,6 +314,8 @@ export function add(){
     term['edited_date'] = cur_time;
     term['edit_count'] = 0;
     insertTerm(term);
+    updateTags(term);
+    updateTagCount(term);
     renderAllTerms(term_container);
 }
 
