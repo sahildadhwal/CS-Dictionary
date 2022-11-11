@@ -141,7 +141,7 @@
 
 3) **Notes**
     
-    IssueIssues (based on user stories?)
+    Issues (based on user stories?)
    <ul>
         <li>Integrate backend and frontend</li>
         <li>Structure the JSON file</li>
