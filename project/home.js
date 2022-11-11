@@ -36,57 +36,95 @@ function init() {
         "tag_category": [
             {
                 "tag_name": "CSE 110",
-                "tags": [
+                "terms": [
                     {
-                        "id": "Guid1",
-                        "term_name": "Terrm name 1",
+                        "id": "TagTerm1",
+                        "term_name": "Tag 1 Term name 1",
                         "tags": [
                             "CSE",
                             "CSE 110"
                         ],
-                        "short_description": "Some description 1"
+                        "short_description": "Tag 1 Term description 1."
+                    },
+                    {
+                        "id": "TagTerm2",
+                        "term_name": "Tag 1 Term name 2",
+                        "tags": [
+                            "CSE",
+                            "CSE 110"
+                        ],
+                        "short_description": "Tag 1 Term description 2"
                     }
                 ]
             },
             {
                 "tag_name": "CSE 101",
-                "tags": [
+                "terms": [
                     {
-                        "id": "Guid2",
-                        "term_name": "Terrm name 22",
+                        "id": "TagTerm1",
+                        "term_name": "Tag 2 Term name 1",
                         "tags": [
                             "CSE",
                             "CSE 110"
                         ],
-                        "short_description": "Some descript 2"
+                        "short_description": "Tag 2 Term description 1."
+                    },
+                    {
+                        "id": "TagTerm2",
+                        "term_name": "Tag 2 Term name 2",
+                        "tags": [
+                            "CSE",
+                            "CSE 110"
+                        ],
+                        "short_description": "Tag 2 Term description 2"
                     }
                 ]
             }
         ]
     }
     addTermsToDocument(json);
-    //addTermsToDocument(json);
+    addTagsToDocument(json);
 
 }
 
 
 function addTermsToDocument(terms) {
     let recentlyAddedEle = document.querySelector('div.recently-added-elements');
-    console.log(recentlyAddedEle)
-
     terms.recently_opened.forEach(term => {
-        
+
         let termCard = document.createElement('term-card');
-        
+
         termCard.data = term;
         recentlyAddedEle.appendChild(termCard);
     });
 
-    
-    
+
+
 }
+function addTagsToDocument(terms) {
+    let recentlyAddedEle = document.querySelector('div.popular-tags');
+    let tagDiv = document.createElement('div');
+
+    terms.tag_category.forEach(tag => {
+        let tagName = document.createElement('h4');
+        tagName.textContent = tag['tag_name'];
+        tagDiv.appendChild(tagName);
+        let tagTerms = document.createElement('div');
+        tagTerms.style = "display: flex;"
+
+
+        tag.terms.forEach(term => {
+            let termCard = document.createElement('term-card');
+
+            termCard.data = term;
+            tagTerms.appendChild(termCard);
+        });
+        tagDiv.appendChild(tagTerms);
+    });
+
+    recentlyAddedEle.appendChild(tagDiv);
+    // Commented for now, let me test the tag rows first
 
 
 
-
-
+}

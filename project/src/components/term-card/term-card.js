@@ -9,7 +9,7 @@ class TermCard extends HTMLElement {
         xhr.open('GET', 'src/components/term-card/term-card.css', true);
         xhr.onreadystatechange = function () {
             if (this.readyState !== 4) return;
-            if (this.status !== 200) return; // or whatever error handling you want
+            if (this.status !== 200) return;
             styleEl.textContent = this.responseText; //style
         };
         xhr.send();
