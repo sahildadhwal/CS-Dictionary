@@ -16,7 +16,11 @@
         save.addEventListener('click', dict.add);
         cancel.addEventListener('click', dict.cancel);
         delete_all.addEventListener('click', dict.deleteAll);
+<<<<<<< Updated upstream
         recent_btn.addEventListener('click', _=>dict.updateRecents(Math.random()));
+=======
+        recent_btn.addEventListener('click', _=>dict.top5terms("110"));
+>>>>>>> Stashed changes
 
         document.addEventListener("DOMContentLoaded", () =>{
             const termsContainer = document.getElementById("dict");

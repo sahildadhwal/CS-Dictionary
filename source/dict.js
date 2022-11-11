@@ -28,7 +28,11 @@
 
 /**
  * Get the most popular tags.
+<<<<<<< Updated upstream
  * @param {number=} [count] Number of popular tags to return
+=======
+ * @param {number} count # popular tags to return
+>>>>>>> Stashed changes
  * @returns {string[]} An array of popular tags.
  */
 export function getPopularTags(count) {
@@ -38,6 +42,28 @@ export function getPopularTags(count) {
 }
 
 /**
+<<<<<<< Updated upstream
+=======
+ * Get the top 5 terms of a tag
+ * @param {string} tag_name the name of the tag you want the top 5 of 
+ * @returns {term[]} array of 5 terms
+ */
+export function top5terms(tag_name) {
+    const dict = loadDict();
+    const tags = JSON.parse(localStorage.getItem('tags')) || {};
+    const terms_of_tag = tags[tag_name];
+    let count = Math.min(terms_of_tag.length, 5);
+    let top5 = [];
+    for(var i = 0; i < count; i++) {
+        // push term objects
+        top5.push(dict[terms_of_tag[i]]);
+    }
+    console.log(top5);
+    return top5;
+}
+
+/**
+>>>>>>> Stashed changes
  * Return all terms which has the specified tag.
  * @param {string} tag Name of a tag
  * @returns {term[]} An array of all terms with this tag
@@ -122,6 +148,10 @@ export function getDataOfRecents() {
         let token = dict[uuid];
         recently_opened.push(token);
     }
+<<<<<<< Updated upstream
+=======
+    //j
+>>>>>>> Stashed changes
     return recently_opened;
 }
 
@@ -177,10 +207,18 @@ function archiveDict(dict) {
  * @returns {string} The id of the new term
  */
 export function insertTerm(term) {
+<<<<<<< Updated upstream
+=======
+    // TODO: Decide how we are going to handle duplicate (consult with team)
+>>>>>>> Stashed changes
     const dict = loadDict();
     term.id = generateTermId();
     dict[term.id] = term;
     archiveDict(dict);
+<<<<<<< Updated upstream
+=======
+    updateRecents(term.id);
+>>>>>>> Stashed changes
     location.reload(); //FIXME: the website action after a term is inserted
     return term.id;
 }
@@ -260,7 +298,11 @@ export function renderTerm(term) {
     nameH1.textContent = term.name;
 
     const tagUL1 = termE1.querySelector('tags > ul');
+<<<<<<< Updated upstream
     for(let i = 0; i < term.tags.length; i++){
+=======
+    for(let i = 0; i < term['tags'].length; i++){
+>>>>>>> Stashed changes
         tagUL1.innerHTML += '<li>' + term.tags[i] + '</li>';
     }
 
@@ -276,7 +318,11 @@ export function renderAllTerms(term_container) {
     const dict = selectDict();
 
     for(const [termId, term] of Object.entries(dict)){
+<<<<<<< Updated upstream
         const termE1 = renderTerm(termId, term);
+=======
+        const termE1 = renderTerm(term);
+>>>>>>> Stashed changes
         const existingTerm = term_container.querySelector(`[data-term-id="${termId}"]`);
         if (existingTerm) {
             existingTerm.remove();
