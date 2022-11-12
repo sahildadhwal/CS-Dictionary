@@ -82,6 +82,17 @@ function init() {
             }
         ]
     }
+
+    /** 
+     * BACKEND: 
+     * We need your functions so that we can call them in these next two functions:
+     * 
+     * addTermsToDocument(getRecentlyOpened());
+     * addTagsToDocument(getPopularTags());
+    */
+
+
+
     addTermsToDocument(json);
     addTagsToDocument(json);
 

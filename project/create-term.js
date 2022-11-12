@@ -10,6 +10,11 @@ let data = {};
 initTinyMCE();
 
 button.addEventListener('click', function() {
+    /**
+     * BACKEND:
+     * Here is where you can retrieve the input for creating a term. 
+     * With this input, you can then save it to localStorage using the code you have written.
+     */
     data.term_name = term_name.value;
     data.tags = tags.value;
     data.short_description = short_description.value;
