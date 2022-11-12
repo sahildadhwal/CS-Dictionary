@@ -25,14 +25,14 @@
  *  edit_count: number
  * }} term
  */
-
+import {initTinyMCE, getTinyMCEData} from '/src/components/tinyMCE/tiny-mce.js'
+initTinyMCE();
+let create_btn = document.getElementById("create-button");
+create_btn.addEventListener('click', addTermToDoc());
 /**
  * Get the most popular tags.
-<<<<<<< Updated upstream
  * @param {number=} [count] Number of popular tags to return
-=======
  * @param {number} count # popular tags to return
->>>>>>> Stashed changes
  * @returns {string[]} An array of popular tags.
  */
 export function getPopularTags(count) {
@@ -42,8 +42,6 @@ export function getPopularTags(count) {
 }
 
 /**
-<<<<<<< Updated upstream
-=======
  * Get the top 5 terms of a tag
  * @param {string} tag_name the name of the tag you want the top 5 of 
  * @returns {term[]} array of 5 terms
@@ -63,7 +61,6 @@ export function top5terms(tag_name) {
 }
 
 /**
->>>>>>> Stashed changes
  * Return all terms which has the specified tag.
  * @param {string} tag Name of a tag
  * @returns {term[]} An array of all terms with this tag
@@ -105,6 +102,18 @@ export function getRandomTermsOfTag(tag, count=5) {
     }
     return terms;
 }
+/**
+ * 
+ * @returns {{string, term[]}} A dict with tag name as key and 5 terms in an array as value
+ */
+export function getAllPopTags() {
+    const tagSet = getPopularTags(3);
+    let tagsDict = [];
+    for(let i = 0; i < tagSet.length; i++){
+        tagsDict.push({key: tagSet[i], value: top5terms(tagSet[i])});
+    }
+    return tagsDict;
+}
 
 /**
  * Add uuid of a term to tags' uuid lists
@@ -119,6 +128,30 @@ export function updateTags(term) {
         tags_dict[tag].push(term.id);
     }
     localStorage.setItem('tags', JSON.stringify(tags_dict));
+}
+/**
+ * 
+ * @param {{string, term[]}} terms A dict with tag name as Key and 5 terms in an array as value
+ */
+export function addTagsToDocument(terms) {
+    let recentlyAddedEle = document.querySelector('div.popular-tags');
+    let tagDiv = document.createElement('div');
+
+    for (const [key, value] of Object.entries(term)){
+        let tagName = document.createElement('h4');
+        tagName.textContent = key;
+        tagDiv.appendChild(tagName);
+        let tagTerms = document.createElement('div');
+        tagTerms.style = "display: flex;"
+        for (let i = 0; i < value.length; i++){
+            let termCard = document.createElement('term-card');
+            termCard.data = value[i];
+            tagTerms.appendChild(termCard);
+        }
+        tagDiv.appendChild(tagTerms);
+    }
+    recentlyAddedEle.appendChild(tagDiv);
+    // Commented for now, let me test the tag rows first
 }
 
 /**
@@ -135,6 +168,18 @@ export function updateTagCount(term) {
 
     localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
 }
+/**
+ * Add the terms from recently_added to the page
+ * @param {term[]} terms 
+ */
+export function addTermsToDocument(terms) {
+    let recentlyAddedEle = document.querySelector('div.recently-added-elements');
+    terms.forEach(term => {
+        let termCard = document.createElement('term-card');
+        termCard.data = term;
+        recentlyAddedEle.appendChild(termCard);
+    });
+}
 
 /**
  * Return term objects that are recently viewed by user.
@@ -148,10 +193,7 @@ export function getDataOfRecents() {
         let token = dict[uuid];
         recently_opened.push(token);
     }
-<<<<<<< Updated upstream
-=======
     //j
->>>>>>> Stashed changes
     return recently_opened;
 }
 
@@ -207,18 +249,12 @@ function archiveDict(dict) {
  * @returns {string} The id of the new term
  */
 export function insertTerm(term) {
-<<<<<<< Updated upstream
-=======
     // TODO: Decide how we are going to handle duplicate (consult with team)
->>>>>>> Stashed changes
     const dict = loadDict();
     term.id = generateTermId();
     dict[term.id] = term;
     archiveDict(dict);
-<<<<<<< Updated upstream
-=======
     updateRecents(term.id);
->>>>>>> Stashed changes
     location.reload(); //FIXME: the website action after a term is inserted
     return term.id;
 }
@@ -298,11 +334,7 @@ export function renderTerm(term) {
     nameH1.textContent = term.name;
 
     const tagUL1 = termE1.querySelector('tags > ul');
-<<<<<<< Updated upstream
-    for(let i = 0; i < term.tags.length; i++){
-=======
     for(let i = 0; i < term['tags'].length; i++){
->>>>>>> Stashed changes
         tagUL1.innerHTML += '<li>' + term.tags[i] + '</li>';
     }
 
@@ -318,11 +350,7 @@ export function renderAllTerms(term_container) {
     const dict = selectDict();
 
     for(const [termId, term] of Object.entries(dict)){
-<<<<<<< Updated upstream
-        const termE1 = renderTerm(termId, term);
-=======
         const termE1 = renderTerm(term);
->>>>>>> Stashed changes
         const existingTerm = term_container.querySelector(`[data-term-id="${termId}"]`);
         if (existingTerm) {
             existingTerm.remove();
@@ -337,6 +365,7 @@ export function renderAllTerms(term_container) {
 /**
  * Add a new term with data from user input.
  * @private
+ * @deprecated Deprecated since Nov 12, 2022 after integrating TinyMCE
  */
 export function add(){
     document.getElementById('term_template').style.display = 'none';
@@ -363,6 +392,25 @@ export function add(){
     updateTags(term);
     updateTagCount(term);
     renderAllTerms(term_container);
+}
+/**
+ * Add a term to the localstorage and update corresponding params in local storage while storing the embedded data using TinyMCE
+ */
+export function addTermToDoc(){
+    const term = {};
+    const cur_time = new Date();
+    term['term_name'] = document.getElementById("term_name").value;
+    term['tags'] = document.getElementById("tags").value.split(',');
+    term['short_description'] = document.getElementById("short_description").value;
+    term['term_data'] = getTinyMCEData();
+    term['created_by'] = 'placeholder';
+    term['created_time'] = cur_time;
+    term['edited_by'] = 'placeholder';
+    term['edited_date'] = cur_time;
+    term['edit_count'] = 0;
+    insertTerm(term);
+    updateTags(term);
+    updateTagCount(term);
 }
 
 /**
