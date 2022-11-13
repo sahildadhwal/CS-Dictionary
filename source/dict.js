@@ -30,6 +30,12 @@ initTinyMCE();
 
 let create_btn = document.getElementById("create-button");
 create_btn.addEventListener('click', addTermToDoc);
+
+export function init(){
+    addTagsToDocument(getAllPopTags());
+    addTermsToDocument(getDataOfRecents());
+}
+
 /**
  * Get the most popular tags.
  * @param {number=} [count] Number of popular tags to return
