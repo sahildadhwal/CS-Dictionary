@@ -85,3 +85,41 @@
     transition: 1s;
 }
 
+
+
+/*MAKE IT GLOW?? https://alvarotrigo.com/blog/10-cool-css-animations-to-add-to-your-website/ */
+.basic-card:before {
+    content: '';
+    background: linear-gradient(45deg,  #00ffb7, rgb(0, 123, 255), #ff0000, #fa7532);
+    /*(45deg,  #a4b1ef, #7a00ff, #f6b5e8, #f4b2b2);*/
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.basic-card:active {
+    color: #000
+}
+
+.basic-card:active:after {
+    background: transparent;
+}
+
+.basic-card:hover:before {
+    opacity: 1;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}

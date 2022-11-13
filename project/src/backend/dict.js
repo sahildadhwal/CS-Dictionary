@@ -38,7 +38,7 @@
  */
 export function getPopularTags(count) {
     const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
-    let popular_tags = Object.keys(tag_counts).sort((t1, t2) => tag_counts[t2] - [t1]);
+    let popular_tags = Object.keys(tag_counts).sort((t1, t2) => tag_counts[t2] - tag_counts[t1]);
     return popular_tags.slice(0, count);
 }
 
@@ -94,9 +94,9 @@ export function top5terms(tag_name) {
     const dict = loadDict();
     const tags = JSON.parse(localStorage.getItem('tags')) || {};
     const terms_of_tag = tags[tag_name];
-    let count = Math.min(terms_of_tag.length, 5);
+    // let count = Math.min(terms_of_tag.length, 5);
     let top5 = [];
-    for(var i = 0; i < count; i++) {
+    for(var i = 0; i < 5; i++) {
         // push term objects
         top5.push(dict[terms_of_tag[i]]);
     }
@@ -147,6 +147,10 @@ export function updateTagCount(term) {
     localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
 }
 
+/////////////////////////////////////////////////////////////////////
+// Recent Terms
+///////////////////////////////////////////////////////////////////// 
+
 /**
  * Return term objects that are recently viewed by user.
  * @return {term[]} An array of term objects, size <= 5
@@ -184,14 +188,11 @@ export function updateRecents(uuid) {
     localStorage.setItem('recents', JSON.stringify(recents));
 }
 
+/////////////////////////////////////////////////////////////////////
+// Dict
+///////////////////////////////////////////////////////////////////// 
+
 // import DOMPurify from './DOMPurify/dist/purify.es.js';
-/**
- * Generate a random ID.
- * @returns {string} A random uuid.
- */
-export function generateTermId() {
-    return crypto.randomUUID();
-};
 
 /**
  * Load the dictionary of all terms. Key is the random term id. Value is the object.
@@ -210,6 +211,39 @@ function archiveDict(dict) {
 }
 
 /**
+ * //FIXME: duplicate with `loadDict`
+ * Same as `loadDict`
+ * @returns {Object.<string, term>} A dictionary of terms
+ */
+export function selectDict() {
+    const dict = loadDict();
+    return dict;
+}
+
+/**
+ * Clear all terms in `localstorage`
+ */
+ export function deleteAll() {
+    const dict = loadDict();
+    for(const [_, term] of Object.entries(dict)){
+        deleteTerm(term);
+    }
+    // renderAllTerms(document.getElementById('dict'));
+}
+
+/////////////////////////////////////////////////////////////////////
+// Terms
+///////////////////////////////////////////////////////////////////// 
+
+/**
+ * Generate a random ID.
+ * @returns {string} A random uuid.
+ */
+ export function generateTermId() {
+    return crypto.randomUUID();
+}
+
+/**
  * Put the given term into the database.
  * @param {term} term A term object
  * @returns {string} The id of the new term
@@ -221,7 +255,7 @@ export function insertTerm(term) {
     dict[term.id] = term;
     archiveDict(dict);
     updateRecents(term.id);
-    location.reload(); //FIXME: the website action after a term is inserted
+    // location.reload();
     return term.id;
 }
 
@@ -235,41 +269,43 @@ export function selectTerm(termId) {
     return dict[termId];
 }
 
-/**
- * //FIXME: duplicate with `loadDict`
- * Same as `loadDict`
- * @returns {Object.<string, term>} A dictionary of terms
- */
-export function selectDict() {
-    const dict = loadDict();
-    return dict;
-}
 
 /**
  * Update an existing term.
  * @param {term} term A term object
  */
 export function updateTerm(term) {
+    const cur_time = new Date();
     const dict = loadDict();
     term.edit_count += 1;
-    //FIXME: edited_by, edited_time
+    term.edited_date = cur_time;
+    term.edited_by = 'user';
     dict[term.id] = term;
     archiveDict(dict);
 }
 
 /**
  * Remove a term from `localstorage`.
- * @param {string} termId The uuid of a term
+ * @param {term} term The term
  * @returns {boolean} `true` if success; `false` otherwise
  */
-export function deleteTerm(termId) {
+export function deleteTerm(term) {
     const dict = loadDict();
-    if (!(termId in dict)){
+    if (!(term.id in dict)){
         return false;
     } 
-    delete dict[termId];
+    delete dict[term.id];
+    let tags = JSON.parse(localStorage.getItem("tags"));
+    for (const tag of term.tags) {
+        const uuids = tags[tag] || [];
+        if (term.id in uuids) {
+            let i = uuids.indexOf(term.id);
+            tags[tag].splice(i, 1);
+        }
+    }
     archiveDict(dict);
-    location.reload();
+    localStorage.setItem('tags', tags);
+    // location.reload();
     return true;
 }
 
@@ -280,6 +316,37 @@ export function deleteTerm(termId) {
 export function termsCount() {
     const dict = loadDict();
     return Object.keys(dict).length;
+}
+
+/**
+ * Add a term to the localstorage and update corresponding params in local storage
+ * while storing the embedded data using TinyMCE
+ * @param {term} term a new term
+ */
+ export function addTermToBackend(term){
+    const cur_time = new Date();
+    term['tags'] = term.tags.split(',');
+    for (const i in term['tags']) {
+        term['tags'][i] = term['tags'][i].trim();
+        if (term['tags'][i] === '') {
+            term['tags'].splice(i, 1);
+        }
+    }
+    term['created_by'] = 'placeholder';
+    term['created_time'] = cur_time;
+    term['edited_by'] = 'placeholder';
+    term['edited_date'] = cur_time;
+    term['edit_count'] = 0;
+    insertTerm(term);
+    updateTags(term);
+    updateTagCount(term);
+}
+
+/**
+ * @deprecated
+ */
+export function addTermToDoc(term) {
+    addTermToBackend(term);
 }
 
 // /**
@@ -327,37 +394,6 @@ export function termsCount() {
 
 //     return true;
 // }
-
-/**
- * Add a term to the localstorage and update corresponding params in local storage
- * while storing the embedded data using TinyMCE
- * @param {term} term a new term
- */
-export function addTermToDoc(term){
-    const cur_time = new Date();
-    term['tags'] = term.tags.split(',');
-    term['created_by'] = 'placeholder';
-    term['created_time'] = cur_time;
-    term['edited_by'] = 'placeholder';
-    term['edited_date'] = cur_time;
-    term['edit_count'] = 0;
-    insertTerm(term);
-    updateTags(term);
-    updateTagCount(term);
-}
-
-/**
- * Clear all terms in `localstorage`
- */
-export function deleteAll() {
-    const dict = selectDict();
-    // FIXME: just save with empty dict?
-    // FIXME: delete other data in dict?
-    for(const [termId, term] of Object.entries(dict)){
-        deleteTerm(termId);
-    }
-    renderAllTerms(document.getElementById('dict'));
-}
 
 // /**
 //  * Show user input dialog.

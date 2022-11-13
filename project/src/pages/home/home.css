@@ -1,23 +1,67 @@
-/*
-
-body {
-    background-color: hsl(30, 60%, 50%);
-    
+/* */
+term-card {
+    margin-right: 20px;
 }
-  
-h1,h4 {
-    color: rgb(34, 34, 191);
+/* */
+term-card:last-child {
+    margin: 0;
 }
-
-
-h2 {
-      color: red;
-}
-  
-
-
-
-*/
+/* */
 .tag-column {
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    padding-left: 20px;
 }
+/* */
+.recently-added-elements {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    padding-left: 20px;
+}
+/* */
+.add-button {
+    font-size: 40px !important;
+    /* height: 100%; */
+    aspect-ratio: 1 / 1;
+    align-self: center;
+}
+/* */
+.add-button:hover {
+    cursor: pointer;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+/* MAKE IT GLOW?? https://alvarotrigo.com/blog/10-cool-css-animations-to-add-to-your-website/
+.add-button:hover {
+    content: '';
+    background: linear-gradient(45deg,  #a4efda, rgb(0, 123, 255), #5100ff, #f48eff);
+    background-size: 400%;
+    z-index: -1;
+    
+    animation: glowing 20s linear infinite;
+    
+    transition: opacity .3s ease-in-out;
+    
+    aspect-ratio: 1/1;
+}
+
+.add-button:active {
+    color: #000
+}
+
+.add-button:active:after {
+    background: transparent;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+} */

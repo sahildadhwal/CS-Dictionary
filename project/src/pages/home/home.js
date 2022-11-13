@@ -2,88 +2,7 @@ window.addEventListener('DOMContentLoaded', init);
 import * as backendFunction from '/src/backend/dict.js'
 
 function init() {
-    let json = {
-        // shows all terms recently opened by user. note: newly created terms will be opened
-        "recently_opened": [
-            {
-                "id": "Guid1",
-                "term_name": "Terrm name 1",
-                "tags": [
-                    "CSE",
-                    "CSE 110"
-                ],
-                "short_description": "Some description 1"
-            },
-            {
-                "id": "Guid2",
-                "term_name": "Terrm name 22",
-                "tags": [
-                    "CSE",
-                    "CSE 101"
-                ],
-                "short_description": "Some descript 2"
-            },
-            {
-                "id": "Guid3",
-                "term_name": "Terrm name 23",
-                "tags": [
-                    "ENG",
-                    "ENG 141"
-                ],
-                "short_description": "Some descript 3"
-            }
-        ],
-        // shows all terms associated with inputed hashtag
-        "tag_category": [
-            {
-                "tag_name": "CSE 110",
-                "terms": [
-                    {
-                        "id": "TagTerm1",
-                        "term_name": "Tag 1 Term name 1",
-                        "tags": [
-                            "CSE",
-                            "CSE 110"
-                        ],
-                        "short_description": "Tag 1 Term description 1."
-                    },
-                    {
-                        "id": "TagTerm2",
-                        "term_name": "Tag 1 Term name 2",
-                        "tags": [
-                            "CSE",
-                            "CSE 110"
-                        ],
-                        "short_description": "Tag 1 Term description 2"
-                    }
-                ]
-            },
-            {
-                "tag_name": "CSE 101",
-                "terms": [
-                    {
-                        "id": "TagTerm1",
-                        "term_name": "Tag 2 Term name 1",
-                        "tags": [
-                            "CSE",
-                            "CSE 110"
-                        ],
-                        "short_description": "Tag 2 Term description 1."
-                    },
-                    {
-                        "id": "TagTerm2",
-                        "term_name": "Tag 2 Term name 2",
-                        "tags": [
-                            "CSE",
-                            "CSE 110"
-                        ],
-                        "short_description": "Tag 2 Term description 2"
-                    }
-                ]
-            }
-        ]
-    }
-    
+      
     addTermsToDocument(backendFunction.getDataOfRecents());
     addTagsToDocument(backendFunction.getAllPopTags());
 }
@@ -111,8 +30,7 @@ function addTagsToDocument(terms) {
         tagName.textContent = tag['tag_name'];
         tagDiv.appendChild(tagName);
         let tagTerms = document.createElement('div');
-        // tagTerms.style = "display: flex;"
-        tagTerms.class = "tag-column";
+        tagTerms.className = "tag-column";
 
         tag.terms.forEach(term => {
             let termCard = document.createElement('term-card');

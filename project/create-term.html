@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Add Term Page</title>
+    <link rel="stylesheet" href="src/pages/create-term/create-term.css">
+    <link rel="stylesheet" href="common.css">
 </head>
 
 <body>
-    <h1>Add Term</h1>
+    <header class="nav-bar">
+        <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70px" onclick="jump_HomeHtml()">
+    </header>
 
-    <div class="text-box">
-        <h3>Term Name: <input type="text" id="term_name" placeholder="Pineapples" /> </h3>
-        <h3>Tags: <input type="text" id="tags" placeholder="#pineapple #fruit #spongebob" /> </h3>
-        <h3>Definition: <input type="text" id="short_description" placeholder="spiderman_is_cool" /> </h3>
-        <textarea id="tinyMCE-content"></textarea>
-        
-        <button id="create-button" onclick="jump_HomeHtml()">Post</button>
-    </div>
+    <main>
+        <h1>Add Term</h1>
+
+        <div class="text-box">
+            <h3>Term Name: <input type="text" id="term_name" placeholder="Pineapples" /> </h3>
+            <h3>Tags: <input type="text" id="tags" placeholder="#pineapple #fruit #spongebob" /> </h3>
+            <h3>Definition: <input type="text" id="short_description" placeholder="spiderman_is_cool" /> </h3>
+            <textarea id="tinyMCE-content"></textarea>
+
+            <button id="create-button" onclick="jump_HomeHtml()">Post</button>
+        </div>
+    </main>
 </body>
 
-<script src="src/scripts/redirection.js"></script>
+<script src="src/common-scripts/redirection.js"></script>
 <script src="src/backend/dict.js" type="module"></script>
 <script src="src/pages/create-term/create-term.js" type="module"></script>
-<script src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js"></script>
+<script
+    src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js"></script>
+
 </html>

@@ -16,5 +16,5 @@ button.addEventListener('click', function() {
     data.short_description = short_description.value;
     data.term_data = getTinyMCEData();
 
-    backendFunction.addTermToDoc(data);
+    backendFunction.addTermToBackend(data);
 })
