@@ -38,7 +38,9 @@
  */
 export function getPopularTags(count) {
     const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
-    let popular_tags = Object.keys(tag_counts).sort((t1, t2) => tag_counts[t2] - tag_counts[t1]);
+    let popular_tags = Object.keys(tag_counts).sort(
+        (t1, t2) => tag_counts[t2] - tag_counts[t1]
+    );
     return popular_tags.slice(0, count);
 }
 
@@ -105,7 +107,8 @@ export function top5terms(tag_name) {
 
 /**
  * Return an array of popular tags and their terms.
- * @returns {{tag_name: string, terms: term[]}[]} A dict with tag name as key and 5 terms in an array as value
+ * @returns {Array.<{tag_name: string, terms: term[]}>} An array of dicts with
+ * tag name as key and 5 terms in an array as value
  */
 export function getAllPopTags() {
     const tagSet = getPopularTags(3);
@@ -319,7 +322,7 @@ export function termsCount() {
 }
 
 /**
- * Add a term to the localstorage and update corresponding params in local storage
+ * Add a term to the `localstorage` and update corresponding params in `localstorage`
  * while storing the embedded data using TinyMCE
  * @param {term} term a new term
  */
