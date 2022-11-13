@@ -137,7 +137,7 @@ export function addTagsToDocument(terms) {
     let recentlyAddedEle = document.querySelector('div.popular-tags');
     let tagDiv = document.createElement('div');
 
-    for (const [key, value] of Object.entries(term)){
+    for (const [key, value] of Object.entries(terms)){
         let tagName = document.createElement('h4');
         tagName.textContent = key;
         tagDiv.appendChild(tagName);
