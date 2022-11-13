@@ -64,7 +64,7 @@ jobs:
 
   jsDocs:
     name: Make jsDocs
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Build jsDocs
