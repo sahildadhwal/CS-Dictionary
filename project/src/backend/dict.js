@@ -1,4 +1,3 @@
-window.addEventListener('DOMContentLoaded', init);
 /**
  * @typedef {{
  *  id: string,
@@ -26,44 +25,21 @@ window.addEventListener('DOMContentLoaded', init);
  *  edit_count: number
  * }} term
  */
-import {initTinyMCE, getTinyMCEData} from '/src/components/tinyMCE/tiny-mce.js'
-// initTinyMCE();
-export function init(){
-    addTagsToDocument(getAllPopTags());
-    addTermsToDocument(getDataOfRecents());
-}
 
-let create_btn = document.getElementById("create-button");
-create_btn.addEventListener('click', addTermToDoc);
+/////////////////////////////////////////////////////////////////////
+// Popular Tags
+///////////////////////////////////////////////////////////////////// 
+
 /**
  * Get the most popular tags.
- * @param {number=} [count] Number of popular tags to return
- * @param {number} count # popular tags to return
+ * @param {number=} [count] Number of popular tags to return. If count is undefined,
+ *  then all tags are returned.
  * @returns {string[]} An array of popular tags.
  */
 export function getPopularTags(count) {
     const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
     let popular_tags = Object.keys(tag_counts).sort((t1, t2) => tag_counts[t2] - [t1]);
     return popular_tags.slice(0, count);
-}
-
-/**
- * Get the top 5 terms of a tag
- * @param {string} tag_name the name of the tag you want the top 5 of 
- * @returns {term[]} array of 5 terms
- */
-export function top5terms(tag_name) {
-    const dict = loadDict();
-    const tags = JSON.parse(localStorage.getItem('tags')) || {};
-    const terms_of_tag = tags[tag_name];
-    let count = Math.min(terms_of_tag.length, 5);
-    let top5 = [];
-    for(var i = 0; i < count; i++) {
-        // push term objects
-        top5.push(dict[terms_of_tag[i]]);
-    }
-    console.log(top5);
-    return top5;
 }
 
 /**
@@ -85,7 +61,7 @@ export function getDataOfTag(tag) {
 /**
  * Get some random terms with the specified tag.
  * @param {string} tag Name of a tag that the terms have
- * @param {number} [count=5] Number of terms to return
+ * @param {number} [count=5] Number of terms to return. Default is 5.
  * @returns {term[]} An array of some terms that has the given tag
  */
 export function getRandomTermsOfTag(tag, count=5) {
@@ -108,16 +84,35 @@ export function getRandomTermsOfTag(tag, count=5) {
     }
     return terms;
 }
+
 /**
- * 
- * @returns {{string, term[]}} A dict with tag name as key and 5 terms in an array as value
+ * Get the first 5 terms of a tag
+ * @param {string} tag_name the name of the tag you want the top 5 of 
+ * @returns {term[]} array of 5 terms
+ */
+export function top5terms(tag_name) {
+    const dict = loadDict();
+    const tags = JSON.parse(localStorage.getItem('tags')) || {};
+    const terms_of_tag = tags[tag_name];
+    let count = Math.min(terms_of_tag.length, 5);
+    let top5 = [];
+    for(var i = 0; i < count; i++) {
+        // push term objects
+        top5.push(dict[terms_of_tag[i]]);
+    }
+    return top5;
+}
+
+/**
+ * Return an array of popular tags and their terms.
+ * @returns {{tag_name: string, terms: term[]}[]} A dict with tag name as key and 5 terms in an array as value
  */
 export function getAllPopTags() {
     const tagSet = getPopularTags(3);
-    let tagsDict = {};
+    let tagsDict = [];
     for(let i = 0; i < tagSet.length; i++){
-        //tagsDict[i]({key: tagSet[i], value: top5terms(tagSet[i])});
-        tagsDict[tagSet[i]] = top5terms(tagSet[i]);
+        tagsDict.push({tag_name: tagSet[i], terms: top5terms(tagSet[i])});
+        // tagsDict[tagSet[i]] = top5terms(tagSet[i]);
     }
     return tagsDict;
 }
@@ -136,30 +131,6 @@ export function updateTags(term) {
     }
     localStorage.setItem('tags', JSON.stringify(tags_dict));
 }
-/**
- * 
- * @param {{string, term[]}} terms A dict with tag name as Key and 5 terms in an array as value
- */
-export function addTagsToDocument(terms) {
-    let recentlyAddedEle = document.querySelector('div.popular-tags');
-    let tagDiv = document.createElement('div');
-
-    for (const [key, value] of Object.entries(terms)){
-        let tagName = document.createElement('h4');
-        tagName.textContent = key;
-        tagDiv.appendChild(tagName);
-        let tagTerms = document.createElement('div');
-        tagTerms.style = "display: flex;"
-        for (let i = 0; i < value.length; i++){
-            let termCard = document.createElement('term-card');
-            termCard.data = value[i];
-            tagTerms.appendChild(termCard);
-        }
-        tagDiv.appendChild(tagTerms);
-    }
-    recentlyAddedEle.appendChild(tagDiv);
-    // Commented for now, let me test the tag rows first
-}
 
 /**
  * Increase the number of views of the tags of a term
@@ -174,18 +145,6 @@ export function updateTagCount(term) {
     }
 
     localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
-}
-/**
- * Add the terms from recently_added to the page
- * @param {term[]} terms 
- */
-export function addTermsToDocument(terms) {
-    let recentlyAddedEle = document.querySelector('div.recently-added-elements');
-    terms.forEach(term => {
-        let termCard = document.createElement('term-card');
-        termCard.data = term;
-        recentlyAddedEle.appendChild(termCard);
-    });
 }
 
 /**
@@ -323,93 +282,60 @@ export function termsCount() {
     return Object.keys(dict).length;
 }
 
+// /**
+//  * Return an html element that randered the given term using the template
+//  * specified in the html file.
+//  * @private
+//  * @param {term} term A term object
+//  * @returns {HTMLElement} A `dict_entry` element of the term
+//  */
+// export function renderTerm(term) {
+//     const template = document.getElementById("dict_template");
+
+//     const termE1 = template.content.cloneNode(true);
+//     termE1.children[0].dataset.termId = term.id;
+
+
+//     const nameH1 = termE1.querySelector('term_name > h1');
+//     nameH1.textContent = term.name;
+
+//     const tagUL1 = termE1.querySelector('tags > ul');
+//     for(let i = 0; i < term['tags'].length; i++){
+//         tagUL1.innerHTML += '<li>' + term.tags[i] + '</li>';
+//     }
+
+//     return termE1;
+// }
+// /**
+//  * Render all terms into elements and put them into the `term_container`.
+//  * @private
+//  * @param {HTMLElement} term_container  An HTML element to contain the term elements
+//  * @returns {boolean} `true` if success
+//  */
+// export function renderAllTerms(term_container) {
+//     const dict = selectDict();
+
+//     for(const [termId, term] of Object.entries(dict)){
+//         const termE1 = renderTerm(term);
+//         const existingTerm = term_container.querySelector(`[data-term-id="${termId}"]`);
+//         if (existingTerm) {
+//             existingTerm.remove();
+//         }
+
+//         term_container.appendChild(termE1);
+//     }    
+
+//     return true;
+// }
+
 /**
- * Return an html element that randered the given term using the template
- * specified in the html file.
- * @private
- * @param {term} term A term object
- * @returns {HTMLElement} A `dict_entry` element of the term
+ * Add a term to the localstorage and update corresponding params in local storage
+ * while storing the embedded data using TinyMCE
+ * @param {term} term a new term
  */
-export function renderTerm(term) {
-    const template = document.getElementById("dict_template");
-
-    const termE1 = template.content.cloneNode(true);
-    termE1.children[0].dataset.termId = term.id;
-
-
-    const nameH1 = termE1.querySelector('term_name > h1');
-    nameH1.textContent = term.name;
-
-    const tagUL1 = termE1.querySelector('tags > ul');
-    for(let i = 0; i < term['tags'].length; i++){
-        tagUL1.innerHTML += '<li>' + term.tags[i] + '</li>';
-    }
-
-    return termE1;
-}
-/**
- * Render all terms into elements and put them into the `term_container`.
- * @private
- * @param {HTMLElement} term_container  An HTML element to contain the term elements
- * @returns {boolean} `true` if success
- */
-export function renderAllTerms(term_container) {
-    const dict = selectDict();
-
-    for(const [termId, term] of Object.entries(dict)){
-        const termE1 = renderTerm(term);
-        const existingTerm = term_container.querySelector(`[data-term-id="${termId}"]`);
-        if (existingTerm) {
-            existingTerm.remove();
-        }
-
-        term_container.appendChild(termE1);
-    }    
-
-    return true;
-}
-
-/**
- * Add a new term with data from user input.
- * @private
- * @deprecated Deprecated since Nov 12, 2022 after integrating TinyMCE
- */
-export function add(){
-    document.getElementById('term_template').style.display = 'none';
-    //const name = DOMPurify.sanitize(document.getElementById('name').value);
-    const name = document.getElementById('name').value;
-    //const tags_str = DOMPurify.sanitize(document.getElementById('tags').value);
-    const tags_str = document.getElementById('tags').value;
-    //const short_description = DOMPurify.sanitize(document.getElementById('definition').value);
-    const short_description = document.getElementById('definition').value;
+export function addTermToDoc(term){
     const cur_time = new Date();
-    const term_container = document.getElementById('dict');
-    const term = {};
-    term['term_name'] = name;
-    term['tags'] = tags_str.split(',');
-    term['short_description'] = short_description;
-    term['term_data'] = {};
-    term['published'] = false;
-    term['created_by'] = 'placeholder';
-    term['created_time'] = cur_time;
-    term['edited_by'] = 'placeholder';
-    term['edited_date'] = cur_time;
-    term['edit_count'] = 0;
-    insertTerm(term);
-    updateTags(term);
-    updateTagCount(term);
-    renderAllTerms(term_container);
-}
-/**
- * Add a term to the localstorage and update corresponding params in local storage while storing the embedded data using TinyMCE
- */
-export function addTermToDoc(){
-    const term = {};
-    const cur_time = new Date();
-    term['term_name'] = document.getElementById("term_name").value;
-    term['tags'] = document.getElementById("tags").value.split(',');
-    term['short_description'] = document.getElementById("short_description").value;
-    term['term_data'] = {};//getTinyMCEData();
+    term['tags'] = term.tags.split(',');
     term['created_by'] = 'placeholder';
     term['created_time'] = cur_time;
     term['edited_by'] = 'placeholder';
@@ -433,17 +359,17 @@ export function deleteAll() {
     renderAllTerms(document.getElementById('dict'));
 }
 
-/**
- * Show user input dialog.
- * @private
- */
-export function showDialog(){
-    document.getElementById('term_template').style.display = 'block';
-}
-/**
- * Hide user input dialog.
- * @private
- */
-export function cancel(){
-    document.getElementById('term_template').style.display = 'none';
-}
+// /**
+//  * Show user input dialog.
+//  * @private
+//  */
+// export function showDialog(){
+//     document.getElementById('term_template').style.display = 'block';
+// }
+// /**
+//  * Hide user input dialog.
+//  * @private
+//  */
+// export function cancel(){
+//     document.getElementById('term_template').style.display = 'none';
+// }

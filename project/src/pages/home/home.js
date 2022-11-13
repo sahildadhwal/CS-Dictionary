@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', init);
-import './dict.js';
+import * as backendFunction from '/src/backend/dict.js'
+
 function init() {
     let json = {
         // shows all terms recently opened by user. note: newly created terms will be opened
@@ -82,62 +83,45 @@ function init() {
             }
         ]
     }
-
-    /** 
-     * BACKEND: 
-     * We need your functions so that we can call them in these next two functions:
-     * 
-     * addTermsToDocument(getRecentlyOpened());
-     * addTagsToDocument(getPopularTags());
-    */
-
-
-
-    // addTermsToDocument(json);
-    // addTagsToDocument(json);
-
-    addTermsToDocument(getDataOfRecents());
-    addTagsToDocument(getAllPopTags());
+    
+    addTermsToDocument(backendFunction.getDataOfRecents());
+    addTagsToDocument(backendFunction.getAllPopTags());
 }
 
 
-// function addTermsToDocument(terms) {
-//     let recentlyAddedEle = document.querySelector('div.recently-added-elements');
-//     terms.recently_opened.forEach(term => {
+function addTermsToDocument(terms) {
+    let recentlyAddedEle = document.querySelector('div.recently-added-elements');
+    terms.forEach(term => {
 
-//         let termCard = document.createElement('term-card');
+        let termCard = document.createElement('term-card');
 
-//         termCard.data = term;
-//         recentlyAddedEle.appendChild(termCard);
-//     });
-
-
-
-// }
-// function addTagsToDocument(terms) {
-//     let recentlyAddedEle = document.querySelector('div.popular-tags');
-//     let tagDiv = document.createElement('div');
-
-//     terms.tag_category.forEach(tag => {
-//         let tagName = document.createElement('h4');
-//         tagName.textContent = tag['tag_name'];
-//         tagDiv.appendChild(tagName);
-//         let tagTerms = document.createElement('div');
-//         tagTerms.style = "display: flex;"
-
-
-//         tag.terms.forEach(term => {
-//             let termCard = document.createElement('term-card');
-
-//             termCard.data = term;
-//             tagTerms.appendChild(termCard);
-//         });
-//         tagDiv.appendChild(tagTerms);
-//     });
-
-//     recentlyAddedEle.appendChild(tagDiv);
-//     // Commented for now, let me test the tag rows first
+        termCard.data = term;
+        recentlyAddedEle.appendChild(termCard);
+    });
 
 
 
-// }
+}
+function addTagsToDocument(terms) {
+    let recentlyAddedEle = document.querySelector('div.popular-tags');
+    let tagDiv = document.createElement('div');
+
+    terms.forEach(tag => {
+        let tagName = document.createElement('h4');
+        tagName.textContent = tag['tag_name'];
+        tagDiv.appendChild(tagName);
+        let tagTerms = document.createElement('div');
+        // tagTerms.style = "display: flex;"
+        tagTerms.class = "tag-column";
+
+        tag.terms.forEach(term => {
+            let termCard = document.createElement('term-card');
+
+            termCard.data = term;
+            tagTerms.appendChild(termCard);
+        });
+        tagDiv.appendChild(tagTerms);
+    });
+
+    recentlyAddedEle.appendChild(tagDiv);
+}

@@ -18,3 +18,6 @@ h2 {
 
 
 */
+.tag-column {
+    display: flex;
+}
