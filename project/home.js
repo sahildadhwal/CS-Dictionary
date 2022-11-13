@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', init);
-
+import './dict.js';
 function init() {
     let json = {
         // shows all terms recently opened by user. note: newly created terms will be opened
@@ -93,49 +93,51 @@ function init() {
 
 
 
-    addTermsToDocument(json);
-    addTagsToDocument(json);
+    // addTermsToDocument(json);
+    // addTagsToDocument(json);
 
+    addTermsToDocument(getDataOfRecents());
+    addTagsToDocument(getAllPopTags());
 }
 
 
-function addTermsToDocument(terms) {
-    let recentlyAddedEle = document.querySelector('div.recently-added-elements');
-    terms.recently_opened.forEach(term => {
+// function addTermsToDocument(terms) {
+//     let recentlyAddedEle = document.querySelector('div.recently-added-elements');
+//     terms.recently_opened.forEach(term => {
 
-        let termCard = document.createElement('term-card');
+//         let termCard = document.createElement('term-card');
 
-        termCard.data = term;
-        recentlyAddedEle.appendChild(termCard);
-    });
-
-
-
-}
-function addTagsToDocument(terms) {
-    let recentlyAddedEle = document.querySelector('div.popular-tags');
-    let tagDiv = document.createElement('div');
-
-    terms.tag_category.forEach(tag => {
-        let tagName = document.createElement('h4');
-        tagName.textContent = tag['tag_name'];
-        tagDiv.appendChild(tagName);
-        let tagTerms = document.createElement('div');
-        tagTerms.style = "display: flex;"
-
-
-        tag.terms.forEach(term => {
-            let termCard = document.createElement('term-card');
-
-            termCard.data = term;
-            tagTerms.appendChild(termCard);
-        });
-        tagDiv.appendChild(tagTerms);
-    });
-
-    recentlyAddedEle.appendChild(tagDiv);
-    // Commented for now, let me test the tag rows first
+//         termCard.data = term;
+//         recentlyAddedEle.appendChild(termCard);
+//     });
 
 
 
-}
+// }
+// function addTagsToDocument(terms) {
+//     let recentlyAddedEle = document.querySelector('div.popular-tags');
+//     let tagDiv = document.createElement('div');
+
+//     terms.tag_category.forEach(tag => {
+//         let tagName = document.createElement('h4');
+//         tagName.textContent = tag['tag_name'];
+//         tagDiv.appendChild(tagName);
+//         let tagTerms = document.createElement('div');
+//         tagTerms.style = "display: flex;"
+
+
+//         tag.terms.forEach(term => {
+//             let termCard = document.createElement('term-card');
+
+//             termCard.data = term;
+//             tagTerms.appendChild(termCard);
+//         });
+//         tagDiv.appendChild(tagTerms);
+//     });
+
+//     recentlyAddedEle.appendChild(tagDiv);
+//     // Commented for now, let me test the tag rows first
+
+
+
+// }
