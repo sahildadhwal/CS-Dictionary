@@ -27,8 +27,9 @@
  */
 import {initTinyMCE, getTinyMCEData} from '/src/components/tinyMCE/tiny-mce.js'
 initTinyMCE();
+
 let create_btn = document.getElementById("create-button");
-create_btn.addEventListener('click', addTermToDoc());
+create_btn.addEventListener('click', addTermToDoc);
 /**
  * Get the most popular tags.
  * @param {number=} [count] Number of popular tags to return
