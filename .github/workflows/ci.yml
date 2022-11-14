@@ -48,6 +48,9 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
+      - name: Add Support for Jest
+        run: yarn add --dev eslint eslint-plugin-jest
+
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
