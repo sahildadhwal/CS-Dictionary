@@ -3,9 +3,9 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: [ "main", "dev", "cd/ci"]
+    branches: [ "main", "dev", "clean"]
   pull_request:
-    branches: [ "main", "dev", "cd/ci"]
+    branches: [ "main", "dev", "clean"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,11 +31,6 @@ jobs:
           css: true
           log_level: DEBUG
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: log
-          path: source/actionsLogs/log.log
-
   run-linters:
     name: Run linters
     runs-on: ubuntu-latest
@@ -57,6 +52,7 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           eslint: true
+          
   unit-testing:
     name: Run Unit Testing
     runs-on: ubuntu-latest
