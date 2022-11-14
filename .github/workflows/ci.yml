@@ -26,10 +26,11 @@ jobs:
       - name: HTML5 Validator
         uses: Cyb3r-Jak3/html5validator-action@v7.1.1
         with:
-          root: ""
+          root: /
           blacklist: |
             - admin/
             - specs/
+            - usr/
           css: true
           log_level: DEBUG
 
