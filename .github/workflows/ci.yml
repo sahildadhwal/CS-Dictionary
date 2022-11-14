@@ -3,9 +3,9 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: [ "main", "dev", "unit-testing"]
+    branches: [ "main", "dev", "unit-testing", "jsDocs"]
   pull_request:
-    branches: [ "main", "dev", "unit-testing"]
+    branches: [ "main", "dev", "unit-testing", "jsDocs"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -67,3 +67,17 @@ jobs:
         run: yarn
       - name: Run tests
         run: yarn test
+
+  jsDocs:
+    name: Make jsDocs
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build jsDocs
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./source
+          recurse: true
+          output_dir: ./source/jsDocs
