@@ -12,7 +12,7 @@
 
 [Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
 
-[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/110822-team_progress.md)
+[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/111022-team_progress2.md)
 
 ## **Team 2 Members**
 <ul>
@@ -33,10 +33,10 @@
 ## **Meeting Info**
 #### Meeting Specs: 
 <ul>
-  <li>November 11, 2022</li>
+  <li>November 14, 2022</li>
   <ul>
     <li>Duration: 1 hour and 30 minutes</li>
-        <ol>7:00pm to 8:30pm<ol>
+        <ol>6:00pm to 7:30pm<ol>
   </ul>
 </ul>
 
@@ -81,13 +81,13 @@
 - [x] Thomas Koon
 - [x] Liam Nguyen
 - [x] Amaar Valliani
-- [x] Andrew Jia
 - [x] Yunxiao Xu
-- [ ] Chieh-hsiu Hung 
-
+- [X] Chieh-hsiu Hung 
+- [ ] Andrew Jia
 ## **Agenda**
 - [x] Discuss each groups progress and see what needs to be completed.
 - [x] Assign tasks and deadlines for each group.
+- [x] Show professor webpage frontend work and gain feedback.
     
 ## **Meeting Notes**
 1) **Team Roles**
@@ -120,44 +120,54 @@
             </ul>
     </ul>
 
-2) **Mini Group Assignments**
- <ul>
-       <li>Frontend</li>
-            <ul>
-                <li>Meet with Backend Team to show and explain the code on the Frontend branch. </li>
-                <li>Merge Backend's ideas and concepts into Frontend code</li>
-            </ul>
-       <li>Backend (Javascript)</li>
-            <ul>
-                <li>Meet with Frontend Team to see how the webpage is structured and how we need to format the input data</li>
-                <li>Merge our ideas and concepts into Frontend code</li>
-            </ul>
-       <li>Testing and Devops</li>
-            <ul>
-                <li>Deploy html file viewable on the platform of your choosing</li>
-                <li>Figure out html validation</li>
-           </ul>
-   </ul>
+2) **Notes**
 
-3) **Notes**
+DevOps and Testing
+<ul>
+    <li>Added JSDocs</li>
+    <li>ESLint</li>
+    <ul><li>Indent with two spaces</ul></li>
+    <ul><li>The failure on the pipeline testing is caused by a very minor styling problem.</ul></li>
+    <li>Unit testing</li>
+    <ul><li>Have a test file</ul></li>
+    <ul><li>Frontend and backend should look over it</ul></li>
+    <li>Deployed with Netlify
+    <ul><li>You can preview feature when you make pull request</ul></li>
+    <li>Conflict caused by the .log file will be resolved after re-request pull request.
+    <li>Goals for next sprint
+    <ul><li>Make JSDocs</ul></li>
+    <ul><li>Unit tests</ul></li>
+</ul>
 
-    What has been accomplished so far?
-    <ul>
-        <li>Finished recently opens JSON</li>
-        <li>Working on popular tags feature</li>
-        <li>DevOps-testing</li>
-        <li>Deployed to Netlify, will be sticking with that</li>
-    </ul>
-    What are the immediate next steps?
-    <ul>
-        <li>First, we will be merging into the main branch soon</li>
-        <li>DevOps-Testing</li>
-        <li>Unit testing and JSDocs</li>
-    </ul>
-    Two upcoming meetings (Friday 11am-1pm)
-    <ul>
-        <li>Sprint review meeting (all members must be present)</li>
-        <li>Retrospective meeting</li>
-    </ul>
-    Everyone take a selfie on Monday at lecture for attendence points!
+Backend
+<ul>
+    <li>Communicate with frontend.</li>
+    <ul><li>Functionality of home page. Get recent (5) and popular tags (5). Number 5 is easily adjustable as a parameter.</ul></li> 
+    <ul><li>Following sprint: meet with frontend people, hopefully one meeting per feature is enough.</ul></li>
+    <ul><li>Search methods, priority: search by name and tags.</ul></li> 
+</ul>
 
+Frontend
+<ul>
+    <li>One person does CSS</li>
+    <li>Demonstrated the current functionality</li>
+</ul>
+
+Features remaining to add
+<ul>
+    <li>Make sure that the term creation page has all the features that are necessary but nothing extra</li>
+    <li>Search bar</li>
+    <li>Click on a term in the front page</li>
+    <ul><li>Edit button</ul></li>
+    <ul><li>Save as draft button</ul></li>
+    <ul><li>Cancel button</ul></li>
+    <li>Related terms</li>
+</ul>
+
+Look into ADR for all the major decisions that we make
+<h3><b>Professor input</b>
+<ul><i>
+    Maybe have an official set of pre-filled terms
+    Additionally, have a synonyms
+    What does Sourabh think of this feedback?
+</i></ul>

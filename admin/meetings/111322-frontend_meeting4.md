@@ -12,7 +12,7 @@
 
 [Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
 
-[Previous Frontend Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/110422-frontend_meeting.md)
+[Previous Frontend Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/111122-frontend_meeting3.md)
 
 ## **Team 2 Members**
 <ul>
@@ -33,10 +33,10 @@
 ## **Meeting Info**
 #### Meeting Specs: 
 <ul>
-  <li>November 6, 2022</li>
+  <li>November 11, 2022</li>
   <ul>
-    <li>Duration:  1 hour and 50 minutes</li>
-        <ol>10:00am to 11:50am<ol>
+    <li>Duration: 4 hours</li>
+        <ol>12:30pm to 4:30pm<ol>
   </ul>
 </ul>
 
@@ -47,7 +47,7 @@
 
 #### Meeting Type: 
 <ul>
-  <li>Frontend Meeting 2:</li>
+  <li>Frontend Meeting 4:</li>
     <i> Team Roles</i>
     <ul>
         <li>Team Leads</li>
@@ -101,16 +101,18 @@
 - [x] Liam Nguyen
     
 ## **Agenda**
-- [x] Create cards from input array that represents input JSON file.
-- [x] Implement Lab 6 topics to create cards.
+- [x] Work on implementing backend input without errors.
+- [x] Work on CSS and visuals of home screen.
+- [x] Discuss with pipeline team the contents of our webpage.
     
-
 ## **Meeting Notes**
 
-Work on the agenda and create a webpage that autofills with 2 pre-defined cards. 
+Work on the agenda.
 <ul>
-    <li>Added term card elements to the screen given an input array.</li>
-    <li>We will meet Monday at the TA meeting to go over what we have complete!</li>
+    <li>We worked on the homewebpage and getting TincyMSE to work as intended.</li>
+    <li>We worked on visuals and CSS of webpage.</li>
+    <li>Met with pipeline team to discuss what we have so far for the frontend/backend of the project.</li>
+    <li>Created webpage logo. It is shown below.</li>
 </ul>
 
-![image](../images/frontend_milestone1_get_cards.png)
+![image](../images/d_logo.png)
