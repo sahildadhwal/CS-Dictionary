@@ -1,23 +1,20 @@
-# This is a basic workflow to help you get started with Actions
-
-name: validate
+name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main", "amaar" , "andrew", "dev"]
+    branches: [ "main", "dev", "clean"]
   pull_request:
-    branches: [ "main", "amaar" , "dev"]
+    branches: [ "main", "dev", "clean"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  run-validator:
     # The type of runner that the job will run on
+    name: Run HTML Validator
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -30,14 +27,8 @@ jobs:
         uses: Cyb3r-Jak3/html5validator-action@v7.1.1
         with:
           root: source/
-          blacklist: admin/
           css: true
           log_level: DEBUG
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: log
-          path: source/actionsLogs/log.log
 
   run-linters:
     name: Run linters
@@ -56,7 +47,35 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
+      - name: Add Support for Jest
+        run: yarn add --dev eslint eslint-plugin-jest
+
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
           eslint: true
+          
+  unit-testing:
+    name: Run Unit Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
+
+  jsDocs:
+    name: Make jsDocs
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build jsDocs
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./source
+          recurse: true
+          output_dir: ./source/jsDocs
