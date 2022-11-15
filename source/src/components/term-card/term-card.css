@@ -1,0 +1,125 @@
+/*https://codepen.io/codingtuting/pen/XWrBgQz*/
+
+.basic-card {
+    width: 400px;
+    height: 250px;  
+    position: relative;
+    border-radius: 3%;
+
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 7px 5px 0px rgb(0 0 0 / 30%)
+}
+
+.basic-card .card-content {
+    padding: 30px;
+}
+
+.basic-card .card-title {
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.basic-card .card-text {
+    line-height: 1.6;
+}
+
+.basic-card .card-link {
+    padding: 25px;
+    width: -webkit-fill-available;
+    position: absolute;
+    bottom: 0;
+}
+
+.basic-card .card-link a {
+    text-decoration: none;
+    position: relative;
+    padding: 10px 0px;
+}
+
+.basic-card .card-link a:after {
+    top: 30px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    width: 0;
+
+    -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    -moz-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    -o-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+
+.basic-card .card-link a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+
+.basic-card-light {
+    border: 1px solid #eee;
+}
+
+.basic-card-light .card-title,
+.basic-card-light .card-link a {
+    color: #636363;
+}
+
+.basic-card-light .card-text {
+    color: #7b7b7b;
+}
+
+.basic-card-light .card-link {
+    border-top: 1px solid #eee;
+}
+
+.basic-card-light .card-link a:after {
+    background: #636363;
+}
+
+.basic-card:hover{
+    background: #cbdfe9c9;
+    transition: 1s;
+}
+
+
+
+/*MAKE IT GLOW?? https://alvarotrigo.com/blog/10-cool-css-animations-to-add-to-your-website/ */
+.basic-card:before {
+    content: '';
+    background: linear-gradient(45deg,  #00ffb7, rgb(0, 123, 255), #ff0000, #fa7532);
+    /*(45deg,  #a4b1ef, #7a00ff, #f6b5e8, #f4b2b2);*/
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.basic-card:active {
+    color: #000
+}
+
+.basic-card:active:after {
+    background: transparent;
+}
+
+.basic-card:hover:before {
+    opacity: 1;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
