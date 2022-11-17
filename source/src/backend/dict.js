@@ -27,6 +27,49 @@
  */
 
 /**
+ * Dict functions
+ */
+
+// import DOMPurify from './DOMPurify/dist/purify.es.js';
+
+/**
+ * Load the dictionary of all terms. Key is the random term id. Value is the object.
+ * @returns {Object.<string, term>} An dictionary
+ */
+ function loadDict() {
+  return JSON.parse(localStorage.getItem('terms')) || {};
+}
+
+/**
+ * Save the given dictionay to `localstorage`.
+ * @param {Object.<string, term>} dict A dictionary of `uuid: term` pairs
+ */
+function archiveDict(dict) {
+  localStorage.setItem('terms', JSON.stringify(dict));
+}
+
+/**
+ * //FIXME: duplicate with `loadDict`
+ * Same as `loadDict`
+ * @returns {Object.<string, term>} A dictionary of terms
+ */
+export function selectDict() {
+  const dict = loadDict();
+  return dict;
+}
+
+/**
+ * Clear all terms in `localstorage`
+ */
+export function deleteAll() {
+  const dict = loadDict();
+  for (const [term] of Object.entries(dict)) {
+    deleteTerm(term);
+  }
+  // renderAllTerms(document.getElementById('dict'));
+}
+
+/**
  * Popular tags functions
  */
 
@@ -51,8 +94,8 @@ export function getPopularTags(count) {
  */
 export function getDataOfTag(tag) {
   const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
-  let terms = [];
+  const uuids = JSON.parse(localStorage.getItem('tag'))[tag] || [];
+  const terms = [];
   for (const uuid of uuids) {
     const token = dict[uuid];
     terms.push(token);
@@ -68,8 +111,8 @@ export function getDataOfTag(tag) {
  */
 export function getRandomTermsOfTag(tag, count = 5) {
   const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
-  let terms = [];
+  const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
+  const terms = [];
   // get some random uuids
   const randomUuids = [];
   for (let i = 0; i < Math.min(uuids.length, count); i+=1) {
@@ -97,8 +140,8 @@ export function top5terms(tagName) {
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
   const termsOfTag = tags[tagName];
   // let count = Math.min(terms_of_tag.length, 5);
-  let top5 = [];
-  for (let i = 0; i < 5; i++) {
+  const top5 = [];
+  for (let i = 0; i < 5; i += 1) {
     // push term objects
     top5.push(dict[termsOfTag[i]]);
   }
@@ -113,7 +156,7 @@ export function top5terms(tagName) {
 export function getAllPopTags() {
   const tagSet = getPopularTags(3);
   let tagsDict = [];
-  for (let i = 0; i < tagSet.length; i+=1) {
+  for (let i = 0; i < tagSet.length; i += 1) {
     tagsDict.push({ tag_name: tagSet[i], terms: top5terms(tagSet[i]) });
     // tagsDict[tagSet[i]] = top5terms(tagSet[i]);
   }
@@ -126,28 +169,26 @@ export function getAllPopTags() {
  */
 export function updateTags(term) {
   const tagsDict = JSON.parse(localStorage.getItem('tags')) || {};
-
   for (const tag of term.tags) {
     tagsDict[tag] = tagsDict[tag] || [];
-    if (term.id in tagsDict[tag]) continue;
-    tagsDict[tag].push(term.id);
+    if(!(term.id in tagsDict[tag])) {
+      tagsDict[tag].push(term.id);
+    }
   }
   localStorage.setItem('tags', JSON.stringify(tagsDict));
 }
 
 /**
  * Increase the number of views of the tags of a term
- * @param {term} term 
+ * @param {term} term
  */
 export function updateTagCount(term) {
   const tagCounts = JSON.parse(localStorage.getItem('tag_counts')) || {};
-
   for (const tag of term.tags) {
-    tagCounts[tag] = tag_counts[tag] || 0;
+    tagCounts[tag] = tagCounts[tag] || 0;
     tagCounts[tag]+=1;
   }
-
-  localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
+  localStorage.setItem('tag_counts', JSON.stringify(tagCounts));
 }
 
 /**
@@ -162,12 +203,12 @@ export function getDataOfRecents() {
   const dict = loadDict();
   const recents = JSON.parse(localStorage.getItem('recents')) || [];
   const recentlyOpened = [];
-  for (let uuid of recents) {
+  for (const uuid of recents) {
     const token = dict[uuid];
-    recently_opened.push(token);
+    recentlyOpened.push(token);
   }
   //j
-  return recently_opened;
+  return recentlyOpened;
 }
 
 /**
@@ -176,67 +217,23 @@ export function getDataOfRecents() {
  * @param {string} uuid The uuid of the recently viewed term
  */
 export function updateRecents(uuid) {
-  let recents = JSON.parse(localStorage.getItem('recents')) || [];
-  let index = recents.indexOf(uuid);
+  const recents = JSON.parse(localStorage.getItem('recents')) || [];
+  const index = recents.indexOf(uuid);
   console.log(typeof (uuid));
-  if (index != -1) {
+  if (index !== -1) {
     recents.splice(index, 1);
   } else {
     if (recents.length >= 5) {
       recents.splice(0, 1);
     }
-
   }
   recents.push(uuid);
   localStorage.setItem('recents', JSON.stringify(recents));
 }
 
 /**
- * Dict functions
+ * Term functions
  */
-
-// import DOMPurify from './DOMPurify/dist/purify.es.js';
-
-/**
- * Load the dictionary of all terms. Key is the random term id. Value is the object.
- * @returns {Object.<string, term>} An dictionary
- */
-function loadDict() {
-  return JSON.parse(localStorage.getItem('terms')) || {};
-}
-
-/**
- * Save the given dictionay to `localstorage`.
- * @param {Object.<string, term>} dict A dictionary of `uuid: term` pairs
- */
-function archiveDict(dict) {
-  localStorage.setItem('terms', JSON.stringify(dict));
-}
-
-/**
- * //FIXME: duplicate with `loadDict`
- * Same as `loadDict`
- * @returns {Object.<string, term>} A dictionary of terms
- */
-export function selectDict() {
-  const dict = loadDict();
-  return dict;
-}
-
-/**
- * Clear all terms in `localstorage`
- */
-export function deleteAll() {
-  const dict = loadDict();
-  for (const [_, term] of Object.entries(dict)) {
-    deleteTerm(term);
-  }
-  // renderAllTerms(document.getElementById('dict'));
-}
-
-/////////////////////////////////////////////////////////////////////
-// Terms
-///////////////////////////////////////////////////////////////////// 
 
 /**
  * Generate a random ID.
@@ -272,16 +269,15 @@ export function selectTerm(termId) {
   return dict[termId];
 }
 
-
 /**
  * Update an existing term.
  * @param {term} term A term object
  */
 export function updateTerm(term) {
-  const cur_time = new Date();
+  const curTime = new Date();
   const dict = loadDict();
   term.edit_count += 1;
-  term.edited_date = cur_time;
+  term.edited_date = curTime;
   term.edited_by = 'user';
   dict[term.id] = term;
   archiveDict(dict);
