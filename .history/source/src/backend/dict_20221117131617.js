@@ -27,6 +27,49 @@
  */
 
 /**
+ * Dict functions
+ */
+
+// import DOMPurify from './DOMPurify/dist/purify.es.js';
+
+/**
+ * Load the dictionary of all terms. Key is the random term id. Value is the object.
+ * @returns {Object.<string, term>} An dictionary
+ */
+function loadDict() {
+  return JSON.parse(localStorage.getItem('terms')) || {};
+}
+
+/**
+ * Save the given dictionay to `localstorage`.
+ * @param {Object.<string, term>} dict A dictionary of `uuid: term` pairs
+ */
+function archiveDict(dict) {
+  localStorage.setItem('terms', JSON.stringify(dict));
+}
+
+/**
+ * //FIXME: duplicate with `loadDict`
+ * Same as `loadDict`
+ * @returns {Object.<string, term>} A dictionary of terms
+ */
+export function selectDict() {
+  const dict = loadDict();
+  return dict;
+}
+
+/**
+ * Clear all terms in `localstorage`
+ */
+export function deleteAll() {
+  const dict = loadDict();
+  for (const [term] of Object.entries(dict)) {
+    deleteTerm(term);
+  }
+  // renderAllTerms(document.getElementById('dict'));
+}
+
+/**
  * Popular tags functions
  */
 
@@ -364,9 +407,9 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
             sTerm = true;
         }
         if(sTerm){
-            if(input == term.term_name){
-                if(!searchResult.includes(term)){
-                    searchResult.push(term);
+            if(input == term){
+                if(!searchResult.includes(id)){
+                    searchResult.push(dict[id]);
                 }
             }
         }
