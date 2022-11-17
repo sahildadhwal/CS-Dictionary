@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', init);
-import * as backendFunction from '../../backend/dict.js'
+import * as backendFunction from '/src/backend/dict.js'
 
 function init() {
       

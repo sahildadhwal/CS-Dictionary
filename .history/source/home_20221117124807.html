@@ -26,7 +26,6 @@
             </div>
             <button onclick="jump_SearchHtml()">Search </button>
             <button onclick="jump_SettingsHtml()">Settings </button>
-            <button id="whatchamacallit">Press Me</button>
         </div>
 
         <div class="recently-added">
@@ -54,11 +53,7 @@
 
 
   <script src="src/common-scripts/redirection.js"></script>
-  <script type="module">
-    import * as dict from "./src/backend/dict.js"
-    let smt_btn = document.getElementById("whatchamacallit");
-    smt_btn.addEventListener("click", dict.findRequestedTerm("CSE", true, true, false));
-  </script>
+  <script src="src/backend/dict.js" type="module"></script>
   <script src="src/pages/home/home.js" type="module"></script>
   <script src="src/components/term-card/term-card.js"></script>
   <script src="src/components/tinyMCE/tiny-mce.js" type="module"></script>

@@ -55,7 +55,7 @@
 
   <script src="src/common-scripts/redirection.js"></script>
   <script type="module">
-    import * as dict from "./src/backend/dict.js"
+    import * as dict from "src/backend/dict.js"
     let smt_btn = document.getElementById("whatchamacallit");
     smt_btn.addEventListener("click", dict.findRequestedTerm("CSE", true, true, false));
   </script>
