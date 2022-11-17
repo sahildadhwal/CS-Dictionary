@@ -352,7 +352,6 @@ export function deleteTerm(term) {
     localStorage.setItem('tags', tags);
     // location.reload();
     return true;
-  }
 }
 
 /**
@@ -394,6 +393,7 @@ export function termsCount() {
 export function addTermToDoc(term) {
     addTermToBackend(term);
 }
+
 /**
  * 
  * @param {string} input //The user input to the search bar
@@ -415,6 +415,65 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
             }
         } 
     }
-    return searchResult;
-} 
-       
+}
+
+// /**
+//  * Return an html element that randered the given term using the template
+//  * specified in the html file.
+//  * @private
+//  * @param {term} term A term object
+//  * @returns {HTMLElement} A `dict_entry` element of the term
+//  */
+// export function renderTerm(term) {
+//     const template = document.getElementById("dict_template");
+
+//     const termE1 = template.content.cloneNode(true);
+//     termE1.children[0].dataset.termId = term.id;
+
+
+//     const nameH1 = termE1.querySelector('term_name > h1');
+//     nameH1.textContent = term.name;
+
+//     const tagUL1 = termE1.querySelector('tags > ul');
+//     for(let i = 0; i < term['tags'].length; i++){
+//         tagUL1.innerHTML += '<li>' + term.tags[i] + '</li>';
+//     }
+
+//     return termE1;
+// }
+// /**
+//  * Render all terms into elements and put them into the `term_container`.
+//  * @private
+//  * @param {HTMLElement} term_container  An HTML element to contain the term elements
+//  * @returns {boolean} `true` if success
+//  */
+// export function renderAllTerms(term_container) {
+//     const dict = selectDict();
+
+//     for(const [termId, term] of Object.entries(dict)){
+//         const termE1 = renderTerm(term);
+//         const existingTerm = term_container.querySelector(`[data-term-id="${termId}"]`);
+//         if (existingTerm) {
+//             existingTerm.remove();
+//         }
+
+//         term_container.appendChild(termE1);
+//     }    
+
+//     return true;
+// }
+
+// /**
+//  * Show user input dialog.
+//  * @private
+//  */
+// export function showDialog(){
+//     document.getElementById('term_template').style.display = 'block';
+// }
+// /**
+//  * Hide user input dialog.
+//  * @private
+//  */
+// export function cancel(){
+//     document.getElementById('term_template').style.display = 'none';
+// }

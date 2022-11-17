@@ -352,7 +352,6 @@ export function deleteTerm(term) {
     localStorage.setItem('tags', tags);
     // location.reload();
     return true;
-  }
 }
 
 /**
@@ -394,6 +393,7 @@ export function termsCount() {
 export function addTermToDoc(term) {
     addTermToBackend(term);
 }
+
 /**
  * 
  * @param {string} input //The user input to the search bar
@@ -414,7 +414,4 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
                 
             }
         } 
-    }
-    return searchResult;
-} 
-       
+    }}

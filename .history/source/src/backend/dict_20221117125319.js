@@ -394,27 +394,5 @@ export function termsCount() {
 export function addTermToDoc(term) {
     addTermToBackend(term);
 }
-/**
- * 
- * @param {string} input //The user input to the search bar
- * @param {boolean} sTerm //Is Term checked?
- * @param {boolean} sTag //Is Tag checked?
- * @param {boolean} sDescription //Is description checked?
- * @return {term[]} //Returns a list of all the terms associated with the search 
- */
-export function findRequestedTerm(input, sTerm, sTag, sDescription){
-    const dict = loadDict();
-    let searchResult = [];
-    for (const [id, term] of Object.entries(dict)) {
-        if(!sTerm && !sTag && !sDescription){ //If all boxes unchecked, default to Term
-            sTerm = true;
-        }
-        if(sTerm){
-            if(input == sTerm){
-                
-            }
-        } 
-    }
-    return searchResult;
-} 
+
        
