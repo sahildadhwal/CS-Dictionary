@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
+    <title>Home</title>
     <link rel="stylesheet" href="src/pages/home/home.css">
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="src/assets/font-awesome/css/font-awesome.min.css">
@@ -16,6 +16,14 @@
         <div class="top-buttons">
             <!--TODO: some buttons are not linked to anything yet.-->   
             <input type="text" name="search_bar" placeholder="Search"/>
+            <div id="selectType" class="dropdown-check-list" tabindex="100">
+                <span class="anchor">Select Search Options</span>
+                <ul class="option">
+                  <li><input type="checkbox" />Term Name </li>
+                  <li><input type="checkbox" />Tag</li>
+                  <li><input type="checkbox" />Description </li>
+                </ul>
+            </div>
             <button onclick="jump_SearchHtml()">Search </button>
             <button onclick="jump_SettingsHtml()">Settings </button>
         </div>
