@@ -36,7 +36,7 @@
  * Load the dictionary of all terms. Key is the random term id. Value is the object.
  * @returns {Object.<string, term>} An dictionary
  */
- function loadDict() {
+function loadDict() {
   return JSON.parse(localStorage.getItem('terms')) || {};
 }
 
@@ -132,7 +132,7 @@ export function getRandomTermsOfTag(tag, count = 5) {
 
 /**
  * Get the first 5 terms of a tag
- * @param {string} tagName the name of the tag you want the top 5 of 
+ * @param {string} tagName the name of the tag you want the top 5 of
  * @returns {term[]} array of 5 terms
  */
 export function top5terms(tagName) {
@@ -294,11 +294,11 @@ export function deleteTerm(term) {
     return false;
   }
   delete dict[term.id];
-  let tags = JSON.parse(localStorage.getItem("tags"));
+  const tags = JSON.parse(localStorage.getItem('tags'));
   for (const tag of term.tags) {
     const uuids = tags[tag] || [];
     if (term.id in uuids) {
-      let i = uuids.indexOf(term.id);
+      const i = uuids.indexOf(term.id);
       tags[tag].splice(i, 1);
     }
   }
