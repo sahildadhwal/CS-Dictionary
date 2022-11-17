@@ -394,6 +394,7 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     if(searchResult.length == 0){
         console.log("Nothing found");
     }
+    console.log(searchResult);
     return searchResult;
 } 
        
