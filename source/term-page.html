@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Term Page</title>
+    <link rel="stylesheet" href="src/pages/term-page/term-page.css">
+    <!-- <link rel="stylesheet" href="src/pages/create-term/create-term.css"> -->
+    <link rel="stylesheet" href="common.css">
+</head>
+
+<body>
+    <header class="nav-bar">
+        <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70px" onclick="jump_HomeHtml()">
+    </header>
+
+    <main>
+        <div class="term-information">
+            <h1 id="term-title">Term Title Goes Here</h1>
+            <div class="term-box">
+                <h2 id="term-description">Short Description Section</h2>
+                <textarea id="tinyMCE-content"></textarea><br>
+                <ul class="term-tags">
+                    <li><button>tag 1</button></li>
+                    <li><button>tag 2</button></li>
+                    <li><button>tag 3</button></li>
+                </ul>
+                <small class="published-date">Published: 12/05/22</small>
+            </div><br>
+            <button id="update-button" onclick="">Update</button>
+            <button id="delete-button" onclick="jump_HomeHtml()">Delete</button>
+        </div>
+    </main>
+</body>
+
+<script src="src/common-scripts/redirection.js"></script>
+<!-- <script src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js"></script> -->
+
+</html>
