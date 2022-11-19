@@ -16,7 +16,6 @@ module.exports = {
      'no-use-before-define':  'off',
      'no-continue':  'off',
      'no-trailing-spaces':  'off'
-     'comma_dangle':  'off'
   },
   plugins: ['jest'],
 };
