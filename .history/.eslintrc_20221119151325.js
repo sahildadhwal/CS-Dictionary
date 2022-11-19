@@ -30,7 +30,6 @@ module.exports = {
     'dot-notation': 'off',
     'prefer-const': 'off',
     'consistent-return': 'off',
-    'guard-for-in': 'off',
   },
   plugins: ['jest'],
 };

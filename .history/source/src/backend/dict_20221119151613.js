@@ -373,4 +373,5 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     }
   }
   return searchResult;
-}
+} 
+     

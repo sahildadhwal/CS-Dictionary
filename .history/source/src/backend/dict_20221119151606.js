@@ -362,7 +362,7 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     }
   }    
   if(sTag){
-    const tagCounts = JSON.parse(localStorage.getItem('tagCounts'));
+    const tagCcounts = JSON.parse(localStorage.getItem('tagCounts'));
     if(Object.keys(tagCounts).includes(input)){
       const termSet = getDataOfTag(input);
       for(const token of termSet){
@@ -373,4 +373,5 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     }
   }
   return searchResult;
-}
+} 
+     

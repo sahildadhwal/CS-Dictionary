@@ -306,7 +306,7 @@ export function termsCount() {
  * while storing the embedded data using TinyMCE
  * @param {term} term a new term
  */
-export function addTermToBackend(term){
+ export function addTermToBackend(term){
   const curTime = new Date();
   term['tags'] = term.tags.split(',');
   for (const i in term['tags']) {
@@ -347,7 +347,7 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
       sTerm = true;
     }
     if(sTerm){
-      if(input === term.termName){
+      if(input == term.termName){
         if(!searchResult.includes(term)){
           searchResult.push(term);
         }
@@ -362,7 +362,7 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     }
   }    
   if(sTag){
-    const tagCounts = JSON.parse(localStorage.getItem('tagCounts'));
+    const tagCcounts = JSON.parse(localStorage.getItem('tagCounts'))
     if(Object.keys(tagCounts).includes(input)){
       const termSet = getDataOfTag(input);
       for(const token of termSet){
@@ -373,4 +373,5 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     }
   }
   return searchResult;
-}
+} 
+     
