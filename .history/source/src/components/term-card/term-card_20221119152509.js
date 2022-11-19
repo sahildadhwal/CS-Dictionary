@@ -1,5 +1,5 @@
 class TermCard extends HTMLElement {
-  constructor() {
+constructor() {
     super();
     let shadowEl = this.attachShadow({ mode: 'open' });
     let articleEl = document.createElement('article');
@@ -8,21 +8,21 @@ class TermCard extends HTMLElement {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'src/components/term-card/term-card.css', true);
     xhr.onreadystatechange = function () {
-      if (this.readyState !== 4) return;
-      if (this.status !== 200) return;
-      styleEl.textContent = this.responseText;
+        if (this.readyState !== 4) return;
+        if (this.status !== 200) return;
+        styleEl.textContent = this.responseText; //style
     };
-  xhr.send();
+    xhr.send();
     shadowEl.appendChild(styleEl);
     shadowEl.appendChild(articleEl);
-  }
+}
 
-  set data(data) {
+set data(data) {
     if (!data) return;
     let articleElement = this.shadowRoot.querySelector('article');
     if (articleElement === null) {
-      console.log('it is returning EMPTY');
-      return;
+        console.log('it is returning EMPTY');
+        return;
     }
     articleElement.innerHTML = `
     <div class="basic-card basic-card-light">
@@ -37,8 +37,8 @@ class TermCard extends HTMLElement {
       <a href="#" title="Read Full"><span>Open</span></a>
     </div>
   </div>
-    `;S
-  }
+    `;
+}
 }
 
 customElements.define("term-card", TermCard);
