@@ -22,8 +22,7 @@ module.exports = {
     'space-infix-ops': 'off',
     'space-before-blocks': 'off',
     'no-restricted-syntax': 'off',
-    'no-lonely-if': 'off',
-    'no-unused-vars': 'off'
+    'no-lonely-if': 'off'
   },
   plugins: ['jest'],
 };

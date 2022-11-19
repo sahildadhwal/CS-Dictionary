@@ -183,7 +183,6 @@ export function updateRecents(uuid) {
   recents.push(uuid);
   localStorage.setItem('recents', JSON.stringify(recents));
 }
-
 /**
  * Load the dictionary of all terms. Key is the random term id. Value is the object.
  * @returns {Object.<string, term>} An dictionary
@@ -220,6 +219,10 @@ export function selectDict() {
   }
   // renderAllTerms(document.getElementById('dict'));
 }
+
+/////////////////////////////////////////////////////////////////////
+// Terms
+///////////////////////////////////////////////////////////////////// 
 
 /**
  * Generate a random ID.
