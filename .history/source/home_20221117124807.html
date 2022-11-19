@@ -1,54 +1,54 @@
  <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home</title>
-    <link rel="stylesheet" href="src/pages/home/home.css">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="src/assets/font-awesome/css/font-awesome.min.css">
+  <title>Home</title>
+  <link rel="stylesheet" href="src/pages/home/home.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="src/assets/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
-    <header class="nav-bar">
-        <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70px" onclick="jump_HomeHtml()">
-        <i class="add-button fa fa-plus-circle" aria-hidden="true" onclick="jump_CreateTermHtml()"></i>
-    </header>
+  <header class="nav-bar">
+    <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70px" onclick="jump_HomeHtml()">
+    <i class="add-button fa fa-plus-circle" aria-hidden="true" onclick="jump_CreateTermHtml()"></i>
+  </header>
 
-    <main>
-        <div class="top-buttons">
-            <!--TODO: some buttons are not linked to anything yet.-->   
-            <input type="text" name="search_bar" placeholder="Search"/>
-            <div id="selectType" class="dropdown-check-list" tabindex="100">
-                <span class="anchor">Select Search Options</span>
-                <ul class="option">
-                  <li><input type="checkbox" />Term Name </li>
-                  <li><input type="checkbox" />Tag</li>
-                  <li><input type="checkbox" />Description </li>
-                </ul>
-            </div>
-            <button onclick="jump_SearchHtml()">Search </button>
-            <button onclick="jump_SettingsHtml()">Settings </button>
+  <main>
+    <div class="top-buttons">
+      <!--TODO: some buttons are not linked to anything yet.-->   
+      <input type="text" name="search_bar" placeholder="Search"/>
+      <div id="selectType" class="dropdown-check-list" tabindex="100">
+        <span class="anchor">Select Search Options</span>
+        <ul class="option">
+          <li><input type="checkbox" />Term Name </li>
+          <li><input type="checkbox" />Tag</li>
+          <li><input type="checkbox" />Description </li>
+        </ul>
+      </div>
+      <button onclick="jump_SearchHtml()">Search </button>
+      <button onclick="jump_SettingsHtml()">Settings </button>
+    </div>
+
+    <div class="recently-added">
+      <h3>Recently added</h3>
+        <div class="recently-added-elements" style="display: flex;">
+          
         </div>
+      </span>
+    </div>  
+      
+    <div class="tags-section">
+      <h3>Tags</h3>
+        <div class="popular-tags">
+          
+        </div>
+    </div> 
+  </main>
+  <footer>
+    <br><br>
+    <div>&copy; Group 2, CSE 110</div>
 
-        <div class="recently-added">
-            <h3>Recently added</h3>
-                <div class="recently-added-elements" style="display: flex;">
-                    
-                </div>
-            </span>
-        </div>    
-            
-        <div class="tags-section">
-            <h3>Tags</h3>
-                <div class="popular-tags">
-                    
-                </div>
-        </div> 
-    </main>
-    <footer>
-        <br><br>
-        <div>&copy; Group 2, CSE 110</div>
-
-    </footer>
-    
+  </footer>
+  
   </body>
 
 

@@ -11,10 +11,10 @@ let data = {};
 initTinyMCE();
 
 button.addEventListener('click', function() {
-    data.term_name = term_name.value;
-    data.tags = tags.value;
-    data.short_description = short_description.value;
-    data.term_data = getTinyMCEData();
+  data.term_name = term_name.value;
+  data.tags = tags.value;
+  data.short_description = short_description.value;
+  data.term_data = getTinyMCEData();
 
-    backendFunction.addTermToBackend(data);
+  backendFunction.addTermToBackend(data);
 })
