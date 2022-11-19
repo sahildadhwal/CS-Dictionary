@@ -149,6 +149,10 @@ export function updateTagCount(term) {
   localStorage.setItem('tagCounts', JSON.stringify(tagCounts));
 }
 
+/////////////////////////////////////////////////////////////////////
+// Recent Terms
+///////////////////////////////////////////////////////////////////// 
+
 /**
  * Return term objects that are recently viewed by user.
  * @return {term[]} An array of term objects, size <= 5
@@ -184,6 +188,10 @@ export function updateRecents(uuid) {
   recents.push(uuid);
   localStorage.setItem('recents', JSON.stringify(recents));
 }
+
+///////////////////////////////////////////////////////////////////// 
+// Dict
+///////////////////////////////////////////////////////////////////// 
 /**
  * Load the dictionary of all terms. Key is the random term id. Value is the object.
  * @returns {Object.<string, term>} An dictionary
