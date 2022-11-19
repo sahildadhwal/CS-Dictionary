@@ -37,12 +37,16 @@ class TermCard extends HTMLElement {
           </p>
         </div>
     
-        <div class="card-link">
-          <a href="#" title="Read Full"><span>Open</span></a>
+        <div class="card-link" id="Hello">
+          <a href="./term-page.html" id="open_term"><span>Open</span></a>
         </div>
       </div>
         `;
-
+      
+      let openTermButton = articleElement.querySelector('#open_term');
+      openTermButton.addEventListener('click', e => {
+        localStorage.setItem('get_term_id', data['id']);
+      })
     }
 }
 
