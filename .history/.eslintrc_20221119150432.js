@@ -25,9 +25,7 @@ module.exports = {
     'no-lonely-if': 'off',
     'no-unused-vars': 'off',
     'object-curly-spacing': 'off',
-    'no-param-reassign': 'off',
-    'no-unreachable-loop': 'off',
-    'dot-notation': 'off'
+    'no-param-reassign': 'off'
   },
   plugins: ['jest'],
 };

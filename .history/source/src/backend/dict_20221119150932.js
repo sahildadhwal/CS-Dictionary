@@ -354,6 +354,7 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
         }
       }
     }
+
     if(sDescription){
       if(term.shortDescription.includes(input)){
         if(!searchResult.includes(term)){

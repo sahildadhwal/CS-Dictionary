@@ -212,7 +212,7 @@ export function selectDict() {
 /**
  * Clear all terms in `localstorage`
  */
-export function deleteAll() {
+ export function deleteAll() {
   const dict = loadDict();
   for(const [_, term] of Object.entries(dict)){
     deleteTerm(term);
@@ -224,7 +224,7 @@ export function deleteAll() {
  * Generate a random ID.
  * @returns {string} A random uuid.
  */
-export function generateTermId() {
+ export function generateTermId() {
   return crypto.randomUUID();
 }
 
@@ -235,7 +235,7 @@ export function generateTermId() {
  */
 export function insertTerm(term) {
   // TODO: Decide how we are going to handle duplicate (consult with team)
-  let dict = loadDict();
+  const dict = loadDict();
   term.id = generateTermId();
   dict[term.id] = term;
   archiveDict(dict);
@@ -254,13 +254,14 @@ export function selectTerm(termId) {
   return dict[termId];
 }
 
+
 /**
  * Update an existing term.
  * @param {term} term A term object
  */
 export function updateTerm(term) {
   const curTime = new Date();
-  let dict = loadDict();
+  const dict = loadDict();
   term.editCount += 1;
   term.editedDate = curTime;
   term.editedBy = 'user';
@@ -276,20 +277,20 @@ export function updateTerm(term) {
 export function deleteTerm(term) {
   const dict = loadDict();
   if (!(term.id in dict)) {
-    return false;
+  return false;
   }
   delete dict[term.id];
   const tags = JSON.parse(localStorage.getItem('tags'));
   for (const tag of term.tags) {
-    const uuids = tags[tag] || [];
-    if (term.id in uuids) {
-      const i = uuids.indexOf(term.id);
-      tags[tag].splice(i, 1);
-    }
+  const uuids = tags[tag] || [];
+  if (term.id in uuids) {
+    const i = uuids.indexOf(term.id);
+    tags[tag].splice(i, 1);
+  }
   archiveDict(dict);
   localStorage.setItem('tags', tags);
   // location.reload();
-    return true;
+  return true;
   }
 }
 
@@ -354,6 +355,7 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
         }
       }
     }
+
     if(sDescription){
       if(term.shortDescription.includes(input)){
         if(!searchResult.includes(term)){

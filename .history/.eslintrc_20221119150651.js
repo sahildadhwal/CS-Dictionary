@@ -27,7 +27,6 @@ module.exports = {
     'object-curly-spacing': 'off',
     'no-param-reassign': 'off',
     'no-unreachable-loop': 'off',
-    'dot-notation': 'off'
   },
   plugins: ['jest'],
 };
