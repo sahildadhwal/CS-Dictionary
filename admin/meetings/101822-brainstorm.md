@@ -39,8 +39,8 @@
 <ul>
   <li>October 18, 2022</li>
   <ul>
-  <li>Duration: 59 minutes</li>
-    <ol>7:00pm to 7:59pm<ol>
+    <li>Duration: 59 minutes</li>
+        <ol>7:00pm to 7:59pm<ol>
   </ul>
 </ul>
 
@@ -52,28 +52,28 @@
 #### Meeting Type: 
 <ul>
   <li>Brainstorming Session 1:</li>
-  <ul>
-    <li>
-    Team Leads: 
-    <ol>
-      Nikhil Rao and Yingqi Cao
-    </ol>
-    </li>
-    <li>
-    Rules: 
-    <ol>
+    <ul>
       <li>
-        Everyone needs to contribute and be prepared to discuss their contributions.
+      Team Leads: 
+        <ol>
+            Nikhil Rao and Yingqi Cao
+        </ol>
       </li>
       <li>
-        Everyone needs to be active on Slack.
+      Rules: 
+        <ol>
+            <li>
+                Everyone needs to contribute and be prepared to discuss their contributions.
+            </li>
+            <li>
+                Everyone needs to be active on Slack.
+            </li>
+            <li>
+                Other rules are defined in our team contract.
+            </li>
+        </ol>
       </li>
-      <li>
-        Other rules are defined in our team contract.
-      </li>
-    </ol>
-    </li>
-  </ul>
+    </ul>
 </ul>	
 
 ## **Attendance**
@@ -138,9 +138,9 @@ We need to present our top idea to the T.A. so he can accept or deny our proposa
 
 ## **Accomplished**
 <ol>
-  <li>
-    Created a list of ideas from our brainstorming session that we will go into more depth in next meeting on Thursday.
-  </li>
+    <li>
+        Created a list of ideas from our brainstorming session that we will go into more depth in next meeting on Thursday.
+    </li>
 </ol>
 
 

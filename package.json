@@ -1,16 +1,16 @@
 {
   "scripts": {
-  "doc-server": "./node_modules/.bin/http-server ./doc",
-  "update-doc": "./node_modules/.bin/jsdoc ./source -d ./doc",
-  "start": "./node_modules/.bin/http-server ./source",
-  "test": "jest"
+    "doc-server": "./node_modules/.bin/http-server ./doc",
+    "update-doc": "./node_modules/.bin/jsdoc ./source -d ./doc",
+    "start": "./node_modules/.bin/http-server ./source",
+    "test": "jest"
   },
   "devDependencies": {
-  "eslint": "^8.27.0",
-  "eslint-config-airbnb-base": "^15.0.0",
-  "eslint-plugin-import": "^2.26.0",
-  "http-server": "^14.1.1",
-  "jsdoc": "^4.0.0",
-  "jest": "^29.3.1"
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "http-server": "^14.1.1",
+    "jsdoc": "^4.0.0",
+    "jest": "^29.3.1"
   }
 }

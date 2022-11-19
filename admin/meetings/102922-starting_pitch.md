@@ -37,8 +37,8 @@
 <ul>
   <li>October 29, 2022</li>
   <ul>
-  <li>Duration: 2 hour and 5 minutes</li>
-    <ol>10:00am to 12:05pm<ol>
+    <li>Duration: 2 hour and 5 minutes</li>
+        <ol>10:00am to 12:05pm<ol>
   </ul>
 </ul>
 
@@ -50,28 +50,28 @@
 #### Meeting Type: 
 <ul>
   <li>Starting Pitch Session 3:</li>
-  <ul>
-    <li>
-    Team Leads: 
-    <ol>
-      Nikhil Rao and Yingqi Cao
-    </ol>
-    </li>
-    <li>
-    Rules: 
-    <ol>
+    <ul>
       <li>
-        Everyone needs to contribute and be prepared to discuss their contributions.
+      Team Leads: 
+        <ol>
+            Nikhil Rao and Yingqi Cao
+        </ol>
       </li>
       <li>
-        Everyone needs to be active on Slack.
+      Rules: 
+        <ol>
+            <li>
+                Everyone needs to contribute and be prepared to discuss their contributions.
+            </li>
+            <li>
+                Everyone needs to be active on Slack.
+            </li>
+            <li>
+                Other rules are defined in our team contract.
+            </li>
+        </ol>
       </li>
-      <li>
-        Other rules are defined in our team contract.
-      </li>
-    </ol>
-    </li>
-  </ul>
+    </ul>
 </ul>	
 
 ## **Attendance**
@@ -84,30 +84,30 @@
 - [x] Amaar Valliani
 - [x] Andrew Jia
 - [x] Yunxiao Xu
-  
+    
 - [ ] Chieh-hsiu Hung
 - [ ] Liam Nguyen
-  
+    
 ## **Agenda**
 - [ ] Change repo image to our group logo.
 - [x] Discuss everyones individual task status' from this meeting.
 - [x] R&D on Competitor apps
-  - Thomas
-  - Andrew
+    - Thomas
+    - Andrew
 
-- [x] Create Wireframes  
-  - Sahil
+- [x] Create Wireframes    
+    - Sahil
 
-- [x] Create a Roadmap of the project  
+- [x] Create a Roadmap of the project    
 
-- [x] Technologies you would use for frontend and backend  
-  - Yunxiao
+- [x] Technologies you would use for frontend and backend    
+    - Yunxiao
 
-- [x] Risks, rabbit holes, and no gos  
-  - Isaac
+- [x] Risks, rabbit holes, and no gos    
+    - Isaac
 
 - [x] Update and re-assign team roles as needed.
-  
+    
 
 ## **Meeting Notes**
 ### Recap of the meeting:
@@ -140,30 +140,30 @@
 ## **Notes**
 Debrief tasks completed since last meeting.
 <ul>
-  <li>If you haven't finished your part of the Miro board or need to edit it in any way, please do so before Monday as we will most likely present it to the TA. (I'll be finishing the project roadmap and edit the statement of purpose.)</li>
-  <br>
-  <li>Here are very preliminary project roles. If you have a specific role in mind, let us know! Also, some roles might be on a rotation basis, such as testing.</li>
-    <ul>
-      <li>Team leads (approving pull requests, other tasks TBA)</li>
-        <ol>Yingqi</ol>
-        <ol>Nikhil</ol>
-      <li>Designers and Frontend (HTML, CSS)</li>  
-        <ol>Sahil</ol>
-        <ol>Liam</ol>
-        <ol>Amaar</ol>
-    </ul>
-    <ul>
-      <li>Backend + some work to bridge backend and frontend (JavaScript)</li>
-        <ol>Ex. retrieving files from local storage, putting data in JSON files</ol>
-        <ol>Thomas</ol>
-        <ol>Jerry</ol>
-        <ol>Yunxiao</ol>
-      <li>Testing</li>
-        <ol>Isaac</ol>
-        <ol>Andrew</ol>
-      <li>Everyone</li>
-        <ol>Document your work</ol>
-    </ul>
+    <li>If you haven't finished your part of the Miro board or need to edit it in any way, please do so before Monday as we will most likely present it to the TA. (I'll be finishing the project roadmap and edit the statement of purpose.)</li>
+    <br>
+    <li>Here are very preliminary project roles. If you have a specific role in mind, let us know! Also, some roles might be on a rotation basis, such as testing.</li>
+        <ul>
+            <li>Team leads (approving pull requests, other tasks TBA)</li>
+                <ol>Yingqi</ol>
+                <ol>Nikhil</ol>
+            <li>Designers and Frontend (HTML, CSS)</li>    
+                <ol>Sahil</ol>
+                <ol>Liam</ol>
+                <ol>Amaar</ol>
+        </ul>
+        <ul>
+            <li>Backend + some work to bridge backend and frontend (JavaScript)</li>
+                <ol>Ex. retrieving files from local storage, putting data in JSON files</ol>
+                <ol>Thomas</ol>
+                <ol>Jerry</ol>
+                <ol>Yunxiao</ol>
+            <li>Testing</li>
+                <ol>Isaac</ol>
+                <ol>Andrew</ol>
+            <li>Everyone</li>
+                <ol>Document your work</ol>
+        </ul>
 </ul>
 
 

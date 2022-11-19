@@ -1,44 +1,44 @@
 /* */
 .logo {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 /* */
 .logo:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 /* */
 body {
-  color: #636363;
-  margin: 0;
-  width: 100%;
-  max-width: 100%;
+    color: #636363;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
 }
 /* */
 .nav-bar {
-  padding: 10px;
-  height: 60px;
+    padding: 10px;
+    height: 60px;
 
-  position: sticky;
-  z-index: 2;
-  top: 0px;
-  left: 0px;
-  font-size: 17px;
-  background-color: #282A35;
-  color: #f1f1f1;
-  overflow: hidden;
+    position: sticky;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    font-size: 17px;
+    background-color: #282A35;
+    color: #f1f1f1;
+    overflow: hidden;
 }
 
 main {
-  padding: 20px;
+    padding: 20px;
 }
 
 .logo {
-  height: 100%;
-  border: none;
-  outline: none;
-  color: #fff;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
 }

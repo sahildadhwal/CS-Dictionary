@@ -9,27 +9,27 @@
 <body>
   <!----https://codepen.io/codingtuting/pen/XWrBgQz---->
   <div class="basic-card basic-card-light">
-  <div class="card-content">
-    <span id="term-name" class="card-title">Insert Term /*${data["termTitle"]}*/</span>
-    <p id="description" class="card-text">
-    This is the short description of the term./*${data["termTitle"]}*/
-    </p>
-  </div>
+    <div class="card-content">
+      <span id="term-name" class="card-title">Insert Term /*${data["termTitle"]}*/</span>
+      <p id="description" class="card-text">
+        This is the short description of the term./*${data["termTitle"]}*/
+      </p>
+    </div>
 
-  <div class="card-link">
-    <a href="#" title="Read Full"><span>Open</span></a>
-  </div>
+    <div class="card-link">
+      <a href="#" title="Read Full"><span>Open</span></a>
+    </div>
   </div>
 </body>
 
 
 <script>
   function loadData(){
-    const tName = "Pineapples!";
-    const descript = "this is a description!"
+      const tName = "Pineapples!";
+      const descript = "this is a description!"
 
-    document.getElementById("term-name").textContent = tName;
-    document.getElementById("description").textContent = descript;
+      document.getElementById("term-name").textContent = tName;
+      document.getElementById("description").textContent = descript;
 
   }
 

@@ -64,7 +64,7 @@ export function selectDict() {
 export function deleteAll() {
   const dict = loadDict();
   for (const [term] of Object.entries(dict)) {
-  deleteTerm(term);
+    deleteTerm(term);
   }
   // renderAllTerms(document.getElementById('dict'));
 }
@@ -80,11 +80,11 @@ export function deleteAll() {
  * @returns {string[]} An array of popular tags.
  */
 export function getPopularTags(count) {
-  const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
-  let popular_tags = Object.keys(tag_counts).sort(
-    (t1, t2) => tag_counts[t2] - tag_counts[t1]
-  );
-  return popular_tags.slice(0, count);
+    const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
+    let popular_tags = Object.keys(tag_counts).sort(
+        (t1, t2) => tag_counts[t2] - tag_counts[t1]
+    );
+    return popular_tags.slice(0, count);
 }
 
 /**
@@ -93,14 +93,14 @@ export function getPopularTags(count) {
  * @returns {term[]} An array of all terms with this tag
  */
 export function getDataOfTag(tag) {
-  const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
-  let terms = [];
-  for(let uuid of uuids) {
-    let token = dict[uuid];
-    terms.push(token);
-  }
-  return terms;
+    const dict = loadDict();
+    const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
+    let terms = [];
+    for(let uuid of uuids) {
+        let token = dict[uuid];
+        terms.push(token);
+    }
+    return terms;
 }
 
 /**
@@ -110,24 +110,24 @@ export function getDataOfTag(tag) {
  * @returns {term[]} An array of some terms that has the given tag
  */
 export function getRandomTermsOfTag(tag, count=5) {
-  const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
-  // get some random uuids
-  let randomUuids = [];
-  for (let i = 0; i < Math.min(uuids.length, count); i++) {
-    let idx = Math.floor(Math.random() * uuids.length);
-    while (uuids[idx] in randomUuids) {
-      idx = Math.floor(Math.random() * uuids.length);
+    const dict = loadDict();
+    const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
+    // get some random uuids
+    let randomUuids = [];
+    for (let i = 0; i < Math.min(uuids.length, count); i++) {
+        let idx = Math.floor(Math.random() * uuids.length);
+        while (uuids[idx] in randomUuids) {
+            idx = Math.floor(Math.random() * uuids.length);
+        }
+        terms.push(uuids[idx]);
     }
-    terms.push(uuids[idx]);
-  }
-  // convert uuid to term
-  let terms = [];
-  for(let uuid of randomUuids) {
-    let token = dict[uuid];
-    terms.push(token);
-  }
-  return terms;
+    // convert uuid to term
+    let terms = [];
+    for(let uuid of randomUuids) {
+        let token = dict[uuid];
+        terms.push(token);
+    }
+    return terms;
 }
 
 /**
@@ -136,16 +136,16 @@ export function getRandomTermsOfTag(tag, count=5) {
  * @returns {term[]} array of 5 terms
  */
 export function top5terms(tag_name) {
-  const dict = loadDict();
-  const tags = JSON.parse(localStorage.getItem('tags')) || {};
-  const terms_of_tag = tags[tag_name];
-  // let count = Math.min(terms_of_tag.length, 5);
-  let top5 = [];
-  for(var i = 0; i < 5; i++) {
-    // push term objects
-    top5.push(dict[terms_of_tag[i]]);
-  }
-  return top5;
+    const dict = loadDict();
+    const tags = JSON.parse(localStorage.getItem('tags')) || {};
+    const terms_of_tag = tags[tag_name];
+    // let count = Math.min(terms_of_tag.length, 5);
+    let top5 = [];
+    for(var i = 0; i < 5; i++) {
+        // push term objects
+        top5.push(dict[terms_of_tag[i]]);
+    }
+    return top5;
 }
 
 /**
@@ -154,13 +154,13 @@ export function top5terms(tag_name) {
  * tag name as key and 5 terms in an array as value
  */
 export function getAllPopTags() {
-  const tagSet = getPopularTags(3);
-  let tagsDict = [];
-  for(let i = 0; i < tagSet.length; i++){
-    tagsDict.push({tag_name: tagSet[i], terms: top5terms(tagSet[i])});
-    // tagsDict[tagSet[i]] = top5terms(tagSet[i]);
-  }
-  return tagsDict;
+    const tagSet = getPopularTags(3);
+    let tagsDict = [];
+    for(let i = 0; i < tagSet.length; i++){
+        tagsDict.push({tag_name: tagSet[i], terms: top5terms(tagSet[i])});
+        // tagsDict[tagSet[i]] = top5terms(tagSet[i]);
+    }
+    return tagsDict;
 }
 
 /**
@@ -168,14 +168,14 @@ export function getAllPopTags() {
  * @param {term} term A term with some tags
  */
 export function updateTags(term) {
-  const tags_dict = JSON.parse(localStorage.getItem("tags")) || {};
+    const tags_dict = JSON.parse(localStorage.getItem("tags")) || {};
 
-  for (const tag of term.tags) {
-    tags_dict[tag] = tags_dict[tag] || [];
-    if (term.id in tags_dict[tag]) continue;
-    tags_dict[tag].push(term.id);
-  }
-  localStorage.setItem('tags', JSON.stringify(tags_dict));
+    for (const tag of term.tags) {
+        tags_dict[tag] = tags_dict[tag] || [];
+        if (term.id in tags_dict[tag]) continue;
+        tags_dict[tag].push(term.id);
+    }
+    localStorage.setItem('tags', JSON.stringify(tags_dict));
 }
 
 /**
@@ -183,14 +183,14 @@ export function updateTags(term) {
  * @param {term} term 
  */
 export function updateTagCount(term) {
-  const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
+    const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
 
-  for (const tag of term.tags) {
-    tag_counts[tag] = tag_counts[tag] || 0;
-    tag_counts[tag]++;
-  }
+    for (const tag of term.tags) {
+        tag_counts[tag] = tag_counts[tag] || 0;
+        tag_counts[tag]++;
+    }
 
-  localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
+    localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -202,15 +202,15 @@ export function updateTagCount(term) {
  * @return {term[]} An array of term objects, size <= 5
  */
 export function getDataOfRecents() {
-  const dict = loadDict();
-  const recents = JSON.parse(localStorage.getItem('recents')) || [];
-  let recently_opened = [];
-  for(var uuid of recents) {
-    let token = dict[uuid];
-    recently_opened.push(token);
-  }
-  //j
-  return recently_opened;
+    const dict = loadDict();
+    const recents = JSON.parse(localStorage.getItem('recents')) || [];
+    let recently_opened = [];
+    for(var uuid of recents) {
+        let token = dict[uuid];
+        recently_opened.push(token);
+    }
+    //j
+    return recently_opened;
 }
 
 /**
@@ -219,19 +219,19 @@ export function getDataOfRecents() {
  * @param {string} uuid The uuid of the recently viewed term
  */
 export function updateRecents(uuid) {
-  let recents = JSON.parse(localStorage.getItem('recents')) || [];
-  let index = recents.indexOf(uuid);
-  console.log(typeof(uuid));
-  if(index != -1){
-    recents.splice(index, 1);
-  } else {
-    if(recents.length >= 5){
-      recents.splice(0, 1);
-    }
+    let recents = JSON.parse(localStorage.getItem('recents')) || [];
+    let index = recents.indexOf(uuid);
+    console.log(typeof(uuid));
+    if(index != -1){
+        recents.splice(index, 1);
+    } else {
+        if(recents.length >= 5){
+            recents.splice(0, 1);
+        }
 
-  }
-  recents.push(uuid);
-  localStorage.setItem('recents', JSON.stringify(recents));
+    }
+    recents.push(uuid);
+    localStorage.setItem('recents', JSON.stringify(recents));
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -245,7 +245,7 @@ export function updateRecents(uuid) {
  * @returns {Object.<string, term>} An dictionary
  */
 function loadDict() {
-  return JSON.parse(localStorage.getItem('terms')) || {};
+    return JSON.parse(localStorage.getItem('terms')) || {};
 }
 
 /**
@@ -253,7 +253,7 @@ function loadDict() {
  * @param {Object.<string, term>} dict A dictionary of `uuid: term` pairs
  */
 function archiveDict(dict) {
-  localStorage.setItem('terms', JSON.stringify(dict));
+    localStorage.setItem('terms', JSON.stringify(dict));
 }
 
 /**
@@ -262,19 +262,19 @@ function archiveDict(dict) {
  * @returns {Object.<string, term>} A dictionary of terms
  */
 export function selectDict() {
-  const dict = loadDict();
-  return dict;
+    const dict = loadDict();
+    return dict;
 }
 
 /**
  * Clear all terms in `localstorage`
  */
  export function deleteAll() {
-  const dict = loadDict();
-  for(const [_, term] of Object.entries(dict)){
-    deleteTerm(term);
-  }
-  // renderAllTerms(document.getElementById('dict'));
+    const dict = loadDict();
+    for(const [_, term] of Object.entries(dict)){
+        deleteTerm(term);
+    }
+    // renderAllTerms(document.getElementById('dict'));
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -286,7 +286,7 @@ export function selectDict() {
  * @returns {string} A random uuid.
  */
  export function generateTermId() {
-  return crypto.randomUUID();
+    return crypto.randomUUID();
 }
 
 /**
@@ -295,14 +295,14 @@ export function selectDict() {
  * @returns {string} The id of the new term
  */
 export function insertTerm(term) {
-  // TODO: Decide how we are going to handle duplicate (consult with team)
-  const dict = loadDict();
-  term.id = generateTermId();
-  dict[term.id] = term;
-  archiveDict(dict);
-  updateRecents(term.id);
-  // location.reload();
-  return term.id;
+    // TODO: Decide how we are going to handle duplicate (consult with team)
+    const dict = loadDict();
+    term.id = generateTermId();
+    dict[term.id] = term;
+    archiveDict(dict);
+    updateRecents(term.id);
+    // location.reload();
+    return term.id;
 }
 
 /**
@@ -311,8 +311,8 @@ export function insertTerm(term) {
  * @returns {string} The term corresponding to the termId
  */
 export function selectTerm(termId) {
-  const dict = loadDict();
-  return dict[termId];
+    const dict = loadDict();
+    return dict[termId];
 }
 
 
@@ -321,13 +321,13 @@ export function selectTerm(termId) {
  * @param {term} term A term object
  */
 export function updateTerm(term) {
-  const cur_time = new Date();
-  const dict = loadDict();
-  term.edit_count += 1;
-  term.edited_date = cur_time;
-  term.edited_by = 'user';
-  dict[term.id] = term;
-  archiveDict(dict);
+    const cur_time = new Date();
+    const dict = loadDict();
+    term.edit_count += 1;
+    term.edited_date = cur_time;
+    term.edited_by = 'user';
+    dict[term.id] = term;
+    archiveDict(dict);
 }
 
 /**
@@ -338,20 +338,20 @@ export function updateTerm(term) {
 export function deleteTerm(term) {
   const dict = loadDict();
   if (!(term.id in dict)) {
-  return false;
+    return false;
   }
   delete dict[term.id];
   const tags = JSON.parse(localStorage.getItem('tags'));
   for (const tag of term.tags) {
-  const uuids = tags[tag] || [];
-  if (term.id in uuids) {
-    const i = uuids.indexOf(term.id);
-    tags[tag].splice(i, 1);
-  }
-  archiveDict(dict);
-  localStorage.setItem('tags', tags);
-  // location.reload();
-  return true;
+    const uuids = tags[tag] || [];
+    if (term.id in uuids) {
+      const i = uuids.indexOf(term.id);
+      tags[tag].splice(i, 1);
+    }
+    archiveDict(dict);
+    localStorage.setItem('tags', tags);
+    // location.reload();
+    return true;
 }
 
 /**
@@ -359,8 +359,8 @@ export function deleteTerm(term) {
  * @returns {number} The number of existing terms.
  */
 export function termsCount() {
-  const dict = loadDict();
-  return Object.keys(dict).length;
+    const dict = loadDict();
+    return Object.keys(dict).length;
 }
 
 /**
@@ -369,29 +369,29 @@ export function termsCount() {
  * @param {term} term a new term
  */
  export function addTermToBackend(term){
-  const cur_time = new Date();
-  term['tags'] = term.tags.split(',');
-  for (const i in term['tags']) {
-    term['tags'][i] = term['tags'][i].trim();
-    if (term['tags'][i] === '') {
-      term['tags'].splice(i, 1);
+    const cur_time = new Date();
+    term['tags'] = term.tags.split(',');
+    for (const i in term['tags']) {
+        term['tags'][i] = term['tags'][i].trim();
+        if (term['tags'][i] === '') {
+            term['tags'].splice(i, 1);
+        }
     }
-  }
-  term['created_by'] = 'placeholder';
-  term['created_time'] = cur_time;
-  term['edited_by'] = 'placeholder';
-  term['edited_date'] = cur_time;
-  term['edit_count'] = 0;
-  insertTerm(term);
-  updateTags(term);
-  updateTagCount(term);
+    term['created_by'] = 'placeholder';
+    term['created_time'] = cur_time;
+    term['edited_by'] = 'placeholder';
+    term['edited_date'] = cur_time;
+    term['edit_count'] = 0;
+    insertTerm(term);
+    updateTags(term);
+    updateTagCount(term);
 }
 
 /**
  * @deprecated
  */
 export function addTermToDoc(term) {
-  addTermToBackend(term);
+    addTermToBackend(term);
 }
 
 /**
@@ -403,18 +403,18 @@ export function addTermToDoc(term) {
  * @return {term[]} //Returns a list of all the terms associated with the search 
  */
 export function findRequestedTerm(input, sTerm, sTag, sDescription){
-  const dict = loadDict();
-  let searchResult = [];
-  for (const [id, term] of Object.entries(dict)) {
-    if(!sTerm && !sTag && !sDescription){ //If all boxes unchecked, default to Term
-      sTerm = true;
+    const dict = loadDict();
+    let searchResult = [];
+    for (const [id, term] of Object.entries(dict)) {
+        if(!sTerm && !sTag && !sDescription){ //If all boxes unchecked, default to Term
+            sTerm = true;
+        }
+        if(sTerm){
+            if(input == sTerm){
+                
+            }
+        } 
     }
-    if(sTerm){
-      if(input == sTerm){
-        
-      }
-    } 
-  }
 }
 
 // /**
@@ -425,21 +425,21 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
 //  * @returns {HTMLElement} A `dict_entry` element of the term
 //  */
 // export function renderTerm(term) {
-//   const template = document.getElementById("dict_template");
+//     const template = document.getElementById("dict_template");
 
-//   const termE1 = template.content.cloneNode(true);
-//   termE1.children[0].dataset.termId = term.id;
+//     const termE1 = template.content.cloneNode(true);
+//     termE1.children[0].dataset.termId = term.id;
 
 
-//   const nameH1 = termE1.querySelector('term_name > h1');
-//   nameH1.textContent = term.name;
+//     const nameH1 = termE1.querySelector('term_name > h1');
+//     nameH1.textContent = term.name;
 
-//   const tagUL1 = termE1.querySelector('tags > ul');
-//   for(let i = 0; i < term['tags'].length; i++){
-//     tagUL1.innerHTML += '<li>' + term.tags[i] + '</li>';
-//   }
+//     const tagUL1 = termE1.querySelector('tags > ul');
+//     for(let i = 0; i < term['tags'].length; i++){
+//         tagUL1.innerHTML += '<li>' + term.tags[i] + '</li>';
+//     }
 
-//   return termE1;
+//     return termE1;
 // }
 // /**
 //  * Render all terms into elements and put them into the `term_container`.
@@ -448,19 +448,19 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
 //  * @returns {boolean} `true` if success
 //  */
 // export function renderAllTerms(term_container) {
-//   const dict = selectDict();
+//     const dict = selectDict();
 
-//   for(const [termId, term] of Object.entries(dict)){
-//     const termE1 = renderTerm(term);
-//     const existingTerm = term_container.querySelector(`[data-term-id="${termId}"]`);
-//     if (existingTerm) {
-//       existingTerm.remove();
-//     }
+//     for(const [termId, term] of Object.entries(dict)){
+//         const termE1 = renderTerm(term);
+//         const existingTerm = term_container.querySelector(`[data-term-id="${termId}"]`);
+//         if (existingTerm) {
+//             existingTerm.remove();
+//         }
 
-//     term_container.appendChild(termE1);
-//   }  
+//         term_container.appendChild(termE1);
+//     }    
 
-//   return true;
+//     return true;
 // }
 
 // /**
@@ -468,12 +468,12 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
 //  * @private
 //  */
 // export function showDialog(){
-//   document.getElementById('term_template').style.display = 'block';
+//     document.getElementById('term_template').style.display = 'block';
 // }
 // /**
 //  * Hide user input dialog.
 //  * @private
 //  */
 // export function cancel(){
-//   document.getElementById('term_template').style.display = 'none';
+//     document.getElementById('term_template').style.display = 'none';
 // }

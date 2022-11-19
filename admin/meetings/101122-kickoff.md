@@ -38,8 +38,8 @@
 <ul>
   <li>October 11, 2022</li>
   <ul>
-  <li>Duration: 1 hour 42 minutes</li>
-    <ol>7:00pm to 8:42pm<ol>
+    <li>Duration: 1 hour 42 minutes</li>
+        <ol>7:00pm to 8:42pm<ol>
   </ul>
 </ul>
 
@@ -51,28 +51,28 @@
 #### Meeting Type: 
 <ul>
   <li>Kickoff:</li>
-  <ul>
-    <li>
-    Team Leads: 
-    <ol>
-      Nikhil Rao and Yingqi Cao
-    </ol>
-    </li>
-    <li>
-    Rules: 
-    <ol>
+    <ul>
       <li>
-        Everyone needs to contribute and be prepared to discuss their contributions.
+      Team Leads: 
+        <ol>
+            Nikhil Rao and Yingqi Cao
+        </ol>
       </li>
       <li>
-        Everyone needs to be active on Slack.
+      Rules: 
+        <ol>
+            <li>
+                Everyone needs to contribute and be prepared to discuss their contributions.
+            </li>
+            <li>
+                Everyone needs to be active on Slack.
+            </li>
+            <li>
+                Other rules to be determined on our team contract.
+            </li>
+        </ol>
       </li>
-      <li>
-        Other rules to be determined on our team contract.
-      </li>
-    </ol>
-    </li>
-  </ul>
+    </ul>
 </ul>	
 
 ## **Attendance**
@@ -125,18 +125,18 @@ Recap of the meeting with the TA:
 
 ## **Accomplished**
 <ol>
-  <li>
-    Discussed expectations from the TA to all members.
-  </li>
-  <li>
-    Discussed rules and expectations of all team members.
-  </li>
-  <li>
-    Created a Github Repo for the project  and added all members of the team and the TA to it.
-  </li>
-  <li>
-    Pushed the required files from the Group Kickoff assignment onto our GitHub repo.
-  </li>
+    <li>
+        Discussed expectations from the TA to all members.
+    </li>
+    <li>
+        Discussed rules and expectations of all team members.
+    </li>
+    <li>
+        Created a Github Repo for the project  and added all members of the team and the TA to it.
+    </li>
+    <li>
+        Pushed the required files from the Group Kickoff assignment onto our GitHub repo.
+    </li>
 
 </ol>
 

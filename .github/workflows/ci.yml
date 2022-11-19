@@ -3,9 +3,9 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-  branches: [ "main", "dev", "clean"]
+    branches: [ "main", "dev", "clean"]
   pull_request:
-  branches: [ "main", "dev", "clean"]
+    branches: [ "main", "dev", "clean"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -13,69 +13,69 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   run-validator:
-  # The type of runner that the job will run on
-  name: Run HTML Validator
-  runs-on: ubuntu-latest
+    # The type of runner that the job will run on
+    name: Run HTML Validator
+    runs-on: ubuntu-latest
 
-  # Steps represent a sequence of tasks that will be executed as part of the job
-  steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
 
-    # Runs a single command using the runners shell
-    - name: HTML5 Validator
-    uses: Cyb3r-Jak3/html5validator-action@v7.1.1
-    with:
-      root: source/
-      css: true
-      log_level: DEBUG
+      # Runs a single command using the runners shell
+      - name: HTML5 Validator
+        uses: Cyb3r-Jak3/html5validator-action@v7.1.1
+        with:
+          root: source/
+          css: true
+          log_level: DEBUG
 
   run-linters:
-  name: Run linters
-  runs-on: ubuntu-latest
+    name: Run linters
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Check out Git repository
-    uses: actions/checkout@v3
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-    uses: actions/setup-node@v1
-    with:
-      node-version: 16
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
 
-    # ESLint and Prettier must be in `package.json`
-    - name: Install Node.js dependencies
-    run: npm ci
+      # ESLint and Prettier must be in `package.json`
+      - name: Install Node.js dependencies
+        run: npm ci
 
-    - name: Add Support for Jest
-    run: yarn add --dev eslint eslint-plugin-jest
+      - name: Add Support for Jest
+        run: yarn add --dev eslint eslint-plugin-jest
 
-    - name: Run linters
-    uses: wearerequired/lint-action@v2
-    with:
-      eslint: true
-      
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          
   unit-testing:
-  name: Run Unit Testing
-  runs-on: ubuntu-latest
+    name: Run Unit Testing
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-    run: yarn
-    - name: Run tests
-    run: yarn test
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
 
   jsDocs:
-  name: Make jsDocs
-  runs-on: ubuntu-latest
+    name: Make jsDocs
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-    - name: Build jsDocs
-    uses: andstor/jsdoc-action@v1
-    with:
-      source_dir: ./source
-      recurse: true
-      output_dir: ./source/jsDocs
+      - name: Build jsDocs
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./source
+          recurse: true
+          output_dir: ./source/jsDocs

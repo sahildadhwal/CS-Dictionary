@@ -37,8 +37,8 @@
 <ul>
   <li>October 20, 2022</li>
   <ul>
-  <li>Duration: 1 hour and 21 minutes</li>
-    <ol>7:00pm to 8:21pm<ol>
+    <li>Duration: 1 hour and 21 minutes</li>
+        <ol>7:00pm to 8:21pm<ol>
   </ul>
 </ul>
 
@@ -50,28 +50,28 @@
 #### Meeting Type: 
 <ul>
   <li>Brainstorming Session 2:</li>
-  <ul>
-    <li>
-    Team Leads: 
-    <ol>
-      Nikhil Rao and Yingqi Cao
-    </ol>
-    </li>
-    <li>
-    Rules: 
-    <ol>
+    <ul>
       <li>
-        Everyone needs to contribute and be prepared to discuss their contributions.
+      Team Leads: 
+        <ol>
+            Nikhil Rao and Yingqi Cao
+        </ol>
       </li>
       <li>
-        Everyone needs to be active on Slack.
+      Rules: 
+        <ol>
+            <li>
+                Everyone needs to contribute and be prepared to discuss their contributions.
+            </li>
+            <li>
+                Everyone needs to be active on Slack.
+            </li>
+            <li>
+                Other rules are defined in our team contract.
+            </li>
+        </ol>
       </li>
-      <li>
-        Other rules are defined in our team contract.
-      </li>
-    </ol>
-    </li>
-  </ul>
+    </ul>
 </ul>	
 
 ## **Attendance**
@@ -176,12 +176,12 @@
 
 ## **Accomplished**
 <ol>
-  <li>
-    We renamed our repo to team2-fa22-cse110. 
-  </li>
-  <li>
-    We have decided which project to propose to the T.A. along with 3 back up proposals.
-  </li>
+    <li>
+        We renamed our repo to team2-fa22-cse110. 
+    </li>
+    <li>
+        We have decided which project to propose to the T.A. along with 3 back up proposals.
+    </li>
 </ol>
 
 

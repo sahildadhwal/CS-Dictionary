@@ -38,8 +38,8 @@
 <ul>
   <li>October 25, 2022</li>
   <ul>
-  <li>Duration: 1 hour and 49 minutes</li>
-    <ol>7:00pm to 8:49pm<ol>
+    <li>Duration: 1 hour and 49 minutes</li>
+        <ol>7:00pm to 8:49pm<ol>
   </ul>
 </ul>
 
@@ -51,28 +51,28 @@
 #### Meeting Type: 
 <ul>
   <li>Starting Pitch Session 1:</li>
-  <ul>
-    <li>
-    Team Leads: 
-    <ol>
-      Nikhil Rao and Yingqi Cao
-    </ol>
-    </li>
-    <li>
-    Rules: 
-    <ol>
+    <ul>
       <li>
-        Everyone needs to contribute and be prepared to discuss their contributions.
+      Team Leads: 
+        <ol>
+            Nikhil Rao and Yingqi Cao
+        </ol>
       </li>
       <li>
-        Everyone needs to be active on Slack.
+      Rules: 
+        <ol>
+            <li>
+                Everyone needs to contribute and be prepared to discuss their contributions.
+            </li>
+            <li>
+                Everyone needs to be active on Slack.
+            </li>
+            <li>
+                Other rules are defined in our team contract.
+            </li>
+        </ol>
       </li>
-      <li>
-        Other rules are defined in our team contract.
-      </li>
-    </ol>
-    </li>
-  </ul>
+    </ul>
 </ul>	
 
 ## **Attendance**
@@ -128,7 +128,7 @@
 
 **1) Problem, solution, features and priorities**
    - Assigned to: *Yingqi*
-  
+    
 **2) Problem, solution, features and priorities**
    - Assigned to: *Yingqi*
 
