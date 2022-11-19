@@ -1,11 +1,8 @@
 window.addEventListener('DOMContentLoaded', init);
-import * as backendFunction from '/src/backend/dict.js'
+import * as backendFunction from '../../backend/dict.js'
 
-let searchButton = document.getElementById("search_button");
-let searchElement = document.getElementById("search_bar");
-let searchInput = '';
-
-function init() {      
+function init() {
+      
     addTermsToDocument(backendFunction.getDataOfRecents());
     addTagsToDocument(backendFunction.getAllPopTags());
 }
@@ -46,11 +43,3 @@ function addTagsToDocument(terms) {
 
     recentlyAddedEle.appendChild(tagDiv);
 }
-
-// searchElement.addEventListener('input', e => {
-//     console.log(e);
-// })
-
-// searchButton.onclick(() => {
-    
-// })

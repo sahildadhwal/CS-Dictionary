@@ -13,9 +13,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "no-use-before-define": "off",
-    "no-continue": "off",
-    "no-trailing-spaces": "off"
   },
   plugins: ['jest'],
 };
