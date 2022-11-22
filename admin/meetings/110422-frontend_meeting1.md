@@ -1,4 +1,4 @@
-# Team Meeting: Starting Pitch 1!
+# Team Meeting: Frontend Meeting 1!
 
 [Team 2 Members](#team-2-members)
 
