@@ -17,8 +17,7 @@ class TermCard extends HTMLElement {
 
         shadow_el.appendChild(style_el);
         shadow_el.appendChild(article_el);
-
-    }
+  }
 
     set data(data) {
         if (!data) return;
