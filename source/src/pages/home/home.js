@@ -1,12 +1,15 @@
 window.addEventListener('DOMContentLoaded', init);
 import * as backendFunction from '/src/backend/dict.js'
 
-function init() {
-      
+let searchButton = document.getElementById("search_button");
+let searchElement = document.getElementById("search_bar");
+let searchInput = '';
+let searchResults = {};
+
+function init() {      
     addTermsToDocument(backendFunction.getDataOfRecents());
     addTagsToDocument(backendFunction.getAllPopTags());
 }
-
 
 function addTermsToDocument(terms) {
     let recentlyAddedEle = document.querySelector('div.recently-added-elements');
@@ -17,10 +20,8 @@ function addTermsToDocument(terms) {
         termCard.data = term;
         recentlyAddedEle.appendChild(termCard);
     });
-
-
-
 }
+
 function addTagsToDocument(terms) {
     let recentlyAddedEle = document.querySelector('div.popular-tags');
     let tagDiv = document.createElement('div');
@@ -43,3 +44,13 @@ function addTagsToDocument(terms) {
 
     recentlyAddedEle.appendChild(tagDiv);
 }
+
+searchElement.addEventListener('input', e => {
+    searchInput = searchElement.value;
+    searchResults = backendFunction.findRequestedTerm(searchInput, true, false, true);
+    
+})
+
+searchButton.addEventListener('click', function() {
+    localStorage.setItem('search_results', JSON.stringify(searchResults));
+});

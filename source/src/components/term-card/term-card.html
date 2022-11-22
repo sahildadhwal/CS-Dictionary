@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-  <title></title>
+  <title>Term Card</title>
   <link rel="stylesheet" href="card.css" />
+  <link rel="stylesheet" href="/src/components/confirmation-box/confirmation-box.css" />
 </head>
 
 <body>
@@ -20,22 +21,23 @@
       <a href="#" title="Read Full"><span>Open</span></a>
     </div>
   </div>
+  
+  <script>
+    function loadData(){
+        const tName = "Pineapples!";
+        const descript = "this is a description!"
+  
+        document.getElementById("term-name").textContent = tName;
+        document.getElementById("description").textContent = descript;
+  
+    }
+  
+    // loads data upon opening it
+    window.onload = loadData;
+  </script>
 </body>
 
 
-<script>
-  function loadData(){
-      const tName = "Pineapples!";
-      const descript = "this is a description!"
-
-      document.getElementById("term-name").textContent = tName;
-      document.getElementById("description").textContent = descript;
-
-  }
-
-  // loads data upon opening it
-  window.onload = loadData;
-</script>
 
 
 

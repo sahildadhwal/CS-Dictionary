@@ -24,7 +24,6 @@ term-card:last-child {
 .add-button {
     font-size: 40px !important;
     /* height: 100%; */
-    aspect-ratio: 1 / 1;
     align-self: center;
 }
 /* */
@@ -38,30 +37,98 @@ term-card:last-child {
     align-content: center;
 }
 
-/* MAKE IT GLOW?? https://alvarotrigo.com/blog/10-cool-css-animations-to-add-to-your-website/
-.add-button:hover {
-    content: '';
-    background: linear-gradient(45deg,  #a4efda, rgb(0, 123, 255), #5100ff, #f48eff);
-    background-size: 400%;
-    z-index: -1;
-    
-    animation: glowing 20s linear infinite;
-    
-    transition: opacity .3s ease-in-out;
-    
-    aspect-ratio: 1/1;
-}
 
-.add-button:active {
-    color: #000
+/* Hello World button https://alvarotrigo.com/blog/best-css-button-hover-effects/ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: verdana;
 }
-
-.add-button:active:after {
-    background: transparent;
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-
-@keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
-} */
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+a span {
+    padding: 15px;
+    transition: .5s;
+    position: relative;
+}
+a span:nth-child(1) {
+    color: #fff;
+    background: #262626;
+}
+a span:nth-child(2) {
+    color: #fff;
+    background: #ff3636;
+}
+a span:nth-child(1):before {
+    content: attr(data-attr);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ff3636;
+    padding: 15px;
+    transition: 0.5S;
+    transform-origin: top;
+    transform: rotateX(90deg) translateY(-50%);
+}
+a:hover span:nth-child(1):before {
+    transform: rotateX(0deg) translateY(0%);
+} 
+a span:nth-child(2):before {
+    content: attr(data-attr);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #262626;
+    padding: 15px;
+    transition: 0.5S;
+    transform-origin: bottom;
+    transform: rotateX(90deg) translateY(50%);
+}
+a:hover span:nth-child(2):before {
+    transform: rotateX(0deg) translateY(0%);
+} 
+a  span:nth-child(1):after {
+  content: attr(data-attr);
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #262626;
+  transform-origin: bottom;
+  transform: rotateX(0deg) translateY(0%);
+  transition: 0.5s;
+}
+a:hover span:nth-child(1):after {
+  transform: rotateX(90deg) translateY(50%);
+}
+a span:nth-child(2):after {
+    content: attr(data-attr);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ff3636;
+    padding: 15px;
+    transition: 0.5S;
+    transform-origin: top;
+    transform: rotateX(0deg) translateY(0%);
+}
+a:hover span:nth-child(2):after {
+    transform: rotateX(90deg) translateY(-50%);
+} 
+.top-buttons {
+    text-align: center;
+}
+.top-buttons input {
+    width: 15%;
+    height: 35px;
+    font-size: large;
+}
