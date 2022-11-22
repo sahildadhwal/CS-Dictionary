@@ -1,10 +1,4 @@
 {
-  "scripts": {
-    "doc-server": "./node_modules/.bin/http-server ./doc",
-    "update-doc": "./node_modules/.bin/jsdoc ./source -d ./doc",
-    "start": "./node_modules/.bin/http-server ./source",
-    "test": "jest"
-  },
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
@@ -17,7 +11,10 @@
     "puppeteer": "^19.2.2"
   },
   "scripts": {
-    "test": "jest ./source/test/"
+    "test": "jest ./source/test/",
+    "doc-server": "./node_modules/.bin/http-server ./doc",
+    "update-doc": "./node_modules/.bin/jsdoc ./source -d ./doc",
+    "start": "./node_modules/.bin/http-server ./source",
   },
   "jest": {
     "preset": "jest-puppeteer",
