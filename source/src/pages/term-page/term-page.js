@@ -1,34 +1,34 @@
-import * as backendFunction from '/src/backend/dict.js'
+import * as backend_function from '/src/backend/dict.js'
 
 window.addEventListener('DOMContentLoaded', init);
 
-let termID = localStorage.getItem('get_term_id');
-let termData = backendFunction.selectTerm(termID);
-let termTitle = document.getElementById('term-title')
-let termDescription = document.getElementById('term-description')
-let tinyMCEContent = document.getElementById('tinyMCE-content')
-let termTags = document.querySelector('.term-tags')
-let publishedDate = document.querySelector('.published-date')
-let deleteBtn = document.querySelector('.deletebtn');
+let term_id = localStorage.getItem('get_term_id');
+let term_data = backend_function.selectTerm(term_id);
+let term_title = document.getElementById('term-title')
+let term_description = document.getElementById('term-description')
+let tinyMCE_content = document.getElementById('tinyMCE-content')
+let term_tags = document.querySelector('.term-tags')
+let published_date = document.querySelector('.published-date')
+let delete_btn = document.querySelector('.deletebtn');
 
 function init() {
     populateTermData();
 }
 
 function populateTermData() {
-    termTitle.innerHTML = termData['term_name']
-    termDescription.innerHTML = termData['short_description']
-    tinyMCEContent.innerHTML = termData['term_data']
+    term_title.innerHTML = term_data['term_name']
+    term_description.innerHTML = term_data['short_description']
+    tinyMCE_content.innerHTML = term_data['term_data']
     
-    let tagList = termData['tags']
-    for(let i = 0; i < tagList.length; i++) {
-        let tagListItem = document.createElement('li');
-        let tagButton = document.createElement('button');
-        tagButton.innerHTML = tagList[i];
-        tagListItem.appendChild(tagButton);
-        termTags.appendChild(tagListItem);
+    let tag_list = term_data['tags']
+    for(let i = 0; i < tag_list.length; i++) {
+        let tag_list_item = document.createElement('li');
+        let tag_button = document.createElement('button');
+        tag_button.innerHTML = tag_list[i];
+        tag_list_item.appendChild(tag_button);
+        term_tags.appendChild(tag_list_item);
     }
-    publishedDate.textContent = `Published: ${new Date(termData['created_time']).toLocaleString("en-US")}`;
+    published_date.textContent = `Published: ${new Date(term_data['created_time']).toLocaleString("en-US")}`;
 }
 
 // Get the modal
@@ -41,6 +41,6 @@ window.onclick = function(event) {
   }
 }
 
-deleteBtn.addEventListener('click', function () {
-    backendFunction.deleteTerm(termData);
+delete_btn.addEventListener('click', function () {
+    backend_function.deleteTerm(term_data);
 })

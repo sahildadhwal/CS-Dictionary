@@ -1,34 +1,34 @@
 class TermCard extends HTMLElement {
     constructor() {
         super();
-        let shadowEl = this.attachShadow({ mode: 'open' });
-        let articleEl = document.createElement('article');
-        let styleEl = document.createElement('style');
+        let shadow_el = this.attachShadow({ mode: 'open' });
+        let article_el = document.createElement('article');
+        let style_el = document.createElement('style');
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'src/components/term-card/term-card.css', true);
         xhr.onreadystatechange = function () {
             if (this.readyState !== 4) return;
             if (this.status !== 200) return;
-            styleEl.textContent = this.responseText; //style
+            style_el.textContent = this.responseText; //style
         };
         xhr.send();
 
 
-        shadowEl.appendChild(styleEl);
-        shadowEl.appendChild(articleEl);
+        shadow_el.appendChild(style_el);
+        shadow_el.appendChild(article_el);
 
     }
 
     set data(data) {
         if (!data) return;
-        let articleElement = this.shadowRoot.querySelector('article');
-        if (articleElement === null) {
+        let article_element = this.shadowRoot.querySelector('article');
+        if (article_element === null) {
             console.log('it is returning EMPTY');
             return;
         }
 
-        articleElement.innerHTML = `
+        article_element.innerHTML = `
         <div class="basic-card basic-card-light">
         <div class="card-content">
           <span id="term-name" class="card-title">${data['term_name']}</span>
@@ -43,8 +43,8 @@ class TermCard extends HTMLElement {
       </div>
         `;
       
-      let openTermButton = articleElement.querySelector('#open_term');
-      openTermButton.addEventListener('click', e => {
+      let open_term_button = article_element.querySelector('#open_term');
+      open_term_button.addEventListener('click', e => {
         localStorage.setItem('get_term_id', data['id']);
       })
     }

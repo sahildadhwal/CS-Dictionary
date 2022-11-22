@@ -1,20 +1,20 @@
-function jump_CreateTermHtml() {
+function jumpCreateTermHtml() {
     location.href="create-term.html"
 }
-function jump_HomeHtml() {
+function jumpHomeHtml() {
     location.href="home.html"
 }
-function jump_PostHtml() {
+function jumpPostHtml() {
     location.href="post.html"
 }
-function jump_SettingsHtml() {
+function jumpSettingsHtml() {
     location.href="settings.html"
 }
-function jump_SearchHtml() {
+function jumpSearchHtml() {
     location.href="search.html"
 } 
 
 // This is just a temporary function to test the term page
-function jump_TermPageHtml() {
+function jumpTermPageHtml() {
     location.href="term-page.html"
 } 

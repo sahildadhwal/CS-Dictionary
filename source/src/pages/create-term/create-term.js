@@ -1,5 +1,5 @@
 import {initTinyMCE, getTinyMCEData} from '/src/components/tinyMCE/tiny-mce.js'
-import * as backendFunction from '/src/backend/dict.js'
+import * as backend_function from '/src/backend/dict.js'
 
 let button = document.getElementById("create_button");
 console.log(button);
@@ -15,6 +15,5 @@ button.addEventListener('click', function() {
     data.tags = tags.value;
     data.short_description = short_description.value;
     data.term_data = getTinyMCEData();
-
-    backendFunction.addTermToBackend(data);
+    backend_function.addTermToBackend(data);
 })
