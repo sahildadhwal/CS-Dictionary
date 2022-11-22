@@ -345,6 +345,7 @@ export function addTermToDoc(term) {
  * @return {term[]} //Returns a list of all the term IDs associated with the search 
  */
 export function findRequestedTerm(input, s_term, s_tag, s_description){
+  //
   const dict = loadDict();
   let search_result = [];
   for (const [id, term] of Object.entries(dict)) {
