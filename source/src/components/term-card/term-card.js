@@ -49,19 +49,19 @@ class TermCard extends HTMLElement {
       })
     }
     articleElement.innerHTML = `
-    <div class="basic-card basic-card-light">
-    <div class="card-content">
-      <span id="term-name" class="card-title">${data['term_name']}</span>
-      <p id="description" class="card-text">
-        ${data['short_description']}
-      </p>
-    </div>
-
-    <div class="card-link">
-      <a href="#" title="Read Full"><span>Open</span></a>
-    </div>
-  </div>
-    `;
+        <div class="basic-card basic-card-light">
+        <div class="card-content">
+          <span id="term-name" class="card-title">${data['term_name']}</span>
+          <p id="description" class="card-text">
+            ${data['short_description']}
+          </p>
+        </div>
+    
+        <div class="card-link" id="Hello">
+          <a href="./term-page.html" id="open_term"><span>Open</span></a>
+        </div>
+      </div>
+        `;
   }
 }
 
