@@ -13,3 +13,12 @@ function jumpSettingsHtml() {
 function jumpSearchHtml() {
   location.href='search.html';
 }
+
+function jump_SearchHtml() {
+    location.href="search.html"
+} 
+
+// This is just a temporary function to test the term page
+function jump_TermPageHtml() {
+    location.href="term-page.html"
+} 
