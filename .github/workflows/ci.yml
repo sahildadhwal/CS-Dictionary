@@ -3,7 +3,7 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: [ "main", "dev", "clean"]
+    branches: [ "main", "dev", "clean", "e2e"]
   pull_request:
     branches: [ "main", "dev", "clean"]
 
