@@ -61,7 +61,7 @@ class TermCard extends HTMLElement {
       <a href="#" title="Read Full"><span>Open</span></a>
     </div>
   </div>
-    `;S
+    `;
   }
 }
 
