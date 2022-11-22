@@ -344,8 +344,7 @@ export function addTermToDoc(term) {
  * @param {boolean} s_description //Is description checked?
  * @return {term[]} //Returns a list of all the term IDs associated with the search 
  */
-export function findRequestedTerm(input, s_term, s_tag, s_description){
-  //
+export function findRequestedTerm(input, s_term, s_tag, s_description) {
   const dict = loadDict();
   let search_result = [];
   for (const [id, term] of Object.entries(dict)) {
@@ -367,7 +366,7 @@ export function findRequestedTerm(input, s_term, s_tag, s_description){
       }
     }
   }    
-  if(s_tag){
+  if(s_tag) {
     const tag_counts = JSON.parse(localStorage.getItem('tag_counts'))
     if(Object.keys(tag_counts).includes(input)){
       const term_set = getDataOfTag(input);
