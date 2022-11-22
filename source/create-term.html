@@ -9,7 +9,8 @@
 
 <body>
     <header class="nav-bar">
-        <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70px" onclick="jump_HomeHtml()">
+        <!-- VALIDTOR FIX: height="70px" -->
+        <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jump_HomeHtml()">
     </header>
 
     <main>
@@ -25,12 +26,13 @@
             <button onclick="jump_HomeHtml()">Cancel</button>
         </div>
     </main>
-</body>
+    <!-- VALIDTOR FIX: moved script into body -->
+    <script src="src/common-scripts/redirection.js"></script>
+    <script src="src/backend/dict.js" type="module"></script>
+    <script src="src/pages/create-term/create-term.js" type="module"></script>
+    <script
+        src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js"></script>
 
-<script src="src/common-scripts/redirection.js"></script>
-<script src="src/backend/dict.js" type="module"></script>
-<script src="src/pages/create-term/create-term.js" type="module"></script>
-<script
-    src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js"></script>
+</body>    
 
 </html>

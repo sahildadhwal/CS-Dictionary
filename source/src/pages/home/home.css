@@ -24,6 +24,8 @@ term-card:last-child {
 .add-button {
     font-size: 40px !important;
     /* height: 100%; */
+    
+    /* VALIDTOR FIX: "aspect-ratio": Property "aspect-ratio" doesn't exist. */
     aspect-ratio: 1 / 1;
     align-self: center;
 }

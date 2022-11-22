@@ -292,7 +292,7 @@ export function updateTerm(term) {
 export function deleteTerm(term) {
   const dict = loadDict();
   if (!(term.id in dict)) {
-  return false;
+    return false;
   }
   delete dict[term.id];
   const tags = JSON.parse(localStorage.getItem('tags'));
