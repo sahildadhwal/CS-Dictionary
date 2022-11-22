@@ -28,7 +28,7 @@ function populateTermData() {
         tag_list_item.appendChild(tag_button);
         term_tags.appendChild(tag_list_item);
     }
-    published_date.textContent = `Published: ${new Date(term_data['created_time']).toLocaleString("en-US")}`;
+    published_date.textContent = `Published: ${new Date(term_data['created_time']).toLocaleString('en-US')}`;
 }
 
 // Get the modal
@@ -37,7 +37,7 @@ var modal = document.getElementById('id01');
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modal.style.display = 'none';
   }
 }
 

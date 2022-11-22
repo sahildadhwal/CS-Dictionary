@@ -1,8 +1,8 @@
 window.addEventListener('DOMContentLoaded', init);
 import * as backend_function from '/src/backend/dict.js'
 
-let search_button = document.getElementById("search_button");
-let search_element = document.getElementById("search_bar");
+let search_button = document.getElementById('search_button');
+let search_element = document.getElementById('search_bar');
 let search_input = '';
 let search_results = {};
 
@@ -31,7 +31,7 @@ function addTagsToDocument(terms) {
         tag_name.textContent = tag['tag_name'];
         tag_div.appendChild(tag_name);
         let tag_terms = document.createElement('div');
-        tag_terms.className = "tag-column";
+        tag_terms.className = 'tag-column';
 
         tag.terms.forEach(term => {
             let term_card = document.createElement('term-card');

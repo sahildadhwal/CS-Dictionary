@@ -51,7 +51,7 @@ export function getPopularTags(count) {
  */
 export function getDataOfTag(tag) {
   const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
+  const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   let terms = [];
   for(let uuid of uuids) {
     let token = dict[uuid];
@@ -68,7 +68,7 @@ export function getDataOfTag(tag) {
  */
 export function getRandomTermsOfTag(tag, count=5) {
   const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
+  const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   // get some random uuids
   let randomUuids = [];
   for (let i = 0; i < Math.min(uuids.length, count); i++) {
@@ -125,7 +125,7 @@ export function getAllPopTags() {
  * @param {term} term A term with some tags
  */
 export function updateTags(term) {
-  const tags_dict = JSON.parse(localStorage.getItem("tags")) || {};
+  const tags_dict = JSON.parse(localStorage.getItem('tags')) || {};
 
   for (const tag of term.tags) {
     tags_dict[tag] = tags_dict[tag] || [];
