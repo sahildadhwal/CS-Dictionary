@@ -2,10 +2,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 /* Set a style for all buttons */
 .modal-button {
     background-color: #04AA6D;
