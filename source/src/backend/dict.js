@@ -3,26 +3,26 @@
  *  id: string,
  *  type: string,
  *  data: Object.<string, (text|number)>
- * }} data_block
+ * }} dataBlock
  * 
  * @typedef {{
  *  time: number,
- *  blocks: data_block[],
+ *  blocks: dataBlock[],
  *  version: string
- * }} term_data
+ * }} termData
  *
  * @typedef {{
  *  id: string,
- *  term_name: string,
+ *  termName: string,
  *  tags: string[],
- *  short_description: string,
- *  term_data: term_data,
+ *  shortDescription: string,
+ *  termData: termData,
  *  published: boolean,
- *  created_by: string,
- *  created_time: string,
- *  edited_by: string,
- *  edited_date: string,
- *  edit_count: number
+ *  createdBby: string,
+ *  createdTime: string,
+ *  editedBy: string,
+ *  editedDate: string,
+ *  editCount: number
  * }} term
  */
 
@@ -37,11 +37,11 @@
  * @returns {string[]} An array of popular tags.
  */
 export function getPopularTags(count) {
-  const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
-  let popular_tags = Object.keys(tag_counts).sort(
-    (t1, t2) => tag_counts[t2] - tag_counts[t1]
+  const tagCounts = JSON.parse(localStorage.getItem('tagCounts')) || {};
+  const popularTags = Object.keys(tagCounts).sort(
+    (t1, t2) => tagCounts[t2] - tagCounts[t1]
   );
-  return popular_tags.slice(0, count);
+  return popularTags.slice(0, count);
 }
 
 /**
@@ -51,10 +51,10 @@ export function getPopularTags(count) {
  */
 export function getDataOfTag(tag) {
   const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
-  let terms = [];
-  for(let uuid of uuids) {
-    let token = dict[uuid];
+  const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
+  const terms = [];
+  for(const uuid of uuids) {
+    const token = dict[uuid];
     terms.push(token);
   }
   return terms;
@@ -68,9 +68,9 @@ export function getDataOfTag(tag) {
  */
 export function getRandomTermsOfTag(tag, count=5) {
   const dict = loadDict();
-  const uuids = JSON.parse(localStorage.getItem("tags"))[tag] || [];
+  const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   // get some random uuids
-  let randomUuids = [];
+  const randomUuids = [];
   for (let i = 0; i < Math.min(uuids.length, count); i++) {
     let idx = Math.floor(Math.random() * uuids.length);
     while (uuids[idx] in randomUuids) {
@@ -79,9 +79,9 @@ export function getRandomTermsOfTag(tag, count=5) {
     terms.push(uuids[idx]);
   }
   // convert uuid to term
-  let terms = [];
-  for(let uuid of randomUuids) {
-    let token = dict[uuid];
+  const terms = [];
+  for(const uuid of randomUuids) {
+    const token = dict[uuid];
     terms.push(token);
   }
   return terms;
@@ -92,29 +92,28 @@ export function getRandomTermsOfTag(tag, count=5) {
  * @param {string} tagName the name of the tag you want the top 5 of
  * @returns {term[]} array of 5 terms
  */
-export function top5terms(tag_name) {
+export function top5terms(tagName) {
   const dict = loadDict();
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
-  const terms_of_tag = tags[tag_name];
-  // let count = Math.min(terms_of_tag.length, 5);
-  let top5 = [];
-  for(var i = 0; i < 5; i++) {
+  const termsOfTag = tags[tagName];
+  const top5 = [];
+  for(let i = 0; i < 5; i++) {
     // push term objects
-    top5.push(dict[terms_of_tag[i]]);
+    top5.push(dict[termsOfTag[i]]);
   }
   return top5;
 }
 
 /**
  * Return an array of popular tags and their terms.
- * @returns {Array.<{tag_name: string, terms: term[]}>} An array of dicts with
+ * @returns {Array.<{tagName: string, terms: term[]}>} An array of dicts with
  * tag name as key and 5 terms in an array as value
  */
 export function getAllPopTags() {
   const tagSet = getPopularTags(3);
-  let tagsDict = [];
+  const tagsDict = [];
   for(let i = 0; i < tagSet.length; i++){
-    tagsDict.push({tag_name: tagSet[i], terms: top5terms(tagSet[i])});
+    tagsDict.push({tagName: tagSet[i], terms: top5terms(tagSet[i])});
     // tagsDict[tagSet[i]] = top5terms(tagSet[i]);
   }
   return tagsDict;
@@ -125,14 +124,14 @@ export function getAllPopTags() {
  * @param {term} term A term with some tags
  */
 export function updateTags(term) {
-  const tags_dict = JSON.parse(localStorage.getItem("tags")) || {};
+  const tagsDict = JSON.parse(localStorage.getItem('tags')) || {};
 
   for (const tag of term.tags) {
-    tags_dict[tag] = tags_dict[tag] || [];
-    if (term.id in tags_dict[tag]) continue;
-    tags_dict[tag].push(term.id);
+    tagsDict[tag] = tagsDict[tag] || [];
+    if (term.id in tagsDict[tag]) continue;
+    tagsDict[tag].push(term.id);
   }
-  localStorage.setItem('tags', JSON.stringify(tags_dict));
+  localStorage.setItem('tags', JSON.stringify(tagsDict));
 }
 
 /**
@@ -140,19 +139,15 @@ export function updateTags(term) {
  * @param {term} term 
  */
 export function updateTagCount(term) {
-  const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
+  const tagCounts = JSON.parse(localStorage.getItem('tagCounts')) || {};
 
   for (const tag of term.tags) {
-    tag_counts[tag] = tag_counts[tag] || 0;
-    tag_counts[tag]++;
+    tagCounts[tag] = tagCounts[tag] || 0;
+    tagCounts[tag]++;
   }
 
-  localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
+  localStorage.setItem('tagCounts', JSON.stringify(tagCounts));
 }
-
-/////////////////////////////////////////////////////////////////////
-// Recent Terms
-///////////////////////////////////////////////////////////////////// 
 
 /**
  * Return term objects that are recently viewed by user.
@@ -161,13 +156,12 @@ export function updateTagCount(term) {
 export function getDataOfRecents() {
   const dict = loadDict();
   const recents = JSON.parse(localStorage.getItem('recents')) || [];
-  let recently_opened = [];
-  for(var uuid of recents) {
-    let token = dict[uuid];
-    recently_opened.push(token);
+  const recentlyOpened = [];
+  for(const uuid of recents) {
+    const token = dict[uuid];
+    recentlyOpened.push(token);
   }
-  //j
-  return recently_opened;
+  return recentlyOpened;
 }
 
 /**
@@ -176,24 +170,19 @@ export function getDataOfRecents() {
  * @param {string} uuid The uuid of the recently viewed term
  */
 export function updateRecents(uuid) {
-  let recents = JSON.parse(localStorage.getItem('recents')) || [];
-  let index = recents.indexOf(uuid);
-  console.log(typeof(uuid));
-  if(index != -1){
+  const recents = JSON.parse(localStorage.getItem('recents')) || [];
+  const index = recents.indexOf(uuid);
+  if(index !== -1){
     recents.splice(index, 1);
   } else {
     if(recents.length >= 5){
       recents.splice(0, 1);
     }
-
   }
   recents.push(uuid);
   localStorage.setItem('recents', JSON.stringify(recents));
 }
 
-///////////////////////////////////////////////////////////////////// 
-// Dict
-///////////////////////////////////////////////////////////////////// 
 /**
  * Load the dictionary of all terms. Key is the random term id. Value is the object.
  * @returns {Object.<string, term>} An dictionary
@@ -211,7 +200,7 @@ function archiveDict(dict) {
 }
 
 /**
- * //FIXME: duplicate with `loadDict`
+ * // FIXME: duplicate with `loadDict`
  * Same as `loadDict`
  * @returns {Object.<string, term>} A dictionary of terms
  */
@@ -223,7 +212,7 @@ export function selectDict() {
 /**
  * Clear all terms in `localstorage`
  */
- export function deleteAll() {
+export function deleteAll() {
   const dict = loadDict();
   for(const [_, term] of Object.entries(dict)){
     deleteTerm(term);
@@ -231,15 +220,11 @@ export function selectDict() {
   // renderAllTerms(document.getElementById('dict'));
 }
 
-/////////////////////////////////////////////////////////////////////
-// Terms
-///////////////////////////////////////////////////////////////////// 
-
 /**
  * Generate a random ID.
  * @returns {string} A random uuid.
  */
- export function generateTermId() {
+export function generateTermId() {
   return crypto.randomUUID();
 }
 
@@ -250,7 +235,7 @@ export function selectDict() {
  */
 export function insertTerm(term) {
   // TODO: Decide how we are going to handle duplicate (consult with team)
-  const dict = loadDict();
+  let dict = loadDict();
   term.id = generateTermId();
   dict[term.id] = term;
   archiveDict(dict);
@@ -269,17 +254,16 @@ export function selectTerm(termId) {
   return dict[termId];
 }
 
-
 /**
  * Update an existing term.
  * @param {term} term A term object
  */
 export function updateTerm(term) {
-  const cur_time = new Date();
-  const dict = loadDict();
-  term.edit_count += 1;
-  term.edited_date = cur_time;
-  term.edited_by = 'user';
+  const curTime = new Date();
+  let dict = loadDict();
+  term.editCount += 1;
+  term.editedDate = curTime;
+  term.editedBy = 'user';
   dict[term.id] = term;
   archiveDict(dict);
 }
@@ -297,15 +281,14 @@ export function deleteTerm(term) {
   delete dict[term.id];
   const tags = JSON.parse(localStorage.getItem('tags'));
   for (const tag of term.tags) {
-  const uuids = tags[tag] || [];
-  if (term.id in uuids) {
-    const i = uuids.indexOf(term.id);
-    tags[tag].splice(i, 1);
-  }
-  archiveDict(dict);
-  localStorage.setItem('tags', tags);
-  // location.reload();
-  return true;
+    const uuids = tags[tag] || [];
+    if (term.id in uuids) {
+      const i = uuids.indexOf(term.id);
+      tags[tag].splice(i, 1);
+    }
+    archiveDict(dict);
+    localStorage.setItem('tags', tags);
+    return true;
   }
 }
 
@@ -323,8 +306,8 @@ export function termsCount() {
  * while storing the embedded data using TinyMCE
  * @param {term} term a new term
  */
- export function addTermToBackend(term){
-  const cur_time = new Date();
+export function addTermToBackend(term){
+  const curTime = new Date();
   term['tags'] = term.tags.split(',');
   for (const i in term['tags']) {
     term['tags'][i] = term['tags'][i].trim();
@@ -332,11 +315,11 @@ export function termsCount() {
       term['tags'].splice(i, 1);
     }
   }
-  term['created_by'] = 'placeholder';
-  term['created_time'] = cur_time;
-  term['edited_by'] = 'placeholder';
-  term['edited_date'] = cur_time;
-  term['edit_count'] = 0;
+  term['createdBy'] = 'placeholder';
+  term['createdTime'] = curTime;
+  term['editedBy'] = 'placeholder';
+  term['editedDate'] = curTime;
+  term['editCount'] = 0;
   insertTerm(term);
   updateTags(term);
   updateTagCount(term);
@@ -350,29 +333,28 @@ export function addTermToDoc(term) {
 }
 /**
  * 
- * @param {string} input //The user input to the search bar
- * @param {boolean} sTerm //Is Term checked?
- * @param {boolean} sTag //Is Tag checked?
- * @param {boolean} sDescription //Is description checked?
- * @return {term[]} //Returns a list of all the term IDs associated with the search 
+ * @param {string} input // The user input to the search bar
+ * @param {boolean} sTerm // Is Term checked?
+ * @param {boolean} sTag // Is Tag checked?
+ * @param {boolean} sDescription // Is description checked?
+ * @return {term[]} // Returns a list of all the term IDs associated with the search 
  */
 export function findRequestedTerm(input, sTerm, sTag, sDescription){
   const dict = loadDict();
   let searchResult = [];
   for (const [id, term] of Object.entries(dict)) {
-    if(!sTerm && !sTag && !sDescription){ //If all boxes unchecked, default to Term
+    if(!sTerm && !sTag && !sDescription){ // If all boxes unchecked, default to Term
       sTerm = true;
     }
     if(sTerm){
-      if(input == term.term_name){
+      if(term.termName.includes(input)){
         if(!searchResult.includes(term)){
           searchResult.push(term);
         }
       }
     }
-
     if(sDescription){
-      if(term.short_description.includes(input)){
+      if(term.shortDescription.includes(input)){
         if(!searchResult.includes(term)){
           searchResult.push(term);
         }
@@ -380,8 +362,8 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     }
   }    
   if(sTag){
-    const tag_counts = JSON.parse(localStorage.getItem('tag_counts'))
-    if(Object.keys(tag_counts).includes(input)){
+    const tagCounts = JSON.parse(localStorage.getItem('tagCounts'));
+    if(Object.keys(tagCounts).includes(input)){
       const termSet = getDataOfTag(input);
       for(const token of termSet){
         if(!searchResult.includes(token)){
@@ -391,5 +373,4 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
     }
   }
   return searchResult;
-} 
-     
+}
