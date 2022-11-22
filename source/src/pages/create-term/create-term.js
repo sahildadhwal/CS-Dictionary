@@ -11,9 +11,9 @@ let data = {};
 initTinyMCE();
 
 button.addEventListener('click', function() {
-    data.term_name = term_name.value;
-    data.tags = tags.value;
-    data.short_description = short_description.value;
-    data.term_data = getTinyMCEData();
-    backend_function.addTermToBackend(data);
+  data.term_name = term_name.value;
+  data.tags = tags.value;
+  data.short_description = short_description.value;
+  data.term_data = getTinyMCEData();
+  backend_function.addTermToBackend(data);
 })

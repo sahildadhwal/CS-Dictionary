@@ -98,7 +98,7 @@ export function top5terms(tag_name) {
   const terms_of_tag = tags[tag_name];
   // let count = Math.min(terms_of_tag.length, 5);
   let top5 = [];
-  for(var i = 0; i < 5; i++) {
+  for(let i = 0; i < 5; i++) {
     // push term objects
     top5.push(dict[terms_of_tag[i]]);
   }
@@ -158,7 +158,7 @@ export function getDataOfRecents() {
   const dict = loadDict();
   const recents = JSON.parse(localStorage.getItem('recents')) || [];
   let recently_opened = [];
-  for(var uuid of recents) {
+  for(let uuid of recents) {
     let token = dict[uuid];
     recently_opened.push(token);
   }
@@ -173,14 +173,12 @@ export function getDataOfRecents() {
 export function updateRecents(uuid) {
   let recents = JSON.parse(localStorage.getItem('recents')) || [];
   let index = recents.indexOf(uuid);
-  console.log(typeof(uuid));
-  if(index != -1){
+  if(index !== -1){
     recents.splice(index, 1);
   } else {
     if(recents.length >= 5){
       recents.splice(0, 1);
     }
-
   }
   recents.push(uuid);
   localStorage.setItem('recents', JSON.stringify(recents));
@@ -215,7 +213,7 @@ export function selectDict() {
 /**
  * Clear all terms in `localstorage`
  */
- export function deleteAll() {
+export function deleteAll() {
   const dict = loadDict();
   for(const [_, term] of Object.entries(dict)){
     deleteTerm(term);
@@ -227,7 +225,7 @@ export function selectDict() {
  * Generate a random ID.
  * @returns {string} A random uuid.
  */
- export function generateTermId() {
+export function generateTermId() {
   return crypto.randomUUID();
 }
 
@@ -257,7 +255,6 @@ export function selectTerm(term_id) {
   return dict[term_id];
 }
 
-
 /**
  * Update an existing term.
  * @param {term} term A term object
@@ -279,21 +276,21 @@ export function updateTerm(term) {
  */
 export function deleteTerm(term) {
   const dict = loadDict();
-  if (!(term.id in dict)) {
+  if(!(term.id in dict)) {
     return false;
   }
   delete dict[term.id];
   const tags = JSON.parse(localStorage.getItem('tags'));
-  for (const tag of term.tags) {
-  const uuids = tags[tag] || [];
-  if (term.id in uuids) {
-    const i = uuids.indexOf(term.id);
-    tags[tag].splice(i, 1);
-  }
-  archiveDict(dict);
-  localStorage.setItem('tags', tags);
-  // location.reload();
-  return true;
+  for(const tag of term.tags) {
+    const uuids = tags[tag] || [];
+    if(term.id in uuids) {
+      const i = uuids.indexOf(term.id);
+      tags[tag].splice(i, 1);
+    }
+    archiveDict(dict);
+    localStorage.setItem('tags', tags);
+    // location.reload();
+    return true;
   }
 }
 
@@ -311,12 +308,12 @@ export function termsCount() {
  * while storing the embedded data using TinyMCE
  * @param {term} term a new term
  */
- export function addTermToBackend(term){
+export function addTermToBackend(term){
   const cur_time = new Date();
   term['tags'] = term.tags.split(',');
-  for (const i in term['tags']) {
+  for(const i in term['tags']) {
     term['tags'][i] = term['tags'][i].trim();
-    if (term['tags'][i] === '') {
+    if(term['tags'][i] === '') {
       term['tags'].splice(i, 1);
     }
   }
@@ -351,14 +348,14 @@ export function findRequestedTerm(input, s_term, s_tag, s_description) {
     if(!s_term && !s_tag && !s_description){ //If all boxes unchecked, default to Term
       s_term = true;
     }
-    if(s_term){
-      if(term.term_name.includes(input)){
-        if(!search_result.includes(term)){
+    if(s_term) {
+      if(term.term_name.includes(input)) {
+        if(!search_result.includes(term)) {
           search_result.push(term);
         }
       }
     }
-    if(s_description){
+    if(s_description) {
       if(term.short_description.includes(input)){
         if(!search_result.includes(term)){
           search_result.push(term);
@@ -370,7 +367,7 @@ export function findRequestedTerm(input, s_term, s_tag, s_description) {
     const tag_counts = JSON.parse(localStorage.getItem('tag_counts'))
     if(Object.keys(tag_counts).includes(input)){
       const term_set = getDataOfTag(input);
-      for(const token of term_set){
+      for(const token of term_set) {
         if(!search_result.includes(token)){
           search_result.push(token);
         }
@@ -378,5 +375,4 @@ export function findRequestedTerm(input, s_term, s_tag, s_description) {
     }
   }
   return search_result;
-} 
-     
+}
