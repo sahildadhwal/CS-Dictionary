@@ -1,4 +1,4 @@
-# Team Meeting: Frontend Meeting 1!
+# Team Meeting: Frontend Meeting 6!
 
 [Team 2 Members](#team-2-members)
 
@@ -12,7 +12,7 @@
 
 [Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
 
-[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/110122-begin_project_assignments.md)
+[Previous Frontend Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/111922-frontend_meeting5.md)
 
 ## **Team 2 Members**
 <ul>
@@ -33,21 +33,21 @@
 ## **Meeting Info**
 #### Meeting Specs: 
 <ul>
-  <li>November 4, 2022</li>
+  <li>November 21, 2022</li>
   <ul>
-    <li>Duration: 2 hour and 35 minutes</li>
-        <ol>4:00pm to 6:35pm<ol>
+    <li>Duration: 2 hours</li>
+        <ol>4:00pm to 6:00pm<ol>
   </ul>
 </ul>
 
 #### Meeting Location: 
 <ul>
-  <li>CSE Basement Room 140</li>
+  <li>Virtual Zoom Meeting</li>
 </ul>
 
 #### Meeting Type: 
 <ul>
-  <li>Frontend Meeting 1:</li>
+  <li>Frontend Meeting 6:</li>
     <i> Team Roles</i>
     <ul>
         <li>Team Leads</li>
@@ -101,16 +101,18 @@
 - [x] Liam Nguyen
     
 ## **Agenda**
-- [ ] Make HTML and CSS pages for the Home Page and Add Term Page.
-- [ ] Learn how to connect button on 1 HTML page to take user to another HTML page.
-- [ ] Setup Home Pages with sample terms. 
+- [x] Work on correcting validation errors.
+- [x] Work on the delete term button.
     
-
 ## **Meeting Notes**
 
-
-Work on the agenda and get a working page. 
+Work on the agenda.
 <ul>
-    <li>We set up a basic webpage to ressemble the Home Page and Create Term Page from the Miro Wireframes.</li>
-    <li>We will meet Sunday at roughly 10am to work more on the HTML, CSS and JavaScript files.</li>
+    <li>We have gotten all of hte validations tests to pass.</li>
+    <li>The search button only searchs terms if they are typed exactly the way that it is defined, i.e., no substrings, capitaiziaion is important, etc..</li> 
+    <ul><li>We discussed with backend ways they can fix this issue.</li></ul>
+    <li>The delete function is buggy and backend will get back to us with a fixed version of the delete function soon.</li>
+    <li>We are considering to try to interate our work into different feature branches and work on the specific features rather than have a strict divide between the backend and frontend branches.</li>
+    <li>This week our goal is to finish the delete and update term buttons.</li>
 </ul>
+

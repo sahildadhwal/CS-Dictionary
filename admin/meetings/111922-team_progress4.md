@@ -1,4 +1,5 @@
-# Team Meeting: Team Progress Meeting 1
+# Team Meeting: Team Progress Meeting 4
+
 [Team 2 Members](#team-2-members)
 
 [Meeting Info](#meeting-info)
@@ -11,7 +12,7 @@
 
 [Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
 
-[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/110122-begin_project_assignments.md)
+[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/111422-team_progress3.md)
 
 ## **Team 2 Members**
 <ul>
@@ -32,10 +33,10 @@
 ## **Meeting Info**
 #### Meeting Specs: 
 <ul>
-  <li>November 8, 2022</li>
+  <li>November 19, 2022</li>
   <ul>
     <li>Duration: 1 hour and 30 minutes</li>
-        <ol>7:00pm to 8:30pm<ol>
+        <ol>6:00pm to 7:30pm<ol>
   </ul>
 </ul>
 
@@ -72,17 +73,18 @@
 </ul>	
 
 ## **Attendance**
-##### <li> *9 out of 10* </li>
-- [x] Sahil Dadhwal
+##### <li> *6 out of 10* </li>
+- [ ] Sahil Dadhwal
 - [x] Nikhil Rao
 - [x] Yingqi Cao
 - [x] Isaac Varela
-- [x] Thomas Koon
+- [ ] Thomas Koon
 - [x] Liam Nguyen
-- [x] Amaar Valliani
+- [ ] Amaar Valliani
+- [ ] Yunxiao Xu
+- [x] Chieh-hsiu Hung 
 - [x] Andrew Jia
-- [x] Yunxiao Xu
-- [ ] Chieh-hsiu Hung 
+
 
 ## **Agenda**
 - [x] Discuss each groups progress and see what needs to be completed.
@@ -119,59 +121,51 @@
             </ul>
     </ul>
 
-2) **Mini Group Assignments**
- <ul>
-       <li>Frontend</li>
-            <ul>
-                <li>Meet with Backend Team to show and explain the code on the Frontend branch. </li>
-                <li>Merge Backend's ideas and concepts into Frontend code</li>
-            </ul>
-       <li>Backend (Javascript)</li>
-            <ul>
-                <li>Meet with Frontend Team to see how the webpage is structured and how we need to format the input data</li>
-                <li>Merge our ideas and concepts into Frontend code</li>
-            </ul>
-       <li>Testing and Devops</li>
-            <ul>
-                <li>Deploy html file viewable on the platform of your choosing</li>
-                <li>Figure out html validation</li>
-           </ul>
-   </ul>
+2) **Notes**
+<ul>
+Frontend Updates
+<ul>
+    <li>Created template for term page</li>
+    <li>Made some updates to term page</li>
+</ul>
+Backend updates
+<ul>
+    <li>Finished the search functionality</li>
+</ul>
 
-3) **Notes**
-    
-    Issues (based on user stories?)
-   <ul>
-        <li>Integrate backend and frontend</li>
-        <li>Structure the JSON file</li>
-        <li>Add dummy data</li>
-        <li>Add unit testing and E2E testing</li>
-        <li>Adding validators</li>
-    </ul>
-    DevOps: Deployed app to Heroku and Firebase
+DevOps and Testing
+<ul>
+    <li>This weekend/week, they will add unit testing and linting into the pipeline</li>
+</ul>
+
+Definition of done
+<ul>
+    <li>Working feature</li>
+    <li>Pipeline checks should be passing</li>
+    <li>Testing and DevOps: when something is pushed to main branch</li>
+    <li>Ask TA about how we should define done</li>
+</ul>
+
+Tasks
+<ul>
+<li>Frontend and backend:
     <ul>
-        <li>Heroku</li>
-        <li>Heroku has stopped their free plan by end of November</li>
-        <li>GitHub student gives $12 per month for students</li>
-        <li>Firebase</li>
+        <li>Connect search functionality to search button</li>
     </ul>
-    Branch names should be feature-specific, not who is working on that branch
-    <br>    
-    Backend JSON storage for a term
+<li>Frontend
     <ul>
-        <li>Term storage file</li>
-        <ol>ID</ol>
-        <ol>Name</ol>
-        <ol>Array of tags</ol>
-        <ol>Short description</ol>
-        <ol>Image links</ol>
-        <ol>Video links</ol>
-        <ol>Code</ol>
-        <ol>Last opened/added time</ol>
-        <ol>Published: true/false</ol>
-        <ol>... any other necessary fields</ol>
-        <li>Tag storage file</li>
-        <ol>Name</ol>
-        <ol>Number of clicks</ol>
+        <li>Add a save as draft button to term creation page</li>
+        <li>Add a cancel button to term creation page</li>
     </ul>
-    Backend should branch from dev for their own
+<li>Backend
+    <ul>
+        <li>Populate term page with the correct information</li>
+        <li>Fix the linting errors</li>
+    </ul>
+<li>Team leads:
+    <ul>
+        <li>Create ADR and Wiki section of GitHub</li>
+        <li>Team status video</li>
+        <li>Adding issues to the GitHub</li>
+    </ul>
+</ul>
