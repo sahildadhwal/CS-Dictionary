@@ -345,7 +345,7 @@ export function findRequestedTerm(input, s_term, s_tag, s_description) {
   const dict = loadDict();
   let search_result = [];
   for (const [id, term] of Object.entries(dict)) {
-    if(!s_term && !s_tag && !s_description){ //If all boxes unchecked, default to Term
+    if(!s_term && !s_tag && !s_description) {
       s_term = true;
     }
     if(s_term) {
@@ -364,7 +364,7 @@ export function findRequestedTerm(input, s_term, s_tag, s_description) {
     }
   }    
   if(s_tag) {
-    const tag_counts = JSON.parse(localStorage.getItem('tag_counts'))
+    const tag_counts = JSON.parse(localStorage.getItem('tag_counts'));
     if(Object.keys(tag_counts).includes(input)){
       const term_set = getDataOfTag(input);
       for(const token of term_set) {
