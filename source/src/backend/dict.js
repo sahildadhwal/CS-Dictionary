@@ -347,7 +347,7 @@ export function findRequestedTerm(input, sTerm, sTag, sDescription){
       sTerm = true;
     }
     if(sTerm){
-      if(input === term.termName){
+      if(term.termName.includes(input)){
         if(!searchResult.includes(term)){
           searchResult.push(term);
         }
