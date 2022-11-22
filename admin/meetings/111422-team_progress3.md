@@ -1,4 +1,4 @@
-# Team Meeting: Begin Project Assignments
+# Team Meeting: Team Progress Meeting 3
 
 [Team 2 Members](#team-2-members)
 
