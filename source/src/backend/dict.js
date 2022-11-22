@@ -89,7 +89,7 @@ export function getRandomTermsOfTag(tag, count=5) {
 
 /**
  * Get the first 5 terms of a tag
- * @param {string} tagName the name of the tag you want the top 5 of
+ * @param {string} tag_name the name of the tag you want the top 5 of
  * @returns {term[]} array of 5 terms
  */
 export function top5terms(tagName) {
@@ -110,13 +110,13 @@ export function top5terms(tagName) {
  * tag name as key and 5 terms in an array as value
  */
 export function getAllPopTags() {
-  const tagSet = getPopularTags(3);
-  const tagsDict = [];
-  for(let i = 0; i < tagSet.length; i++){
-    tagsDict.push({tagName: tagSet[i], terms: top5terms(tagSet[i])});
+  const tag_set = getPopularTags(3);
+  let tags_dict = [];
+  for(let i = 0; i < tag_set.length; i++){
+    tags_dict.push({tag_name: tag_set[i], terms: top5terms(tag_set[i])});
     // tagsDict[tagSet[i]] = top5terms(tagSet[i]);
   }
-  return tagsDict;
+  return tags_dict;
 }
 
 /**
@@ -161,7 +161,7 @@ export function getDataOfRecents() {
     const token = dict[uuid];
     recentlyOpened.push(token);
   }
-  return recentlyOpened;
+  return recently_opened;
 }
 
 /**
@@ -246,12 +246,12 @@ export function insertTerm(term) {
 
 /**
  * Get the term of the uuid.
- * @param {string} termId The uuid of a term
+ * @param {string} term_id The uuid of a term
  * @returns {string} The term corresponding to the termId
  */
-export function selectTerm(termId) {
+export function selectTerm(term_id) {
   const dict = loadDict();
-  return dict[termId];
+  return dict[term_id];
 }
 
 /**
@@ -333,44 +333,44 @@ export function addTermToDoc(term) {
 }
 /**
  * 
- * @param {string} input // The user input to the search bar
- * @param {boolean} sTerm // Is Term checked?
- * @param {boolean} sTag // Is Tag checked?
- * @param {boolean} sDescription // Is description checked?
- * @return {term[]} // Returns a list of all the term IDs associated with the search 
+ * @param {string} input //The user input to the search bar
+ * @param {boolean} s_term //Is Term checked?
+ * @param {boolean} s_tag //Is Tag checked?
+ * @param {boolean} s_description //Is description checked?
+ * @return {term[]} //Returns a list of all the term IDs associated with the search 
  */
-export function findRequestedTerm(input, sTerm, sTag, sDescription){
+export function findRequestedTerm(input, s_term, s_tag, s_description){
   const dict = loadDict();
-  let searchResult = [];
+  let search_result = [];
   for (const [id, term] of Object.entries(dict)) {
-    if(!sTerm && !sTag && !sDescription){ // If all boxes unchecked, default to Term
-      sTerm = true;
+    if(!s_term && !s_tag && !s_description){ //If all boxes unchecked, default to Term
+      s_term = true;
     }
-    if(sTerm){
-      if(term.termName.includes(input)){
-        if(!searchResult.includes(term)){
-          searchResult.push(term);
+    if(s_term){
+      if(term.term_name.includes(input)){
+        if(!search_result.includes(term)){
+          search_result.push(term);
         }
       }
     }
-    if(sDescription){
-      if(term.shortDescription.includes(input)){
-        if(!searchResult.includes(term)){
-          searchResult.push(term);
+    if(s_description){
+      if(term.short_description.includes(input)){
+        if(!search_result.includes(term)){
+          search_result.push(term);
         }
       }
     }
   }    
-  if(sTag){
-    const tagCounts = JSON.parse(localStorage.getItem('tagCounts'));
-    if(Object.keys(tagCounts).includes(input)){
-      const termSet = getDataOfTag(input);
-      for(const token of termSet){
-        if(!searchResult.includes(token)){
-          searchResult.push(token);
+  if(s_tag){
+    const tag_counts = JSON.parse(localStorage.getItem('tag_counts'))
+    if(Object.keys(tag_counts).includes(input)){
+      const term_set = getDataOfTag(input);
+      for(const token of term_set){
+        if(!search_result.includes(token)){
+          search_result.push(token);
         }
       }
     }
   }
-  return searchResult;
-}
+  return search_result;
+} 

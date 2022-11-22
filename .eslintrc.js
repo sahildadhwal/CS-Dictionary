@@ -32,6 +32,7 @@ module.exports = {
     'consistent-return': 'off',
     'guard-for-in': 'off',
     'no-restricted-globals': 'off',
+    'camelcase': 'off'
   },
   plugins: ['jest'],
 };
