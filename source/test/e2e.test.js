@@ -1,4 +1,4 @@
-const { Browser } = require("puppeteer");
+const { Browser } = require('puppeteer');
 
 describe('Basic user flow for Website', () => {
   // Visit Project Website
@@ -7,7 +7,7 @@ describe('Basic user flow for Website', () => {
   });
 
   it('Make sure there are no terms on initial load', async () => {
-    const numRecentlyAdded = await page.$$('.recently-added-elements')
+    const numRecentlyAdded = await page.$$('.recently-added-elements');
     expect(numRecentlyAdded).toEqual([{}]);
   });
  
@@ -19,16 +19,18 @@ describe('Basic user flow for Website', () => {
     await button.click();
     const pageTarget = this._page.target(); //save this to know that this was the opener
     await button.click(); //click on a link
-    const newTarget = await this._browser.waitForTarget(target => target.opener() === pageTarget); //check that you opened this page, rather than just checking the url
+    //check that you opened this page, rather than just checking the url
+    const newTarget = await this._browser.waitForTarget(target => 
+    target.opener() === pageTarget); 
     const newPage = await newTarget.page(); //get the page object
-    await newPage.waitForSelector("body"); //wait for page to be loaded
+    await newPage.waitForSelector('body'); //wait for page to be loaded
     const term = await page.$('text-box');
     const termName = await term.$('term-name');
     const termTags = await term.$('tags');
     const termShortDescription = await term.$('short_description');
     await termName.setProperty('innerText','Apple');
     await termTags.setProperty('innerText','fruit, crisp');
-    await termShortDescription.setProperty('innerText','A red, circular fruit that grows on trees.');
+    await termShortDescription.setProperty('innerText','A red circular fruit that grows on trees.');
     const button2 = await term.$('create-button');
     button2.click();
     const numRecentlyAdded = await page.$$eval('recently-added-elements', (items) => {
