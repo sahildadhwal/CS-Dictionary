@@ -20,7 +20,6 @@ class TermCard extends HTMLElement {
     if (!data) return;
     let article_element = this.shadowRoot.querySelector('article');
     if (article_element === null) {
-      console.log('it is returning EMPTY');
       return;
     }
 
