@@ -41,6 +41,6 @@ window.onclick = (event) => {
   }
 };
 
-delete_btn.addEventListener('click', () => {
+delete_btn.addEventListener('click', function () {
   backend_function.deleteTerm(term_data);
 });
