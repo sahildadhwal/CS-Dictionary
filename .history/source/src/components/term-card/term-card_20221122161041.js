@@ -4,6 +4,7 @@ class TermCard extends HTMLElement {
     let shadow_el = this.attachShadow({ mode: 'open' });
     let article_el = document.createElement('article');
     let style_el = document.createElement('style');
+
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'src/components/term-card/term-card.css', true);
     xhr.onreadystatechange = function () {
@@ -40,10 +41,10 @@ class TermCard extends HTMLElement {
     `;
   
     let open_term_button = article_element.querySelector('#open_term');
-    open_term_button.addEventListener('click', (e) => {
+    open_term_button.addEventListener('click', e => {
       localStorage.setItem('get_term_id', data['id']);
-    });
+    })
   }
 }
 
-customElements.define('term-card', TermCard);
+customElements.define("term-card", TermCard);

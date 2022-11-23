@@ -40,9 +40,9 @@ class TermCard extends HTMLElement {
     `;
   
     let open_term_button = article_element.querySelector('#open_term');
-    open_term_button.addEventListener('click', (e) => {
+    open_term_button.addEventListener('click', (e => {
       localStorage.setItem('get_term_id', data['id']);
-    });
+    }));
   }
 }
 
