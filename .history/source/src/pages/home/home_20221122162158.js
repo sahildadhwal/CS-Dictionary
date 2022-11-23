@@ -43,7 +43,7 @@ function addTagsToDocument(terms) {
   recently_added_el.appendChild(tag_div);
 }
 
-search_element.addEventListener('input', () => {
+search_element.addEventListener('input', (e) => {
   search_input = search_element.value;
   search_results = backend_function.findRequestedTerm(search_input, true, true, true);  
 });
