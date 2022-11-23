@@ -1,5 +1,5 @@
-import * as backend_function from '/src/backend/dict.js';
 window.addEventListener('DOMContentLoaded', init);
+import * as backend_function from '/src/backend/dict.js';
 
 let search_button = document.getElementById('search_button');
 let search_element = document.getElementById('search_bar');
@@ -43,11 +43,11 @@ function addTagsToDocument(terms) {
   recently_added_el.appendChild(tag_div);
 }
 
-search_element.addEventListener('input', () => {
+search_element.addEventListener('input', (e) => {
   search_input = search_element.value;
   search_results = backend_function.findRequestedTerm(search_input, true, true, true);  
 });
 
-search_button.addEventListener('click', () => {
+search_button.addEventListener('click', function () {
   localStorage.setItem('search_results', JSON.stringify(search_results));
 });

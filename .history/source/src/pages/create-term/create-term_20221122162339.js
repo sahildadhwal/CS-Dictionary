@@ -10,7 +10,7 @@ let data = {};
 
 initTinyMCE();
 
-button.addEventListener('click', () => {
+button.addEventListener('click', (e) => {
   data.term_name = term_name.value;
   data.tags = tags.value;
   data.short_description = short_description.value;
