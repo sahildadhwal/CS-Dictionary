@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', init);
-import * as backend_function from '/src/backend/dict.js'
+import * as backend_function from '/src/backend/dict.js';
 
 let search_button = document.getElementById('search_button');
 let search_element = document.getElementById('search_bar');
@@ -13,7 +13,7 @@ function init() {
 
 function addTermsToDocument(terms) {
   let recently_added_el = document.querySelector('div.recently-added-elements');
-  terms.forEach(term => {
+  terms.forEach((term) => {
     let term_card = document.createElement('term-card');
     term_card.data = term;
     recently_added_el.appendChild(term_card);
@@ -24,15 +24,15 @@ function addTagsToDocument(terms) {
   let recently_added_el = document.querySelector('div.popular-tags');
   let tag_div = document.createElement('div');
 
-  terms.forEach(tag => {
-      let tag_name = document.createElement('h4');
-      tag_name.textContent = tag['tag_name'];
-      tag_div.appendChild(tag_name);
-      let tag_terms = document.createElement('div');
-      tag_terms.className = 'tag-column';
+  terms.forEach((tag) => {
+    let tag_name = document.createElement('h4');
+    tag_name.textContent = tag['tag_name'];
+    tag_div.appendChild(tag_name);
+    let tag_terms = document.createElement('div');
+    tag_terms.className = 'tag-column';
 
-      tag.terms.forEach(term => {
-        let term_card = document.createElement('term-card');
+    tag.terms.forEach((term) => {
+      let term_card = document.createElement('term-card');
 
       term_card.data = term;
       tag_terms.appendChild(term_card);
@@ -43,11 +43,11 @@ function addTagsToDocument(terms) {
   recently_added_el.appendChild(tag_div);
 }
 
-search_element.addEventListener('input', e => {
+search_element.addEventListener('input', (e) => {
   search_input = search_element.value;
   search_results = backend_function.findRequestedTerm(search_input, true, true, true);  
 });
 
-search_button.addEventListener('click', function() {
+search_button.addEventListener('click', function () {
   localStorage.setItem('search_results', JSON.stringify(search_results));
 });
