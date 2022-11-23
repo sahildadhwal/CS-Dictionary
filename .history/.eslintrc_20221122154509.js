@@ -33,10 +33,7 @@ module.exports = {
     'guard-for-in': 'off',
     'no-restricted-globals': 'off',
     'camelcase': 'off',
-    'quote-props': 'off',
-    'import/no-unresolved': 'off',
-    'import/extensions': 'off',
-    'import/no-absolute-path': 'off'
+    'quote-props': 'off'
   },
   plugins: ['jest'],
 };
