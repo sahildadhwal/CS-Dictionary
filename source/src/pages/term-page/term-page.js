@@ -1,10 +1,10 @@
-import * as backend_function from '/src/backend/dict.js'
+import * as backend_function from 'source/src/backend/dict.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
 let term_id = localStorage.getItem('get_term_id');
 let term_data = backend_function.selectTerm(term_id);
-let term_title = document.getElementById('term-title')
+let term_title = document.getElementById('term-title');
 let term_description = document.getElementById('term-description')
 let tinyMCE_content = document.getElementById('tinyMCE-content')
 let term_tags = document.querySelector('.term-tags')
