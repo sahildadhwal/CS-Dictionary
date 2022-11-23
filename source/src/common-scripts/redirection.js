@@ -1,5 +1,4 @@
 function jumpCreateTermHtml() {
-
   location.href='create-term.html';
 }
 function jumpHomeHtml() {
