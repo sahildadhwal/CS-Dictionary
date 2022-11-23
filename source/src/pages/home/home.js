@@ -1,56 +1,54 @@
-window.addEventListener('DOMContentLoaded', init);
-import * as backendFunction from '/src/backend/dict.js'
+import * as backend_function from '/src/backend/dict.js';
 
-let searchButton = document.getElementById("search_button");
-let searchElement = document.getElementById("search_bar");
-let searchInput = '';
-let searchResults = {};
+window.addEventListener('DOMContentLoaded', init);
+
+let search_button = document.getElementById('search_button');
+let search_element = document.getElementById('search_bar');
+let search_input = '';
+let search_results = {};
 
 function init() {      
-    addTermsToDocument(backendFunction.getDataOfRecents());
-    addTagsToDocument(backendFunction.getAllPopTags());
+  addTermsToDocument(backend_function.getDataOfRecents());
+  addTagsToDocument(backend_function.getAllPopTags());
 }
 
 function addTermsToDocument(terms) {
-    let recentlyAddedEle = document.querySelector('div.recently-added-elements');
-    terms.forEach(term => {
-
-        let termCard = document.createElement('term-card');
-
-        termCard.data = term;
-        recentlyAddedEle.appendChild(termCard);
-    });
+  let recently_added_el = document.querySelector('div.recently-added-elements');
+  terms.forEach((term) => {
+    let term_card = document.createElement('term-card');
+    term_card.data = term;
+    recently_added_el.appendChild(term_card);
+  });
 }
 
 function addTagsToDocument(terms) {
-    let recentlyAddedEle = document.querySelector('div.popular-tags');
-    let tagDiv = document.createElement('div');
+  let recently_added_el = document.querySelector('div.popular-tags');
+  let tag_div = document.createElement('div');
 
-    terms.forEach(tag => {
-        let tagName = document.createElement('h4');
-        tagName.textContent = tag['tag_name'];
-        tagDiv.appendChild(tagName);
-        let tagTerms = document.createElement('div');
-        tagTerms.className = "tag-column";
+  terms.forEach((tag) => {
+    let tag_name = document.createElement('h4');
+    tag_name.textContent = tag['tag_name'];
+    tag_div.appendChild(tag_name);
+    let tag_terms = document.createElement('div');
+    tag_terms.className = 'tag-column';
 
-        tag.terms.forEach(term => {
-            let termCard = document.createElement('term-card');
+    tag.terms.forEach((term) => {
+      let term_card = document.createElement('term-card');
 
-            termCard.data = term;
-            tagTerms.appendChild(termCard);
-        });
-        tagDiv.appendChild(tagTerms);
+      term_card.data = term;
+      tag_terms.appendChild(term_card);
     });
+    tag_div.appendChild(tag_terms);
+  });
 
-    recentlyAddedEle.appendChild(tagDiv);
+  recently_added_el.appendChild(tag_div);
 }
 
-searchElement.addEventListener('input', e => {
-    searchInput = searchElement.value;
-    searchResults = backendFunction.findRequestedTerm(searchInput, true, false, true);
-    
-})
+search_element.addEventListener('input', () => {
+  search_input = search_element.value;
+  search_results = backend_function.findRequestedTerm(search_input, true, true, true);  
+});
 
-searchButton.addEventListener('click', function() {
-    localStorage.setItem('search_results', JSON.stringify(searchResults));
+search_button.addEventListener('click', () => {
+  localStorage.setItem('search_results', JSON.stringify(search_results));
 });
