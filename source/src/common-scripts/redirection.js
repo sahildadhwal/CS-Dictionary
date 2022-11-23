@@ -1,14 +1,15 @@
 function jumpCreateTermHtml() {
-    location.href='create-term.html'
+
+  location.href='create-term.html';
 }
 function jumpHomeHtml() {
-    location.href='home.html'
+  location.href='home.html';
 }
 function jumpPostHtml() {
-    location.href='post.html'
+  location.href='post.html';
 }
 function jumpSettingsHtml() {
-    location.href='settings.html'
+  location.href='settings.html';
 }
 function jumpSearchHtml() {
   location.href='search.html';
