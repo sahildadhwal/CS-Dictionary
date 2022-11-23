@@ -1,5 +1,5 @@
-window.addEventListener('DOMContentLoaded', init);
 import * as backend_function from '/src/backend/dict.js';
+window.addEventListener('DOMContentLoaded', init);
 
 let search_button = document.getElementById('search_button');
 let search_element = document.getElementById('search_bar');
@@ -48,6 +48,6 @@ search_element.addEventListener('input', (e) => {
   search_results = backend_function.findRequestedTerm(search_input, true, true, true);  
 });
 
-search_button.addEventListener('click', function () {
+search_button.addEventListener('click', () => {
   localStorage.setItem('search_results', JSON.stringify(search_results));
 });
