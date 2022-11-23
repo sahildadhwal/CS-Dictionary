@@ -1,4 +1,5 @@
 import * as backend_function from '/src/backend/dict.js';
+
 window.addEventListener('DOMContentLoaded', init);
 
 let search_button = document.getElementById('search_button');
