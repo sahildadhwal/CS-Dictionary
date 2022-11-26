@@ -1,4 +1,5 @@
 import * as backend_function from '/src/backend/dict.js';
+import * as tiny_mce from '/src/components/tinyMCE/tiny-mce.js'
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -13,12 +14,13 @@ let delete_btn = document.querySelector('.deletebtn');
 
 function init() {
   populateTermData();
+  tiny_mce.initNonEditableTinyMCE('#tinyMCE-content', term_data['term_data']);
 }
 
 function populateTermData() {
   term_title.innerHTML = term_data['term_name'];
   term_description.innerHTML = term_data['short_description'];
-  tinyMCE_content.innerHTML = term_data['term_data'];
+  // tinyMCE_content.innerHTML = term_data['term_data'];
   
   let tag_list = term_data['tags'];
   for(let i = 0; i < tag_list.length; i++) {
