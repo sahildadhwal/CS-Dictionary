@@ -18,11 +18,6 @@
 
     <main>
       <div class="top-buttons">
-        <!--TODO: some buttons are not linked to anything yet.-->   
-        <input type="text" id="search_bar" placeholder="Search"/>
-        <button id="search_button" onclick="jumpSearchHtml()">Search </button>
-        <button onclick="jumpSettingsHtml()">Settings </button>
-        <button onclick="jumpTermPageHtml()">Test Term Page </button>
       </div>
       <div class="recently-added">
         <h3>Recently added</h3>
@@ -39,9 +34,10 @@
       <br><br>
       <div>&copy; Group 2, CSE 110</div>
     </footer>
-    <script src="src/common-scripts/redirection.js"></script>
+    <script src="src/common-scripts/redirection.js" type="module"></script>
     <script src="src/pages/home/home.js" type="module"></script>
     <script src="src/components/term-card/term-card.js"></script>
+    <script src="src/components/serach-bar/search-bar.js" type="module"></script>
     <script src="src/components/tinyMCE/tiny-mce.js" type="module"></script>
     <script src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js"></script>
   </body>

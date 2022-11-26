@@ -126,9 +126,5 @@ a:hover span:nth-child(2):after {
 } 
 .top-buttons {
     text-align: center;
-}
-.top-buttons input {
-    width: 15%;
-    height: 35px;
-    font-size: large;
+    height: 25px;
 }
