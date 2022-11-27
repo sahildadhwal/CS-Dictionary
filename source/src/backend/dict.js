@@ -306,7 +306,7 @@ export function termsCount() {
 /**
  * Add a term to the `localstorage` and update corresponding params in `localstorage`
  * while storing the embedded data using TinyMCE
- * @param {term} term a new term
+ * @param {term} term A newly created term
  */
 export function addTermToBackend(term){
   const cur_time = new Date();
@@ -333,46 +333,61 @@ export function addTermToBackend(term){
 export function addTermToDoc(term) {
   addTermToBackend(term);
 }
+
 /**
- * 
- * @param {string} input //The user input to the search bar
- * @param {boolean} s_term //Is Term checked?
- * @param {boolean} s_tag //Is Tag checked?
- * @param {boolean} s_description //Is description checked?
- * @return {term[]} //Returns a list of all the term IDs associated with the search 
+ * Find matching terms with the input.
+ * @param {string} input The user input to the search bar
+ * @param {boolean} s_term Whether to search in terms
+ * @param {boolean} s_tag Whether to search in tags
+ * @param {boolean} s_description Whether to search in descriptions
+ * @param {boolean} [case_insensitive=false] Whether to match case
+ * @return {term[]} A list of all the term associated with the search 
  */
-export function findRequestedTerm(input, s_term, s_tag, s_description) {
+export function findRequestedTerm(input, s_term, s_tag, s_description,
+    case_insensitive=false) {
   const dict = loadDict();
   let search_result = [];
-  for (const [id, term] of Object.entries(dict)) {
-    if(!s_term && !s_tag && !s_description) {
-      s_term = true;
-    }
-    if(s_term) {
-      if(term.term_name.includes(input)) {
-        if(!search_result.includes(term)) {
-          search_result.push(term);
-        }
-      }
-    }
-    if(s_description) {
-      if(term.short_description.includes(input)){
-        if(!search_result.includes(term)){
-          search_result.push(term);
-        }
-      }
-    }
-  }    
+  // fall back to search terms
+  if(!s_term && !s_tag && !s_description) {
+    s_term = true;
+  }
+  // case insensitive
+  if (case_insensitive) {
+    input = input.toLowerCase();
+  }
+  // search tags
   if(s_tag) {
-    const tag_counts = JSON.parse(localStorage.getItem('tag_counts'));
-    if(Object.keys(tag_counts).includes(input)){
-      const term_set = getDataOfTag(input);
-      for(const token of term_set) {
-        if(!search_result.includes(token)){
-          search_result.push(token);
+    const tags = JSON.parse(localStorage.getItem('tags')) || {};
+    for (const [tag, ids] of Object.entries(tags)) {
+      if (tag.toLowerCase().includes(input)) {
+        for (const id of ids) {
+          if (!search_result.includes(id)) {
+            search_result.push(id);
+          }
         }
       }
     }
   }
-  return search_result;
+  // search terms and descriptions
+  let term_name, short_description;
+  for (const [id, term] of Object.entries(dict)) {
+    if(search_result.includes(id)) continue;
+    if(s_term) {
+      term_name = term.term_name;
+      if (case_insensitive) term_name = term_name.toLowerCase();
+      if (term_name.includes(input)) {
+        search_result.push(id);
+        continue;
+      }
+    }
+    if(s_description) {
+      short_description = term.short_description;
+      if (case_insensitive) short_description = short_description.toLowerCase();
+      if (short_description.includes(input)){
+        search_result.push(id);
+        continue;
+      }
+    }
+  }
+  return search_result.map(id => dict[id]);
 }
