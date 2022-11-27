@@ -40,10 +40,9 @@ global.crypto = new CryptoMock;
 
 // Try adding one term
 describe('Try Adding 1 Term', () => {
-
   // Make sure there are no terms at first
   test('Check there are 0 terms by default', () => {
-    const termCount =  functions.termsCount();
+    const termCount = functions.termsCount();
     expect(termCount).toBe(0);
   }); 
 
@@ -61,15 +60,14 @@ describe('Try Adding 1 Term', () => {
       edited_by: 'no one',
       edited_date: '',
       edit_count: '0'
-    }
+    };
     const id = functions.insertTerm(termA);
     expect(id).toBe('THIS_IS_AN_ID');
   });
 
   // Make sure term count is 1 now
   test('Check that there is 1 term now', () => {
-    const termCount =  functions.termsCount();
+    const termCount = functions.termsCount();
     expect(termCount).toBe(1);
   });
-
 });
