@@ -2,6 +2,8 @@
 ## [Team Intro](https://youtu.be/iMRoQklh57Q)
 
 ## Brand:
+![image](./images/d_logo.png)
+
 ### Logo:
 ![image](./images/THEPIZZAPARTY.png)
 
