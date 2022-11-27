@@ -32,7 +32,7 @@ global.localStorage = new LocalStorageMock;
 
 class CryptoMock {
   randomUUID() {
-    return "THIS_IS_AN_ID";
+    return 'THIS_IS_AN_ID';
   }
 }
 
