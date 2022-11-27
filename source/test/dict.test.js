@@ -28,7 +28,7 @@ class LocalStorageMock {
 }
 
 // Mock crypto that gives the same id every time so it can be used for testing
-global.localStorage = new LocalStorageMock;
+global.localStorage = new LocalStorageMock();
 
 class CryptoMock {
   constructor() {
@@ -36,11 +36,11 @@ class CryptoMock {
   }
 
   randomUUID() {
-    return 'ID#'+(++this.count);
+    return `ID#${++this.count}`;
   }
 }
 
-global.crypto = new CryptoMock;
+global.crypto = new CryptoMock();
 
 // Try adding one term
 describe('Try Adding 1 Term', () => {
