@@ -38,13 +38,16 @@ class CryptoMock {
 
 global.crypto = new CryptoMock;
 
-describe('Test dict.js', () => {
+// Try adding one term
+describe('Try Adding 1 Term', () => {
 
+  // Make sure there are no terms at first
   test('Check there are 0 terms by default', () => {
     const termCount =  functions.termsCount();
     expect(termCount).toBe(0);
   }); 
 
+  // Add a term and make sure it returns the correct id
   test('Check adding a term', () => {
     const termA = {
       id: '',
@@ -55,7 +58,7 @@ describe('Test dict.js', () => {
       published: true,
       created_by: 'jest',
       created_time: '',
-      edited_by: 'noone',
+      edited_by: 'no one',
       edited_date: '',
       edit_count: '0'
     }
@@ -63,6 +66,7 @@ describe('Test dict.js', () => {
     expect(id).toBe('THIS_IS_AN_ID');
   });
 
+  // Make sure term count is 1 now
   test('Check that there is 1 term now', () => {
     const termCount =  functions.termsCount();
     expect(termCount).toBe(1);
