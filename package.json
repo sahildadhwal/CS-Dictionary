@@ -20,5 +20,8 @@
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true
+  },
+  "dependencies": {
+    "@types/jest": "^29.2.3"
   }
 }

@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 const { Browser } = require('puppeteer');
 
 describe('Basic user flow for Website', () => {
