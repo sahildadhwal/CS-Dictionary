@@ -68,6 +68,9 @@ describe('Try Testing with 1 Term', () => {
   // Add a term and make sure it returns the correct id
   test('Check adding a term', () => {
     expect(functions.insertTerm(termA)).toBe(termAid);
+    // Also update tags
+    functions.updateTags(termA);
+    functions.updateTagCount(termA);
   });
 
   // Make sure term count is 1 now
@@ -81,7 +84,7 @@ describe('Try Testing with 1 Term', () => {
   });
 
   // Update term's description and check if updated
-  test('Check updating a term', () => {
+  test('Check updating a term and edit count', () => {
     termA.short_description = 'This is the new term description';
     const id = functions.updateTerm(termA);
     const term = functions.selectTerm(termAid);
@@ -91,15 +94,15 @@ describe('Try Testing with 1 Term', () => {
 
   // Delete term
   test('Check deleting a term', () => {
-    console.log(localStorage.store);
     const termToDelete = functions.selectTerm(termAid);
     expect(functions.deleteTerm(termToDelete)).toBe(true);
   });
 
   // Try deleting term again and make sure term count is 0
   test('Check double deleting a term and term count', () => {
-    const termToDelete = functions.selectTerm(termAid);
-    expect(functions.deleteTerm(termToDelete)).toBe(false);
+    expect(functions.deleteTerm(termA)).toBe(false);
     expect(functions.termsCount()).toBe(0);
+    // Print localStorage so see reminants
+    console.log(localStorage.store);
   });
 });
