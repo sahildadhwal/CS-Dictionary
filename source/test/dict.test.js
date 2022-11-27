@@ -31,8 +31,12 @@ class LocalStorageMock {
 global.localStorage = new LocalStorageMock;
 
 class CryptoMock {
+  constructor() {
+    this.count = 0;
+  }
+
   randomUUID() {
-    return 'THIS_IS_AN_ID';
+    return 'ID#'+(++this.count);
   }
 }
 
@@ -49,7 +53,7 @@ describe('Try Adding 1 Term', () => {
   // Add a term and make sure it returns the correct id
   test('Check adding a term', () => {
     const termA = {
-      id: '',
+      id: 'ID#0',
       term_name: 'Test Term',
       tags: ['tag1', 'tag2'],
       short_description: 'This is the term description',
@@ -62,7 +66,7 @@ describe('Try Adding 1 Term', () => {
       edit_count: '0'
     };
     const id = functions.insertTerm(termA);
-    expect(id).toBe('THIS_IS_AN_ID');
+    expect(id).toBe('ID#1');
   });
 
   // Make sure term count is 1 now
