@@ -283,8 +283,8 @@ export function deleteTerm(term) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) != -1){
-    recents.splice(recents.indexOf(term.id), 1);
+  if(term.id in recents){
+    delete recents[term.id];
     localStorage.setItem('recents', JSON.stringify(recents));
   }
   archiveDict(dict); 
@@ -310,9 +310,8 @@ export function deleteTerm(term) {
   if(tagCount.length === 0){
     localStorage.setItem('tag_counts', JSON.stringify({}));
   } else {
-    localStorage.setItem('tag_counts', JSON.stringify(tagCount));
+    localStorage.setItem('tags_counts', JSON.stringify(tagCount));
   }     
-  location.href='home.html';
   return true;
 }
 

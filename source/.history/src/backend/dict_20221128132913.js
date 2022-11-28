@@ -275,22 +275,17 @@ export function updateTerm(term) {
  * @returns {boolean} `true` if success; `false` otherwise
  */
 export function deleteTerm(term) {
-  let dict = loadDict();  
-  let tags = JSON.parse(localStorage.getItem('tags'));
-  let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
-  let recents = JSON.parse(localStorage.getItem('recents'));
+  const dict = loadDict();
   if(!(term.id in dict)) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) != -1){
-    recents.splice(recents.indexOf(term.id), 1);
-    localStorage.setItem('recents', JSON.stringify(recents));
-  }
-  archiveDict(dict); 
+  let tags = JSON.parse(localStorage.getItem('tags'));
+  let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
   for(const tag of term.tags) {
     let uuids = tags[tag] || [];
     const i = uuids.indexOf(term.id);
+    console.log(i);
     if(i != -1){
       tags[tag].splice(i, 1);
     }
@@ -301,18 +296,20 @@ export function deleteTerm(term) {
     if(tagCount[tag] <= 0){
       delete tagCount[tag];
     }
+    
+    
   }
   if(tags.length === 0){
     localStorage.setItem('tags', JSON.stringify({}));
   } else {
     localStorage.setItem('tags', JSON.stringify(tags));
   }  
-  if(tagCount.length === 0){
+  if(tagCounts.length === 0){
     localStorage.setItem('tag_counts', JSON.stringify({}));
   } else {
-    localStorage.setItem('tag_counts', JSON.stringify(tagCount));
+    localStorage.setItem('tags_counts', JSON.stringify(tagCount));
   }     
-  location.href='home.html';
+  archiveDict(dict); 
   return true;
 }
 

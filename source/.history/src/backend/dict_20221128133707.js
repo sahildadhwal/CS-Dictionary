@@ -283,8 +283,8 @@ export function deleteTerm(term) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) != -1){
-    recents.splice(recents.indexOf(term.id), 1);
+  if(term.id in recents){
+    delete recents[term.id];
     localStorage.setItem('recents', JSON.stringify(recents));
   }
   archiveDict(dict); 
@@ -312,7 +312,6 @@ export function deleteTerm(term) {
   } else {
     localStorage.setItem('tag_counts', JSON.stringify(tagCount));
   }     
-  location.href='home.html';
   return true;
 }
 
