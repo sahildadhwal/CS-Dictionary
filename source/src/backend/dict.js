@@ -143,7 +143,7 @@ export function getAllPopTags() {
  * @param {term} term A term with some tags
  */
 export function updateTags(term) {
-  const tags_dict = JSON.parse(localStorage.getItem('tags')) || {};
+  const tags_dict = loadTags();
 
   for (const tag of term.tags) {
     tags_dict[tag] = tags_dict[tag] || [];
@@ -167,11 +167,18 @@ export function updateTags(term) {
  * @param {term} term 
  */
 export function updateTagCount(term) {
-  const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
+  const tags = Object.keys(loadTags());
+  const tag_counts = loadTagCounts();
 
   for (const tag of term.tags) {
     tag_counts[tag] = tag_counts[tag] || 0;
     tag_counts[tag]++;
+  }
+
+  for (const tag of Object.keys(tag_counts)) {
+    if (!(tag in tags)) {
+      delete tag_counts[tag];
+    }
   }
 
   localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
