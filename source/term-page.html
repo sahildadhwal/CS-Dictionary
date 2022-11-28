@@ -24,8 +24,12 @@
         <div id="tinyMCE-content"></div><br>
         <small class="published-date">Published: 12/05/22</small>
       </div><br>
-      <button id="update-button" onclick="">Update</button>
-      <button onclick="document.getElementById('id01').style.display='block'">Delete</button>
+      <div class="button-container">
+        <button class="button update-button" id="update-button" onclick="">Update</button>
+        <button class="button delete-button"
+          onclick="document.getElementById('id01').style.display='block'">Delete</button>
+      </div>
+
       <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
         <form class="modal-content" action="/action_page.php">
@@ -33,9 +37,11 @@
             <h1>Delete Term</h1>
             <p>Are you sure you want to delete this term?</p>
             <div class="clearfix">
-              <button type="button" onclick="document.getElementById('id01').style.display='none'"
+              <button class="button cancel-button" type="button"
+                onclick="document.getElementById('id01').style.display='none'"
                 class="cancelbtn modal-button">Cancel</button>
-              <button type="button" onclick="document.getElementById('id01').style.display='none'"
+              <button class="button delete-button" type="button"
+                onclick="document.getElementById('id01').style.display='none'"
                 class="deletebtn modal-button">Delete</button>
             </div>
           </div>
