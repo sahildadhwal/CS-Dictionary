@@ -137,7 +137,9 @@ export function getAllPopTags() {
 }
 
 /**
- * Add uuid of a term to tags' uuid lists
+ * Update tags' termid lists.
+ * Add term id to a tag's list if a new tag is added to the term; remove id from
+ * list if the tag is removed.
  * @param {term} term A term with some tags
  */
 export function updateTags(term) {
@@ -147,6 +149,12 @@ export function updateTags(term) {
     tags_dict[tag] = tags_dict[tag] || [];
     if (term.id in tags_dict[tag]) continue;
     tags_dict[tag].push(term.id);
+  }
+  for (const tag of Object.keys(tags_dict)) {
+    if (term.id in tags_dict[tag] && !(tag in term.tags)) {
+      let index = tags_dict[tag].indexOf(term.id);
+      tags_dict[tag].splice(index, 1);
+    }
   }
   localStorage.setItem('tags', JSON.stringify(tags_dict));
 }
@@ -284,10 +292,20 @@ export function selectTerm(term_id) {
 export function updateTerm(term) {
   const cur_time = new Date();
   const dict = loadDict();
+  term['tags'] = term.tags.split(',');
+  for(const i in term['tags']) {
+    term['tags'][i] = term['tags'][i].trim();
+    if(term['tags'][i] === '') {
+      term['tags'].splice(i, 1);
+    }
+  }
   term.edit_count += 1;
   term.edited_date = cur_time;
   term.edited_by = 'user';
   dict[term.id] = term;
+  updateRecents(term.id)
+  updateTags(term);
+  updateTagCount(term);
   archiveDict(dict);
 }
 
@@ -364,9 +382,9 @@ export function addTermToBackend(term){
   }
 
   term['id'] = generateTermId();
-  term['created_by'] = 'placeholder';
+  term['created_by'] = 'user';
   term['created_time'] = cur_time;
-  term['edited_by'] = 'placeholder';
+  term['edited_by'] = 'user';
   term['edited_date'] = cur_time;
   term['edit_count'] = 0;
   insertTerm(term);
