@@ -73,7 +73,7 @@ describe('Try Testing with 1 Term', () => {
     functions.updateTagCount(termA);
   });
 
-  // Make sure term count is 1 now
+  // Make sure terms count is 1 now
   test('Check that there is 1 term now', () => {
     expect(functions.termsCount()).toBe(1);
   });
@@ -86,7 +86,7 @@ describe('Try Testing with 1 Term', () => {
   // Update term's description and check if updated
   test('Check updating a term and edit count', () => {
     termA.short_description = 'This is the new term description';
-    const id = functions.updateTerm(termA);
+    functions.updateTerm(termA);
     const term = functions.selectTerm(termAid);
     expect(term.short_description).toBe(termA.short_description);
     expect(term.edit_count).toBe(1);
@@ -98,11 +98,138 @@ describe('Try Testing with 1 Term', () => {
     expect(functions.deleteTerm(termToDelete)).toBe(true);
   });
 
-  // Try deleting term again and make sure term count is 0
+  // Try deleting term again and make sure terms count is 0
   test('Check double deleting a term and term count', () => {
     expect(functions.deleteTerm(termA)).toBe(false);
     expect(functions.termsCount()).toBe(0);
     // Print localStorage so see reminants
     console.log(localStorage.store);
+  });
+});
+
+// Try testing with many terms
+describe('Try Testing with Multiple Terms', () => {
+  const terms = [{
+    id: 'ID#0',
+    term_name: 'Term B',
+    tags: ['tag1', 'tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: '',
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#0',
+    term_name: 'Term C',
+    tags: ['tag1', 'tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: '',
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#0',
+    term_name: 'Term D',
+    tags: ['tag1', 'tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: '',
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#0',
+    term_name: 'Term E',
+    tags: ['tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: '',
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#0',
+    term_name: 'Term F',
+    tags: ['tag1'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: '',
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  }];
+  const termids = ['ID#2', 'ID#3', 'ID#4', 'ID#5', 'ID#6'];
+
+  // Make sure there are no terms at first
+  test('Check there are 0 terms by default', () => {
+    expect(functions.termsCount()).toBe(0);
+    localStorage.clear();
+  }); 
+
+  // Add terms and make sure it returns the correct id
+  test('Check adding terms', () => {
+    let ids = [];
+    for(let term of terms) {
+      ids.push(functions.insertTerm(term));
+      // Also update tags
+      functions.updateTags(term);
+      functions.updateTagCount(term);
+    }
+    expect(ids).toStrictEqual(termids);
+  });
+
+  // Make sure terms count is 5 now
+  test('Check that there are 5 terms now', () => {
+    expect(functions.termsCount()).toBe(5);
+  });
+
+  // Select terms using the terms' id
+  test('Check selecting terms', () => {
+    let terms_select = [];
+    for(let termid of termids) {
+      terms_select.push(functions.selectTerm(termid));
+    }
+    expect(terms_select).toStrictEqual(termA);
+  });
+
+  // Update terms' description and check if updated
+  test('Check updating terms', () => {
+    var editTerms = [];
+    for(let term of terms) {
+      term.short_description = 'This is the new term description';
+      functions.updateTerm(term);
+      editTerms.push(functions.selectTerm(term));
+    }
+    expect(editTerms).toBe(terms);
+  });
+
+  // Delete term C
+  test('Check deleting a term', () => {
+    const termToDelete = functions.selectTerm(termid[1]);
+    expect(functions.deleteTerm(termToDelete)).toBe(true);
+  });
+
+  // Try deleting term again and make sure term count is 0
+  test('Check double deleting a term and term count', () => {
+    expect(functions.deleteTerm(terms[1])).toBe(false);
+    expect(functions.termsCount()).toBe(4);
+    // Print localStorage so see reminants
+    // console.log(localStorage.store);
   });
 });
