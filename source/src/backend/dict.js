@@ -237,10 +237,8 @@ export function generateTermId() {
 export function insertTerm(term) {
   // TODO: Decide how we are going to handle duplicate (consult with team)
   const dict = loadDict();
-  term.id = generateTermId();
   dict[term.id] = term;
   archiveDict(dict);
-  updateRecents(term.id);
   // location.reload();
   return term.id;
 }
@@ -307,6 +305,7 @@ export function termsCount() {
  * Add a term to the `localstorage` and update corresponding params in `localstorage`
  * while storing the embedded data using TinyMCE
  * @param {term} term A newly created term
+ * @return {string} The id of the new term
  */
 export function addTermToBackend(term){
   const cur_time = new Date();
@@ -317,14 +316,18 @@ export function addTermToBackend(term){
       term['tags'].splice(i, 1);
     }
   }
+
+  term['id'] = generateTermId();
   term['created_by'] = 'placeholder';
   term['created_time'] = cur_time;
   term['edited_by'] = 'placeholder';
   term['edited_date'] = cur_time;
   term['edit_count'] = 0;
   insertTerm(term);
+  updateRecents(term.id);
   updateTags(term);
   updateTagCount(term);
+  return term.id;
 }
 
 /**
