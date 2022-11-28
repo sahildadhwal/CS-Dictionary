@@ -31,6 +31,22 @@
  */
 
 /**
+ * Get a dictionary of tags with lists of termids
+ * @returns {Object.<string, string[]>}
+ */
+ export function loadTags() {
+  return JSON.parse(localStorage.getItem('tags')) || {};
+}
+
+/**
+ * Get a dictionary of tags with viewing counts
+ * @returns {Object.<string, number>}
+ */
+ export function loadTagCounts() {
+  return JSON.parse(localStorage.getItem('tag_counts')) || {};
+}
+
+/**
  * Get the most popular tags.
  * @param {number=} [count] Number of popular tags to return. If count is undefined,
  *  then all tags are returned.
@@ -151,12 +167,20 @@ export function updateTagCount(term) {
 }
 
 /**
+ * Get a list of recent terms
+ * @returns {string[]} List of ids of recent terms
+ */
+export function loadRecents() {
+  return JSON.parse(localStorage.getItem('recents')) || [];
+}
+
+/**
  * Return term objects that are recently viewed by user.
  * @return {term[]} An array of term objects, size <= 5
  */
 export function getDataOfRecents() {
   const dict = loadDict();
-  const recents = JSON.parse(localStorage.getItem('recents')) || [];
+  const recents = loadRecents();
   let recently_opened = [];
   for(let uuid of recents) {
     let token = dict[uuid];
@@ -171,7 +195,7 @@ export function getDataOfRecents() {
  * @param {string} uuid The uuid of the recently viewed term
  */
 export function updateRecents(uuid) {
-  let recents = JSON.parse(localStorage.getItem('recents')) || [];
+  let recents = loadRecents;
   let index = recents.indexOf(uuid);
   if(index !== -1){
     recents.splice(index, 1);
