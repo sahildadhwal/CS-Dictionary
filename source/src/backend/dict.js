@@ -154,6 +154,9 @@ export function updateTags(term) {
     if (term.id in tags_dict[tag] && !(tag in term.tags)) {
       let index = tags_dict[tag].indexOf(term.id);
       tags_dict[tag].splice(index, 1);
+      if (tags_dict[tag].length == 0) {
+        delete tags_dict[tag];
+      }
     }
   }
   localStorage.setItem('tags', JSON.stringify(tags_dict));
