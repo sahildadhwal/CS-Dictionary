@@ -346,8 +346,9 @@ export function addTermToDoc(term) {
  * @param {boolean} [case_insensitive=false] Whether to match case
  * @return {term[]} A list of all the term associated with the search 
  */
-export function findRequestedTerm(input, s_term, s_tag, s_description,
-    case_insensitive=false) {
+export function findRequestedTerm(
+  input, s_term, s_tag, s_description,case_insensitive=false
+) {
   const dict = loadDict();
   let search_result = [];
   // fall back to search terms
@@ -372,7 +373,8 @@ export function findRequestedTerm(input, s_term, s_tag, s_description,
     }
   }
   // search terms and descriptions
-  let term_name, short_description;
+  let term_name;
+  let short_description;
   for (const [id, term] of Object.entries(dict)) {
     if(search_result.includes(id)) continue;
     if(s_term) {
@@ -392,5 +394,5 @@ export function findRequestedTerm(input, s_term, s_tag, s_description,
       }
     }
   }
-  return search_result.map(id => dict[id]);
+  return search_result.map((id) => dict[id]);
 }
