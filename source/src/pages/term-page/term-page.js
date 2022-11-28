@@ -11,7 +11,7 @@ let term_description = document.getElementById('term-description');
 let tinyMCE_content = document.getElementById('tinyMCE-content');
 let term_tags = document.querySelector('.term-tags');
 let published_date = document.querySelector('.published-date');
-let delete_btn = document.querySelector('.deletebtn');
+let delete_btn = document.querySelector('#deletebtn');
 let update_btn = document.querySelector('#update-button');
 
 function init() {

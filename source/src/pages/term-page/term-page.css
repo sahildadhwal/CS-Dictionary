@@ -32,3 +32,12 @@
 #term-title {
     text-align: left;
 }
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  margin-left: 7px;
+}
