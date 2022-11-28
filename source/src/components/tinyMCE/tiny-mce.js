@@ -11,7 +11,7 @@ export function initTinyMCE(data) {
     ],
   }).then(() => {
     if (data)
-    tinymce.get("#tinyMCE-content").setContent(data);
+      tinymce.activeEditor.setContent(data);
   });
 }
 

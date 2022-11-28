@@ -15,7 +15,10 @@ export function jumpSearchHtml() {
 } 
 export function jumpTermPageHtml() {
   location.href='term-page.html';
-} 
+}
+export function jumpUpdateTermHtml() {
+  location.href='update-term.html';
+}
 
 window.jumpCreateTermHtml = jumpCreateTermHtml;
 window.jumpHomeHtml = jumpHomeHtml;
@@ -23,3 +26,4 @@ window.jumpPostHtml = jumpPostHtml;
 window.jumpSettingsHtml = jumpSettingsHtml;
 window.jumpSearchHtml = jumpSearchHtml;
 window.jumpTermPageHtml = jumpTermPageHtml;
+window.jumpUpdateTermHtml = jumpUpdateTermHtml;
