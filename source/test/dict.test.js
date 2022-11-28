@@ -109,6 +109,7 @@ describe('Try Testing with 1 Term', () => {
 
 // Try testing with many terms
 describe('Try Testing with Multiple Terms', () => {
+  const cur_time = new Date();
   const terms = [{
     id: 'ID#0',
     term_name: 'Term B',
@@ -117,7 +118,7 @@ describe('Try Testing with Multiple Terms', () => {
     term_data: 'This is the term data',
     published: true,
     created_by: 'devOps',
-    created_time: '',
+    created_time: cur_time.toISOString(),
     edited_by: 'no one',
     edited_date: '',
     edit_count: 0
@@ -130,7 +131,7 @@ describe('Try Testing with Multiple Terms', () => {
     term_data: 'This is the term data',
     published: true,
     created_by: 'devOps',
-    created_time: '',
+    created_time: cur_time.toISOString(),
     edited_by: 'no one',
     edited_date: '',
     edit_count: 0
@@ -143,7 +144,7 @@ describe('Try Testing with Multiple Terms', () => {
     term_data: 'This is the term data',
     published: true,
     created_by: 'devOps',
-    created_time: '',
+    created_time: cur_time.toISOString(),
     edited_by: 'no one',
     edited_date: '',
     edit_count: 0
@@ -156,7 +157,7 @@ describe('Try Testing with Multiple Terms', () => {
     term_data: 'This is the term data',
     published: true,
     created_by: 'devOps',
-    created_time: '',
+    created_time: cur_time.toISOString(),
     edited_by: 'no one',
     edited_date: '',
     edit_count: 0
@@ -169,7 +170,7 @@ describe('Try Testing with Multiple Terms', () => {
     term_data: 'This is the term data',
     published: true,
     created_by: 'devOps',
-    created_time: '',
+    created_time: cur_time.toISOString(),
     edited_by: 'no one',
     edited_date: '',
     edit_count: 0
@@ -205,31 +206,47 @@ describe('Try Testing with Multiple Terms', () => {
     for(let termid of termids) {
       terms_select.push(functions.selectTerm(termid));
     }
-    expect(terms_select).toStrictEqual(termA);
+    expect(terms_select).toStrictEqual(terms);
   });
 
   // Update terms' description and check if updated
   test('Check updating terms', () => {
     var editTerms = [];
-    for(let term of terms) {
-      term.short_description = 'This is the new term description';
-      functions.updateTerm(term);
-      editTerms.push(functions.selectTerm(term));
+    for(let term in terms) {
+      terms[term].short_description = 'This is the new term description';
+      functions.updateTerm(terms[term]);
+      editTerms.push(functions.selectTerm(termids[term]));
     }
-    expect(editTerms).toBe(terms);
+    // Change dates to ISOStrings;
+    for(let element of terms){
+      element.edited_date = element.edited_date.toISOString();
+    }
+    expect(editTerms).toStrictEqual(terms);
   });
 
   // Delete term C
-  test('Check deleting a term', () => {
-    const termToDelete = functions.selectTerm(termid[1]);
+  test('Check deleting term C', () => {
+    const termToDelete = functions.selectTerm(termids[1]);
     expect(functions.deleteTerm(termToDelete)).toBe(true);
   });
 
-  // Try deleting term again and make sure term count is 0
-  test('Check double deleting a term and term count', () => {
+  // Try deleting term C again and make sure term count is 4
+  test('Check double deleting term C and term count', () => {
     expect(functions.deleteTerm(terms[1])).toBe(false);
     expect(functions.termsCount()).toBe(4);
-    // Print localStorage so see reminants
-    // console.log(localStorage.store);
+  });
+
+  var newTerms = [];
+
+  // Select terms using the terms' id
+  test('Check selecting terms', () => {
+    let terms_select = [];
+    for(let termid in termids) {
+      if(termid==1)
+        continue;
+      terms_select.push(functions.selectTerm(termids[termid]));
+      newTerms.push(terms[termid]);
+    }
+    expect(terms_select).toStrictEqual(newTerms);
   });
 });
