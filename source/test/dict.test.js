@@ -239,9 +239,10 @@ describe('Try Testing with Multiple Terms', () => {
   var newTerms = [];
 
   // Select terms using the terms' id
-  test('Check selecting terms', () => {
+  test('Check selecting remaining terms', () => {
     let terms_select = [];
     for(let termid in termids) {
+      //skip term C
       if(termid==1)
         continue;
       terms_select.push(functions.selectTerm(termids[termid]));
@@ -249,4 +250,14 @@ describe('Try Testing with Multiple Terms', () => {
     }
     expect(terms_select).toStrictEqual(newTerms);
   });
+
+  /*
+  // delete all terms and check count
+  test('Check deleteing all terms and the terms count', () => {
+    functions.deleteAll();
+    expect(functions.termsCount()).toBe(0);
+    // Print localStorage so see reminants
+    console.log(localStorage.store);
+  });
+  */
 });
