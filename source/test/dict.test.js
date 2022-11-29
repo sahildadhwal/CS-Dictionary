@@ -45,17 +45,18 @@ global.crypto = new CryptoMock();
 
 // Try testing with one term
 describe('Try Testing with 1 Term', () => {
+  const cur_time = new Date();
   const termA = {
-    id: 'ID#0',
+    id: 'ID#1',
     term_name: 'Term A',
     tags: ['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
-    created_by: 'devOps',
-    created_time: '',
-    edited_by: 'no one',
-    edited_date: '',
+    created_by: 'user',
+    created_time: cur_time.toISOString(),
+    edited_by: 'user',
+    edited_date: cur_time.toISOString(),
     edit_count: 0
   };
   const termAid = 'ID#1';
@@ -69,6 +70,7 @@ describe('Try Testing with 1 Term', () => {
   test('Check adding a term', () => {
     expect(functions.insertTerm(termA)).toBe(termAid);
     // Also update tags
+    functions.updateRecents(termAid);
     functions.updateTags(termA);
     functions.updateTagCount(termA);
   });
@@ -86,7 +88,7 @@ describe('Try Testing with 1 Term', () => {
   // Update term's description and check if updated
   test('Check updating a term and edit count', () => {
     termA.short_description = 'This is the new term description';
-    functions.updateTerm(termA);
+    functions.updateTerm(JSON.stringify(termA));
     const term = functions.selectTerm(termAid);
     expect(term.short_description).toBe(termA.short_description);
     expect(term.edit_count).toBe(1);
