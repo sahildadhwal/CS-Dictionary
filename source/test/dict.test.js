@@ -52,7 +52,7 @@ describe('Try Testing with 1 Term', () => {
   const termA = {
     id: 'ID#1',
     term_name: 'Term A',
-    tags: `tag1, tag2`,//['tag1', 'tag2'],
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -92,7 +92,6 @@ describe('Try Testing with 1 Term', () => {
   // Update term's description and check if updated
   test('Check updating a term and edit count', () => {
     termA.short_description = 'This is the new term description';
-    //var termString = JSON.stringify(termA);
     functions.updateTerm(termA);
     const term = functions.selectTerm(termAid);
     // Change date to ISOString;
@@ -118,11 +117,12 @@ describe('Try Testing with 1 Term', () => {
 
 // Try testing with many terms
 describe('Try Testing with Multiple Terms', () => {
+  var newTerms = [];
   const cur_time = new Date();
   const terms = [{
     id: 'ID#2',
     term_name: 'Term B',
-    tags: `tag1, tag2`,//['tag1', 'tag2'],
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -135,7 +135,7 @@ describe('Try Testing with Multiple Terms', () => {
   {
     id: 'ID#3',
     term_name: 'Term C',
-    tags: `tag1, tag2`,//['tag1', 'tag2'],
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -148,7 +148,7 @@ describe('Try Testing with Multiple Terms', () => {
   {
     id: 'ID#4',
     term_name: 'Term D',
-    tags: `tag1, tag2`,//['tag1', 'tag2'],
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -161,7 +161,7 @@ describe('Try Testing with Multiple Terms', () => {
   {
     id: 'ID#5',
     term_name: 'Term E',
-    tags: 'tag2',//['tag2'],
+    tags: 'tag2', // ['tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -174,7 +174,7 @@ describe('Try Testing with Multiple Terms', () => {
   {
     id: 'ID#6',
     term_name: 'Term F',
-    tags: 'tag1',//['tag1'],
+    tags: 'tag1', // ['tag1'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -221,7 +221,7 @@ describe('Try Testing with Multiple Terms', () => {
 
   // Update terms' description and check if updated
   test('Check updating terms', () => {
-    var editTerms = [];
+    let editTerms = [];
     for(let term in terms) {
       terms[term].short_description = 'This is the new term description';
       functions.updateTerm(terms[term]);
@@ -246,22 +246,20 @@ describe('Try Testing with Multiple Terms', () => {
     expect(functions.termsCount()).toBe(4);
   });
 
-  var newTerms = [];
-
   // Select terms using the terms' id
   test('Check selecting remaining terms', () => {
     let terms_select = [];
     for(let termid in termids) {
-      //skip term C
-      if(termid==1)
+      // Skip term C
+      if(parseInt(termid)===1) {
         continue;
+      }
       terms_select.push(functions.selectTerm(termids[termid]));
       newTerms.push(terms[termid]);
     }
     expect(terms_select).toStrictEqual(newTerms);
   });
 
-  /*
   // delete all terms and check count
   test('Check deleteing all terms and the terms count', () => {
     functions.deleteAll();
@@ -269,5 +267,4 @@ describe('Try Testing with Multiple Terms', () => {
     // Print localStorage so see reminants
     console.log(localStorage.store);
   });
-  */
 });
