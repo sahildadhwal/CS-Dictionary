@@ -1,6 +1,7 @@
 .term-information {
     margin: auto;
-    width: 50%;
+    width: 70%;
+    max-width: 1500px;
     text-align: center;
 }
 .term-box {
