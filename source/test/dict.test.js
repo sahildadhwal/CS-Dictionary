@@ -76,7 +76,6 @@ describe('Try Testing with 1 Term', () => {
     functions.updateRecents(termAid);
     functions.updateTags(termA);
     functions.updateTagCount(termA);
-    console.log(localStorage);
   });
 
   // Make sure terms count is 1 now
@@ -117,7 +116,7 @@ describe('Try Testing with 1 Term', () => {
 
 // Try testing with many terms
 describe('Try Testing with Multiple Terms', () => {
-  var newTerms = [];
+  let newTerms = [];
   const cur_time = new Date();
   const terms = [{
     id: 'ID#2',
@@ -251,7 +250,7 @@ describe('Try Testing with Multiple Terms', () => {
     let terms_select = [];
     for(let termid in termids) {
       // Skip term C
-      if(parseInt(termid)===1) {
+      if(parseInt(termid, 10)===1) {
         continue;
       }
       terms_select.push(functions.selectTerm(termids[termid]));
