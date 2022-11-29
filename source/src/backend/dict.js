@@ -151,7 +151,7 @@ export function updateTags(term) {
     tags_dict[tag].push(term.id);
   }
   for (const tag of Object.keys(tags_dict)) {
-    if (tags_dict[tag].includes(term.id) && !term.tags.includes(term.id)) {
+    if (tags_dict[tag].includes(term.id) && !term.tags.includes(tag)) {
       let index = tags_dict[tag].indexOf(term.id);
       tags_dict[tag].splice(index, 1);
       if (tags_dict[tag].length == 0) {
