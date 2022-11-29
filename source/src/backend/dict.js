@@ -147,11 +147,11 @@ export function updateTags(term) {
 
   for (const tag of term.tags) {
     tags_dict[tag] = tags_dict[tag] || [];
-    if (term.id in tags_dict[tag]) continue;
+    if (tags_dict[tag].includes(term.id)) continue;
     tags_dict[tag].push(term.id);
   }
   for (const tag of Object.keys(tags_dict)) {
-    if (term.id in tags_dict[tag] && !(tag in term.tags)) {
+    if (tags_dict[tag].includes(term.id) && !term.tags.includes(term.id)) {
       let index = tags_dict[tag].indexOf(term.id);
       tags_dict[tag].splice(index, 1);
       if (tags_dict[tag].length == 0) {
@@ -167,11 +167,17 @@ export function updateTags(term) {
  * @param {term} term 
  */
 export function updateTagCount(term) {
+  const tags = Object.keys(loadTags());
   const tag_counts = loadTagCounts();
 
   for (const tag of term.tags) {
     tag_counts[tag] = tag_counts[tag] || 0;
     tag_counts[tag]++;
+  }
+  for (const tag of Object.keys(tag_counts)) {
+    if (!tags.includes(tag)) {
+      delete tag_counts[tag];
+    }
   }
   localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
 }
@@ -321,7 +327,7 @@ export function deleteTerm(term) {
   let tags = JSON.parse(localStorage.getItem('tags'));
   let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
   let recents = JSON.parse(localStorage.getItem('recents'));
-  if(!(term.id in dict)) {
+  if(!dict.includes(term.id)) {
     return false;
   }
   delete dict[term.id];
