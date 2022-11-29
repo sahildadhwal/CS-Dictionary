@@ -10,7 +10,6 @@
 
 [Meeting Notes](#meeting-notes)
 
-
 [Todo](#todo)
 
 [Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
