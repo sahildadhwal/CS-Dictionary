@@ -1,6 +1,6 @@
 import {initTinyMCE, getTinyMCEData} from '/src/components/tinyMCE/tiny-mce.js';
 import * as backend_function from '/src/backend/dict.js';
-
+document.getElementById
 let button = document.getElementById('create_button');
 let term_name = document.getElementById('term_name');
 let tags = document.getElementById('tags');

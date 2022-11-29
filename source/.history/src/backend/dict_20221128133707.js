@@ -31,22 +31,6 @@
  */
 
 /**
- * Get a dictionary of tags with lists of termids
- * @returns {Object.<string, string[]>}
- */
- export function loadTags() {
-  return JSON.parse(localStorage.getItem('tags')) || {};
-}
-
-/**
- * Get a dictionary of tags with viewing counts
- * @returns {Object.<string, number>}
- */
- export function loadTagCounts() {
-  return JSON.parse(localStorage.getItem('tag_counts')) || {};
-}
-
-/**
  * Get the most popular tags.
  * @param {number=} [count] Number of popular tags to return. If count is undefined,
  *  then all tags are returned.
@@ -137,27 +121,16 @@ export function getAllPopTags() {
 }
 
 /**
- * Update tags' termid lists.
- * Add term id to a tag's list if a new tag is added to the term; remove id from
- * list if the tag is removed.
+ * Add uuid of a term to tags' uuid lists
  * @param {term} term A term with some tags
  */
 export function updateTags(term) {
-  const tags_dict = loadTags();
+  const tags_dict = JSON.parse(localStorage.getItem('tags')) || {};
 
   for (const tag of term.tags) {
     tags_dict[tag] = tags_dict[tag] || [];
     if (term.id in tags_dict[tag]) continue;
     tags_dict[tag].push(term.id);
-  }
-  for (const tag of Object.keys(tags_dict)) {
-    if (term.id in tags_dict[tag] && !(tag in term.tags)) {
-      let index = tags_dict[tag].indexOf(term.id);
-      tags_dict[tag].splice(index, 1);
-      if (tags_dict[tag].length == 0) {
-        delete tags_dict[tag];
-      }
-    }
   }
   localStorage.setItem('tags', JSON.stringify(tags_dict));
 }
@@ -167,29 +140,14 @@ export function updateTags(term) {
  * @param {term} term 
  */
 export function updateTagCount(term) {
-  const tags = Object.keys(loadTags());
-  const tag_counts = loadTagCounts();
+  const tag_counts = JSON.parse(localStorage.getItem('tag_counts')) || {};
 
   for (const tag of term.tags) {
     tag_counts[tag] = tag_counts[tag] || 0;
     tag_counts[tag]++;
   }
 
-  for (const tag of Object.keys(tag_counts)) {
-    if (!(tag in tags)) {
-      delete tag_counts[tag];
-    }
-  }
-
   localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
-}
-
-/**
- * Get a list of recent terms
- * @returns {string[]} List of ids of recent terms
- */
-export function loadRecents() {
-  return JSON.parse(localStorage.getItem('recents')) || [];
 }
 
 /**
@@ -198,7 +156,7 @@ export function loadRecents() {
  */
 export function getDataOfRecents() {
   const dict = loadDict();
-  const recents = loadRecents();
+  const recents = JSON.parse(localStorage.getItem('recents')) || [];
   let recently_opened = [];
   for(let uuid of recents) {
     let token = dict[uuid];
@@ -213,7 +171,7 @@ export function getDataOfRecents() {
  * @param {string} uuid The uuid of the recently viewed term
  */
 export function updateRecents(uuid) {
-  let recents = loadRecents;
+  let recents = JSON.parse(localStorage.getItem('recents')) || [];
   let index = recents.indexOf(uuid);
   if(index !== -1){
     recents.splice(index, 1);
@@ -279,8 +237,10 @@ export function generateTermId() {
 export function insertTerm(term) {
   // TODO: Decide how we are going to handle duplicate (consult with team)
   const dict = loadDict();
+  term.id = generateTermId();
   dict[term.id] = term;
   archiveDict(dict);
+  updateRecents(term.id);
   // location.reload();
   return term.id;
 }
@@ -302,20 +262,10 @@ export function selectTerm(term_id) {
 export function updateTerm(term) {
   const cur_time = new Date();
   const dict = loadDict();
-  term['tags'] = term.tags.split(',');
-  for(const i in term['tags']) {
-    term['tags'][i] = term['tags'][i].trim();
-    if(term['tags'][i] === '') {
-      term['tags'].splice(i, 1);
-    }
-  }
   term.edit_count += 1;
   term.edited_date = cur_time;
   term.edited_by = 'user';
   dict[term.id] = term;
-  updateRecents(term.id)
-  updateTags(term);
-  updateTagCount(term);
   archiveDict(dict);
 }
 
@@ -333,8 +283,8 @@ export function deleteTerm(term) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) != -1){
-    recents.splice(recents.indexOf(term.id), 1);
+  if(term.id in recents){
+    delete recents[term.id];
     localStorage.setItem('recents', JSON.stringify(recents));
   }
   archiveDict(dict); 
@@ -362,7 +312,6 @@ export function deleteTerm(term) {
   } else {
     localStorage.setItem('tag_counts', JSON.stringify(tagCount));
   }     
-  location.href='home.html';
   return true;
 }
 
@@ -379,7 +328,6 @@ export function termsCount() {
  * Add a term to the `localstorage` and update corresponding params in `localstorage`
  * while storing the embedded data using TinyMCE
  * @param {term} term A newly created term
- * @return {string} The id of the new term
  */
 export function addTermToBackend(term){
   const cur_time = new Date();
@@ -390,18 +338,14 @@ export function addTermToBackend(term){
       term['tags'].splice(i, 1);
     }
   }
-
-  term['id'] = generateTermId();
-  term['created_by'] = 'user';
+  term['created_by'] = 'placeholder';
   term['created_time'] = cur_time;
-  term['edited_by'] = 'user';
+  term['edited_by'] = 'placeholder';
   term['edited_date'] = cur_time;
   term['edit_count'] = 0;
   insertTerm(term);
-  updateRecents(term.id);
   updateTags(term);
   updateTagCount(term);
-  return term.id;
 }
 
 /**
@@ -420,9 +364,8 @@ export function addTermToDoc(term) {
  * @param {boolean} [case_insensitive=false] Whether to match case
  * @return {term[]} A list of all the term associated with the search 
  */
-export function findRequestedTerm(
-  input, s_term, s_tag, s_description,case_insensitive=false
-) {
+export function findRequestedTerm(input, s_term, s_tag, s_description,
+    case_insensitive=false) {
   const dict = loadDict();
   let search_result = [];
   // fall back to search terms
@@ -447,8 +390,7 @@ export function findRequestedTerm(
     }
   }
   // search terms and descriptions
-  let term_name;
-  let short_description;
+  let term_name, short_description;
   for (const [id, term] of Object.entries(dict)) {
     if(search_result.includes(id)) continue;
     if(s_term) {
@@ -468,5 +410,5 @@ export function findRequestedTerm(
       }
     }
   }
-  return search_result.map((id) => dict[id]);
+  return search_result.map(id => dict[id]);
 }

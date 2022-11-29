@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Term Page</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="src/pages/term-page/term-page.css">
+    <link rel="stylesheet" href="src/components/confirmation-box/confirmation-box.css">
+    <link rel="stylesheet" href="common.css">
+  </head>
+  <body>
+    <header class="nav-bar">
+      <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jumpHomeHtml()">
+    </header>
+    <main>
+      <div class="term-information">
+        <h1 id="term-title">Term Title Goes Here</h1>
+        <ul class="term-tags">
+        </ul>
+        <hr>
+        <div class="term-box">
+          <h2 id="term-description">Short Description Section</h2>
+          <div id="tinyMCE-content"></div><br>
+          <small class="published-date">Published: 12/05/22</small>
+        </div><br>
+        <button id="update-button" onclick="">Update</button>
+        <button onclick="document.getElementById('id01').style.display='block'">Delete</button>
+        <div id="id01" class="modal">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+          <form class="modal-content" action="/action_page.php">
+            <div class="container">
+              <h1>Delete Term</h1>
+              <p>Are you sure you want to delete this term?</p>
+              <div class="clearfix">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn modal-button">Cancel</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn modal-button" id="delete">Delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="src/common-scripts/redirection.js"></script>
+    <script src="src/pages/term-page/term-page.js" type="module"></script>
+    <script>
+      import * as backend from 'src/backend/dict.js';
+    </script>
+  </body>
+</html>
