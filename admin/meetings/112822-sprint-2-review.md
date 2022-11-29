@@ -36,7 +36,7 @@
   <li>November 28, 2022</li>
   <ul>
     <li>Duration: 30 minutes</li>
-        <ol>6:30am to 0:00pm<ol>
+        <ol>6:30pm to 7:00pm<ol>
   </ul>
 </ul>
 
