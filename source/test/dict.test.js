@@ -43,13 +43,16 @@ class CryptoMock {
 
 global.crypto = new CryptoMock();
 
+// location var used for frontend is ignored as it causes problems with jest
+global.location = new CryptoMock();
+
 // Try testing with one term
 describe('Try Testing with 1 Term', () => {
   const cur_time = new Date();
   const termA = {
     id: 'ID#1',
     term_name: 'Term A',
-    tags: ['tag1', 'tag2'],
+    tags: `tag1, tag2`,//['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -69,10 +72,11 @@ describe('Try Testing with 1 Term', () => {
   // Add a term and make sure it returns the correct id
   test('Check adding a term', () => {
     expect(functions.insertTerm(termA)).toBe(termAid);
-    // Also update tags
+    // Also update tags and recents
     functions.updateRecents(termAid);
     functions.updateTags(termA);
     functions.updateTagCount(termA);
+    console.log(localStorage);
   });
 
   // Make sure terms count is 1 now
@@ -88,9 +92,12 @@ describe('Try Testing with 1 Term', () => {
   // Update term's description and check if updated
   test('Check updating a term and edit count', () => {
     termA.short_description = 'This is the new term description';
-    functions.updateTerm(JSON.stringify(termA));
+    //var termString = JSON.stringify(termA);
+    functions.updateTerm(termA);
     const term = functions.selectTerm(termAid);
-    expect(term.short_description).toBe(termA.short_description);
+    // Change date to ISOString;
+    termA.edited_date = termA.edited_date.toISOString();
+    expect(term).toStrictEqual(termA);
     expect(term.edit_count).toBe(1);
   });
 
@@ -113,9 +120,9 @@ describe('Try Testing with 1 Term', () => {
 describe('Try Testing with Multiple Terms', () => {
   const cur_time = new Date();
   const terms = [{
-    id: 'ID#0',
+    id: 'ID#2',
     term_name: 'Term B',
-    tags: ['tag1', 'tag2'],
+    tags: `tag1, tag2`,//['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -126,9 +133,9 @@ describe('Try Testing with Multiple Terms', () => {
     edit_count: 0
   },
   {
-    id: 'ID#0',
+    id: 'ID#3',
     term_name: 'Term C',
-    tags: ['tag1', 'tag2'],
+    tags: `tag1, tag2`,//['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -139,9 +146,9 @@ describe('Try Testing with Multiple Terms', () => {
     edit_count: 0
   },
   {
-    id: 'ID#0',
+    id: 'ID#4',
     term_name: 'Term D',
-    tags: ['tag1', 'tag2'],
+    tags: `tag1, tag2`,//['tag1', 'tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -152,9 +159,9 @@ describe('Try Testing with Multiple Terms', () => {
     edit_count: 0
   },
   {
-    id: 'ID#0',
+    id: 'ID#5',
     term_name: 'Term E',
-    tags: ['tag2'],
+    tags: 'tag2',//['tag2'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -165,9 +172,9 @@ describe('Try Testing with Multiple Terms', () => {
     edit_count: 0
   },
   {
-    id: 'ID#0',
+    id: 'ID#6',
     term_name: 'Term F',
-    tags: ['tag1'],
+    tags: 'tag1',//['tag1'],
     short_description: 'This is the term description',
     term_data: 'This is the term data',
     published: true,
@@ -190,7 +197,8 @@ describe('Try Testing with Multiple Terms', () => {
     let ids = [];
     for(let term of terms) {
       ids.push(functions.insertTerm(term));
-      // Also update tags
+      // Also update tags and recents
+      functions.updateRecents(term.id);
       functions.updateTags(term);
       functions.updateTagCount(term);
     }
