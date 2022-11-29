@@ -167,20 +167,12 @@ export function updateTags(term) {
  * @param {term} term 
  */
 export function updateTagCount(term) {
-  const tags = Object.keys(loadTags());
   const tag_counts = loadTagCounts();
 
   for (const tag of term.tags) {
     tag_counts[tag] = tag_counts[tag] || 0;
     tag_counts[tag]++;
   }
-
-  for (const tag of Object.keys(tag_counts)) {
-    if (!(tag in tags)) {
-      delete tag_counts[tag];
-    }
-  }
-
   localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
 }
 
@@ -213,7 +205,7 @@ export function getDataOfRecents() {
  * @param {string} uuid The uuid of the recently viewed term
  */
 export function updateRecents(uuid) {
-  let recents = loadRecents;
+  let recents = loadRecents();
   let index = recents.indexOf(uuid);
   if(index !== -1){
     recents.splice(index, 1);
