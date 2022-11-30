@@ -34,7 +34,7 @@
  * Get a dictionary of tags with lists of termids
  * @returns {Object.<string, string[]>}
  */
- export function loadTags() {
+export function loadTags() {
   return JSON.parse(localStorage.getItem('tags')) || {};
 }
 
@@ -42,7 +42,7 @@
  * Get a dictionary of tags with viewing counts
  * @returns {Object.<string, number>}
  */
- export function loadTagCounts() {
+export function loadTagCounts() {
   return JSON.parse(localStorage.getItem('tag_counts')) || {};
 }
 
@@ -154,7 +154,7 @@ export function updateTags(term) {
     if (term.id in tags_dict[tag] && !(tag in term.tags)) {
       let index = tags_dict[tag].indexOf(term.id);
       tags_dict[tag].splice(index, 1);
-      if (tags_dict[tag].length == 0) {
+      if (tags_dict[tag].length === 0) {
         delete tags_dict[tag];
       }
     }
@@ -305,7 +305,7 @@ export function updateTerm(term) {
   term.edited_date = cur_time;
   term.edited_by = 'user';
   dict[term.id] = term;
-  updateRecents(term.id)
+  updateRecents(term.id);
   updateTags(term);
   updateTagCount(term);
   archiveDict(dict);
@@ -325,7 +325,7 @@ export function deleteTerm(term) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) != -1){
+  if(recents.indexOf(term.id) !== -1){
     recents.splice(recents.indexOf(term.id), 1);
     localStorage.setItem('recents', JSON.stringify(recents));
   }
@@ -333,13 +333,13 @@ export function deleteTerm(term) {
   for(const tag of term.tags) {
     let uuids = tags[tag] || [];
     const i = uuids.indexOf(term.id);
-    if(i != -1){
+    if(i !== -1){
       tags[tag].splice(i, 1);
     }
     if(tags[tag].length === 0){
       delete tags[tag];
     }
-    tagCount[tag] = tagCount[tag] - 1;
+    tagCount[tag] -= 1;
     if(tagCount[tag] <= 0){
       delete tagCount[tag];
     }
@@ -412,9 +412,7 @@ export function addTermToDoc(term) {
  * @param {boolean} [case_insensitive=false] Whether to match case
  * @return {term[]} A list of all the term associated with the search 
  */
-export function findRequestedTerm(
-  input, s_term, s_tag, s_description,case_insensitive=false
-) {
+export function findRequestedTerm(input, s_term, s_tag, s_description, case_insensitive=false) {
   const dict = loadDict();
   let search_result = [];
   // fall back to search terms
