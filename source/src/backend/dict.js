@@ -468,3 +468,33 @@ export function findRequestedTerm(
   }
   return search_result.map((id) => dict[id]);
 }
+
+/**
+ * Return all published terms.
+ * @return {term[]} An array of published term objects 
+ */
+export function getAllPublishedTerms() {
+  let published = [];
+  const dict = loadDict();
+  for(const term of Object.values(dict)) {
+    if(term.published) {
+      published.push(term);
+    }
+  }
+  return published;
+}
+
+/**
+ * Return all unpublished terms.
+ * @return {term[]} An array of unpublished term objects 
+ */
+ export function getAllUnpublishedTerms() {
+  let unpublished = [];
+  const dict = loadDict();
+  for(const term of Object.values(dict)) {
+    if(!term.published) {
+      unpublished.push(term);
+    }
+  }
+  return unpublished;
+}
