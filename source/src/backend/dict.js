@@ -169,7 +169,6 @@ export function updateTags(term) {
 export function updateTagCount(term) {
   const tags = Object.keys(loadTags());
   const tag_counts = loadTagCounts();
-
   for (const tag of term.tags) {
     tag_counts[tag] = tag_counts[tag] || 0;
     tag_counts[tag]++;
