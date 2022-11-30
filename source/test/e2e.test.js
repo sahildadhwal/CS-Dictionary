@@ -18,14 +18,16 @@ describe('Basic user flow for Website', () => {
     await button.click();
     await page.waitForNavigation();
     expect(page.url()).toBe('https://cs-dictionary.netlify.app/create-term.html');
-  })
+  });
    
   it('Add a new term', async () => {
     await page.goto('https://cs-dictionary.netlify.app/create-term.html');
 
-    /*const termName = await page.$('#term_name');
+    /*
+    const termName = await page.$('#term_name');
     const termTags = await page.$('#tags');
-    const termShortDescription = await page.$('#short_description');*/
+    const termShortDescription = await page.$('#short_description');
+    */
     await page.type('#term_name', 'Apple');
     await page.type('#tags', 'fruit, crisp');
     await page.type('#short_description', 'fruit, crisp');
@@ -34,8 +36,7 @@ describe('Basic user flow for Website', () => {
     await page.waitForNavigation();
 
     expect(page.url()).toBe('https://cs-dictionary.netlify.app/home.html');
-    const recentlyAdded = await page.$$('.recently-added-elements>*')
+    const recentlyAdded = await page.$$('.recently-added-elements>*');
     expect(recentlyAdded.length).toBe(1);
   });
-  
 });
