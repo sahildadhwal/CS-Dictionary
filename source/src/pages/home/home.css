@@ -24,11 +24,20 @@ term-card:last-child {
   padding-left: 20px;
 }
 
+.buttons {
+  position:absolute; 
+  right:5px; 
+  bottom:5px;
+  width: 100px;
+}
+
 /* */
 .add-button {
   font-size: 40px !important;
   /* height: 100%; */
-  align-self: center;
+  float:right;
+  width:45px;
+  margin:0 2px;
 }
 
 .add-button:hover {
@@ -39,7 +48,10 @@ term-card:last-child {
 .published-posts {
   font-size: 40px !important;
   /* height: 100%; */
-  align-self: center;
+  float:left;
+  width:45px;
+  margin: 0 2px
+
 }
 
 .published-posts:hover {

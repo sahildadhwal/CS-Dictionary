@@ -1,11 +1,9 @@
 import * as backend_function from '/src/backend/dict.js';
-import * as redirection from '/src/common-scripts/redirection.js'
 
 window.addEventListener('DOMContentLoaded', init);
-let published_terms = backend_function.getPublished(); //Change function with backend's actual function
-
 
 function init() {
+  let published_terms = backend_function.getAllPublishedTerms();
   addTermsToDocument(published_terms);
 }
 
