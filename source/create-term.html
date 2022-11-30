@@ -20,12 +20,13 @@
     <div class="text-box">
       <form>
         <label>Term Name</label>
-        <input class="text-input" type="text" id="term_name" placeholder="Name of Term" required />
+        <input class="text-input" type="text" id="term_name" required
+          oninvalid="this.setCustomValidity('Please enter the Term page')" oninput="setCustomValidity('')" />
         <label>Tags</label>
-        <input class="text-input" type="text" id="tags" placeholder="tag 1, tag 2, tag 3..." required />
+        <input class="text-input" type="text" id="tags" placeholder="tag 1, tag 2, tag 3..." required
+          oninvalid="this.setCustomValidity('Please enter term\'s tags')" oninput="setCustomValidity('')" />
         <label>Short Description - optional</label>
-        <input class="text-input" type="text" id="short_description"
-        placeholder="Insert Description" />
+        <textarea class="text-input" type="text" id="short_description"></textarea>
         <textarea id="tinyMCE-content"></textarea>
 
         <div class="button-container">
