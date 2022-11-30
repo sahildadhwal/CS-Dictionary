@@ -31,11 +31,21 @@ term-card:last-child {
   align-self: center;
 }
 
-/* */
 .add-button:hover {
   cursor: pointer;
 }
 
+/* */
+.published-posts {
+  font-size: 40px !important;
+  /* height: 100%; */
+  align-self: center;
+}
+
+.published-posts:hover {
+  cursor: pointer;
+}
+/* */
 .nav-bar {
   display: flex;
   justify-content: space-between;

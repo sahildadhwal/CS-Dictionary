@@ -19,7 +19,9 @@ export function jumpTermPageHtml() {
 export function jumpUpdateTermHtml() {
   location.href='update-term.html';
 }
-
+export function jumpPublishedTerms() {
+  location.href='published-terms.html';
+}
 window.jumpCreateTermHtml = jumpCreateTermHtml;
 window.jumpHomeHtml = jumpHomeHtml;
 window.jumpPostHtml = jumpPostHtml;
@@ -27,3 +29,5 @@ window.jumpSettingsHtml = jumpSettingsHtml;
 window.jumpSearchHtml = jumpSearchHtml;
 window.jumpTermPageHtml = jumpTermPageHtml;
 window.jumpUpdateTermHtml = jumpUpdateTermHtml;
+window.jumpPublishedTerms = jumpPublishedTerms;
+
