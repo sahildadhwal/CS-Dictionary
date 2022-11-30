@@ -52,10 +52,23 @@ term-card:last-child {
   float:left;
   width:45px;
   margin: 0 2px
-
 }
 
 .published-posts:hover {
+  cursor: pointer;
+}
+
+
+/* */
+.draft-button {
+  font-size: 40px !important;
+  /* height: 100%; */
+  float:left;
+  width:45px;
+  margin: 0 2px
+}
+
+.draft-button:hover {
   cursor: pointer;
 }
 /* */
