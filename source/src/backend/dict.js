@@ -326,7 +326,7 @@ export function deleteTerm(term) {
   let tags = JSON.parse(localStorage.getItem('tags'));
   let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
   let recents = JSON.parse(localStorage.getItem('recents'));
-  if(!dict.includes(term.id)) {
+  if(!(term.id in dict)) {
     return false;
   }
   delete dict[term.id];
