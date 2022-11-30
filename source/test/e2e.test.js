@@ -39,4 +39,8 @@ describe('Basic user flow for Website', () => {
     const recentlyAdded = await page.$$('.recently-added-elements>*');
     expect(recentlyAdded.length).toBe(1);
   });
+
+  it('Make a test for the checkpoint video', async () => {
+    expect(2+2).toBe(4); 
+  });
 });
