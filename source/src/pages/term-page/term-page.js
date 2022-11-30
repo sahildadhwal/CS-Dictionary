@@ -10,9 +10,10 @@ let term_description = document.getElementById('term-description');
 let tinyMCE_content = document.getElementById('tinyMCE-content');
 let term_tags = document.querySelector('.term-tags');
 let published_date = document.querySelector('.published-date');
-let delete_btn = document.querySelector('.deletebtn');
+let delete_btn = document.querySelector('.delete-button');
 
 function init() {
+  backend_function.updateTagCount(term_data);
   populateTermData();
   tiny_mce.initNonEditableTinyMCE('#tinyMCE-content', term_data['term_data']);
 }
@@ -20,7 +21,6 @@ function init() {
 function populateTermData() {
   term_title.innerHTML = term_data['term_name'];
   term_description.innerHTML = term_data['short_description'];
-  // tinyMCE_content.innerHTML = term_data['term_data'];
   
   let tag_list = term_data['tags'];
   for(let i = 0; i < tag_list.length; i++) {
