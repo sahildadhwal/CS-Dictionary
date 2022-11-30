@@ -57,6 +57,7 @@ main {
   color: white;
   background-color: #62aedd;
 }
+
 .update-button:hover {
   background-color: hsl(203, 66%, 55%);
 }
@@ -77,4 +78,8 @@ main {
 
 .cancel-button:hover {
   background-color: hsl(0deg 0% 90%);
+}
+
+.req {
+  color: red;
 }
