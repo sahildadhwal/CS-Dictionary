@@ -1,6 +1,5 @@
 import { initTinyMCE, getTinyMCEData } from '/src/components/tinyMCE/tiny-mce.js';
 import * as backend_function from '/src/backend/dict.js';
-import { getAllPublishedTerms, getAllUnpublishedTerms } from '../../backend/dict';
 
 let term_id = localStorage.getItem('get_term_id');
 let button = document.getElementById('update_button');
