@@ -20,7 +20,7 @@ body {
 .nav-bar {
   padding: 10px;
   height: 60px;
-
+  display: flex;
   position: sticky;
   z-index: 2;
   top: 0px;

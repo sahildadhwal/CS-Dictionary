@@ -25,10 +25,11 @@ term-card:last-child {
 }
 
 .buttons {
-  position:absolute; 
-  right:5px; 
-  bottom:5px;
+  /* position:absolute;  */
+  /* right:5px;  */
+  /* bottom:5px; */
   width: 100px;
+  align-self: center;
 }
 
 /* */
