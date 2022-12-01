@@ -240,13 +240,15 @@ function archiveDict(dict) {
 }
 
 /**
- * //FIXME: duplicate with `loadDict`
- * Same as `loadDict`
+ * Get a filtered dictionary of all terms.
+ * @param {boolean} [published=true] If the term has published or is a draft
  * @returns {Object.<string, term>} A dictionary of terms
  */
-export function selectDict() {
+export function selectDict(published=true) {
   const dict = loadDict();
-  return dict;
+  return Object.fromEntries(
+    Object.entries(dict).filter(([_,term]) => term.published == published)
+  );
 }
 
 /**
@@ -257,7 +259,6 @@ export function deleteAll() {
   for(const [_, term] of Object.entries(dict)){
     deleteTerm(term);
   }
-  // renderAllTerms(document.getElementById('dict'));
 }
 
 /**
@@ -274,11 +275,9 @@ export function generateTermId() {
  * @returns {string} The id of the new term
  */
 export function insertTerm(term) {
-  // TODO: Decide how we are going to handle duplicate (consult with team)
   const dict = loadDict();
   dict[term.id] = term;
   archiveDict(dict);
-  // location.reload();
   return term.id;
 }
 
