@@ -26,12 +26,11 @@ function addTermsToDocument(terms) {
 
 function addTagsToDocument(terms) {
   let recently_added_el = document.querySelector('div.popular-tags');
-  let tag_div = document.createElement('div');
 
   terms.forEach((tag) => {
-    let tag_name = document.createElement('h4');
+    let tag_name = document.createElement('button');
     tag_name.textContent = tag['tag_name'];
-    tag_div.appendChild(tag_name);
+    recently_added_el.appendChild(tag_name);
     let tag_terms = document.createElement('div');
     tag_terms.className = 'tag-column';
 
@@ -41,8 +40,6 @@ function addTagsToDocument(terms) {
       term_card.data = term;
       tag_terms.appendChild(term_card);
     });
-    tag_div.appendChild(tag_terms);
+    recently_added_el.appendChild(tag_terms);
   });
-
-  recently_added_el.appendChild(tag_div);
 }

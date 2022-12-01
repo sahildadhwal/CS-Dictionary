@@ -15,11 +15,23 @@ export function jumpSearchHtml() {
 } 
 export function jumpTermPageHtml() {
   location.href='term-page.html';
-} 
-
+}
+export function jumpUpdateTermHtml() {
+  location.href='update-term.html';
+}
+export function jumpPublishedTerms() {
+  location.href='published-terms.html';
+}
+export function jumpDraftsPageHtml() {
+  location.href='draft-terms.html';
+}
 window.jumpCreateTermHtml = jumpCreateTermHtml;
 window.jumpHomeHtml = jumpHomeHtml;
 window.jumpPostHtml = jumpPostHtml;
 window.jumpSettingsHtml = jumpSettingsHtml;
 window.jumpSearchHtml = jumpSearchHtml;
 window.jumpTermPageHtml = jumpTermPageHtml;
+window.jumpUpdateTermHtml = jumpUpdateTermHtml;
+window.jumpPublishedTerms = jumpPublishedTerms;
+window.jumpDraftsPageHtml = jumpDraftsPageHtml;
+

@@ -12,27 +12,39 @@
   <header class="nav-bar">
     <!-- VALIDTOR FIX: height="70px" -->
     <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jumpHomeHtml()">
+    <div class="center">
+      <div class="title" href="#"><span data-attr="Add">Add</span><span data-attr="Term">Term</span></div>
+    </div>
   </header>
 
   <main>
-    <h1>Add Term</h1>
     <div class="text-box">
-      <h3>Term Name: <input type="text" id="term_name" placeholder="Name of Term"/> </h3>
-      <h3>Tags: <input type="text" id="tags" placeholder="tag 1,tag 2,tag 3..."/> </h3>
-      <h3>Short Description: <input type="text" id="short_description" placeholder="Insert Description" /> </h3>
-      <textarea id="tinyMCE-content"></textarea>
+      <form>
+        <label>Term Name</label>
+        <input class="text-input" type="text" id="term-name" required
+          oninvalid="this.setCustomValidity('Please enter the Term page')" oninput="setCustomValidity('')" />
+        <label>Tags</label>
+        <input class="text-input" type="text" id="tags" placeholder="tag 1, tag 2, tag 3..." required
+          oninvalid="this.setCustomValidity('Please enter term\'s tags')" oninput="setCustomValidity('')" />
+        <label>Short Description - optional</label>
+        <textarea class="text-input" type="text" id="short-description"></textarea>
+        <textarea id="tinyMCE-content"></textarea>
 
-      <button id="create_button" onclick="jumpHomeHtml()">Post</button>
-      <button onclick="jumpHomeHtml()">Cancel</button>
+        <div class="button-container">
+          <input type="submit" value="Post" class="button update-button" id="create-button"></button>
+          <input type="submit" value="Save as Draft" class="button draft-button" id="draft-button"></button>
+          <button class="button delete-button" id="deletebtn"
+            onclick="document.getElementById('id01').style.display='block'">Delete</button>
+        </div>
+      </form>
     </div>
   </main>
   <!-- VALIDTOR FIX: moved script into body -->
   <script src="src/common-scripts/redirection.js" type="module"></script>
   <script src="src/backend/dict.js" type="module"></script>
   <script src="src/pages/create-term/create-term.js" type="module"></script>
-  <script
-    src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js">
+  <script src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js">
   </script>
-</body>    
+</body>
 
 </html>

@@ -1,8 +1,10 @@
+import * as backend_function from '/src/backend/dict.js';
+
 window.addEventListener('DOMContentLoaded', init);
-let search_results = JSON.parse(localStorage.getItem('search_results'));
 
 function init() {
-  addTermsToDocument(search_results);
+  let published_terms = backend_function.getAllUnpublishedTerms();
+  addTermsToDocument(published_terms);
 }
 
 function addTermsToDocument(terms) {
