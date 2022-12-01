@@ -23,7 +23,6 @@ button.addEventListener('click', (e) => {
 
   // If required inputs are not empty then post and go to term page
   if (data.term_name && data.tags) {
-
     let id = backend_function.addTermToBackend(data);
     localStorage.setItem('get_term_id', id);
     redirection.jumpTermPageHtml();
@@ -42,7 +41,6 @@ draftButton.addEventListener('click', (e) => {
   
   // If required inputs are not empty then post and go to term page
   if (data.term_name && data.tags) {
-
     let id = backend_function.addTermToBackend(data);
     localStorage.setItem('get_term_id', id);
     redirection.jumpTermPageHtml();
