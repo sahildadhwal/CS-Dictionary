@@ -11,22 +11,40 @@ let data = {};
 
 initTinyMCE();
 
-button.addEventListener('click', () => {
+// Post as published
+button.addEventListener('click', (e) => {
+  e.preventDefault();
+
   data.term_name = term_name.value;
   data.tags = tags.value;
   data.short_description = short_description.value;
   data.term_data = getTinyMCEData();
-  data.published = true;
-  backend_function.addTermToBackend(data);
-  redirection.jumpPostHtml();
+  data.published = true;  
+
+  // If required inputs are not empty then post and go to term page
+  if (data.term_name && data.tags) {
+
+    let id = backend_function.addTermToBackend(data);
+    localStorage.setItem('get_term_id', id);
+    redirection.jumpTermPageHtml();
+  }
 });
 
-draftButton.addEventListener('click', () => {
+// Post as draft
+draftButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  
   data.term_name = term_name.value;
   data.tags = tags.value;
   data.short_description = short_description.value;
   data.term_data = getTinyMCEData();
   data.published = false;
-  backend_function.addTermToBackend(data);
-  redirection.jumpPostHtml();
+  
+  // If required inputs are not empty then post and go to term page
+  if (data.term_name && data.tags) {
+
+    let id = backend_function.addTermToBackend(data);
+    localStorage.setItem('get_term_id', id);
+    redirection.jumpTermPageHtml();
+  }
 });
