@@ -34,7 +34,7 @@
  * Get a dictionary of tags with lists of termids
  * @returns {Object.<string, string[]>}
  */
- export function loadTags() {
+export function loadTags() {
   return JSON.parse(localStorage.getItem('tags')) || {};
 }
 
@@ -42,7 +42,7 @@
  * Get a dictionary of tags with viewing counts
  * @returns {Object.<string, number>}
  */
- export function loadTagCounts() {
+export function loadTagCounts() {
   return JSON.parse(localStorage.getItem('tag_counts')) || {};
 }
 
@@ -154,7 +154,7 @@ export function updateTags(term) {
     if (tags_dict[tag].includes(term.id) && !term.tags.includes(tag)) {
       let index = tags_dict[tag].indexOf(term.id);
       tags_dict[tag].splice(index, 1);
-      if (tags_dict[tag].length == 0) {
+      if (tags_dict[tag].length === 0) {
         delete tags_dict[tag];
       }
     }
@@ -247,7 +247,7 @@ function archiveDict(dict) {
 export function selectDict(published=true) {
   const dict = loadDict();
   return Object.fromEntries(
-    Object.entries(dict).filter(([_,term]) => term.published == published)
+    Object.entries(dict).filter(([_, term]) => term.published === published)
   );
 }
 
@@ -309,7 +309,7 @@ export function updateTerm(term) {
   term.edited_date = cur_time;
   term.edited_by = 'user';
   dict[term.id] = term;
-  updateRecents(term.id)
+  updateRecents(term.id);
   updateTags(term);
   updateTagCount(term);
   archiveDict(dict);
@@ -329,36 +329,24 @@ export function deleteTerm(term) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) != -1){
+  archiveDict(dict); 
+  if(recents.indexOf(term.id) !== -1) {
     recents.splice(recents.indexOf(term.id), 1);
     localStorage.setItem('recents', JSON.stringify(recents));
   }
-  archiveDict(dict); 
   for(const tag of term.tags) {
     let uuids = tags[tag] || [];
     const i = uuids.indexOf(term.id);
-    if(i != -1){
+    if(i !== -1){
       tags[tag].splice(i, 1);
     }
     if(tags[tag].length === 0){
       delete tags[tag];
-    }
-    tagCount[tag] = tagCount[tag] - 1;
-    if(tagCount[tag] <= 0){
       delete tagCount[tag];
     }
   }
-  if(tags.length === 0){
-    localStorage.setItem('tags', JSON.stringify({}));
-  } else {
-    localStorage.setItem('tags', JSON.stringify(tags));
-  }  
-  if(tagCount.length === 0){
-    localStorage.setItem('tag_counts', JSON.stringify({}));
-  } else {
-    localStorage.setItem('tag_counts', JSON.stringify(tagCount));
-  }     
-  location.href='home.html';
+  localStorage.setItem('tags', JSON.stringify(tags));
+  localStorage.setItem('tag_counts', JSON.stringify(tagCount));
   return true;
 }
 
@@ -484,9 +472,9 @@ export function getAllPublishedTerms() {
 
 /**
  * Return all unpublished terms.
- * @return {term[]} An array of unpublished term objects 
+ * @return {term[]} An array of unpublished term objects
  */
- export function getAllUnpublishedTerms() {
+export function getAllUnpublishedTerms() {
   let unpublished = [];
   const dict = loadDict();
   for(const term of Object.values(dict)) {
