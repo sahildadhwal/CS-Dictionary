@@ -25,39 +25,40 @@ term-card:last-child {
 }
 
 .buttons {
-  /* position:absolute;  */
-  /* right:5px;  */
-  /* bottom:5px; */
-  width: 100px;
   align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons>i {
+  margin-left: 20px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 /* */
 .add-button {
-  font-size: 40px !important;
-  /* height: 100%; */
-  float:right;
-  width:45px;
-  margin:0 2px;
+  margin-left: 12px !important;
 }
 
 .add-button:hover {
   cursor: pointer;
 }
 
-/* */
-.published-posts {
-  font-size: 40px !important;
-  /* height: 100%; */
-  float:left;
-  width:45px;
-  margin: 0 2px
-
-}
-
 .published-posts:hover {
   cursor: pointer;
 }
+
+.draft-button {
+  padding-top: 4px;
+}
+
+.draft-button:hover {
+  cursor: pointer;
+}
+
 /* */
 .nav-bar {
   display: flex;
