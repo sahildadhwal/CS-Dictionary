@@ -21,7 +21,7 @@ term-card:last-child {
   display: flex;
   flex-wrap: wrap;
   row-gap: 20px;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 
 .buttons {
@@ -69,4 +69,61 @@ term-card:last-child {
 .top-buttons {
   text-align: center;
   height: 25px;
+}
+
+.popular-tags {
+  padding-left: 20px;
+}
+
+.popular-tags button:first-child {
+  margin-top: 0;
+}
+
+.popular-tags button {
+  /* background-color: #57acf1; */
+  color: white;
+  border: 0;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  margin: 40px 0px 10px 0px;
+}
+
+.popular-tags button:hover {
+  cursor: pointer;
+}
+
+/* First Element */
+.popular-tags button:nth-child(8n + 1) {
+  background-color: #EB4134;
+}
+
+.popular-tags button:nth-child(8n + 1):hover {
+  background-color: hsl(4, 82%, 51%);
+}
+
+/* Second Element */
+.popular-tags button:nth-child(8n + 3) {
+  background-color: #FBBE04;
+}
+
+.popular-tags button:nth-child(8n + 3):hover {
+  background-color: hsl(45, 97%, 45%);
+}
+
+/* Third Element */
+.popular-tags button:nth-child(8n + 5) {
+  background-color: #34AA51;
+}
+
+.popular-tags button:nth-child(8n + 5):hover {
+  background-color: hsl(135, 53%, 39%);
+}
+
+/* Fourth Element */
+.popular-tags button:nth-child(8n + 7) {
+  background-color: #438AF7;
+}
+
+.popular-tags button:nth-child(8n+ 7):hover {
+  background-color: hsl(216, 92%, 57%);
 }
