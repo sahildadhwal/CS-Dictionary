@@ -25,15 +25,15 @@ class SearchBar extends HTMLElement {
 
   initSearchFunction() {
     const containerEl = this.shadow_el.querySelector('.container')
-    const formEl = this.shadow_el.querySelector('#search')
-    const dropEl = this.shadow_el.querySelector('.drop')
+    const form_el = this.shadow_el.querySelector('#search')
+    const drop_el = this.shadow_el.querySelector('.drop')
     let search_results = {};
 
     // Add event listener when pressing enter key
-    formEl.addEventListener('keypress', function (e) {
+    form_el.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         // Only redirect when user input not empty
-        if (formEl.value.length != 0) {
+        if (form_el.value.length != 0) {
           localStorage.setItem('search_results', JSON.stringify(search_results));
           redirection.jumpSearchHtml();
         }
@@ -50,49 +50,63 @@ class SearchBar extends HTMLElement {
 
       // Call search function from back-end to get list of terms
       search_results = backend_function.findRequestedTerm(user_input, true, true, true);
+      console.log(search_results);
 
       // If user don't input then make dropdown empty
       if (user_input.length === 0) {
-        dropEl.style.height = 0
-        return dropEl.innerHTML = ''
+        drop_el.style.height = 0
+        return drop_el.innerHTML = ''
       }
 
       // Else initilize empty dropdown
-      dropEl.innerHTML = ''
+      drop_el.innerHTML = ''
 
       // Only take number of maximum terms from list of terms
       const sliced_results = search_results.slice(0, this.MAXIMUM_ELEMENT_DISPLAY);
 
       // Create list item for each
       sliced_results.forEach(item => {
-        const listEl = document.createElement('li');
+        const list_el = document.createElement('li');
 
         // Add term id to list parameter so it can be set when redirecting
-        listEl.term_id = item.id;
+        list_el.term_id = item.id;
 
         // Set id and redirect to term page when clicked
-        listEl.addEventListener('click', goToTermPage);
+        list_el.addEventListener('click', goToTermPage);
+
+        // Create a wrapper to wrap term name
+        let term_name_el = document.createElement('div');
 
         // Highlight substring matches non case sensitive result
         // https://stackoverflow.com/questions/3294576/
         let display_string = item.term_name;
         let reg = new RegExp(user_input, 'gi');
         display_string = display_string.replace(reg, function (str) { return '<b>' + str + '</b>' });
-        listEl.innerHTML = display_string;
+        
 
-        dropEl.appendChild(listEl);
+        // Add term name inside the wrapper then add wrapper inside list element
+        term_name_el.innerHTML = display_string;
+        list_el.appendChild(term_name_el);
+
+        // Create a wrapper to display short description then add to list element
+        let short_description_el = document.createElement('span');
+        short_description_el.className = 'short-description';
+        short_description_el.innerHTML = item.short_description;
+        list_el.appendChild(short_description_el);
+
+        drop_el.appendChild(list_el);
       });
 
-      if (dropEl.children[0] === undefined) {
-        return dropEl.style.height = 0
+      if (drop_el.children[0] === undefined) {
+        return drop_el.style.height = 0
       }
 
-      let totalChildrenHeight = dropEl.children[0].offsetHeight * sliced_results.length
-      dropEl.style.height = totalChildrenHeight + 'px'
+      let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length
+      drop_el.style.height = totalChildrenHeight + 'px'
 
     }
 
-    formEl.addEventListener('input', formHandler)
+    form_el.addEventListener('input', formHandler)
   }
 
   get template() {
