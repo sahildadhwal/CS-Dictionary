@@ -460,14 +460,8 @@ export function findRequestedTerm(
  * @return {term[]} An array of published term objects 
  */
 export function getAllPublishedTerms() {
-  let published = [];
-  const dict = loadDict();
-  for(const term of Object.values(dict)) {
-    if(term.published) {
-      published.push(term);
-    }
-  }
-  return published;
+  const dict = selectDict(published=true)
+  return Object.values(dict);
 }
 
 /**
@@ -475,12 +469,6 @@ export function getAllPublishedTerms() {
  * @return {term[]} An array of unpublished term objects
  */
 export function getAllUnpublishedTerms() {
-  let unpublished = [];
-  const dict = loadDict();
-  for(const term of Object.values(dict)) {
-    if(!term.published) {
-      unpublished.push(term);
-    }
-  }
-  return unpublished;
+  const dict = selectDict(published=false)
+  return Object.values(dict);
 }
