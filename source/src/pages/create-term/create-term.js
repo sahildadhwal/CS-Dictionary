@@ -4,6 +4,7 @@ import * as redirection from '/src/common-scripts/redirection.js'
 
 let button = document.getElementById('create-button');
 let draftButton = document.getElementById('draft-button');
+let cancelButton = document.getElementById('cancel-button');
 let term_name = document.getElementById('term-name');
 let tags = document.getElementById('tags');
 let short_description = document.getElementById('short-description');
@@ -46,3 +47,8 @@ draftButton.addEventListener('click', (e) => {
     redirection.jumpTermPageHtml();
   }
 });
+
+cancelButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  redirection.jumpHomeHtml();
+})
