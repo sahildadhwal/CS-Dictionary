@@ -5,6 +5,7 @@ import * as redirection from '/src/common-scripts/redirection.js'
 let term_id = localStorage.getItem('get_term_id');
 let button = document.getElementById('update-button');
 let draftButton = document.getElementById('draft-button');
+let cancelButton = document.getElementById('cancel-button');
 let term_name = document.getElementById('term-name');
 let tags = document.getElementById('tags');
 let short_description = document.getElementById('short-description');
@@ -67,4 +68,8 @@ draftButton.addEventListener('click', (e) => {
   }
 });
 
-
+// 
+cancelButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  redirection.jumpTermPageHtml();
+})
