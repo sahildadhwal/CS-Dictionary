@@ -24,6 +24,7 @@ button.addEventListener('click', (e) => {
   if (data.term_name && data.tags) {
     let id = backend_function.addTermToBackend(data);
     localStorage.setItem('get_term_id', id);    
+    e.preventDefault();
     redirection.jumpTermPageHtml();
   }
 });
