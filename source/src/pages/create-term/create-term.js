@@ -14,8 +14,6 @@ initTinyMCE();
 
 // Post as published
 button.addEventListener('click', (e) => {
-  e.preventDefault();
-
   data.term_name = term_name.value;
   data.tags = tags.value;
   data.short_description = short_description.value;
@@ -25,15 +23,13 @@ button.addEventListener('click', (e) => {
   // If required inputs are not empty then post and go to term page
   if (data.term_name && data.tags) {
     let id = backend_function.addTermToBackend(data);
-    localStorage.setItem('get_term_id', id);
+    localStorage.setItem('get_term_id', id);    
     redirection.jumpTermPageHtml();
   }
 });
 
 // Post as draft
 draftButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  
   data.term_name = term_name.value;
   data.tags = tags.value;
   data.short_description = short_description.value;
@@ -44,6 +40,7 @@ draftButton.addEventListener('click', (e) => {
   if (data.term_name && data.tags) {
     let id = backend_function.addTermToBackend(data);
     localStorage.setItem('get_term_id', id);
+    e.preventDefault();
     redirection.jumpTermPageHtml();
   }
 });
