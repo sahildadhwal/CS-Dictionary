@@ -23,6 +23,15 @@ function init() {
   initTinyMCE(data.term_data);
 }
 
+// Remove draft button if the post is posted
+if (data.published == true) {
+  draftButton.remove();
+}
+// Else if draft then change text of Update button to Post
+else {
+  button.value = "Post";
+}
+
 // Update as post
 button.addEventListener('click', (e) => {
   e.preventDefault();
