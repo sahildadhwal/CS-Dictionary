@@ -321,7 +321,7 @@ export function updateTerm(term) {
  * @returns {boolean} `true` if success; `false` otherwise
  */
 export function deleteTerm(term) {
-  let dict = loadDict();  
+  let dict = loadDict();
   let tags = JSON.parse(localStorage.getItem('tags'));
   let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
   let recents = JSON.parse(localStorage.getItem('recents'));
@@ -405,7 +405,7 @@ export function addTermToDoc(term) {
  * @return {term[]} A list of all the term associated with the search 
  */
 export function findRequestedTerm(
-  input, s_term, s_tag, s_description,case_insensitive=false
+  input, s_term, s_tag, s_description, case_insensitive=false
 ) {
   const dict = loadDict();
   let search_result = [];
@@ -471,4 +471,72 @@ export function getAllPublishedTerms() {
 export function getAllUnpublishedTerms() {
   const dict = selectDict(published=false)
   return Object.values(dict);
+}
+
+/**
+ * Save a new draft term.
+ * @param {term} term An unpublished term
+ */
+export function createDraft(term) {
+  const cur_time = new Date();
+  term['tags'] = term.tags.split(',');
+  for(const i in term['tags']) {
+    term['tags'][i] = term['tags'][i].trim();
+    if(term['tags'][i] === '') {
+      term['tags'].splice(i, 1);
+    }
+  }
+
+  term['id'] = generateTermId();
+  term['created_by'] = 'user';
+  term['created_time'] = cur_time;
+  term['edited_by'] = 'user';
+  term['edited_date'] = cur_time;
+  term['edit_count'] = 0;
+  insertTerm(term);
+  return term.id;
+}
+
+/**
+ * Update a draft term.
+ * @param {term} term An unpublished term
+ */
+export function updateDraft(term) {
+  const dict = loadDict();
+  term['tags'] = term.tags.split(',');
+  for(const i in term['tags']) {
+    term['tags'][i] = term['tags'][i].trim();
+    if(term['tags'][i] === '') {
+      term['tags'].splice(i, 1);
+    }
+  }
+  term.edit_count += 1;
+  term.edited_date = new Date();
+  term.edited_by = 'user';
+  dict[term.id] = term;
+  archiveDict(dict);
+}
+
+/**
+ * Delete a draft term.
+ * @param {term} term An unpublished term
+ */
+export function deleteDraft(term) {
+  let dict = loadDict();
+  if(!(term.id in dict) || !term.published) {
+    return false;
+  }
+  delete dict[term.id];
+  archiveDict(dict); 
+  return true;
+}
+
+/**
+ * Publish a draft term.
+ * @param {term} term An unpublished term
+ * @return {string} Id of published term
+ */
+export function publishDraft(term) {
+  updateTerm(term);
+  return term.id;
 }
