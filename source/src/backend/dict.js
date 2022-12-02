@@ -324,9 +324,11 @@ export function updateTerm(term) {
   term.edited_date = cur_time;
   term.edited_by = 'user';
   dict[term.id] = term;
-  updateRecents(term.id);
-  updateTags(term);
-  updateTagCount(term);
+  if (term.published) {
+    updateRecents(term.id);
+    updateTags(term);
+    updateTagCount(term);
+  }
   archiveDict(dict);
 }
 
@@ -345,6 +347,11 @@ export function deleteTerm(term) {
   }
   delete dict[term.id];
   archiveDict(dict); 
+
+  if (!term.published) {
+    return true;
+  }
+
   if(recents.indexOf(term.id) !== -1) {
     recents.splice(recents.indexOf(term.id), 1);
     localStorage.setItem('recents', JSON.stringify(recents));
@@ -397,9 +404,11 @@ export function addTermToBackend(term){
   term['edited_date'] = cur_time;
   term['edit_count'] = 0;
   insertTerm(term);
-  updateRecents(term.id);
-  updateTags(term);
-  updateTagCount(term);
+  if (term.published){
+    updateRecents(term.id);
+    updateTags(term);
+    updateTagCount(term);
+  }
   return term.id;
 }
 
@@ -486,72 +495,4 @@ export function getAllPublishedTerms() {
 export function getAllUnpublishedTerms() {
   const dict = selectDict(false)
   return Object.values(dict);
-}
-
-/**
- * Save a new draft term.
- * @param {term} term An unpublished term
- */
-export function createDraft(term) {
-  const cur_time = new Date();
-  term['tags'] = term.tags.split(',');
-  for(const i in term['tags']) {
-    term['tags'][i] = term['tags'][i].trim();
-    if(term['tags'][i] === '') {
-      term['tags'].splice(i, 1);
-    }
-  }
-
-  term['id'] = generateTermId();
-  term['created_by'] = 'user';
-  term['created_time'] = cur_time;
-  term['edited_by'] = 'user';
-  term['edited_date'] = cur_time;
-  term['edit_count'] = 0;
-  insertTerm(term);
-  return term.id;
-}
-
-/**
- * Update a draft term.
- * @param {term} term An unpublished term
- */
-export function updateDraft(term) {
-  const dict = loadDict();
-  term['tags'] = term.tags.split(',');
-  for(const i in term['tags']) {
-    term['tags'][i] = term['tags'][i].trim();
-    if(term['tags'][i] === '') {
-      term['tags'].splice(i, 1);
-    }
-  }
-  term.edit_count += 1;
-  term.edited_date = new Date();
-  term.edited_by = 'user';
-  dict[term.id] = term;
-  archiveDict(dict);
-}
-
-/**
- * Delete a draft term.
- * @param {term} term An unpublished term
- */
-export function deleteDraft(term) {
-  let dict = loadDict();
-  if(!(term.id in dict) || !term.published) {
-    return false;
-  }
-  delete dict[term.id];
-  archiveDict(dict); 
-  return true;
-}
-
-/**
- * Publish a draft term.
- * @param {term} term An unpublished term
- * @return {string} Id of published term
- */
-export function publishDraft(term) {
-  updateTerm(term);
-  return term.id;
 }
