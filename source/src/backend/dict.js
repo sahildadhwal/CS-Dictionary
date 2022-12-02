@@ -475,7 +475,7 @@ export function findRequestedTerm(
  * @return {term[]} An array of published term objects 
  */
 export function getAllPublishedTerms() {
-  const dict = selectDict(published=true)
+  const dict = selectDict(true)
   return Object.values(dict);
 }
 
@@ -484,7 +484,7 @@ export function getAllPublishedTerms() {
  * @return {term[]} An array of unpublished term objects
  */
 export function getAllUnpublishedTerms() {
-  const dict = selectDict(published=false)
+  const dict = selectDict(false)
   return Object.values(dict);
 }
 
