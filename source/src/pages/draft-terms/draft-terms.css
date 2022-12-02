@@ -1,0 +1,14 @@
+term-card {
+  margin-right: 20px;
+}
+
+/* */
+term-card:last-child {
+  margin: 0;
+}
+.card-results {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  padding-left: 40px;
+}
