@@ -104,6 +104,19 @@ export function getRandomTermsOfTag(tag, count=5, published=true) {
   }
   return terms;
 }
+/**
+ * Get the first 5 terms of all tags, or all terms in a tag if less than 5 terms exist for that tag
+ * @param {} 
+ * @returns {term[]} array of 5 terms * number of tags
+ */
+export function termFromAllTags(){
+  const tags = loadTags();
+  let top5_all = [];
+  for(const tag in tags){
+    top5_all.push({tag_name: tag, terms: top5terms(tags[tag])});
+  }
+  return top5_all;
+}
 
 /**
  * Get the first 5 terms of a tag
@@ -116,7 +129,7 @@ export function top5terms(tag_name) {
   const terms_of_tag = tags[tag_name];
   // let count = Math.min(terms_of_tag.length, 5);
   let top5 = [];
-  for(let i = 0; i < 5; i++) {
+  for(let i = 0; i < Math.min(5, terms_of_tag.length); i++) {
     // push term objects
     top5.push(dict[terms_of_tag[i]]);
   }
