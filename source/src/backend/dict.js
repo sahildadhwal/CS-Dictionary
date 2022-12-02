@@ -404,6 +404,8 @@ export function addTermToBackend(term){
   term['edited_date'] = cur_time;
   term['edit_count'] = 0;
   insertTerm(term);
+  // TODO: save tags of draft terms in either a new list or make the tag
+  // distinguishable from published tags
   if (term.published){
     updateRecents(term.id);
     updateTags(term);
@@ -425,13 +427,14 @@ export function addTermToDoc(term) {
  * @param {boolean} s_term Whether to search in terms
  * @param {boolean} s_tag Whether to search in tags
  * @param {boolean} s_description Whether to search in descriptions
- * @param {boolean} [case_insensitive=false] Whether to match case
+ * @param {boolean} [case_insensitive=true] Whether to match case
+ * @param {boolean} [published=true]
  * @return {term[]} A list of all the term associated with the search 
  */
 export function findRequestedTerm(
-  input, s_term, s_tag, s_description, case_insensitive=false
+  input, s_term, s_tag, s_description, case_insensitive=true, published=true
 ) {
-  const dict = loadDict();
+  const dict = selectDict(published);
   let search_result = [];
   // fall back to search terms
   if(!s_term && !s_tag && !s_description) {
@@ -441,21 +444,9 @@ export function findRequestedTerm(
   if (case_insensitive) {
     input = input.toLowerCase();
   }
-  // search tags
-  if(s_tag) {
-    const tags = JSON.parse(localStorage.getItem('tags')) || {};
-    for (const [tag, ids] of Object.entries(tags)) {
-      if (tag.toLowerCase().includes(input)) {
-        for (const id of ids) {
-          if (!search_result.includes(id)) {
-            search_result.push(id);
-          }
-        }
-      }
-    }
-  }
-  // search terms and descriptions
+  // search terms, tags, and descriptions
   let term_name;
+  let tags;
   let short_description;
   for (const [id, term] of Object.entries(dict)) {
     if(search_result.includes(id)) continue;
@@ -463,6 +454,14 @@ export function findRequestedTerm(
       term_name = term.term_name;
       if (case_insensitive) term_name = term_name.toLowerCase();
       if (term_name.includes(input)) {
+        search_result.push(id);
+        continue;
+      }
+    }
+    if(s_tag) {
+      tags = term.tags;
+      if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+      if (tags.find((tag) => tag.includes(input)) !== undefined){
         search_result.push(id);
         continue;
       }
