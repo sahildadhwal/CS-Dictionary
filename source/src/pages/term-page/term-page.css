@@ -74,6 +74,10 @@
     text-align: left;
 }
 
+#term-title span {
+  color: #919191;
+}
+
 .button-container {
   display: flex;
   justify-content: flex-end;
