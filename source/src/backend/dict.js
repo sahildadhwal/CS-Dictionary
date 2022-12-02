@@ -63,10 +63,11 @@ export function getPopularTags(count) {
 /**
  * Return all terms which has the specified tag.
  * @param {string} tag Name of a tag
+ * @param {boolean} [published=true]
  * @returns {term[]} An array of all terms with this tag
  */
-export function getDataOfTag(tag) {
-  const dict = loadDict();
+export function getDataOfTag(tag, published=true) {
+  const dict = selectDict(published);
   const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   let terms = [];
   for(let uuid of uuids) {
@@ -79,11 +80,12 @@ export function getDataOfTag(tag) {
 /**
  * Get some random terms with the specified tag.
  * @param {string} tag Name of a tag that the terms have
+ * @param {boolean} [published=true]
  * @param {number} [count=5] Number of terms to return. Default is 5.
  * @returns {term[]} An array of some terms that has the given tag
  */
-export function getRandomTermsOfTag(tag, count=5) {
-  const dict = loadDict();
+export function getRandomTermsOfTag(tag, count=5, published=true) {
+  const dict = selectDict(published);
   const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   // get some random uuids
   let randomUuids = [];
@@ -109,7 +111,7 @@ export function getRandomTermsOfTag(tag, count=5) {
  * @returns {term[]} array of 5 terms
  */
 export function top5terms(tag_name) {
-  const dict = loadDict();
+  const dict = selectDict(true);
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
   const terms_of_tag = tags[tag_name];
   // let count = Math.min(terms_of_tag.length, 5);
@@ -355,7 +357,7 @@ export function deleteTerm(term) {
  * @returns {number} The number of existing terms.
  */
 export function termsCount() {
-  const dict = loadDict();
+  const dict = selectDict();
   return Object.keys(dict).length;
 }
 
