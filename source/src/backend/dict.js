@@ -63,10 +63,11 @@ export function getPopularTags(count) {
 /**
  * Return all terms which has the specified tag.
  * @param {string} tag Name of a tag
+ * @param {boolean} [published=true]
  * @returns {term[]} An array of all terms with this tag
  */
-export function getDataOfTag(tag) {
-  const dict = loadDict();
+export function getDataOfTag(tag, published=true) {
+  const dict = selectDict(published);
   const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   let terms = [];
   for(let uuid of uuids) {
@@ -79,11 +80,12 @@ export function getDataOfTag(tag) {
 /**
  * Get some random terms with the specified tag.
  * @param {string} tag Name of a tag that the terms have
+ * @param {boolean} [published=true]
  * @param {number} [count=5] Number of terms to return. Default is 5.
  * @returns {term[]} An array of some terms that has the given tag
  */
-export function getRandomTermsOfTag(tag, count=5) {
-  const dict = loadDict();
+export function getRandomTermsOfTag(tag, count=5, published=true) {
+  const dict = selectDict(published);
   const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   // get some random uuids
   let randomUuids = [];
@@ -102,6 +104,19 @@ export function getRandomTermsOfTag(tag, count=5) {
   }
   return terms;
 }
+/**
+ * Get the first 5 terms of all tags, or all terms in a tag if less than 5 terms exist for that tag
+ * @param {} 
+ * @returns {term[]} array of 5 terms * number of tags
+ */
+export function termFromAllTags(){
+  const tags = loadTags();
+  let top5_all = [];
+  for(const tag in tags){
+    top5_all.push({tag_name: tag, terms: top5terms(tags[tag])});
+  }
+  return top5_all;
+}
 
 /**
  * Get the first 5 terms of a tag
@@ -109,12 +124,12 @@ export function getRandomTermsOfTag(tag, count=5) {
  * @returns {term[]} array of 5 terms
  */
 export function top5terms(tag_name) {
-  const dict = loadDict();
+  const dict = selectDict(true);
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
   const terms_of_tag = tags[tag_name];
   // let count = Math.min(terms_of_tag.length, 5);
   let top5 = [];
-  for(let i = 0; i < 5; i++) {
+  for(let i = 0; i < Math.min(5, terms_of_tag.length); i++) {
     // push term objects
     top5.push(dict[terms_of_tag[i]]);
   }
@@ -321,7 +336,7 @@ export function updateTerm(term) {
  * @returns {boolean} `true` if success; `false` otherwise
  */
 export function deleteTerm(term) {
-  let dict = loadDict();  
+  let dict = loadDict();
   let tags = JSON.parse(localStorage.getItem('tags'));
   let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
   let recents = JSON.parse(localStorage.getItem('recents'));
@@ -355,7 +370,7 @@ export function deleteTerm(term) {
  * @returns {number} The number of existing terms.
  */
 export function termsCount() {
-  const dict = loadDict();
+  const dict = selectDict();
   return Object.keys(dict).length;
 }
 
@@ -405,7 +420,7 @@ export function addTermToDoc(term) {
  * @return {term[]} A list of all the term associated with the search 
  */
 export function findRequestedTerm(
-  input, s_term, s_tag, s_description,case_insensitive=false
+  input, s_term, s_tag, s_description, case_insensitive=false
 ) {
   const dict = loadDict();
   let search_result = [];
@@ -460,7 +475,7 @@ export function findRequestedTerm(
  * @return {term[]} An array of published term objects 
  */
 export function getAllPublishedTerms() {
-  const dict = selectDict(published=true)
+  const dict = selectDict(true)
   return Object.values(dict);
 }
 
@@ -469,6 +484,74 @@ export function getAllPublishedTerms() {
  * @return {term[]} An array of unpublished term objects
  */
 export function getAllUnpublishedTerms() {
-  const dict = selectDict(published=false)
+  const dict = selectDict(false)
   return Object.values(dict);
+}
+
+/**
+ * Save a new draft term.
+ * @param {term} term An unpublished term
+ */
+export function createDraft(term) {
+  const cur_time = new Date();
+  term['tags'] = term.tags.split(',');
+  for(const i in term['tags']) {
+    term['tags'][i] = term['tags'][i].trim();
+    if(term['tags'][i] === '') {
+      term['tags'].splice(i, 1);
+    }
+  }
+
+  term['id'] = generateTermId();
+  term['created_by'] = 'user';
+  term['created_time'] = cur_time;
+  term['edited_by'] = 'user';
+  term['edited_date'] = cur_time;
+  term['edit_count'] = 0;
+  insertTerm(term);
+  return term.id;
+}
+
+/**
+ * Update a draft term.
+ * @param {term} term An unpublished term
+ */
+export function updateDraft(term) {
+  const dict = loadDict();
+  term['tags'] = term.tags.split(',');
+  for(const i in term['tags']) {
+    term['tags'][i] = term['tags'][i].trim();
+    if(term['tags'][i] === '') {
+      term['tags'].splice(i, 1);
+    }
+  }
+  term.edit_count += 1;
+  term.edited_date = new Date();
+  term.edited_by = 'user';
+  dict[term.id] = term;
+  archiveDict(dict);
+}
+
+/**
+ * Delete a draft term.
+ * @param {term} term An unpublished term
+ */
+export function deleteDraft(term) {
+  let dict = loadDict();
+  if(!(term.id in dict) || !term.published) {
+    return false;
+  }
+  delete dict[term.id];
+  archiveDict(dict); 
+  return true;
+}
+
+/**
+ * Publish a draft term.
+ * @param {term} term An unpublished term
+ * @return {string} Id of published term
+ */
+export function publishDraft(term) {
+  updateTerm(term);
+  return term.id;
 }
