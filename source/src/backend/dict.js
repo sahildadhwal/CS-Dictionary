@@ -34,7 +34,7 @@
  * Get a dictionary of tags with lists of termids
  * @returns {Object.<string, string[]>}
  */
- export function loadTags() {
+export function loadTags() {
   return JSON.parse(localStorage.getItem('tags')) || {};
 }
 
@@ -42,7 +42,7 @@
  * Get a dictionary of tags with viewing counts
  * @returns {Object.<string, number>}
  */
- export function loadTagCounts() {
+export function loadTagCounts() {
   return JSON.parse(localStorage.getItem('tag_counts')) || {};
 }
 
@@ -154,7 +154,7 @@ export function updateTags(term) {
     if (tags_dict[tag].includes(term.id) && !term.tags.includes(tag)) {
       let index = tags_dict[tag].indexOf(term.id);
       tags_dict[tag].splice(index, 1);
-      if (tags_dict[tag].length == 0) {
+      if (tags_dict[tag].length === 0) {
         delete tags_dict[tag];
       }
     }
@@ -169,7 +169,6 @@ export function updateTags(term) {
 export function updateTagCount(term) {
   const tags = Object.keys(loadTags());
   const tag_counts = loadTagCounts();
-
   for (const tag of term.tags) {
     tag_counts[tag] = tag_counts[tag] || 0;
     tag_counts[tag]++;
@@ -241,13 +240,15 @@ function archiveDict(dict) {
 }
 
 /**
- * //FIXME: duplicate with `loadDict`
- * Same as `loadDict`
+ * Get a filtered dictionary of all terms.
+ * @param {boolean} [published=true] If the term has published or is a draft
  * @returns {Object.<string, term>} A dictionary of terms
  */
-export function selectDict() {
+export function selectDict(published=true) {
   const dict = loadDict();
-  return dict;
+  return Object.fromEntries(
+    Object.entries(dict).filter(([_, term]) => term.published === published)
+  );
 }
 
 /**
@@ -258,7 +259,6 @@ export function deleteAll() {
   for(const [_, term] of Object.entries(dict)){
     deleteTerm(term);
   }
-  // renderAllTerms(document.getElementById('dict'));
 }
 
 /**
@@ -275,11 +275,9 @@ export function generateTermId() {
  * @returns {string} The id of the new term
  */
 export function insertTerm(term) {
-  // TODO: Decide how we are going to handle duplicate (consult with team)
   const dict = loadDict();
   dict[term.id] = term;
   archiveDict(dict);
-  // location.reload();
   return term.id;
 }
 
@@ -311,7 +309,7 @@ export function updateTerm(term) {
   term.edited_date = cur_time;
   term.edited_by = 'user';
   dict[term.id] = term;
-  updateRecents(term.id)
+  updateRecents(term.id);
   updateTags(term);
   updateTagCount(term);
   archiveDict(dict);
@@ -327,40 +325,28 @@ export function deleteTerm(term) {
   let tags = JSON.parse(localStorage.getItem('tags'));
   let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
   let recents = JSON.parse(localStorage.getItem('recents'));
-  if(!dict.includes(term.id)) {
+  if(!(term.id in dict)) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) != -1){
+  archiveDict(dict); 
+  if(recents.indexOf(term.id) !== -1) {
     recents.splice(recents.indexOf(term.id), 1);
     localStorage.setItem('recents', JSON.stringify(recents));
   }
-  archiveDict(dict); 
   for(const tag of term.tags) {
     let uuids = tags[tag] || [];
     const i = uuids.indexOf(term.id);
-    if(i != -1){
+    if(i !== -1){
       tags[tag].splice(i, 1);
     }
     if(tags[tag].length === 0){
       delete tags[tag];
-    }
-    tagCount[tag] = tagCount[tag] - 1;
-    if(tagCount[tag] <= 0){
       delete tagCount[tag];
     }
   }
-  if(tags.length === 0){
-    localStorage.setItem('tags', JSON.stringify({}));
-  } else {
-    localStorage.setItem('tags', JSON.stringify(tags));
-  }  
-  if(tagCount.length === 0){
-    localStorage.setItem('tag_counts', JSON.stringify({}));
-  } else {
-    localStorage.setItem('tag_counts', JSON.stringify(tagCount));
-  }     
-  location.href='home.html';
+  localStorage.setItem('tags', JSON.stringify(tags));
+  localStorage.setItem('tag_counts', JSON.stringify(tagCount));
   return true;
 }
 
@@ -474,27 +460,15 @@ export function findRequestedTerm(
  * @return {term[]} An array of published term objects 
  */
 export function getAllPublishedTerms() {
-  let published = [];
-  const dict = loadDict();
-  for(const term of Object.values(dict)) {
-    if(term.published) {
-      published.push(term);
-    }
-  }
-  return published;
+  const dict = selectDict(published=true)
+  return Object.values(dict);
 }
 
 /**
  * Return all unpublished terms.
- * @return {term[]} An array of unpublished term objects 
+ * @return {term[]} An array of unpublished term objects
  */
- export function getAllUnpublishedTerms() {
-  let unpublished = [];
-  const dict = loadDict();
-  for(const term of Object.values(dict)) {
-    if(!term.published) {
-      unpublished.push(term);
-    }
-  }
-  return unpublished;
+export function getAllUnpublishedTerms() {
+  const dict = selectDict(published=false)
+  return Object.values(dict);
 }
