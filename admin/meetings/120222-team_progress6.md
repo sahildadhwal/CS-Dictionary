@@ -35,8 +35,8 @@
 <ul>
   <li>December 2, 2022</li>
   <ul>
-    <li>Duration: 1 hour 5 minutes</li>
-        <ol>6:30om to 7:35pm<ol>
+    <li>Duration: 1 hour 21 minutes</li>
+        <ol>6:30pm to 7:51pm<ol>
   </ul>
 </ul>
 
@@ -91,11 +91,13 @@
 - [x] Discuss the TA feedback from the meeting with the TA.
 - [x] Discuss each groups progress and see what needs to be completed.
 - [x] Assign tasks and deadlines for each group.
-- [x] Decide final interview time on Monday (12pm Monday)
+- [x] Decide final interview time (12pm Monday)
 
     
 ## **Meeting Notes**
-1) **Team Roles**
+1) Decided the final interview time as Monday 12pm. 
+
+2) **Team Roles**
     <ul>
         <li>Team Leads</li>
             <ul>
@@ -125,55 +127,34 @@
             </ul>
     </ul>
 
-2) **Notes**
+3) **Notes**
 <ul>
 <b>Updates</b>
 
 <ul>
     Frontend
     <ul>
-        <li>Worked on Saturday, integrated backend search function.</li>
-        <li>Populated the term page when a term is clicked.</li>
-        <li>There is an issue with search.</li>
-    </ul>
+        <li>Posts section on homepage</li>
+        <li>There is a drafts section now!</li>
+        <li>To fix: if you make name/description too long, it goes past the screen on the term page</li>
+        <li>To do: make short description required and tags optional</li>
+        <li>To do: add the search by tag feature</li>
+    </ul>             
     Backend
     <ul>
-        <li>Search function.</li>
-        <li>Added rules to ESLint function.</li>
+        <li>Search is not case sensitive and is more robust</li>
+        <li>To do: Have a starter set of 10 terms/tags for the user</li>
+        <li>To do: search by tag function</li>
     </ul>
-    Testing and DevOps
+    Testing-DevOps
     <ul>
-        <li>Working on some linting tests</li>
-        <li>JSDocs is working now.</li>
-        <li>Writing E2E tests and unit tests.</li>
+        <li>Now we have unit testing and end-to-end testing</li>
+        <li>To do: continue writing tests</li>
     </ul>
-</ul>
-<b>Tasks to be completed</b>
+    Team leads
     <ul>
-        Frontend
-        <ul>
-            <li>Posts section on homepage</li>
-            <li>There is a drafts section now!</li>
-            <li>To fix: if you make name/description too long, it goes past the screen on the term page</li>
-            <li>To do: make short description required and tags optional</li>
-            <li>To do: add the search by tag feature</li>
-        </ul>             
-        Backend
-        <ul>
-            <li>Search is not case sensitive and is more robust</li>
-            <li>To do: Have a starter set of 10 terms/tags for the user</li>
-            <li>To do: search by tag function</li>
-        </ul>
-        Testing-DevOps
-        <ul>
-            <li>Now we have unit testing and end-to-end testing</li>
-            <li>To do: continue writing tests</li>
-        </ul>
-        Team leads
-        <ul>
-            <li>To do: complete any final ADRs</li>
-            <li>To do: public and private team videos</li>
-            <li>To do: send Sourabh current deployment</li>            
-        </ul>
+        <li>To do: complete any final ADRs</li>
+        <li>To do: public and private team videos</li>
+        <li>To do: send Sourabh current deployment</li>            
     </ul>
 </ul>
