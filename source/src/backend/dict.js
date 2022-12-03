@@ -323,6 +323,9 @@ export function updateTerm(term) {
   term.edit_count += 1;
   term.edited_date = cur_time;
   term.edited_by = 'user';
+  if (dict[term.id].published && !term.published) {
+    deleteTerm(dict[term.id]);
+  }
   dict[term.id] = term;
   if (term.published) {
     updateRecents(term.id);
@@ -339,9 +342,9 @@ export function updateTerm(term) {
  */
 export function deleteTerm(term) {
   let dict = loadDict();
-  let tags = JSON.parse(localStorage.getItem('tags'));
-  let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
-  let recents = JSON.parse(localStorage.getItem('recents'));
+  let tags = loadTags();
+  let tagCount = loadTagCounts();
+  let recents = loadRecents();
   if(!(term.id in dict)) {
     return false;
   }
@@ -404,8 +407,6 @@ export function addTermToBackend(term){
   term['edited_date'] = cur_time;
   term['edit_count'] = 0;
   insertTerm(term);
-  // TODO: save tags of draft terms in either a new list or make the tag
-  // distinguishable from published tags
   if (term.published){
     updateRecents(term.id);
     updateTags(term);
