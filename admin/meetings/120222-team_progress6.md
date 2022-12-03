@@ -166,8 +166,8 @@
         </ul>
         Testing-DevOps
         <ul>
-            <li>Unit testing</li>
-            <li>E2E testing</li>
+            <li>Now we have unit testing and end-to-end testing</li>
+            <li>To do: continue writing tests</li>
         </ul>
         
         Team leads
