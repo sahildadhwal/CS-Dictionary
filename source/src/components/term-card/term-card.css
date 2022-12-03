@@ -17,7 +17,11 @@
 
 .basic-card .card-title {
   font-size: 25px;
-  font-family: 'Open Sans', sans-serif;
+
+  /* Prevent term name too long in card */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .basic-card .card-text {
@@ -69,6 +73,13 @@
 
 .basic-card-light .card-text {
   color: #7b7b7b;
+
+  /* Prevent short description too long in card */
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .basic-card-light .card-link {
@@ -83,8 +94,6 @@
   background: #cbdfe9c9;
   transition: 1s;
 }
-
-
 
 /*MAKE IT GLOW?? https://alvarotrigo.com/blog/10-cool-css-animations-to-add-to-your-website/ */
 .basic-card:before {
