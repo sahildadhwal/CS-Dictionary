@@ -1,4 +1,4 @@
-# Team Meeting: Team Progress Meeting 5
+# Team Meeting: Team Progress Meeting 6
 
 [Team 2 Members](#team-2-members)
 
@@ -12,7 +12,7 @@
 
 [Miro Board](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391)
 
-[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/111922-team_progress4.md)
+[Previous Meeting](https://github.com/cse110-fa22-group2/team2-fa22-cse110/blob/main/admin/meetings/112122-team_progress5.md)
 
 ## **Team 2 Members**
 <ul>
@@ -33,10 +33,10 @@
 ## **Meeting Info**
 #### Meeting Specs: 
 <ul>
-  <li>November 21, 2022</li>
+  <li>December 2, 2022</li>
   <ul>
     <li>Duration: 2 hours</li>
-        <ol>6:00pm to 8:00pm<ol>
+        <ol>6:30 to 8:00pm<ol>
   </ul>
 </ul>
 
@@ -73,17 +73,18 @@
 </ul>	
 
 ## **Attendance**
-##### <li> *10 out of 10* </li>
+##### <li> *7 out of 10* </li>
+
 - [x] Sahil Dadhwal
 - [x] Nikhil Rao
-- [x] Yingqi Cao
 - [x] Isaac Varela
 - [x] Thomas Koon
 - [x] Liam Nguyen
 - [x] Amaar Valliani
 - [x] Yunxiao Xu
-- [x] Chieh-hsiu Hung 
-- [x] Andrew Jia
+- [ ] Chieh-hsiu Hung 
+- [ ] Andrew Jia
+- [ ] Yingqi Cao
 
 
 ## **Agenda**
