@@ -169,16 +169,11 @@
             <li>Now we have unit testing and end-to-end testing</li>
             <li>To do: continue writing tests</li>
         </ul>
-        
         Team leads
         <ul>
-            <li>ADR</li>
-            <li>Wiki</li>
-            <li>How to create and delete a term</li>
-            <ul>
-                <li>How the pipeline works</li>
-                <li>System diagrams and layouts</li>
-                <li>Talk about pull requests</li>
-            </ul>
+            <li>To do: complete any final ADRs</li>
+            <li>To do: public and private team videos</li>
+            <li>To do: send Sourabh current deployment</li>            
+        </ul>
     </ul>
 </ul>
