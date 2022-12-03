@@ -157,31 +157,19 @@
             <li>To fix: if you make name/description too long, it goes past the screen on the term page</li>
             <li>To do: make short description required and tags optional</li>
             <li>To do: add the search by tag feature</li>
-        </ul>
-                <li>Set max width/height size of images for instance</li>
-            </ul>
-            <li>Move Update and Delete buttons to the top</li>
-            <li>When you click on the Post button, the term creation should be displayed</li>
-            <ul>
-                <li>As of now, it goes to the home page</li>
-            </ul>
+        </ul>             
+        Backend
+        <ul>
+            <li>Search is not case sensitive and is more robust</li>
+            <li>To do: Have a starter set of 10 terms/tags for the user</li>
+            <li>To do: search by tag function</li>
         </ul>
         Testing-DevOps
         <ul>
             <li>Unit testing</li>
             <li>E2E testing</li>
         </ul>
-        Backend
-        <ul>
-            <li>Write the search function based on what the frontend designs</li>
-            <ul>
-                <li>Should not be case sensitive</li>
-                <li>You need to search by substring</li>
-            </ul>
-            <li>Fix the Delete function</li>
-            <li>Work on Update button</li>
-            <li>Sort by popular tags</li>
-        </ul>
+        
         Team leads
         <ul>
             <li>ADR</li>
