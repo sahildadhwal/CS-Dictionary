@@ -152,15 +152,12 @@
     <ul>
         Frontend
         <ul>
-            <li>Save as Draft button</li>
-            <ul>
-                <li>Term creation page</li>
-                <li>Button to see all the drafts on home page</li>
-            </ul>
-            <li>Change position of Setting button</li>
-            <li>Layout/create a wireframe how you </li><li>want the search function to look like</li>
-            <li>In CSS</li>
-            <ul>
+            <li>Posts section on homepage</li>
+            <li>There is a drafts section now!</li>
+            <li>To fix: if you make name/description too long, it goes past the screen on the term page</li>
+            <li>To do: make short description required and tags optional</li>
+            <li>To do: add the search by tag feature</li>
+        </ul>
                 <li>Set max width/height size of images for instance</li>
             </ul>
             <li>Move Update and Delete buttons to the top</li>
