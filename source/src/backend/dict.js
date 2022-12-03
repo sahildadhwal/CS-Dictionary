@@ -478,6 +478,25 @@ export function findRequestedTerm(
   return search_result.map((id) => dict[id]);
 }
 
+export function findRequestedTag(input, case_insensitive=true, published=true) {
+  if (case_insensitive) {
+    input = input.toLowerCase();
+  }
+
+  let tags;
+  if (published) {
+    tags = Object.keys(loadTags());
+  } else {
+    const dict = selectDict(false);
+    let merged_tags = [].concat(...Object.values(dict).map((term) => term.tags));
+    tags = [...new Set(merged_tags)];
+  }
+
+  return tags.filter((tag) =>
+    (case_insensitive ? tag.toLowerCase() : tag).includes(input)
+  );
+}
+
 /**
  * Return all published terms.
  * @return {term[]} An array of published term objects 
