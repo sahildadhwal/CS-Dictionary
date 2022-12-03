@@ -35,8 +35,8 @@
 <ul>
   <li>December 2, 2022</li>
   <ul>
-    <li>Duration: 2 hours</li>
-        <ol>6:30 to 8:00pm<ol>
+    <li>Duration: 1 hour 5 minutes</li>
+        <ol>6:30om to 7:35pm<ol>
   </ul>
 </ul>
 
@@ -91,6 +91,8 @@
 - [x] Discuss the TA feedback from the meeting with the TA.
 - [x] Discuss each groups progress and see what needs to be completed.
 - [x] Assign tasks and deadlines for each group.
+- [x] Decide final interview time on Monday (12pm Monday)
+
     
 ## **Meeting Notes**
 1) **Team Roles**
@@ -126,6 +128,7 @@
 2) **Notes**
 <ul>
 <b>Updates</b>
+
 <ul>
     Frontend
     <ul>
