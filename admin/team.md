@@ -6,8 +6,6 @@
 ## **Brand:**
 [![Avatar](./images/d_logo.png#avatar)](https://youtu.be/tpCWZWzKOt8 "Redirect to team status vid, which talks about our site.")
 
-
-
 ### **Logo:**
 [![image](./images/THEPIZZAPARTY.png#avatar)](https://youtu.be/iMRoQklh57Q "Redirect to team intro vid, which introduces the team members.")
 
