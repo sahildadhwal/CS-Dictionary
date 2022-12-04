@@ -113,7 +113,7 @@ export function termFromAllTags(){
   const tags = loadTags();
   let top5_all = [];
   for(const tag in tags){
-    top5_all.push({tag_name: tag, terms: top5terms(tags[tag])});
+    top5_all.push({tag_name: tag, terms: top5terms(tag)});
   }
   return top5_all;
 }
