@@ -28,6 +28,10 @@ export function jumpDraftsPageHtml() {
 export function jumpTagSearchHtml() {
   location.href='tag-search.html';
 }
+export function jumpTagsHtml() {
+  location.href='tags.html';
+}
+
 window.jumpCreateTermHtml = jumpCreateTermHtml;
 window.jumpHomeHtml = jumpHomeHtml;
 window.jumpPostHtml = jumpPostHtml;
@@ -38,3 +42,4 @@ window.jumpUpdateTermHtml = jumpUpdateTermHtml;
 window.jumpPublishedTerms = jumpPublishedTerms;
 window.jumpDraftsPageHtml = jumpDraftsPageHtml;
 window.jumpTagSearchHtml = jumpTagSearchHtml;
+window.jumpTagsHtml = jumpTagsHtml;

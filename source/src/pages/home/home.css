@@ -53,9 +53,18 @@ term-card:last-child {
 
 .draft-button {
   padding-top: 4px;
+  margin-left: 17px !important;
 }
 
 .draft-button:hover {
+  cursor: pointer;
+}
+
+.tags-button {
+  margin-left: 17px !important;
+}
+
+.tags-button:hover {
   cursor: pointer;
 }
 
