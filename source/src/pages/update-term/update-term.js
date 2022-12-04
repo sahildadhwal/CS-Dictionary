@@ -5,6 +5,7 @@ import * as redirection from '/src/common-scripts/redirection.js'
 let term_id = localStorage.getItem('get_term_id');
 let button = document.getElementById('update-button');
 let draftButton = document.getElementById('draft-button');
+let cancelButton = document.getElementById('cancel-button');
 let term_name = document.getElementById('term-name');
 let tags = document.getElementById('tags');
 let short_description = document.getElementById('short-description');
@@ -21,6 +22,15 @@ function init() {
   tags.value = data.tags.toString();
   short_description.value = data.short_description;
   initTinyMCE(data.term_data);
+}
+
+// Remove draft button if the post is posted
+if (data.published == true) {
+  draftButton.remove();
+}
+// Else if draft then change text of Update button to Post
+else {
+  button.value = "Post";
 }
 
 // Update as post
@@ -58,4 +68,8 @@ draftButton.addEventListener('click', (e) => {
   }
 });
 
-
+// 
+cancelButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  redirection.jumpTermPageHtml();
+})
