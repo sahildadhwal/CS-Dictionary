@@ -34,8 +34,14 @@ function populateTermData() {
   let tag_list = term_data['tags'];
   for (let i = 0; i < tag_list.length; i++) {
     let tag_list_item = document.createElement('li');
+
+    // Create tag as a button
     let tag_button = document.createElement('button');
     tag_button.innerHTML = tag_list[i];
+
+    // Handles clicking on the tag to jump to tag search page
+    tag_button.addEventListener('click', searchByTags);
+    
     tag_list_item.appendChild(tag_button);
     term_tags.appendChild(tag_list_item);
   }
@@ -66,3 +72,20 @@ update_btn.addEventListener('click', () => {
   redirection.jumpUpdateTermHtml();
 })
 
+function searchByTags(e) {
+  e.preventDefault();
+
+  // Get tag name and get search results by tag
+  let tag_name = e.currentTarget.textContent;
+  let search_results = backend_function.findTermsOfTagExact(tag_name);
+
+  // Build json for tag-search page and redirect
+  let tag_search_results =[
+    {
+      "tag_name": tag_name,
+      "terms": search_results
+    }
+  ]
+  localStorage.setItem('tag_search_results', JSON.stringify(tag_search_results));
+  redirection.jumpTagSearchHtml();
+}
