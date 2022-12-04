@@ -429,7 +429,7 @@ export function addTermToDoc(term) {
  * @returns {term[]} A list of all terms associated with the tag
  */
 export function findTermsOfTagExact(input, case_insensitive=true) {
-  const dict = selectDict(published);
+  const dict = selectDict(true);
   let search_result = [];
    // case insensitive
    if (case_insensitive) {
@@ -447,6 +447,8 @@ export function findTermsOfTagExact(input, case_insensitive=true) {
   }
   return search_result.map((id) => dict[id]);
 }
+
+
 
 /**
  * Find matching terms with the input.
