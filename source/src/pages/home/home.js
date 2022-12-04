@@ -63,7 +63,7 @@ function searchByTags(e) {
 
   // Get tag name and get search results by tag
   let tag_name = e.currentTarget.textContent;
-  let search_results = backend_function.findRequestedTerm(tag_name, false, true, false, false);
+  let search_results = backend_function.findTermsOfTagExact(tag_name);
 
   // Build json for tag-search page and redirect
   let tag_search_results =[
