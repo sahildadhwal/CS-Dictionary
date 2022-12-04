@@ -72,10 +72,15 @@
 
 #term-title {
     text-align: left;
+    word-wrap: break-word;
 }
 
 #term-title span {
   color: #919191;
+}
+
+#term-description {
+  word-wrap: break-word;
 }
 
 .button-container {
