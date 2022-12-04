@@ -423,6 +423,32 @@ export function addTermToDoc(term) {
 }
 
 /**
+ * Find terms of a tag, with exact searching (not substring)
+ * @param {string} input The exact name of the tag to be searched for
+ * @param {boolean} case_insensitive Whether to match case
+ * @returns {term[]} A list of all terms associated with the tag
+ */
+export function findTermsOfTagExact(input, case_insensitive=true) {
+  const dict = selectDict(published);
+  let search_result = [];
+   // case insensitive
+   if (case_insensitive) {
+    input = input.toLowerCase();
+  }
+  let tags;
+  for (const [id, term] of Object.entries(dict)) {
+    if(search_result.includes(id)) continue;
+      tags = term.tags;
+      if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+      if (tags.find((tag) => tag == input) !== undefined) {
+        search_result.push(id);
+        continue;
+      }
+  }
+  return search_result.map((id) => dict[id]);
+}
+
+/**
  * Find matching terms with the input.
  * @param {string} input The user input to the search bar
  * @param {boolean} s_term Whether to search in terms
