@@ -113,7 +113,10 @@ export function termFromAllTags(){
   const tags = loadTags();
   let top5_all = [];
   for(const tag in tags){
-    top5_all.push({tag_name: tag, terms: top5terms(tag)});
+    let temp_terms = top5PublishedTerms(tag);
+    if(temp_terms.length > 0){
+      top5_all.push({tag_name: tag, terms: temp_terms});
+    }
   }
   return top5_all;
 }
@@ -132,6 +135,29 @@ export function top5terms(tag_name) {
   for(let i = 0; i < Math.min(5, terms_of_tag.length); i++) {
     // push term objects
     top5.push(dict[terms_of_tag[i]]);
+  }
+  return top5;
+}
+
+/**
+ * Get the first 5 terms of a tag
+ * @param {string} tag_name the name of the tag you want the top 5 of
+ * @returns {term[]} array of 5 terms
+ */
+ export function top5PublishedTerms(tag_name) {
+  const dict = selectDict(true);
+  const tags = JSON.parse(localStorage.getItem('tags')) || {};
+  const terms_of_tag = tags[tag_name];
+  // let count = Math.min(terms_of_tag.length, 5);
+  let top5 = [];
+  for(let i = 0; i < terms_of_tag.length; i++) {
+    // push term objects
+    if(top5.length >= 5){
+      break;
+    }
+    if(dict[terms_of_tag[i]].published){
+      top5.push(dict[terms_of_tag[i]]);
+    }
   }
   return top5;
 }
