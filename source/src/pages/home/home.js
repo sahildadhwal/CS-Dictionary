@@ -14,6 +14,7 @@ function init() {
 function addSearchBarToDocument() {
   let search_bar = document.createElement('search-bar');
   top_buttons.appendChild(search_bar);
+  search_bar.searchFunction = backend_function.findRequestedTerm;
   search_bar.initSearchFunction = {
     "search_term": true,
     "search_tag": false,
