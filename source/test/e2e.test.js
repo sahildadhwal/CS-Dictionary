@@ -41,22 +41,57 @@ describe('Basic user flow for Website', () => {
     const termCards = await page.$$('.recently-added-elements>term-card');
     expect(termCards.length).toBe(1);                            //only one card in recents
 
-    const termNameEl = await page.evaluateHandle(`document.querySelector("body > main > div.recently-added > div > term-card").shadowRoot.querySelector("#term-name")`);
+    const termNameEl = await page.evaluateHandle(`document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#term-name")`);
     let termName = await page.evaluate(el => el.textContent, termNameEl)
     expect(termName).toBe('Apple');
 
-    const descriptionEl = await page.evaluateHandle(`document.querySelector("body > main > div.recently-added > div > term-card").shadowRoot.querySelector("#description")`);
+    const descriptionEl = await page.evaluateHandle(`document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#description")`);
     let description = await page.evaluate(el => el.textContent, descriptionEl)
     expect(description).toBe('\n        fruit, crisp\n      ');  //newline, 8 spaces, newline, 6 spaces... why
   });
 
   it('Check popular tags are working', async () => {
     const termCards = await page.$$('term-card');
-    console.log(termCards);
     expect(termCards.length).toBe(11);                           //1 in recents, 2 tags * 5 each, total 11
-    const termNames = await page.evaluateHandle(`document.querySelectorAll("term-card").shadowRoot.querySelector("#term-name")`);
-    let termName0 = await page.evaluate(el => el.textContent, termNames[0]);
-    let termName1 = await page.evaluate(el => el.textContent, termNames[1]);
-    console.log(`${termName0}, ${termName1}`);
+
+    const fruitTerm = await page.evaluateHandle(`document.querySelector("div.tags-section > div > div > div:nth-child(2) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")`);
+    let fruitTermName = await page.evaluate(el => el.textContent, fruitTerm);
+    expect(fruitTermName).toBe('Apple');
+
+    const crispTerm = await page.evaluateHandle(`document.querySelector("div.tags-section > div > div > div:nth-child(4) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")`);
+    let crispTermName = await page.evaluate(el => el.textContent, crispTerm);
+    expect(crispTermName).toBe('Apple');
+  });
+
+  it('Check open term works', async () => {
+    const open = await page.evaluateHandle(`document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")`);
+    await open.click();
+    await page.waitForNavigation();
+    expect(page.url()).toBe('https://cs-dictionary.netlify.app/term-page.html');
+
+    const title = await page.evaluateHandle(`document.querySelector("#term-title")`);
+    let titleText = await page.evaluate(el => el.textContent, title);
+    expect(titleText).toBe('Apple');
+
+    const desc = await page.evaluateHandle(`document.querySelector("#term-description")`);
+    let descText = await page.evaluate(el => el.textContent, desc);
+    expect(descText).toBe('fruit, crisp');
+  });
+
+  it('Check delete term', async () => {
+    // click delete button
+    const deleteButton = await page.evaluateHandle(`document.querySelector("body > main > div > button:nth-child(7)")`);
+    await deleteButton.click();
+
+    // wait for popup, then confirm delete
+    await page.waitForSelector('#id01', {visible: true})
+    const confirmDelete = await page.evaluateHandle(`document.querySelector("#id01 > form > div > div > button.deletebtn.modal-button")`);
+    await confirmDelete.click();
+
+    await page.waitForNavigation();
+    expect(page.url()).toBe('https://cs-dictionary.netlify.app/home.html');
+
+    const termCards = await page.$$('term-card');
+    expect(termCards.length).toBe(0);
   });
 });
