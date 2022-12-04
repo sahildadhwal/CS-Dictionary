@@ -49,7 +49,7 @@ class SearchBar extends HTMLElement {
       const user_input = e.target.value;
 
       // Call search function from back-end to get list of terms
-      search_results = backend_function.findRequestedTerm(user_input, true, true, true);
+      search_results = backend_function.findRequestedTerm(user_input, true, false, true, true);
       console.log(search_results);
 
       // If user don't input then make dropdown empty

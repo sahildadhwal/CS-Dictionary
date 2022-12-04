@@ -1,16 +1,19 @@
 # The Pizza Party
-## [Team Intro](https://youtu.be/iMRoQklh57Q)
+## [*Team Intro*](https://youtu.be/iMRoQklh57Q)
 
-## Brand:
-![image](./images/d_logo.png)
+## [*Team Status Video 1*](https://youtu.be/tpCWZWzKOt8)
 
-### Logo:
-![image](./images/THEPIZZAPARTY.png)
+## **Brand:**
+[![Avatar](./images/d_logo.png#avatar)](https://youtu.be/tpCWZWzKOt8 "Redirect to team status vid, which talks about our site.")
 
-### Slogan:
-> [*Pizza Time.*](https://www.youtube.com/watch?v=TRgdA9_FsXM)
+### **Logo:**
+[![image](./images/THEPIZZAPARTY.png#avatar)](https://youtu.be/iMRoQklh57Q "Redirect to team intro vid, which introduces the team members.")
 
-## Values:
+
+### **Slogan:**
+> [*Pizza Time*](https://www.youtube.com/watch?v=TRgdA9_FsXM)
+
+## **Values:**
 - **Have fun**
 - **Try new things**
 - **Live, love, laugh**
@@ -126,3 +129,13 @@
 - second year, Sixth college
 - Computer Engineering major
 - likes table tennis and Overwatch
+
+<!-- make logo pictures round -->
+<style>
+    img[src$="#avatar"] {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    max-width: 50%;
+    }
+</style>
