@@ -323,6 +323,9 @@ export function updateTerm(term) {
   term.edit_count += 1;
   term.edited_date = cur_time;
   term.edited_by = 'user';
+  if (dict[term.id].published && !term.published) {
+    deleteTerm(dict[term.id]);
+  }
   dict[term.id] = term;
   if (term.published) {
     updateRecents(term.id);
@@ -339,9 +342,9 @@ export function updateTerm(term) {
  */
 export function deleteTerm(term) {
   let dict = loadDict();
-  let tags = JSON.parse(localStorage.getItem('tags'));
-  let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
-  let recents = JSON.parse(localStorage.getItem('recents'));
+  let tags = loadTags();
+  let tagCount = loadTagCounts();
+  let recents = loadRecents();
   if(!(term.id in dict)) {
     return false;
   }
@@ -420,18 +423,47 @@ export function addTermToDoc(term) {
 }
 
 /**
+ * Find terms of a tag, with exact searching (not substring)
+ * @param {string} input The exact name of the tag to be searched for
+ * @param {boolean} case_insensitive Whether to match case
+ * @returns {term[]} A list of all terms associated with the tag
+ */
+export function findTermsOfTagExact(input, case_insensitive=true) {
+  const dict = selectDict(true);
+  let search_result = [];
+   // case insensitive
+   if (case_insensitive) {
+    input = input.toLowerCase();
+  }
+  let tags;
+  for (const [id, term] of Object.entries(dict)) {
+    if(search_result.includes(id)) continue;
+      tags = term.tags;
+      if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+      if (tags.find((tag) => tag == input) !== undefined) {
+        search_result.push(id);
+        continue;
+      }
+  }
+  return search_result.map((id) => dict[id]);
+}
+
+
+
+/**
  * Find matching terms with the input.
  * @param {string} input The user input to the search bar
  * @param {boolean} s_term Whether to search in terms
  * @param {boolean} s_tag Whether to search in tags
  * @param {boolean} s_description Whether to search in descriptions
- * @param {boolean} [case_insensitive=false] Whether to match case
+ * @param {boolean} [case_insensitive=true] Whether to match case
+ * @param {boolean} [published=true]
  * @return {term[]} A list of all the term associated with the search 
  */
 export function findRequestedTerm(
-  input, s_term, s_tag, s_description, case_insensitive=false
+  input, s_term, s_tag, s_description, case_insensitive=true, published=true
 ) {
-  const dict = loadDict();
+  const dict = selectDict(published);
   let search_result = [];
   // fall back to search terms
   if(!s_term && !s_tag && !s_description) {
@@ -441,21 +473,9 @@ export function findRequestedTerm(
   if (case_insensitive) {
     input = input.toLowerCase();
   }
-  // search tags
-  if(s_tag) {
-    const tags = JSON.parse(localStorage.getItem('tags')) || {};
-    for (const [tag, ids] of Object.entries(tags)) {
-      if (tag.toLowerCase().includes(input)) {
-        for (const id of ids) {
-          if (!search_result.includes(id)) {
-            search_result.push(id);
-          }
-        }
-      }
-    }
-  }
-  // search terms and descriptions
+  // search terms, tags, and descriptions
   let term_name;
+  let tags;
   let short_description;
   for (const [id, term] of Object.entries(dict)) {
     if(search_result.includes(id)) continue;
@@ -463,6 +483,14 @@ export function findRequestedTerm(
       term_name = term.term_name;
       if (case_insensitive) term_name = term_name.toLowerCase();
       if (term_name.includes(input)) {
+        search_result.push(id);
+        continue;
+      }
+    }
+    if(s_tag) {
+      tags = term.tags;
+      if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+      if (tags.find((tag) => tag.includes(input)) !== undefined){
         search_result.push(id);
         continue;
       }
@@ -477,6 +505,25 @@ export function findRequestedTerm(
     }
   }
   return search_result.map((id) => dict[id]);
+}
+
+export function findRequestedTag(input, case_insensitive=true, published=true) {
+  if (case_insensitive) {
+    input = input.toLowerCase();
+  }
+
+  let tags;
+  if (published) {
+    tags = Object.keys(loadTags());
+  } else {
+    const dict = selectDict(false);
+    let merged_tags = [].concat(...Object.values(dict).map((term) => term.tags));
+    tags = [...new Set(merged_tags)];
+  }
+
+  return tags.filter((tag) =>
+    (case_insensitive ? tag.toLowerCase() : tag).includes(input)
+  );
 }
 
 /**
