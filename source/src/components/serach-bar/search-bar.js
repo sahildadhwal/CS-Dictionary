@@ -13,7 +13,7 @@ class SearchBar extends HTMLElement {
 
   connectedCallback() {
     this.shadow_el = this.initShadowDom();
-    this.initSearchFunction();
+    //this.initSearchFunction;
   }
 
   initShadowDom() {
@@ -23,7 +23,16 @@ class SearchBar extends HTMLElement {
     return shadow_el;
   }
 
-  initSearchFunction() {
+  set initSearchFunction(data) {
+    if (!data) {
+      data = {
+        "search_term": true,
+        "search_tag": true,
+        "search_description": true,
+        "case_insensitive": true
+      }
+    }
+
     const containerEl = this.shadow_el.querySelector('.container')
     const form_el = this.shadow_el.querySelector('#search')
     const drop_el = this.shadow_el.querySelector('.drop')
@@ -49,8 +58,7 @@ class SearchBar extends HTMLElement {
       const user_input = e.target.value;
 
       // Call search function from back-end to get list of terms
-      search_results = backend_function.findRequestedTerm(user_input, true, false, true, true);
-      console.log(search_results);
+      search_results = backend_function.findRequestedTerm(user_input, data.search_term, data.search_tag, data.search_description, data.case_insensitive);
 
       // If user don't input then make dropdown empty
       if (user_input.length === 0) {
@@ -82,7 +90,7 @@ class SearchBar extends HTMLElement {
         let display_string = item.term_name;
         let reg = new RegExp(user_input, 'gi');
         display_string = display_string.replace(reg, function (str) { return '<b>' + str + '</b>' });
-        
+
 
         // Add term name inside the wrapper then add wrapper inside list element
         term_name_el.innerHTML = display_string;
