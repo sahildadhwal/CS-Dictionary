@@ -9,6 +9,7 @@ function init() {
   addSearchBarToDocument();
   addTermsToDocument(backend_function.getDataOfRecents());
   addTagsToDocument(backend_function.getAllPopTags());
+  console.log(backend_function.getAllPopTags());
 }
 
 function addSearchBarToDocument() {

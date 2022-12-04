@@ -15,7 +15,6 @@ class SearchBar extends HTMLElement {
 
   connectedCallback() {
     this.shadow_el = this.initShadowDom();
-    //this.initSearchFunction;
   }
 
   initShadowDom() {
