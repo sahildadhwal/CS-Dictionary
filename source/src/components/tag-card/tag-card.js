@@ -36,7 +36,7 @@ class TagCard extends HTMLElement {
     `;
 
     let button = tag_el.querySelector('button');
-    let term_container_el = tag_el.querySelector('.term-container');
+//  let term_container_el = tag_el.querySelector('.term-container');
 
     // Add tag name to button
     button.textContent = data.tag_name;
@@ -44,7 +44,7 @@ class TagCard extends HTMLElement {
     // Add terms to tag
     if (data.terms && data.terms.length > 0) {
       // Only get 4 terms max
-      data.terms = data.terms.slice(0, 4);
+//      data.terms = data.terms.slice(0, 4);
 
       data.terms.forEach(term => {
         // Create term element
@@ -56,9 +56,9 @@ class TagCard extends HTMLElement {
         let term_name_el = document.createElement('p');
         term_name_el.className = "term-name";
         term_name_el.textContent = term.term_name;
-        let term_description_el = document.createElement('p');
-        term_description_el.className = "term-description";
-        term_description_el.textContent = term.short_description;
+//        let term_description_el = document.createElement('p');
+//        tesrm_description_el.className = "term-description";
+//        term_description_el.textContent = term.short_description;
 
         // Go to term page when click on a term
         term_el.addEventListener('click', (e) => {
@@ -68,8 +68,8 @@ class TagCard extends HTMLElement {
 
         // Add element to term then add term to tag
         term_el.appendChild(term_name_el);
-        term_el.appendChild(term_description_el);
-        term_container_el.appendChild(term_el);
+        //term_el.appendChild(term_description_el);
+//        term_container_el.appendChild(term_el);
       })
     }
 
