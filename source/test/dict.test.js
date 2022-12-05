@@ -490,9 +490,9 @@ describe('Test Updating and Deleting with Multiple Terms', () => {
 
   // Make sure tag count is correct
   test('Check tag counts', () => {
-    expect(functions.loadTagCounts()).toStrictEqual(
-      {'tag1': 8, 'tag2': 8, 'tag3': 2, 'tag4': 1}
-      );
+    expect(functions.loadTagCounts()).toStrictEqual({
+      'tag1': 8, 'tag2': 8, 'tag3': 2, 'tag4': 1
+    });
   });
 
   // delete all terms and check count
