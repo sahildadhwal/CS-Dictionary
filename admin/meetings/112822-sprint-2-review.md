@@ -27,7 +27,7 @@
 ##### <li> *Amaar Valliani* </li>
 ##### <li> *Andrew Jia* </li>
 ##### <li> *Yunxiao Xu* </li> 
-  
+
 </ul>
 
 ## **Meeting Info**
@@ -87,7 +87,7 @@
 
 ## **Agenda**
 - [x] Each team shares what they have accomplished and what they will accomplish and by when it will be done.
-    
+
 ## **Meeting Notes**
 Team Reports:
 <ul>
@@ -118,8 +118,7 @@ Team Reports:
             <li>1 E2E test</li>
         </ul>
 </ul>
-    
-    
+
 ## **Todo**
 - [ ] Update search dropdown to include portion of short description
 - [ ] Have a Drafts page
@@ -129,4 +128,3 @@ Team Reports:
 - [ ] Get rid of settings button
 - [ ] Make tiny MCE a required field by having an alert when empty
 - [ ] Have an error/alert if any of the fields are empty
-
