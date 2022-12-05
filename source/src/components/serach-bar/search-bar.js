@@ -71,7 +71,7 @@ class SearchBar extends HTMLElement {
           data.search_tag, 
           data.search_description, 
           data.case_insensitive
-          );
+        );
 
         // If user don't input then make dropdown empty
         if (user_input.length === 0) {
@@ -105,7 +105,6 @@ class SearchBar extends HTMLElement {
           let reg = new RegExp(user_input, 'gi');
           display_string = display_string.replace(reg, function (str) { return '<b>' + str + '</b>' });
 
-
           // Add term name inside the wrapper then add wrapper inside list element
           term_name_el.innerHTML = display_string;
           list_el.appendChild(term_name_el);
@@ -120,15 +119,14 @@ class SearchBar extends HTMLElement {
         });
 
         if (drop_el.children[0] === undefined) {
-          return drop_el.style.height = 0
+          drop_el.style.height = 0;
+          return drop_el.style.height;
         }
 
-        let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length
-        drop_el.style.height = totalChildrenHeight + 'px'
-
+        let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length;
+        drop_el.style.height = totalChildrenHeight + 'px';
       }
-
-      form_el.addEventListener('input', formHandler)
+      form_el.addEventListener('input', formHandler);
     }
     // When searching for tags
     else if (this.function_name === 'findRequestedTag') {
@@ -147,12 +145,11 @@ class SearchBar extends HTMLElement {
             // Search for all terms in every tag result
             search_results.forEach(tag => {
               let term_result = backend_function.findTermsOfTagExact(tag);
-
               // Build json for each tag then add to array
               let tag_with_terms =
               {
-                "tag_name": tag,
-                "terms": term_result
+                'tag_name': tag,
+                'terms': term_result
               };
               tag_search_results.push(tag_with_terms);
             });
@@ -165,15 +162,13 @@ class SearchBar extends HTMLElement {
 
       const goToTagPage = (e) => {
         let tag_name = e.currentTarget.tag_name;
-
         // Search for all terms in tag
         let term_result = backend_function.findTermsOfTagExact(tag_name);
-
         // Build json for each tag then add to array
         let tag_search_results = [
         {
-          "tag_name": tag_name,
-          "terms": term_result
+          'tag_name': tag_name,
+          'terms': term_result
         }];
 
         localStorage.setItem('tag_search_results', JSON.stringify(tag_search_results));
@@ -188,12 +183,13 @@ class SearchBar extends HTMLElement {
 
         // If user don't input then make dropdown empty
         if (user_input.length === 0) {
-          drop_el.style.height = 0
-          return drop_el.innerHTML = ''
+          drop_el.style.height = 0;
+          drop_el.innerHTML = '';
+          return drop_el.innerHTML;
         }
 
         // Else initilize empty dropdown
-        drop_el.innerHTML = ''
+        drop_el.innerHTML = '';
 
         // Only take number of maximum terms from list of terms
         const sliced_results = search_results.slice(0, this.MAXIMUM_ELEMENT_DISPLAY);
