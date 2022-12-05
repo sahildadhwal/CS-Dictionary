@@ -21,7 +21,7 @@
 tag-card:nth-child(4n+1)::part(color-button) {
   background-color: #EB4134;
 }
-tag-card:nth-child(4n+1):part(color-button) {
+tag-card:nth-child(4n+1)::part(color-button) {
   background-color: hsl(4, 82%, 51%);
 }
 
