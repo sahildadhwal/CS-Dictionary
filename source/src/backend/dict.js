@@ -144,7 +144,7 @@ export function top5terms(tag_name) {
  * @param {string} tag_name the name of the tag you want the top 5 of
  * @returns {term[]} array of 5 terms
  */
- export function top5PublishedTerms(tag_name) {
+export function top5PublishedTerms(tag_name) {
   const dict = selectDict(true);
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
   const terms_of_tag = tags[tag_name];
@@ -457,24 +457,22 @@ export function addTermToDoc(term) {
 export function findTermsOfTagExact(input, case_insensitive=true) {
   const dict = selectDict(true);
   let search_result = [];
-   // case insensitive
-   if (case_insensitive) {
+  // case insensitive
+  if (case_insensitive) {
     input = input.toLowerCase();
   }
   let tags;
   for (const [id, term] of Object.entries(dict)) {
     if(search_result.includes(id)) continue;
-      tags = term.tags;
-      if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
-      if (tags.find((tag) => tag == input) !== undefined) {
-        search_result.push(id);
-        continue;
-      }
+    tags = term.tags;
+    if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+    if (tags.includes(input)) {
+      search_result.push(id);
+      continue;
+    }
   }
   return search_result.map((id) => dict[id]);
 }
-
-
 
 /**
  * Find matching terms with the input.
@@ -487,7 +485,12 @@ export function findTermsOfTagExact(input, case_insensitive=true) {
  * @return {term[]} A list of all the term associated with the search 
  */
 export function findRequestedTerm(
-  input, s_term, s_tag, s_description, case_insensitive=true, published=true
+  input,
+  s_term,
+  s_tag,
+  s_description,
+  case_insensitive=true,
+  published=true
 ) {
   const dict = selectDict(published);
   let search_result = [];
@@ -547,9 +550,7 @@ export function findRequestedTag(input, case_insensitive=true, published=true) {
     tags = [...new Set(merged_tags)];
   }
 
-  return tags.filter((tag) =>
-    (case_insensitive ? tag.toLowerCase() : tag).includes(input)
-  );
+  return tags.filter((tag) => (case_insensitive ? tag.toLowerCase() : tag).includes(input));
 }
 
 /**
@@ -557,7 +558,7 @@ export function findRequestedTag(input, case_insensitive=true, published=true) {
  * @return {term[]} An array of published term objects 
  */
 export function getAllPublishedTerms() {
-  const dict = selectDict(true)
+  const dict = selectDict(true);
   return Object.values(dict);
 }
 
@@ -566,6 +567,6 @@ export function getAllPublishedTerms() {
  * @return {term[]} An array of unpublished term objects
  */
 export function getAllUnpublishedTerms() {
-  const dict = selectDict(false)
+  const dict = selectDict(false);
   return Object.values(dict);
 }
