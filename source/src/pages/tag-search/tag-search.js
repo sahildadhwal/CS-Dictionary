@@ -14,10 +14,10 @@ function addTermsToDocument(terms) {
   });
 }
 
-function addTagsToDocument(tag_search_results) {
+function addTagsToDocument(tags) {
   let tag_rersult_el = document.querySelector('div.tag-results');
 
-  tag_search_results.forEach((tag) => {
+  tags.forEach((tag) => {
     let tag_name = document.createElement('button');
     tag_name.textContent = tag['tag_name'];
     tag_rersult_el.appendChild(tag_name);

@@ -25,11 +25,10 @@ function init() {
 }
 
 // Remove draft button if the post is posted
-if (data.published == true) {
+if (data.published) {
   draftButton.remove();
-}
-// Else if draft then change text of Update button to Post
-else {
+} else {
+  // Else if draft then change text of Update button to Post
   button.value = 'Post';
 }
 
