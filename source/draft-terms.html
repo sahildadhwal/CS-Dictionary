@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="src/pages/draft-terms/draft-terms.css">
   <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="src/pages/home/home.css">
+  <link rel="stylesheet" href="src/assets/font-awesome/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -14,8 +17,15 @@
     <div class="center">
       <div class="title" href="#"><span data-attr="My">My</span><span data-attr="Drafts">Drafts</span></div>
     </div>
+    
+    <div class="buttons">
+      <i class="published-posts fa fa-user fa-2x" aria-hidden="true" title="My Posts" onclick="jumpPublishedTerms()"></i>
+      <i class="tags-button fa fa-tags fa-2x" aria-hidden="true" title="My Tags" onclick="jumpTagsHtml()"></i>
+      <i class="draft-button fa fa-pencil-square-o fa-2x" aria-hidden="true" title="Create Draft" onclick="jumpDraftsPageHtml()"></i>
+      <i class="add-button fa fa-plus-circle fa-2x" aria-hidden="true" title="Create Term" onclick="jumpCreateTermHtml()"></i>
+    </div>
   </header>
-
+    
   <main>
     <h1>My Drafts</h1>
     <div class="card-results">
