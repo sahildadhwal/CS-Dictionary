@@ -18,7 +18,7 @@ class SearchBar extends HTMLElement {
 
   initShadowDom() {
     let shadow_el = this.attachShadow({ mode: 'open' });
-    shadow_el.innerHTML = this.template;
+    shadow_el.innerHTML = SearchBar.template;
 
     return shadow_el;
   }
