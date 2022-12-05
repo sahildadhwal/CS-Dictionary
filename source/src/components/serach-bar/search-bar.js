@@ -125,7 +125,7 @@ class SearchBar extends HTMLElement {
 
         let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length;
         drop_el.style.height = totalChildrenHeight + 'px';
-      }
+      };
       form_el.addEventListener('input', formHandler);
     }
     // When searching for tags
@@ -133,21 +133,20 @@ class SearchBar extends HTMLElement {
       if (!data){
         data = {
           'case_insensitive': true
-        }
+        };
       }
       // Add event listener when pressing enter key
       form_el.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
           // Only redirect when user input not empty
-          if (form_el.value.length != 0) {
+          if (form_el.value.length !== 0) {
             let tag_search_results = [];
 
             // Search for all terms in every tag result
             search_results.forEach(tag => {
               let term_result = backend_function.findTermsOfTagExact(tag);
               // Build json for each tag then add to array
-              let tag_with_terms =
-              {
+              let tag_with_terms = {
                 'tag_name': tag,
                 'terms': term_result
               };
@@ -166,14 +165,14 @@ class SearchBar extends HTMLElement {
         let term_result = backend_function.findTermsOfTagExact(tag_name);
         // Build json for each tag then add to array
         let tag_search_results = [
-        {
-          'tag_name': tag_name,
-          'terms': term_result
-        }];
+          {
+            'tag_name': tag_name,
+            'terms': term_result
+          }];
 
         localStorage.setItem('tag_search_results', JSON.stringify(tag_search_results));
         redirection.jumpTagSearchHtml();
-      }
+      };
 
       const formHandler = (e) => {
         const user_input = e.target.value;
@@ -221,15 +220,15 @@ class SearchBar extends HTMLElement {
         });
 
         if (drop_el.children[0] === undefined) {
-          return drop_el.style.height = 0
+          drop_el.style.height = 0;
+          return drop_el.style.height;
         }
 
-        let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length
-        drop_el.style.height = totalChildrenHeight + 'px'
+        let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length;
+        drop_el.style.height = totalChildrenHeight + 'px';
+      };
 
-      }
-
-      form_el.addEventListener('input', formHandler)
+      form_el.addEventListener('input', formHandler);
     }
   }
 
