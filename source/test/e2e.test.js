@@ -38,33 +38,36 @@ describe('Basic user flow for Website', () => {
   it('Check term is displayed in recently added', async () => {
     await page.goto('https://cs-dictionary.netlify.app/');
 
+    // only one card in recents
     const termCards = await page.$$('.recently-added-elements>term-card');
-    expect(termCards.length).toBe(1);                            // only one card in recents
+    expect(termCards.length).toBe(1);                            
 
-    const termNameEl = await page.evaluateHandle(`document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#term-name")`);
-    let termName = await page.evaluate((el) => el.textContent, termNameEl)
+    const termNameEl = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#term-name")');
+    let termName = await page.evaluate((el) => el.textContent, termNameEl);
     expect(termName).toBe('Apple');
 
-    const descriptionEl = await page.evaluateHandle(`document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#description")`);
-    let description = await page.evaluate((el) => el.textContent, descriptionEl)
-    expect(description).toBe('\n        fruit, crisp\n      ');  // newline, 8 spaces, newline, 6 spaces... why
+    const descriptionEl = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#description")');
+    let description = await page.evaluate((el) => el.textContent, descriptionEl);
+    // newline, 8 spaces, newline, 6 spaces... why
+    expect(description).toBe('\n        fruit, crisp\n      ');  
   });
 
   it('Check popular tags are working', async () => {
+    // 1 in recents, 2 tags * 5 each, total 11
     const termCards = await page.$$('term-card');
-    expect(termCards.length).toBe(11);                           // 1 in recents, 2 tags * 5 each, total 11
+    expect(termCards.length).toBe(11);                           
 
-    const fruitTerm = await page.evaluateHandle(`document.querySelector("div.tags-section > div > div > div:nth-child(2) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")`);
+    const fruitTerm = await page.evaluateHandle('document.querySelector("div.tags-section > div > div > div:nth-child(2) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")');
     let fruitTermName = await page.evaluate((el) => el.textContent, fruitTerm);
     expect(fruitTermName).toBe('Apple');
 
-    const crispTerm = await page.evaluateHandle(`document.querySelector("div.tags-section > div > div > div:nth-child(4) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")`);
+    const crispTerm = await page.evaluateHandle('document.querySelector("div.tags-section > div > div > div:nth-child(4) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")');
     let crispTermName = await page.evaluate((el) => el.textContent, crispTerm);
     expect(crispTermName).toBe('Apple');
   });
 
   it('Check open term works', async () => {
-    const open = await page.evaluateHandle(`document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")`);
+    const open = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")');
     await open.click();
     await page.waitForNavigation();
     expect(page.url()).toBe('https://cs-dictionary.netlify.app/term-page.html');
@@ -84,13 +87,13 @@ describe('Basic user flow for Website', () => {
     await deleteButton.click();
 
     // wait for popup, then confirm delete
-    await page.waitForSelector('#id01', {visible: true})
+    await page.waitForSelector('#id01', {visible: true});
     const confirmDelete = await page.evaluateHandle('document.querySelector("#id01 > form > div > div > button.deletebtn.modal-button")');
     await confirmDelete.click();
 
     await page.waitForNavigation();
     expect(page.url()).toBe('https://cs-dictionary.netlify.app/home.html');
-
+    
     const termCards = await page.$$('term-card');
     expect(termCards.length).toBe(0);
   });
