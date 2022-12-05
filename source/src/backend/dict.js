@@ -464,7 +464,8 @@ export function findRequestedTerm(
   s_tag, 
   s_description, 
   case_insensitive=true, 
-  published=true) {  
+  published=true
+  ) {  
   const dict = selectDict(published);
   let search_result = [];
   // fall back to search terms
