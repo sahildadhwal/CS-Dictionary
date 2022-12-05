@@ -431,19 +431,19 @@ export function addTermToDoc(term) {
 export function findTermsOfTagExact(input, case_insensitive=true) {
   const dict = selectDict(true);
   let search_result = [];
-   // case insensitive
-   if (case_insensitive) {
+  // case insensitive
+  if (case_insensitive) {
     input = input.toLowerCase();
   }
   let tags;
   for (const [id, term] of Object.entries(dict)) {
     if(search_result.includes(id)) continue;
-      tags = term.tags;
-      if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
-      if (tags.find((tag) => tag == input) !== undefined) {
-        search_result.push(id);
-        continue;
-      }
+    tags = term.tags;
+    if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+    if (tags.find((tag) => tag === input) !== undefined) {
+      search_result.push(id);
+      continue;
+    }
   }
   return search_result.map((id) => dict[id]);
 }
