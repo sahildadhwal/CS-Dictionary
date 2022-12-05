@@ -124,12 +124,12 @@ class SearchBar extends HTMLElement {
       form_el.addEventListener('input', formHandler)
     }
     // When searching for tags
-    else if (this.function_name == "findRequestedTag") {
-      if (!data)
+    else if (this.function_name === 'findRequestedTag') {
+      if (!data){
         data = {
-          "case_insensitive": true
+          'case_insensitive': true
         }
-
+      }
       // Add event listener when pressing enter key
       form_el.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
