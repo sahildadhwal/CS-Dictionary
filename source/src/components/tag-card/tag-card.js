@@ -1,8 +1,7 @@
 import * as backend_function from '/src/backend/dict.js';
-import * as redirection from '/src/common-scripts/redirection.js'
+import * as redirection from '/src/common-scripts/redirection.js';
 
 class TagCard extends HTMLElement {
-
   constructor() {
     super();
     let shadow_el;
