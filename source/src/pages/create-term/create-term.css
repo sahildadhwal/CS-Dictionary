@@ -43,6 +43,7 @@ textarea.text-input {
 
 .draft-button {
   color: white;
+  background-color: hsl(167, 65%, 51%);
 }
 
 .draft-button:hover {
