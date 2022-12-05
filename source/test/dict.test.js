@@ -47,7 +47,7 @@ global.crypto = new CryptoMock();
 global.location = new CryptoMock();
 
 // Try testing with one term
-describe('Try Testing with 1 Term', () => {
+describe('Test Term and Tag Properties with 1 Term', () => {
   const cur_time = new Date();
   const termA = {
     id: 'ID#1',
@@ -101,6 +101,24 @@ describe('Try Testing with 1 Term', () => {
   test('Check recent terms', () => {
     expect(functions.getDataOfRecents()).toStrictEqual([termA]);
   });
+});
+
+describe('Test Updating and Deleting with 1 Term', () => {
+  const cur_time = new Date();
+  const termA = {
+    id: 'ID#1',
+    term_name: 'Term A',
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'user',
+    created_time: cur_time.toISOString(),
+    edited_by: 'user',
+    edited_date: cur_time.toISOString(),
+    edit_count: 0
+  };
+  const termAid = 'ID#1';
 
   // Update term's description and check if updated
   test('Check updating a term and edit count', () => {
@@ -145,7 +163,139 @@ describe('Try Testing with 1 Term', () => {
 });
 
 // Try testing with many terms
-describe('Try Testing with Multiple Terms', () => {
+describe('Test Term and Tag Properties with Multiple Terms', () => {
+  const cur_time = new Date();
+  const terms = [{
+    id: 'ID#2',
+    term_name: 'Term B',
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#3',
+    term_name: 'Term C',
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#4',
+    term_name: 'Term D',
+    tags: 'tag1, tag2', // ['tag1', 'tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#5',
+    term_name: 'Term E',
+    tags: 'tag2', // ['tag2'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#6',
+    term_name: 'Term F',
+    tags: 'tag1', // ['tag1'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#7',
+    term_name: 'Term G',
+    tags: 'tag3', // ['tag3'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#8',
+    term_name: 'Term H',
+    tags: 'tag4', // ['tag3'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: false,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  }];
+  const termids = ['ID#2', 'ID#3', 'ID#4', 'ID#5', 'ID#6', 'ID#7', 'ID#8'];
+  const listOfTags = ['tag1, tag2', 'tag1, tag2', 'tag1, tag2',
+                      'tag2', 'tag1', 'tag3', 'tag4'];
+
+  // Make sure there are no terms at first
+  test('Check there are 0 terms by default', () => {
+    expect(functions.termsCount()).toBe(0);
+    localStorage.clear();
+  }); 
+
+  // Add 6 terms (1 unpublished) and make sure it returns the correct id
+  test('Check adding 7 terms (1 unpublished)', () => {
+    let ids = [];
+    for(let term of terms) {
+      ids.push(functions.addTermToBackend(term));
+    }
+    expect(ids).toStrictEqual(termids);
+  });
+
+  // Make sure term count is 6 now
+  test('Check that term count is 5', () => {
+    expect(functions.termsCount()).toBe(6);
+  });
+
+  // Select terms using the terms' id
+  test('Check selecting terms', () => {
+    let terms_select = [];
+    // Change dates to ISOStrings
+    for(let element of terms){
+      element.created_time = element.created_time.toISOString();
+      element.edited_date = element.edited_date.toISOString();
+    }
+    for(let termid of termids) {
+      terms_select.push(functions.selectTerm(termid));
+    }
+    expect(terms_select).toStrictEqual(terms);
+  });
+});
+
+describe('Test Updating and Deleting with Multiple Terms', () => {
   let newTerms = [];
   const cur_time = new Date();
   const terms = [{
@@ -212,51 +362,50 @@ describe('Try Testing with Multiple Terms', () => {
     edited_by: 'no one',
     edited_date: '',
     edit_count: 0
+  },
+  {
+    id: 'ID#7',
+    term_name: 'Term G',
+    tags: 'tag3', // ['tag3'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: true,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
+  },
+  {
+    id: 'ID#8',
+    term_name: 'Term H',
+    tags: 'tag4', // ['tag3'],
+    short_description: 'This is the term description',
+    term_data: 'This is the term data',
+    published: false,
+    created_by: 'devOps',
+    created_time: cur_time.toISOString(),
+    edited_by: 'no one',
+    edited_date: '',
+    edit_count: 0
   }];
-  const termids = ['ID#2', 'ID#3', 'ID#4', 'ID#5', 'ID#6'];
-
-  // Make sure there are no terms at first
-  test('Check there are 0 terms by default', () => {
-    expect(functions.termsCount()).toBe(0);
-    localStorage.clear();
-  }); 
-
-  // Add terms and make sure it returns the correct id
-  test('Check adding terms', () => {
-    let ids = [];
-    for(let term of terms) {
-      ids.push(functions.insertTerm(term));
-      // Also update tags and recents
-      functions.updateRecents(term.id);
-      functions.updateTags(term);
-      functions.updateTagCount(term);
-    }
-    expect(ids).toStrictEqual(termids);
-  });
-
-  // Make sure terms count is 5 now
-  test('Check that there are 5 terms now', () => {
-    expect(functions.termsCount()).toBe(5);
-  });
-
-  // Select terms using the terms' id
-  test('Check selecting terms', () => {
-    let terms_select = [];
-    for(let termid of termids) {
-      terms_select.push(functions.selectTerm(termid));
-    }
-    expect(terms_select).toStrictEqual(terms);
-  });
+  const termids = ['ID#2', 'ID#3', 'ID#4', 'ID#5', 'ID#6', 'ID#7', 'ID#8'];
+  const listOfTags = ['tag1, tag2', 'tag1, tag2', 'tag1, tag2',
+                      'tag2', 'tag1', 'tag3', 'tag4'];
 
   // Update terms' description and check if updated
   test('Check updating terms', () => {
     let editTerms = [];
+    // Change tag property back to string form
+    for(let element in terms){
+      terms[element].tags = listOfTags[element];
+    }
     for(let term in terms) {
       terms[term].short_description = 'This is the new term description';
       functions.updateTerm(terms[term]);
       editTerms.push(functions.selectTerm(termids[term]));
     }
-    // Change dates to ISOStrings;
+    // Change dates to ISOStrings
     for(let element of terms){
       element.edited_date = element.edited_date.toISOString();
     }
@@ -269,10 +418,10 @@ describe('Try Testing with Multiple Terms', () => {
     expect(functions.deleteTerm(termToDelete)).toBe(true);
   });
 
-  // Try deleting term C again and make sure term count is 4
+  // Try deleting term C again and make sure term count is 5
   test('Check double deleting term C and term count', () => {
     expect(functions.deleteTerm(terms[1])).toBe(false);
-    expect(functions.termsCount()).toBe(4);
+    expect(functions.termsCount()).toBe(5);
   });
 
   // Select terms using the terms' id
