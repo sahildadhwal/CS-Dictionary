@@ -458,7 +458,9 @@ export function findTermsOfTagExact(input, case_insensitive=true) {
  * @param {boolean} [published=true]
  * @return {term[]} A list of all the term associated with the search 
  */
-export function findRequestedTerm(input, s_term, s_tag, s_description, case_insensitive=true, published=true){
+export function findRequestedTerm(input, 
+  s_term, s_tag, s_description, case_insensitive=true, published=true){
+  
   const dict = selectDict(published);
   let search_result = [];
   // fall back to search terms
