@@ -71,11 +71,7 @@ describe('Try Testing with 1 Term', () => {
 
   // Add a term and make sure it returns the correct id
   test('Check adding a term', () => {
-    expect(functions.insertTerm(termA)).toBe(termAid);
-    // Also update tags and recents
-    functions.updateRecents(termAid);
-    functions.updateTags(termA);
-    functions.updateTagCount(termA);
+    expect(functions.addTermToBackend(termA)).toBe(termAid);
   });
 
   // Make sure terms count is 1 now
@@ -85,11 +81,30 @@ describe('Try Testing with 1 Term', () => {
 
   // Select term A using the term's id
   test('Check selecting a term', () => {
+    // Change date to ISOString;
+    termA.created_time = termA.created_time.toISOString();
+    termA.edited_date = termA.edited_date.toISOString();
     expect(functions.selectTerm(termAid)).toStrictEqual(termA);
+  });
+
+  // Get term with tag1 tag
+  test('Check tag search of tag "tag1"', () => {
+    expect(functions.getDataOfTag('tag1')).toStrictEqual([termA]);
+  });
+
+  // Get all popular tags
+  test('Check all popular tags', () => {
+    expect(functions.getPopularTags()).toStrictEqual(['tag1', 'tag2']);
+  });
+
+  // Check recent terms
+  test('Check recent terms', () => {
+    expect(functions.getDataOfRecents()).toStrictEqual([termA]);
   });
 
   // Update term's description and check if updated
   test('Check updating a term and edit count', () => {
+    termA.tags = 'tag1, tag2';
     termA.short_description = 'This is the new term description';
     functions.updateTerm(termA);
     const term = functions.selectTerm(termAid);
@@ -111,6 +126,21 @@ describe('Try Testing with 1 Term', () => {
     expect(functions.termsCount()).toBe(0);
     // Print localStorage so see reminants
     console.log(localStorage.store);
+  });
+
+  // Check non-existent term with tag1
+  test('Check tag search of non-existent tag "tag1"', () => {
+    expect(functions.getDataOfTag('tag1')).toStrictEqual([]);
+  });
+
+  // Make sure popular tags are empty
+  test('Check popular tags are empty', () => {
+    expect(functions.getPopularTags()).toStrictEqual([]);
+  });
+
+  // Make sure recent terms are empty
+  test('Check recent terms are empty', () => {
+    expect(functions.getDataOfRecents()).toStrictEqual([]);
   });
 });
 
