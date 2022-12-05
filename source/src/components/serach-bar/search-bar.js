@@ -1,10 +1,9 @@
 // https://bendyworks.com/blog/native-web-components
 // https://codepen.io/bugrakocak/pen/EMbKoB
 import * as backend_function from '/src/backend/dict.js';
-import * as redirection from '/src/common-scripts/redirection.js'
+import * as redirection from '/src/common-scripts/redirection.js';
 
 class SearchBar extends HTMLElement {
-
   constructor() {
     super();
     let shadow_el;
@@ -31,21 +30,21 @@ class SearchBar extends HTMLElement {
 
   set initSearchFunction(data) {
     // Initialize variables
-    const containerEl = this.shadow_el.querySelector('.container')
-    const form_el = this.shadow_el.querySelector('#search')
-    const drop_el = this.shadow_el.querySelector('.drop')
+    const containerEl = this.shadow_el.querySelector('.container');
+    const form_el = this.shadow_el.querySelector('#search');
+    const drop_el = this.shadow_el.querySelector('.drop');
     let search_results = {};
 
     // When searching for terms
-    if (this.function_name == "findRequestedTerm") {
-      if (!data)
+    if (this.function_name === 'findRequestedTerm') {
+      if (!data){
         data = {
-          "search_term": true,
-          "search_tag": true,
-          "search_description": true,
-          "case_insensitive": true
-        }
-
+          'search_term': true,
+          'search_tag': true,
+          'search_description': true,
+          'case_insensitive': true
+        };
+      }
       // Add event listener when pressing enter key
       form_el.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
