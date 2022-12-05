@@ -127,9 +127,8 @@ class SearchBar extends HTMLElement {
         drop_el.style.height = `${totalChildrenHeight}px`;
       };
       form_el.addEventListener('input', formHandler);
-    }
-    // When searching for tags
-    else if (this.function_name === 'findRequestedTag') {
+    } else if (this.function_name === 'findRequestedTag') {
+      // When searching for tags
       if (!data){
         data = {
           'case_insensitive': true
@@ -232,7 +231,7 @@ class SearchBar extends HTMLElement {
     }
   }
 
-  get template() {
+  static get template() {
     return `
         <style>
             @import 'src/components/serach-bar/search-bar.css';
