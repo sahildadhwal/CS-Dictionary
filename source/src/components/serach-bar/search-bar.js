@@ -49,7 +49,7 @@ class SearchBar extends HTMLElement {
       form_el.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
           // Only redirect when user input not empty
-          if (form_el.value.length != 0) {
+          if (form_el.value.length !== 0) {
             localStorage.setItem('search_results', JSON.stringify(search_results));
             redirection.jumpSearchHtml();
           }
@@ -59,22 +59,27 @@ class SearchBar extends HTMLElement {
       const goToTermPage = (e) => {
         localStorage.setItem('get_term_id', e.currentTarget.term_id);
         redirection.jumpTermPageHtml();
-      }
+      };
 
       const formHandler = (e) => {
         const user_input = e.target.value;
 
         // Call search function from back-end to get list of terms/tags
-        search_results = this.search_function(user_input, data.search_term, data.search_tag, data.search_description, data.case_insensitive);
+        search_results = this.search_function(
+          user_input, 
+          data.search_term, 
+          data.search_tag, 
+          data.search_description, 
+          data.case_insensitive);
 
         // If user don't input then make dropdown empty
         if (user_input.length === 0) {
           drop_el.style.height = 0
-          return drop_el.innerHTML = ''
+          return drop_el.innerHTML = '';
         }
 
         // Else initilize empty dropdown
-        drop_el.innerHTML = ''
+        drop_el.innerHTML = '';
 
         // Only take number of maximum terms from list of terms
         const sliced_results = search_results.slice(0, this.MAXIMUM_ELEMENT_DISPLAY);
