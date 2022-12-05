@@ -70,12 +70,14 @@ class SearchBar extends HTMLElement {
           data.search_term, 
           data.search_tag, 
           data.search_description, 
-          data.case_insensitive);
+          data.case_insensitive
+          );
 
         // If user don't input then make dropdown empty
         if (user_input.length === 0) {
-          drop_el.style.height = 0
-          return drop_el.innerHTML = '';
+          drop_el.style.height = 0;
+          drop_el.innerHTML = '';
+          return drop_el.innerHTML;
         }
 
         // Else initilize empty dropdown
