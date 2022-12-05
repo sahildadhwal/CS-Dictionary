@@ -3,17 +3,16 @@
 
 ## [*Team Status Video 1*](https://youtu.be/tpCWZWzKOt8)
 
-## **Brand:**
+
+<!-- &nbsp; is the same as space " " -->
+# **&nbsp; &nbsp; Team Brand &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Team Logo**
+
 <a href="https://youtu.be/tpCWZWzKOt8" target="_blank">
     <img src='./images/d_logo-circle.png' alt="drawing" width="200" title="Redirect to team status vid, which talks about our site.">
-</a>
-
-
-### **Logo:**
+</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <a href="https://youtu.be/iMRoQklh57Q" target="_blank">
     <img src='./images/THEPIZZAPARTY-circle.png' alt="drawing" width="200" title="Redirect to team intro vid, which introduces the team members.">
 </a>
-
 
 
 ### **Slogan:**

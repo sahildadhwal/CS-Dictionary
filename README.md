@@ -1,45 +1,37 @@
-# 🍕 The Pizza Party 🍕
+# 🍕 **The Pizza Party** 🍕
 ### **CSE 110 Team 2 Project.**
+<br>
 
+<!-- &nbsp; is the same as space " " -->
+# **&nbsp; &nbsp; Team Page &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Miro Board**
 
-
-
-## **Team Page:**
-[![image](./admin/images/THEPIZZAPARTY.png#avatar)](https://cse110-fa22-group2.github.io/team2-fa22-cse110/admin/team.html "Redirect to team page.")
-
-## **Miro Board:**
-[![Avatar](./admin/images/d_logo.png#avatar)](https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391 "Redirect to Miro Board Page.")
-
+<a href="https://cse110-fa22-group2.github.io/team2-fa22-cse110/admin/team.html" target="_blank">
+    <img src='./admin/images/THEPIZZAPARTY-circle.png' alt="drawing" width="200" title="Redirect to team page.">
+</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391" target="_blank">
+    <img src='./admin/images/d_logo-circle.png' alt="drawing" width="200" title="Redirect to Miro Board Page.">
+</a>
 
 # Team Members
 
-Sahil Dadhwal
+## Members:
+### [*Sahil Dadhwal*](https://github.com/sahildadhwal)
 
-Nikhil Rao 
+### [*Nikhil Rao*](https://github.com/nikhilitis)
 
-Yingqi Cao 
+### [*Yingqi Cao*](https://ioeddk.github.io/Github-Pages/)
 
-Chieh-hsiu Hung
+### [*Chieh-hsiu Hung*](https://github.com/Chieh0501)
 
-Isaac Varela
+### [*Isaac Varela*](https://github.com/compivar)
 
-Liam Nguyen
+### [*Liam Nguyen*](https://github.com/taiokjk)
 
-Thomas Koon
+### [*Thomas Koon*](https://github.com/thomas-koon)
 
-Yunxiao Xu
+### [*Yunxiao Xu*](https://github.com/YunxiaoXu)
 
-Amaar Valliani
+### [*Amaar Valliani*](https://github.com/Amaar-V)
 
-Andrew Jia
+### [*Andrew Jia*](https://github.com/AndrewJia)
 
-
-<!-- make logo pictures round -->
-<style>
-    img[src$="#avatar"] {
-    display: block;
-    margin: 0 auto;
-    border-radius: 50%;
-    max-width: 50%;
-    }
-</style>
