@@ -478,7 +478,7 @@ describe('Test Updating and Deleting with Multiple Terms', () => {
   // Publish termH and check edit and term counts
   test('Update to publish termH edit count', () => {
     terms[6].published = true;
-    terms[6].tags = listOfTags[6];
+    terms[6].tags = 'tag4';
     functions.updateTerm(terms[6]);
     const term = functions.selectTerm(termids[6]);
     // Change date to ISOString;
@@ -490,7 +490,9 @@ describe('Test Updating and Deleting with Multiple Terms', () => {
 
   // Make sure tag count is correct
   test('Check tag counts', () => {
-    expect(functions.loadTagCounts()).toStrictEqual({'tag1': 8, 'tag2': 8, 'tag3': 2, 'tag4': 1});
+    expect(functions.loadTagCounts()).toStrictEqual(
+      {'tag1': 8, 'tag2': 8, 'tag3': 2, 'tag4': 1}
+      );
   });
 
   // delete all terms and check count
