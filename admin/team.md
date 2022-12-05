@@ -4,10 +4,16 @@
 ## [*Team Status Video 1*](https://youtu.be/tpCWZWzKOt8)
 
 ## **Brand:**
-[![Avatar](./images/d_logo.png#avatar)](https://youtu.be/tpCWZWzKOt8 "Redirect to team status vid, which talks about our site.")
+<a href="https://youtu.be/tpCWZWzKOt8" target="_blank">
+    <img src='./images/d_logo-circle.png' alt="drawing" width="200" title="Redirect to team status vid, which talks about our site.">
+</a>
+
 
 ### **Logo:**
-[![image](./images/THEPIZZAPARTY.png#avatar)](https://youtu.be/iMRoQklh57Q "Redirect to team intro vid, which introduces the team members.")
+<a href="https://youtu.be/iMRoQklh57Q" target="_blank">
+    <img src='./images/THEPIZZAPARTY-circle.png' alt="drawing" width="200" title="Redirect to team intro vid, which introduces the team members.">
+</a>
+
 
 
 ### **Slogan:**
@@ -129,13 +135,3 @@
 - second year, Sixth college
 - Computer Engineering major
 - likes table tennis and Overwatch
-
-<!-- make logo pictures round -->
-<style>
-    img[src$="#avatar"] {
-    display: block;
-    margin: 0 auto;
-    border-radius: 50%;
-    max-width: 50%;
-    }
-</style>
