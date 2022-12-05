@@ -535,7 +535,6 @@ export function findRequestedTerm(
   }
   return search_result.map((id) => dict[id]);
 }
-
 export function findRequestedTag(input, case_insensitive=true, published=true) {
   if (case_insensitive) {
     input = input.toLowerCase();
