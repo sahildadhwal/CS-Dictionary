@@ -119,7 +119,6 @@ Team Reports:
         </ul>
 </ul>
 
-
 ## **Todo**
 - [ ] Update search dropdown to include portion of short description
 - [ ] Have a Drafts page
