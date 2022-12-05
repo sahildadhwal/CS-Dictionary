@@ -103,7 +103,7 @@ describe('Test Term and Tag Properties with 1 Term', () => {
 
   // Make sure tag count is correct
   test('Check tag counts', () => {
-    expect(functions.loadTagCounts()).toStrictEqual({"tag1": 1, "tag2": 1});
+    expect(functions.loadTagCounts()).toStrictEqual({'tag1': 1, 'tag2': 1});
   });
 });
 
@@ -138,7 +138,7 @@ describe('Test Updating and Deleting with 1 Term', () => {
 
   // Make sure tag count is correct
   test('Check tag counts', () => {
-    expect(functions.loadTagCounts()).toStrictEqual({"tag1": 2, "tag2": 2});
+    expect(functions.loadTagCounts()).toStrictEqual({'tag1': 2, 'tag2': 2});
   });
 
   // Delete term
@@ -151,8 +151,6 @@ describe('Test Updating and Deleting with 1 Term', () => {
   test('Check double deleting a term and term count', () => {
     expect(functions.deleteTerm(termA)).toBe(false);
     expect(functions.termsCount()).toBe(0);
-    // Print localStorage so see reminants
-    console.log(localStorage.store);
   });
 
   // Check non-existent term with tag1
@@ -266,8 +264,6 @@ describe('Test Term and Tag Properties with Multiple Terms', () => {
     edit_count: 0
   }];
   const termids = ['ID#2', 'ID#3', 'ID#4', 'ID#5', 'ID#6', 'ID#7', 'ID#8'];
-  const listOfTags = ['tag1, tag2', 'tag1, tag2', 'tag1, tag2',
-    'tag2', 'tag1', 'tag3', 'tag4'];
 
   // Make sure there are no terms at first
   test('Check there are 0 terms by default', () => {
@@ -306,7 +302,6 @@ describe('Test Term and Tag Properties with Multiple Terms', () => {
   // Get terms with tag2 tag
   test('Check tag search of tag "tag2"', () => {
     expect(functions.getDataOfTag('tag2')).toStrictEqual([terms[0], terms[1], terms[2], terms[3]]);
-    console.log(localStorage);
   });
 
   // Get all popular tags
@@ -316,12 +311,14 @@ describe('Test Term and Tag Properties with Multiple Terms', () => {
 
   // Check recent terms, should show recent 5 terms, not including unpublished
   test('Check recent 5 terms', () => {
-    expect(functions.getDataOfRecents()).toStrictEqual([terms[1], terms[2], terms[3], terms[4], terms[5]]);
+    expect(functions.getDataOfRecents()).toStrictEqual([terms[1], terms[2], 
+      terms[3], terms[4], terms[5]]);
   });
 
   // Get All Published Terms
   test('Check all published terms', () => {
-    expect(functions.getAllPublishedTerms()).toStrictEqual([terms[0], terms[1], terms[2], terms[3], terms[4], terms[5]]);
+    expect(functions.getAllPublishedTerms()).toStrictEqual([terms[0], terms[1], 
+      terms[2], terms[3], terms[4], terms[5]]);
   });
 
   // Get All Unpublished Terms
@@ -331,7 +328,7 @@ describe('Test Term and Tag Properties with Multiple Terms', () => {
 
   // Make sure tag count is correct
   test('Check tag counts', () => {
-    expect(functions.loadTagCounts()).toStrictEqual({"tag1": 4, "tag2": 4, "tag3": 1});
+    expect(functions.loadTagCounts()).toStrictEqual({'tag1': 4, 'tag2': 4, 'tag3': 1});
   });
 });
 
@@ -493,21 +490,18 @@ describe('Test Updating and Deleting with Multiple Terms', () => {
 
   // Make sure tag count is correct
   test('Check tag counts', () => {
-    expect(functions.loadTagCounts()).toStrictEqual({"tag1": 8, "tag2": 8, "tag3": 2, "tag4": 1});
+    expect(functions.loadTagCounts()).toStrictEqual({'tag1': 8, 'tag2': 8, 'tag3': 2, 'tag4': 1});
   });
 
   // delete all terms and check count
   test('Check deleteing all terms and the terms count', () => {
     functions.deleteAll();
     expect(functions.termsCount()).toBe(0);
-    // Print localStorage so see reminants
-    console.log(localStorage.store);
   });
 
   // Get no terms with tag2 tag
   test('Check empty tag search of tag "tag2"', () => {
     expect(functions.getDataOfTag('tag2')).toStrictEqual([]);
-    console.log(localStorage);
   });
 
   // Get all popular tags (empty)
