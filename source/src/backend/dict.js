@@ -63,10 +63,11 @@ export function getPopularTags(count) {
 /**
  * Return all terms which has the specified tag.
  * @param {string} tag Name of a tag
+ * @param {boolean} [published=true]
  * @returns {term[]} An array of all terms with this tag
  */
-export function getDataOfTag(tag) {
-  const dict = loadDict();
+export function getDataOfTag(tag, published=true) {
+  const dict = selectDict(published);
   const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   let terms = [];
   for(let uuid of uuids) {
@@ -79,11 +80,12 @@ export function getDataOfTag(tag) {
 /**
  * Get some random terms with the specified tag.
  * @param {string} tag Name of a tag that the terms have
+ * @param {boolean} [published=true]
  * @param {number} [count=5] Number of terms to return. Default is 5.
  * @returns {term[]} An array of some terms that has the given tag
  */
-export function getRandomTermsOfTag(tag, count=5) {
-  const dict = loadDict();
+export function getRandomTermsOfTag(tag, count=5, published=true) {
+  const dict = selectDict(published);
   const uuids = JSON.parse(localStorage.getItem('tags'))[tag] || [];
   // get some random uuids
   let randomUuids = [];
@@ -102,6 +104,22 @@ export function getRandomTermsOfTag(tag, count=5) {
   }
   return terms;
 }
+/**
+ * Get the first 5 terms of all tags, or all terms in a tag if less than 5 terms exist for that tag
+ * @param {} 
+ * @returns {term[]} array of 5 terms * number of tags
+ */
+export function termFromAllTags(){
+  const tags = loadTags();
+  let top5_all = [];
+  for(const tag in tags){
+    let temp_terms = top5PublishedTerms(tag);
+    if(temp_terms.length > 0){
+      top5_all.push({tag_name: tag, terms: temp_terms});
+    }
+  }
+  return top5_all;
+}
 
 /**
  * Get the first 5 terms of a tag
@@ -109,14 +127,37 @@ export function getRandomTermsOfTag(tag, count=5) {
  * @returns {term[]} array of 5 terms
  */
 export function top5terms(tag_name) {
-  const dict = loadDict();
+  const dict = selectDict(true);
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
   const terms_of_tag = tags[tag_name];
   // let count = Math.min(terms_of_tag.length, 5);
   let top5 = [];
-  for(let i = 0; i < 5; i++) {
+  for(let i = 0; i < Math.min(5, terms_of_tag.length); i++) {
     // push term objects
     top5.push(dict[terms_of_tag[i]]);
+  }
+  return top5;
+}
+
+/**
+ * Get the first 5 terms of a tag
+ * @param {string} tag_name the name of the tag you want the top 5 of
+ * @returns {term[]} array of 5 terms
+ */
+export function top5PublishedTerms(tag_name) {
+  const dict = selectDict(true);
+  const tags = JSON.parse(localStorage.getItem('tags')) || {};
+  const terms_of_tag = tags[tag_name];
+  // let count = Math.min(terms_of_tag.length, 5);
+  let top5 = [];
+  for(let i = 0; i < terms_of_tag.length; i++) {
+    // push term objects
+    if(top5.length >= 5){
+      break;
+    }
+    if(dict[terms_of_tag[i]].published){
+      top5.push(dict[terms_of_tag[i]]);
+    }
   }
   return top5;
 }
@@ -147,11 +188,11 @@ export function updateTags(term) {
 
   for (const tag of term.tags) {
     tags_dict[tag] = tags_dict[tag] || [];
-    if (term.id in tags_dict[tag]) continue;
+    if (tags_dict[tag].includes(term.id)) continue;
     tags_dict[tag].push(term.id);
   }
   for (const tag of Object.keys(tags_dict)) {
-    if (term.id in tags_dict[tag] && !(tag in term.tags)) {
+    if (tags_dict[tag].includes(term.id) && !term.tags.includes(tag)) {
       let index = tags_dict[tag].indexOf(term.id);
       tags_dict[tag].splice(index, 1);
       if (tags_dict[tag].length === 0) {
@@ -167,11 +208,16 @@ export function updateTags(term) {
  * @param {term} term 
  */
 export function updateTagCount(term) {
+  const tags = Object.keys(loadTags());
   const tag_counts = loadTagCounts();
-
   for (const tag of term.tags) {
     tag_counts[tag] = tag_counts[tag] || 0;
     tag_counts[tag]++;
+  }
+  for (const tag of Object.keys(tag_counts)) {
+    if (!tags.includes(tag)) {
+      delete tag_counts[tag];
+    }
   }
   localStorage.setItem('tag_counts', JSON.stringify(tag_counts));
 }
@@ -235,13 +281,15 @@ function archiveDict(dict) {
 }
 
 /**
- * //FIXME: duplicate with `loadDict`
- * Same as `loadDict`
+ * Get a filtered dictionary of all terms.
+ * @param {boolean} [published=true] If the term has published or is a draft
  * @returns {Object.<string, term>} A dictionary of terms
  */
-export function selectDict() {
+export function selectDict(published=true) {
   const dict = loadDict();
-  return dict;
+  return Object.fromEntries(
+    Object.entries(dict).filter(([_, term]) => term.published === published)
+  );
 }
 
 /**
@@ -252,7 +300,6 @@ export function deleteAll() {
   for(const [_, term] of Object.entries(dict)){
     deleteTerm(term);
   }
-  // renderAllTerms(document.getElementById('dict'));
 }
 
 /**
@@ -269,11 +316,9 @@ export function generateTermId() {
  * @returns {string} The id of the new term
  */
 export function insertTerm(term) {
-  // TODO: Decide how we are going to handle duplicate (consult with team)
   const dict = loadDict();
   dict[term.id] = term;
   archiveDict(dict);
-  // location.reload();
   return term.id;
 }
 
@@ -304,10 +349,15 @@ export function updateTerm(term) {
   term.edit_count += 1;
   term.edited_date = cur_time;
   term.edited_by = 'user';
+  if (dict[term.id].published && !term.published) {
+    deleteTerm(dict[term.id]);
+  }
   dict[term.id] = term;
-  updateRecents(term.id);
-  updateTags(term);
-  updateTagCount(term);
+  if (term.published) {
+    updateRecents(term.id);
+    updateTags(term);
+    updateTagCount(term);
+  }
   archiveDict(dict);
 }
 
@@ -317,19 +367,24 @@ export function updateTerm(term) {
  * @returns {boolean} `true` if success; `false` otherwise
  */
 export function deleteTerm(term) {
-  let dict = loadDict();  
-  let tags = JSON.parse(localStorage.getItem('tags'));
-  let tagCount = JSON.parse(localStorage.getItem('tag_counts'));
-  let recents = JSON.parse(localStorage.getItem('recents'));
+  let dict = loadDict();
+  let tags = loadTags();
+  let tagCount = loadTagCounts();
+  let recents = loadRecents();
   if(!(term.id in dict)) {
     return false;
   }
   delete dict[term.id];
-  if(recents.indexOf(term.id) !== -1){
+  archiveDict(dict); 
+
+  if (!term.published) {
+    return true;
+  }
+
+  if(recents.indexOf(term.id) !== -1) {
     recents.splice(recents.indexOf(term.id), 1);
     localStorage.setItem('recents', JSON.stringify(recents));
   }
-  archiveDict(dict); 
   for(const tag of term.tags) {
     let uuids = tags[tag] || [];
     const i = uuids.indexOf(term.id);
@@ -338,23 +393,11 @@ export function deleteTerm(term) {
     }
     if(tags[tag].length === 0){
       delete tags[tag];
-    }
-    tagCount[tag] -= 1;
-    if(tagCount[tag] <= 0){
       delete tagCount[tag];
     }
   }
-  if(tags.length === 0){
-    localStorage.setItem('tags', JSON.stringify({}));
-  } else {
-    localStorage.setItem('tags', JSON.stringify(tags));
-  }  
-  if(tagCount.length === 0){
-    localStorage.setItem('tag_counts', JSON.stringify({}));
-  } else {
-    localStorage.setItem('tag_counts', JSON.stringify(tagCount));
-  }     
-  location.href='home.html';
+  localStorage.setItem('tags', JSON.stringify(tags));
+  localStorage.setItem('tag_counts', JSON.stringify(tagCount));
   return true;
 }
 
@@ -363,7 +406,7 @@ export function deleteTerm(term) {
  * @returns {number} The number of existing terms.
  */
 export function termsCount() {
-  const dict = loadDict();
+  const dict = selectDict();
   return Object.keys(dict).length;
 }
 
@@ -390,9 +433,11 @@ export function addTermToBackend(term){
   term['edited_date'] = cur_time;
   term['edit_count'] = 0;
   insertTerm(term);
-  updateRecents(term.id);
-  updateTags(term);
-  updateTagCount(term);
+  if (term.published){
+    updateRecents(term.id);
+    updateTags(term);
+    updateTagCount(term);
+  }
   return term.id;
 }
 
@@ -404,16 +449,50 @@ export function addTermToDoc(term) {
 }
 
 /**
+ * Find terms of a tag, with exact searching (not substring)
+ * @param {string} input The exact name of the tag to be searched for
+ * @param {boolean} case_insensitive Whether to match case
+ * @returns {term[]} A list of all terms associated with the tag
+ */
+export function findTermsOfTagExact(input, case_insensitive=true) {
+  const dict = selectDict(true);
+  let search_result = [];
+  // case insensitive
+  if (case_insensitive) {
+    input = input.toLowerCase();
+  }
+  let tags;
+  for (const [id, term] of Object.entries(dict)) {
+    if(search_result.includes(id)) continue;
+    tags = term.tags;
+    if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+    if (tags.includes(input)) {
+      search_result.push(id);
+      continue;
+    }
+  }
+  return search_result.map((id) => dict[id]);
+}
+
+/**
  * Find matching terms with the input.
  * @param {string} input The user input to the search bar
  * @param {boolean} s_term Whether to search in terms
  * @param {boolean} s_tag Whether to search in tags
  * @param {boolean} s_description Whether to search in descriptions
- * @param {boolean} [case_insensitive=false] Whether to match case
+ * @param {boolean} [case_insensitive=true] Whether to match case
+ * @param {boolean} [published=true]
  * @return {term[]} A list of all the term associated with the search 
  */
-export function findRequestedTerm(input, s_term, s_tag, s_description, case_insensitive=false) {
-  const dict = loadDict();
+export function findRequestedTerm(
+  input,
+  s_term,
+  s_tag,
+  s_description,
+  case_insensitive=true,
+  published=true
+) {
+  const dict = selectDict(published);
   let search_result = [];
   // fall back to search terms
   if(!s_term && !s_tag && !s_description) {
@@ -423,21 +502,9 @@ export function findRequestedTerm(input, s_term, s_tag, s_description, case_inse
   if (case_insensitive) {
     input = input.toLowerCase();
   }
-  // search tags
-  if(s_tag) {
-    const tags = JSON.parse(localStorage.getItem('tags')) || {};
-    for (const [tag, ids] of Object.entries(tags)) {
-      if (tag.toLowerCase().includes(input)) {
-        for (const id of ids) {
-          if (!search_result.includes(id)) {
-            search_result.push(id);
-          }
-        }
-      }
-    }
-  }
-  // search terms and descriptions
+  // search terms, tags, and descriptions
   let term_name;
+  let tags;
   let short_description;
   for (const [id, term] of Object.entries(dict)) {
     if(search_result.includes(id)) continue;
@@ -445,6 +512,14 @@ export function findRequestedTerm(input, s_term, s_tag, s_description, case_inse
       term_name = term.term_name;
       if (case_insensitive) term_name = term_name.toLowerCase();
       if (term_name.includes(input)) {
+        search_result.push(id);
+        continue;
+      }
+    }
+    if(s_tag) {
+      tags = term.tags;
+      if (case_insensitive) tags = tags.map((tag) => tag.toLowerCase());
+      if (tags.find((tag) => tag.includes(input)) !== undefined){
         search_result.push(id);
         continue;
       }
@@ -459,4 +534,38 @@ export function findRequestedTerm(input, s_term, s_tag, s_description, case_inse
     }
   }
   return search_result.map((id) => dict[id]);
+}
+export function findRequestedTag(input, case_insensitive=true, published=true) {
+  if (case_insensitive) {
+    input = input.toLowerCase();
+  }
+
+  let tags;
+  if (published) {
+    tags = Object.keys(loadTags());
+  } else {
+    const dict = selectDict(false);
+    let merged_tags = [].concat(...Object.values(dict).map((term) => term.tags));
+    tags = [...new Set(merged_tags)];
+  }
+
+  return tags.filter((tag) => (case_insensitive ? tag.toLowerCase() : tag).includes(input));
+}
+
+/**
+ * Return all published terms.
+ * @return {term[]} An array of published term objects 
+ */
+export function getAllPublishedTerms() {
+  const dict = selectDict(true);
+  return Object.values(dict);
+}
+
+/**
+ * Return all unpublished terms.
+ * @return {term[]} An array of unpublished term objects
+ */
+export function getAllUnpublishedTerms() {
+  const dict = selectDict(false);
+  return Object.values(dict);
 }

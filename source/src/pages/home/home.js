@@ -2,14 +2,17 @@ import * as backend_function from '/src/backend/dict.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
-let search_button = document.getElementById('search_button');
-let search_element = document.getElementById('search_bar');
-let search_input = '';
-let search_results = {};
+let top_buttons = document.querySelector('.top-buttons');
 
-function init() {      
+function init() {
+  addSearchBarToDocument();
   addTermsToDocument(backend_function.getDataOfRecents());
   addTagsToDocument(backend_function.getAllPopTags());
+}
+
+function addSearchBarToDocument() {
+  let search_bar = document.createElement('search-bar');
+  top_buttons.appendChild(search_bar);
 }
 
 function addTermsToDocument(terms) {
@@ -43,12 +46,3 @@ function addTagsToDocument(terms) {
 
   recently_added_el.appendChild(tag_div);
 }
-
-search_element.addEventListener('input', () => {
-  search_input = search_element.value;
-  search_results = backend_function.findRequestedTerm(search_input, true, true, true);  
-});
-
-search_button.addEventListener('click', () => {
-  localStorage.setItem('search_results', JSON.stringify(search_results));
-});

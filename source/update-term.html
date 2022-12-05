@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Update Term Page</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="src/pages/update-term/update-term.css">
+  <link rel="stylesheet" href="common.css">
+</head>
+
+<body>
+  <header class="nav-bar">
+    <!-- VALIDTOR FIX: height="70px" -->
+    <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jumpHomeHtml()">
+  </header>
+
+  <main>
+    <h1>Update Term</h1>
+    <div class="text-box">
+      <h3>Term Name: <input type="text" id="term_name" placeholder="Name of Term" /> </h3>
+      <h3>Tags: <input type="text" id="tags" placeholder="tag 1,tag 2,tag 3..." /> </h3>
+      <h3>Short Description: <input type="text" id="short_description" placeholder="Insert Description" /> </h3>
+      <textarea id="tinyMCE-content"></textarea>
+
+      <button id="update_button" onclick="jumpHomeHtml()">Update</button>
+      <button onclick="jumpHomeHtml()">Cancel</button>
+    </div>
+  </main>
+  <!-- VALIDTOR FIX: moved script into body -->
+  <script src="src/common-scripts/redirection.js" type="module"></script>
+  <script src="src/backend/dict.js" type="module"></script>
+  <script src="src/pages/update-term/update-term.js" type="module"></script>
+  <script src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js">
+  </script>
+</body>
+
+</html>

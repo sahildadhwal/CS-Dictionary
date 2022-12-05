@@ -1,4 +1,4 @@
-import {initTinyMCE, getTinyMCEData} from '/src/components/tinyMCE/tiny-mce.js';
+import { initTinyMCE, getTinyMCEData } from '/src/components/tinyMCE/tiny-mce.js';
 import * as backend_function from '/src/backend/dict.js';
 
 let button = document.getElementById('create_button');

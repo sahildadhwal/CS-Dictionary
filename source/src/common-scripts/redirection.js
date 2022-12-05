@@ -1,19 +1,29 @@
-function jumpCreateTermHtml() {
+export function jumpCreateTermHtml() {
   location.href='create-term.html';
 }
-function jumpHomeHtml() {
+export function jumpHomeHtml() {
   location.href='home.html';
 }
-function jumpPostHtml() {
+export function jumpPostHtml() {
   location.href='post.html';
 }
-function jumpSettingsHtml() {
+export function jumpSettingsHtml() {
   location.href='settings.html';
 }
-function jumpSearchHtml() {
+export function jumpSearchHtml() {
   location.href='search.html';
 } 
-
-function jumpTermPageHtml() {
+export function jumpTermPageHtml() {
   location.href='term-page.html';
-} 
+}
+export function jumpUpdateTermHtml() {
+  location.href='update-term.html';
+}
+
+window.jumpCreateTermHtml = jumpCreateTermHtml;
+window.jumpHomeHtml = jumpHomeHtml;
+window.jumpPostHtml = jumpPostHtml;
+window.jumpSettingsHtml = jumpSettingsHtml;
+window.jumpSearchHtml = jumpSearchHtml;
+window.jumpTermPageHtml = jumpTermPageHtml;
+window.jumpUpdateTermHtml = jumpUpdateTermHtml;
