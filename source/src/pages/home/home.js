@@ -1,5 +1,5 @@
 import * as backend_function from '/src/backend/dict.js';
-import * as redirection from '/src/common-scripts/redirection.js'
+import * as redirection from '/src/common-scripts/redirection.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -16,11 +16,11 @@ function addSearchBarToDocument() {
   top_buttons.appendChild(search_bar);
   search_bar.searchFunction = backend_function.findRequestedTerm;
   search_bar.initSearchFunction = {
-    "search_term": true,
-    "search_tag": false,
-    "search_description": true,
-    "case_insensitive": true
-  }
+    'search_term': true,
+    'search_tag': false,
+    'search_description': true,
+    'case_insensitive': true
+  };
 }
 
 function addTermsToDocument(terms) {
@@ -69,10 +69,10 @@ function searchByTags(e) {
   // Build json for tag-search page and redirect
   let tag_search_results =[
     {
-      "tag_name": tag_name,
-      "terms": search_results
+      'tag_name': tag_name,
+      'terms': search_results
     }
-  ]
+  ];
   localStorage.setItem('tag_search_results', JSON.stringify(tag_search_results));
   redirection.jumpTagSearchHtml();
 }

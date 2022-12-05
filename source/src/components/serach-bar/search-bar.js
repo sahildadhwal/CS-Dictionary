@@ -46,7 +46,7 @@ class SearchBar extends HTMLElement {
         };
       }
       // Add event listener when pressing enter key
-      form_el.addEventListener('keypress', function (e) {
+      form_el.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           // Only redirect when user input not empty
           if (form_el.value.length !== 0) {
@@ -87,7 +87,7 @@ class SearchBar extends HTMLElement {
         const sliced_results = search_results.slice(0, this.MAXIMUM_ELEMENT_DISPLAY);
 
         // Create list item for each
-        sliced_results.forEach(item => {
+        sliced_results.forEach((item) => {
           const list_el = document.createElement('li');
 
           // Add term id to list parameter so it can be set when redirecting
@@ -103,7 +103,7 @@ class SearchBar extends HTMLElement {
           // https://stackoverflow.com/questions/3294576/
           let display_string = item.term_name;
           let reg = new RegExp(user_input, 'gi');
-          display_string = display_string.replace(reg, function (str) { return '<b>' + str + '</b>' });
+          display_string = display_string.replace(reg, (str) => `<b>${str}</b>`);
 
           // Add term name inside the wrapper then add wrapper inside list element
           term_name_el.innerHTML = display_string;
@@ -124,7 +124,7 @@ class SearchBar extends HTMLElement {
         }
 
         let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length;
-        drop_el.style.height = totalChildrenHeight + 'px';
+        drop_el.style.height = `${totalChildrenHeight}px`;
       };
       form_el.addEventListener('input', formHandler);
     }
@@ -136,14 +136,14 @@ class SearchBar extends HTMLElement {
         };
       }
       // Add event listener when pressing enter key
-      form_el.addEventListener('keypress', function (e) {
+      form_el.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           // Only redirect when user input not empty
           if (form_el.value.length !== 0) {
             let tag_search_results = [];
 
             // Search for all terms in every tag result
-            search_results.forEach(tag => {
+            search_results.forEach((tag) => {
               let term_result = backend_function.findTermsOfTagExact(tag);
               // Build json for each tag then add to array
               let tag_with_terms = {
@@ -160,7 +160,7 @@ class SearchBar extends HTMLElement {
       });
 
       const goToTagPage = (e) => {
-        let tag_name = e.currentTarget.tag_name;
+        let {tag_name} = e.currentTarget;
         // Search for all terms in tag
         let term_result = backend_function.findTermsOfTagExact(tag_name);
         // Build json for each tag then add to array
@@ -194,7 +194,7 @@ class SearchBar extends HTMLElement {
         const sliced_results = search_results.slice(0, this.MAXIMUM_ELEMENT_DISPLAY);
 
         // Create list item for each
-        sliced_results.forEach(item => {
+        sliced_results.forEach((item) => {
           const list_el = document.createElement('li');
 
           // Add term id to list parameter so it can be set when redirecting
@@ -210,7 +210,7 @@ class SearchBar extends HTMLElement {
           // https://stackoverflow.com/questions/3294576/
           let display_string = item;
           let reg = new RegExp(user_input, 'gi');
-          display_string = display_string.replace(reg, function (str) { return '<b>' + str + '</b>' });
+          display_string = display_string.replace(reg, (str) => `<b>${str}</b>`);
 
           // Add term name inside the wrapper then add wrapper inside list element
           term_name_el.innerHTML = display_string;
@@ -225,7 +225,7 @@ class SearchBar extends HTMLElement {
         }
 
         let totalChildrenHeight = drop_el.children[0].offsetHeight * sliced_results.length;
-        drop_el.style.height = totalChildrenHeight + 'px';
+        drop_el.style.height = `${totalChildrenHeight}px`;
       };
 
       form_el.addEventListener('input', formHandler);

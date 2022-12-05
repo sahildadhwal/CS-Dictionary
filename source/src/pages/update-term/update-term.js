@@ -1,6 +1,6 @@
 import { initTinyMCE, getTinyMCEData } from '/src/components/tinyMCE/tiny-mce.js';
 import * as backend_function from '/src/backend/dict.js';
-import * as redirection from '/src/common-scripts/redirection.js'
+import * as redirection from '/src/common-scripts/redirection.js';
 
 let term_id = localStorage.getItem('get_term_id');
 let button = document.getElementById('update-button');
@@ -15,7 +15,7 @@ let data = {};
 data = backend_function.selectTerm(term_id);
 
 // Populate data to respective element
-init()
+init();
 
 function init() {
   term_name.value = data.term_name;
@@ -30,7 +30,7 @@ if (data.published == true) {
 }
 // Else if draft then change text of Update button to Post
 else {
-  button.value = "Post";
+  button.value = 'Post';
 }
 
 // Update as post
@@ -48,7 +48,6 @@ button.addEventListener('click', (e) => {
     backend_function.updateTerm(data);
     redirection.jumpTermPageHtml();
   }
-  
 });
 
 // Update as draft
@@ -72,4 +71,4 @@ draftButton.addEventListener('click', (e) => {
 cancelButton.addEventListener('click', (e) => {
   e.preventDefault();
   redirection.jumpTermPageHtml();
-})
+});

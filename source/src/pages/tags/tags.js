@@ -1,5 +1,5 @@
 import * as backend_function from '/src/backend/dict.js';
-import * as redirection from '/src/common-scripts/redirection.js'
+import * as redirection from '/src/common-scripts/redirection.js';
 
 let top_buttons = document.querySelector('.top-buttons');
 let tag_container = document.querySelector('.tag-container');
@@ -19,17 +19,17 @@ function addSearchBarToDocument() {
 
   search_bar.searchFunction = backend_function.findRequestedTag;
   search_bar.initSearchFunction = {
-    "search_term": true,
-    "search_tag": false,
-    "search_description": true,
-    "case_insensitive": true
-  }
+    'search_term': true,
+    'search_tag': false,
+    'search_description': true,
+    'case_insensitive': true
+  };
 }
 
 function addTagsToDocument() {
-  tag_search_results.forEach(tag => {
+  tag_search_results.forEach((tag) => {
     let tag_card = document.createElement('tag-card');
     tag_container.appendChild(tag_card);
     tag_card.data = tag;
-  })
+  });
 }
