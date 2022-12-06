@@ -61,100 +61,99 @@ const termA = {
   edit_count: 0
 };
 const termAid = 'ID#1';
-  const terms = [{
-    id: 'ID#2',
-    term_name: 'Term B',
-    tags: 'tag1, tag2', // ['tag1', 'tag2'],
-    short_description: 'This is the term description',
-    term_data: 'This is the term data',
-    published: true,
-    created_by: 'devOps',
-    created_time: cur_time.toISOString(),
-    edited_by: 'no one',
-    edited_date: '',
-    edit_count: 0
-  },
-  {
-    id: 'ID#3',
-    term_name: 'Term C',
-    tags: 'tag1, tag2', // ['tag1', 'tag2'],
-    short_description: 'This is the term description',
-    term_data: 'This is the term data',
-    published: true,
-    created_by: 'devOps',
-    created_time: cur_time.toISOString(),
-    edited_by: 'no one',
-    edited_date: '',
-    edit_count: 0
-  },
-  {
-    id: 'ID#4',
-    term_name: 'Term D',
-    tags: 'tag1, tag2', // ['tag1', 'tag2'],
-    short_description: 'This is the term description',
-    term_data: 'This is the term data',
-    published: true,
-    created_by: 'devOps',
-    created_time: cur_time.toISOString(),
-    edited_by: 'no one',
-    edited_date: '',
-    edit_count: 0
-  },
-  {
-    id: 'ID#5',
-    term_name: 'Term E',
-    tags: 'tag2', // ['tag2'],
-    short_description: 'This is the term description',
-    term_data: 'This is the term data',
-    published: true,
-    created_by: 'devOps',
-    created_time: cur_time.toISOString(),
-    edited_by: 'no one',
-    edited_date: '',
-    edit_count: 0
-  },
-  {
-    id: 'ID#6',
-    term_name: 'Term F',
-    tags: 'tag1', // ['tag1'],
-    short_description: 'This is the term description',
-    term_data: 'This is the term data',
-    published: true,
-    created_by: 'devOps',
-    created_time: cur_time.toISOString(),
-    edited_by: 'no one',
-    edited_date: '',
-    edit_count: 0
-  },
-  {
-    id: 'ID#7',
-    term_name: 'Term G',
-    tags: 'tag3', // ['tag3'],
-    short_description: 'This is the term description',
-    term_data: 'This is the term data',
-    published: true,
-    created_by: 'devOps',
-    created_time: cur_time.toISOString(),
-    edited_by: 'no one',
-    edited_date: '',
-    edit_count: 0
-  },
-  {
-    id: 'ID#8',
-    term_name: 'Term H',
-    tags: 'tag4', // ['tag3'],
-    short_description: 'This is the term description',
-    term_data: 'This is the term data',
-    published: false,
-    created_by: 'devOps',
-    created_time: cur_time.toISOString(),
-    edited_by: 'no one',
-    edited_date: '',
-    edit_count: 0
-  }];
-  const termids = ['ID#2', 'ID#3', 'ID#4', 'ID#5', 'ID#6', 'ID#7', 'ID#8'];
-  const listOfTags = ['tag1, tag2', 'tag1, tag2', 'tag1, tag2', 'tag2', 
-  'tag1', 'tag3', 'tag4'];
+const terms = [{
+  id: 'ID#2',
+  term_name: 'Term B',
+  tags: 'tag1, tag2', // ['tag1', 'tag2'],
+  short_description: 'This is the term description',
+  term_data: 'This is the term data',
+  published: true,
+  created_by: 'devOps',
+  created_time: cur_time.toISOString(),
+  edited_by: 'no one',
+  edited_date: '',
+  edit_count: 0
+},
+{
+  id: 'ID#3',
+  term_name: 'Term C',
+  tags: 'tag1, tag2', // ['tag1', 'tag2'],
+  short_description: 'This is the term description',
+  term_data: 'This is the term data',
+  published: true,
+  created_by: 'devOps',
+  created_time: cur_time.toISOString(),
+  edited_by: 'no one',
+  edited_date: '',
+  edit_count: 0
+},
+{
+  id: 'ID#4',
+  term_name: 'Term D',
+  tags: 'tag1, tag2', // ['tag1', 'tag2'],
+  short_description: 'This is the term description',
+  term_data: 'This is the term data',
+  published: true,
+  created_by: 'devOps',
+  created_time: cur_time.toISOString(),
+  edited_by: 'no one',
+  edited_date: '',
+  edit_count: 0
+},
+{
+  id: 'ID#5',
+  term_name: 'Term E',
+  tags: 'tag2', // ['tag2'],
+  short_description: 'This is the term description',
+  term_data: 'This is the term data',
+  published: true,
+  created_by: 'devOps',
+  created_time: cur_time.toISOString(),
+  edited_by: 'no one',
+  edited_date: '',
+  edit_count: 0
+},
+{
+  id: 'ID#6',
+  term_name: 'Term F',
+  tags: 'tag1', // ['tag1'],
+  short_description: 'This is the term description',
+  term_data: 'This is the term data',
+  published: true,
+  created_by: 'devOps',
+  created_time: cur_time.toISOString(),
+  edited_by: 'no one',
+  edited_date: '',
+  edit_count: 0
+},
+{
+  id: 'ID#7',
+  term_name: 'Term G',
+  tags: 'tag3', // ['tag3'],
+  short_description: 'This is the term description',
+  term_data: 'This is the term data',
+  published: true,
+  created_by: 'devOps',
+  created_time: cur_time.toISOString(),
+  edited_by: 'no one',
+  edited_date: '',
+  edit_count: 0
+},
+{
+  id: 'ID#8',
+  term_name: 'Term H',
+  tags: 'tag4', // ['tag3'],
+  short_description: 'This is the term description',
+  term_data: 'This is the term data',
+  published: false,
+  created_by: 'devOps',
+  created_time: cur_time.toISOString(),
+  edited_by: 'no one',
+  edited_date: '',
+  edit_count: 0
+}];
+const termids = ['ID#2', 'ID#3', 'ID#4', 'ID#5', 'ID#6', 'ID#7', 'ID#8'];
+const listOfTags = ['tag1, tag2', 'tag1, tag2', 'tag1, tag2', 'tag2', 'tag1', 'tag3', 'tag4'];
 
 // Try testing with one term
 describe('Test Term and Tag Properties with 1 Term', () => {
