@@ -5,9 +5,10 @@
 <!-- &nbsp; is the same as space " " -->
 # **&nbsp; &nbsp; Team Page &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Miro Board**
 
+&nbsp; &nbsp;
 <a href="https://cse110-fa22-group2.github.io/team2-fa22-cse110/admin/team.html" target="_blank">
     <img src='./admin/images/THEPIZZAPARTY-circle.png' alt="drawing" width="200" title="Redirect to team page.">
-</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <a href="https://miro.com/app/board/uXjVPJnCzps=/?share_link_id=992842944391" target="_blank">
     <img src='./admin/images/d_logo-circle.png' alt="drawing" width="200" title="Redirect to Miro Board Page.">
 </a>
