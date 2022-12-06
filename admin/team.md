@@ -9,7 +9,7 @@
 
 &nbsp; &nbsp;<a href="https://youtu.be/tpCWZWzKOt8" target="_blank">
     <img src='./images/d_logo-circle.png' alt="drawing" width="200" title="Redirect to team status video, which talks about our site.">
-</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <a href="https://youtu.be/iMRoQklh57Q" target="_blank">
     <img src='./images/THEPIZZAPARTY-circle.png' alt="drawing" width="200" title="Redirect to team intro video, which introduces the team members.">
 </a>
