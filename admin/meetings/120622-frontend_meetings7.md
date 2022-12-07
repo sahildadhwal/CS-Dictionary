@@ -35,8 +35,8 @@
 <ul>
   <li>December 6, 2022</li>
   <ul>
-    <li>Duration: 2 hours 2 minutes</li>
-        <ol>5:00pm to 7:02pm<ol>
+    <li>Duration: 2 hours 40 minutes</li>
+        <ol>5:00pm to 7:40pm<ol>
   </ul>
 </ul>
 
