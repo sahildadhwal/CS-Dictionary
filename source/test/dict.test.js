@@ -371,6 +371,7 @@ describe('Test Updating and Deleting with Multiple Terms', () => {
     functions.updateTerm(terms[6]);
     const term = functions.selectTerm(termids[6]);
     // Change date to ISOString;
+    terms[6].created_time = terms[6].created_time.toISOString();
     terms[6].edited_date = terms[6].edited_date.toISOString();
     expect(term).toStrictEqual(terms[6]);
     expect(term.edit_count).toBe(2);
