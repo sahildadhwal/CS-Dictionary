@@ -26,7 +26,8 @@ jobs:
       - name: HTML5 Validator
         uses: Cyb3r-Jak3/html5validator-action@v7.1.1
         with:
-          blacklist: source/src/pages/tags/tags.css
+          root: soruce/
+          blacklist: /src/pages/tags/tags.css
           css: true
           log_level: DEBUG
 
