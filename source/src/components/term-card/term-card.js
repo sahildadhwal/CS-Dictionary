@@ -3,20 +3,6 @@ class TermCard extends HTMLElement {
     super();
     let shadow_el = this.attachShadow({ mode: 'open' });
     let article_el = document.createElement('article');
-    // let style_el = document.createElement('style');
-    // const xhr = new XMLHttpRequest();
-    // xhr.open('GET', 'src/components/term-card/term-card.css', true);
-    // xhr.onreadystatechange = () => {
-    //   if (this.readyState !== 4) return;
-    //   if (this.status !== 200) return;
-    //   style_el.textContent = this.responseText;
-    // };
-    // xhr.send();
-    // shadow_el.appendChild(style_el);
-    const link_el = document.createElement('link');
-    link_el.setAttribute('rel', 'stylesheet');
-    link_el.setAttribute('href', 'src/components/term-card/term-card.css');
-    shadow_el.appendChild(link_el);
     shadow_el.appendChild(article_el);
   }
 
@@ -28,9 +14,12 @@ class TermCard extends HTMLElement {
     }
 
     article_element.innerHTML = `
+    <style>
+      @import 'src/components/term-card/term-card.css';
+    </style>
     <div class="basic-card basic-card-light">
     <div class="card-content">
-      <span id="term-name" class="card-title">${data['term_name']}</span>
+      <div id="term-name" class="card-title">${data['term_name']}</div>
       <p id="description" class="card-text">
         ${data['short_description']}
       </p>
@@ -41,7 +30,7 @@ class TermCard extends HTMLElement {
     </div>
   </div>
     `;
-  
+
     let open_term_button = article_element.querySelector('#open_term');
     open_term_button.addEventListener('click', (e) => {
       localStorage.setItem('get_term_id', data['id']);

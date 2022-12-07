@@ -1,16 +1,24 @@
 # The Pizza Party
-## [Team Intro](https://youtu.be/iMRoQklh57Q)
+## [*Team Intro*](https://youtu.be/iMRoQklh57Q)
 
-## Brand:
-![image](./images/d_logo.png)
+## [*Team Status Video 1*](https://youtu.be/tpCWZWzKOt8)
 
-### Logo:
-![image](./images/THEPIZZAPARTY.png)
 
-### Slogan:
-> [*Pizza Time.*](https://www.youtube.com/watch?v=TRgdA9_FsXM)
+<!-- &nbsp; is the same as space " " -->
+# **&nbsp; &nbsp; Team Brand &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Team Logo**
 
-## Values:
+&nbsp; &nbsp;<a href="https://youtu.be/tpCWZWzKOt8" target="_blank">
+    <img src='./images/d_logo-circle.png' alt="drawing" width="200" title="Redirect to team status video, which talks about our site.">
+</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="https://youtu.be/iMRoQklh57Q" target="_blank">
+    <img src='./images/THEPIZZAPARTY-circle.png' alt="drawing" width="200" title="Redirect to team intro video, which introduces the team members.">
+</a>
+
+
+### **Slogan:**
+> [*Pizza Time*](https://www.youtube.com/watch?v=TRgdA9_FsXM)
+
+## **Values:**
 - **Have fun**
 - **Try new things**
 - **Live, love, laugh**

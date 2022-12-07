@@ -1,15 +1,26 @@
 import * as backend_function from '/src/backend/dict.js';
+import * as redirection from '/src/common-scripts/redirection.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
-let search_button = document.getElementById('search_button');
-let search_element = document.getElementById('search_bar');
-let search_input = '';
-let search_results = {};
+let top_buttons = document.querySelector('.top-buttons');
 
-function init() {      
+function init() {
+  addSearchBarToDocument();
   addTermsToDocument(backend_function.getDataOfRecents());
   addTagsToDocument(backend_function.getAllPopTags());
+}
+
+function addSearchBarToDocument() {
+  let search_bar = document.createElement('search-bar');
+  top_buttons.appendChild(search_bar);
+  search_bar.searchFunction = backend_function.findRequestedTerm;
+  search_bar.initSearchFunction = {
+    'search_term': true,
+    'search_tag': false,
+    'search_description': true,
+    'case_insensitive': true
+  };
 }
 
 function addTermsToDocument(terms) {
@@ -22,33 +33,46 @@ function addTermsToDocument(terms) {
 }
 
 function addTagsToDocument(terms) {
-  let recently_added_el = document.querySelector('div.popular-tags');
-  let tag_div = document.createElement('div');
+  let popular_tag_el = document.querySelector('div.popular-tags');
 
   terms.forEach((tag) => {
-    let tag_name = document.createElement('h4');
+    // Create a tag as button
+    let tag_name = document.createElement('button');
     tag_name.textContent = tag['tag_name'];
-    tag_div.appendChild(tag_name);
+
+    // Handles clicking on the tag to jump to tag search page
+    tag_name.addEventListener('click', searchByTags);
+
+    // Create term cards wrapper
+    popular_tag_el.appendChild(tag_name);
     let tag_terms = document.createElement('div');
     tag_terms.className = 'tag-column';
 
+    // Create term cards and add to tag
     tag.terms.forEach((term) => {
       let term_card = document.createElement('term-card');
 
       term_card.data = term;
       tag_terms.appendChild(term_card);
     });
-    tag_div.appendChild(tag_terms);
+    popular_tag_el.appendChild(tag_terms);
   });
-
-  recently_added_el.appendChild(tag_div);
 }
 
-search_element.addEventListener('input', () => {
-  search_input = search_element.value;
-  search_results = backend_function.findRequestedTerm(search_input, true, true, true);  
-});
+function searchByTags(e) {
+  e.preventDefault();
 
-search_button.addEventListener('click', () => {
-  localStorage.setItem('search_results', JSON.stringify(search_results));
-});
+  // Get tag name and get search results by tag
+  let tag_name = e.currentTarget.textContent;
+  let search_results = backend_function.findTermsOfTagExact(tag_name);
+
+  // Build json for tag-search page and redirect
+  let tag_search_results =[
+    {
+      'tag_name': tag_name,
+      'terms': search_results
+    }
+  ];
+  localStorage.setItem('tag_search_results', JSON.stringify(tag_search_results));
+  redirection.jumpTagSearchHtml();
+}

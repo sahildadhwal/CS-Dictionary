@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Search Result</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=650">
+  <link rel="stylesheet" href="src/pages/tag-search/tag-search.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="src/pages/home/home.css">
+  <link rel="stylesheet" href="src/assets/font-awesome/css/font-awesome.min.css">
+  <link href="./src/assets/d_logo-circle.png" rel="icon" type="image/png" />
+</head>
+
+<body>
+  <header class="nav-bar">
+    <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jumpHomeHtml()">
+
+    <div class="buttons">
+      <i class="published-posts fa fa-user fa-2x" aria-hidden="true" title="My Posts" onclick="jumpPublishedTerms()"></i>
+      <i class="tags-button fa fa-tags fa-2x" aria-hidden="true" title="My Tags" onclick="jumpTagsHtml()"></i>
+      <i class="draft-button fa fa-pencil-square-o fa-2x" aria-hidden="true" title="My Drafts" onclick="jumpDraftsPageHtml()"></i>
+      <i class="add-button fa fa-plus-circle fa-2x" aria-hidden="true" title="Create Term" onclick="jumpCreateTermHtml()"></i>
+    </div>
+  </header>
+
+  <main>
+    <h1>Search Results</h1>
+    <div class="tag-results">
+    </div>
+  </main>
+  <script src="src/common-scripts/redirection.js" type="module"></script>
+  <script src="src/components/term-card/term-card.js"></script>
+  <script src="src/pages/tag-search/tag-search.js" type="module"></script>
+</body>
+
+</html>

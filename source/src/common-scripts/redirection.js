@@ -1,19 +1,45 @@
-function jumpCreateTermHtml() {
+export function jumpCreateTermHtml() {
   location.href='create-term.html';
 }
-function jumpHomeHtml() {
+export function jumpHomeHtml() {
   location.href='home.html';
 }
-function jumpPostHtml() {
+export function jumpPostHtml() {
   location.href='post.html';
 }
-function jumpSettingsHtml() {
+export function jumpSettingsHtml() {
   location.href='settings.html';
 }
-function jumpSearchHtml() {
+export function jumpSearchHtml() {
   location.href='search.html';
 } 
-
-function jumpTermPageHtml() {
+export function jumpTermPageHtml() {
   location.href='term-page.html';
-} 
+}
+export function jumpUpdateTermHtml() {
+  location.href='update-term.html';
+}
+export function jumpPublishedTerms() {
+  location.href='published-terms.html';
+}
+export function jumpDraftsPageHtml() {
+  location.href='draft-terms.html';
+}
+export function jumpTagSearchHtml() {
+  location.href='tag-search.html';
+}
+export function jumpTagsHtml() {
+  location.href='tags.html';
+}
+
+window.jumpCreateTermHtml = jumpCreateTermHtml;
+window.jumpHomeHtml = jumpHomeHtml;
+window.jumpPostHtml = jumpPostHtml;
+window.jumpSettingsHtml = jumpSettingsHtml;
+window.jumpSearchHtml = jumpSearchHtml;
+window.jumpTermPageHtml = jumpTermPageHtml;
+window.jumpUpdateTermHtml = jumpUpdateTermHtml;
+window.jumpPublishedTerms = jumpPublishedTerms;
+window.jumpDraftsPageHtml = jumpDraftsPageHtml;
+window.jumpTagSearchHtml = jumpTagSearchHtml;
+window.jumpTagsHtml = jumpTagsHtml;
