@@ -353,6 +353,9 @@ export function updateTerm(term) {
   if (dict[term.id].published && !term.published) {
     deleteTerm(dict[term.id]);
   }
+  if (!dict[term.id].published && term.published) {
+    term.created_time = cur_time;
+  }
   dict[term.id] = term;
   if (term.published) {
     updateRecents(term.id);
