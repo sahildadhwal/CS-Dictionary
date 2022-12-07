@@ -37,6 +37,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/no-absolute-path': 'off',
+    'max-classes-per-file': 'off',
     'no-undef': 'off' // For tinyMCE as it's a plugin
   },
   plugins: ['jest'],
