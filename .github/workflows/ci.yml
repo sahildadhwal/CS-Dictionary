@@ -27,7 +27,7 @@ jobs:
         uses: Cyb3r-Jak3/html5validator-action@v7.1.1
         with:
           root: source/
-          blacklist: src/pages/tags/tags.css
+          blacklist: src/pages/tags
           css: true
           log_level: DEBUG
 
