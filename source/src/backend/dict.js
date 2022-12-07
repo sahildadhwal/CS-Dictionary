@@ -128,7 +128,6 @@ export function top5terms(tag_name) {
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
   const terms_of_tag = tags[tag_name];
   if (terms_of_tag === undefined) {
-    console.error(`No such tag: ${tag_name}`);
     return [];
   }
   let top5 = [];
@@ -149,7 +148,6 @@ export function top5PublishedTerms(tag_name) {
   const tags = JSON.parse(localStorage.getItem('tags')) || {};
   const terms_of_tag = tags[tag_name];
   if (terms_of_tag === undefined) {
-    console.error(`No such tag: ${tag_name}`);
     return [];
   }
   let top5 = [];
