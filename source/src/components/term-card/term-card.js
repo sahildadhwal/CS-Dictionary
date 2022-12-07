@@ -19,7 +19,7 @@ class TermCard extends HTMLElement {
     </style>
     <div class="basic-card basic-card-light">
     <div class="card-content">
-      <span id="term-name" class="card-title">${data['term_name']}</span>
+      <div id="term-name" class="card-title">${data['term_name']}</div>
       <p id="description" class="card-text">
         ${data['short_description']}
       </p>

@@ -4,14 +4,25 @@
 <head>
   <title>Term Page</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=650">
   <link rel="stylesheet" href="src/pages/term-page/term-page.css">
   <link rel="stylesheet" href="src/components/confirmation-box/confirmation-box.css">
   <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="src/pages/home/home.css">
+  <link rel="stylesheet" href="src/assets/font-awesome/css/font-awesome.min.css">
+  <link href="./src/assets/d_logo-circle.png" rel="icon" type="image/png" />
 </head>
 
 <body>
   <header class="nav-bar">
     <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jumpHomeHtml()">
+    <div class="buttons">
+      <i class="published-posts fa fa-user fa-2x" aria-hidden="true" title="My Posts" onclick="jumpPublishedTerms()"></i>
+      <i class="tags-button fa fa-tags fa-2x" aria-hidden="true" title="My Tags" onclick="jumpTagsHtml()"></i>
+      <i class="draft-button fa fa-pencil-square-o fa-2x" aria-hidden="true" title="My Drafts" onclick="jumpDraftsPageHtml()"></i>
+      <i class="add-button fa fa-plus-circle fa-2x" aria-hidden="true" title="Create Term" onclick="jumpCreateTermHtml()"></i>
+    </div>
+
   </header>
   <main>
     <div class="term-information">
@@ -26,7 +37,7 @@
       </div><br>
       <div class="button-container">
         <button class="button update-button" id="update-button">Update</button>
-        <button class="button delete-button" id="deletebtn"
+        <button class="button delete-button" id="delete-button"
           onclick="document.getElementById('id01').style.display='block'">Delete</button>
       </div>
 
@@ -37,12 +48,10 @@
             <h1>Delete Term</h1>
             <p>Are you sure you want to delete this term?</p>
             <div class="clearfix">
-              <button class="button cancel-button" type="button"
-                onclick="document.getElementById('id01').style.display='none'"
-                class="cancelbtn modal-button">Cancel</button>
-              <button class="button delete-button" type="button"
-                onclick="document.getElementById('id01').style.display='none'"
-                class="deletebtn modal-button">Delete</button>
+              <button class="button cancel-button cancelbtn modal-button" type="button"
+                onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+              <button class="button delete-button deletebtn modal-button" id="real-delete" type="button"
+                onclick="document.getElementById('id01').style.display='none'; jumpHomeHtml();">Delete</button>
             </div>
           </div>
         </form>

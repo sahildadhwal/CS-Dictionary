@@ -17,21 +17,70 @@
     display: inline-block;    
 }
 
-.term-tags li button {
-    background-color: #57acf1;
-    color: white;
+.term-tags li button {  
+    /* background-color: #57acf1; */
+    color: #ffffff;
     border: 0;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
 }
 
 .term-tags li button:hover {
-    background-color: #1c92f1;
+    /* background-color: #1c92f1; */
     cursor: pointer;
+}
+
+.term-tags li:nth-child(5n) button {
+  background-color: #ef0f14;
+}
+
+.term-tags li:nth-child(5n) button:hover {
+  background-color: hsl(359, 88%, 45%);
+}
+
+.term-tags li:nth-child(5n + 1) button {
+  background-color: #239323;
+}
+
+.term-tags li:nth-child(5n + 1) button:hover {
+  background-color: hsl(120, 62%, 31%);
+}
+
+.term-tags li:nth-child(5n + 2) button {
+  background-color: #4686c8;
+}
+
+.term-tags li:nth-child(5n + 2) button:hover {
+  background-color: hsl(210, 54%, 48%);
+}
+
+.term-tags li:nth-child(5n + 3) button {
+  background-color: #999999;
+}
+
+.term-tags li:nth-child(5n + 3) button:hover {
+  background-color: hsl(0, 0%, 55%);
+}
+
+.term-tags li:nth-child(5n + 4) button {
+  background-color: #c2aded;
+}
+
+.term-tags li:nth-child(5n + 4) button:hover {
+  background-color: hsl(260, 64%, 75%);
 }
 
 #term-title {
     text-align: left;
+    word-wrap: break-word;
+}
+
+#term-title span {
+  color: #919191;
+}
+
+#term-description {
+  word-wrap: break-word;
 }
 
 .button-container {

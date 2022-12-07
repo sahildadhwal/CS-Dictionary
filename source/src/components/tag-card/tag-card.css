@@ -1,0 +1,65 @@
+.tag {
+  background-color: rgba(219, 219, 219, 0.5);
+  height: 350px;
+  width: 460px;
+  padding: 20px;
+}
+
+.tag button {
+  color: white;
+  border: 0;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+
+.tag button:hover {
+  cursor: pointer;
+}
+
+.term-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
+  padding: 0;
+}
+
+.term {
+  background-color: white;
+  width: 190px;
+  height: 110px;
+  border-radius: 3%;
+  padding: 15px;
+
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 7px 5px 0px rgb(0 0 0 / 20%)
+}
+
+.term:hover {
+  cursor: pointer;
+}
+
+.term-name {
+  font-size: 20px;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.term-description {
+  font-size: 15px;
+  /* Prevent short description too long in card */
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+ul {
+  list-style-type: none;
+}

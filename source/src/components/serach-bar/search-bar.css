@@ -32,6 +32,7 @@ ul {
   transition: .4s height;
   transform: scaleX(0) scaleY(0);
   background-color: white;
+  width: 40vw;
 }
 
 /* Very important, it makes the search results visible when 
@@ -57,12 +58,28 @@ ul li {
   list-style: none;
   border-top: 1px solid #ddd;
   text-align: left;
-  display: block;
+  display: flex;
+  justify-content: space-between;
 }
 
 ul li:hover {
   background-color: hsl(0, 0%, 95%);
   cursor: pointer;
+}
+
+ul li div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 40%;
+}
+
+.short-description {
+  color: hsl(0, 0%, 60%);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 40%;
 }
 
 .match {
