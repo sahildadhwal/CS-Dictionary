@@ -2,22 +2,25 @@
 <html lang="en">
 
 <head>
-  <title>Home</title>
-  <meta charset="UTF-8">
+  <title>My Drafts</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=650">
-  <link rel="stylesheet" href="src/pages/home/home.css">
+  <link rel="stylesheet" href="src/pages/draft-terms/draft-terms.css">
   <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="src/pages/home/home.css">
   <link rel="stylesheet" href="src/assets/font-awesome/css/font-awesome.min.css">
   <link href="./src/assets/d_logo-circle.png" rel="icon" type="image/png" />
-  
+
+
 </head>
 
 <body>
   <header class="nav-bar">
     <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jumpHomeHtml()">
     <div class="center">
-      <div class="title"><span data-attr="Home">Home</span><span data-attr="Page">Page</span></div>
+      <div class="title"><span data-attr="My">My</span><span data-attr="Drafts">Drafts</span></div>
     </div>
+    
     <div class="buttons">
       <i class="published-posts fa fa-user fa-2x" aria-hidden="true" title="My Posts" onclick="jumpPublishedTerms()"></i>
       <i class="tags-button fa fa-tags fa-2x" aria-hidden="true" title="My Tags" onclick="jumpTagsHtml()"></i>
@@ -25,32 +28,15 @@
       <i class="add-button fa fa-plus-circle fa-2x" aria-hidden="true" title="Create Term" onclick="jumpCreateTermHtml()"></i>
     </div>
   </header>
-
+    
   <main>
-    <div class="top-buttons">
-    </div>
-    <div class="recently-added">
-      <h3>Recently added</h3>
-      <div class="recently-added-elements" style="display: flex;">
-      </div>
-    </div>
-    <div class="tags-section">
-      <h3>Tags</h3>
-      <div class="popular-tags">
-      </div>
+    <h1>My Drafts</h1>
+    <div class="card-results">
     </div>
   </main>
-  <footer>
-    <br><br>
-    <div>&copy; Group 2, CSE 110</div>
-  </footer>
   <script src="src/common-scripts/redirection.js" type="module"></script>
-  <script src="src/pages/home/home.js" type="module"></script>
-  <script src="src/components/term-card/term-card.js"></script>
-  <script src="src/components/serach-bar/search-bar.js" type="module"></script>
-  <script src="src/components/tinyMCE/tiny-mce.js" type="module"></script>
-  <script
-    src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js"></script>
+  <script src="src/components/term-card/term-card.js" type="module"></script>
+  <script src="src/pages/draft-terms/draft-terms.js" type="module"></script>
 </body>
 
-</html>
+</html> 

@@ -3,7 +3,7 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: [ "main", "dev", "backend", "unit-tests"]
+    branches: [ "main", "dev", "backend", "more-unit-tests"]
   pull_request:
     branches: [ "main", "dev"]
 
@@ -24,9 +24,10 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: HTML5 Validator
-        uses: Cyb3r-Jak3/html5validator-action@v7.1.1
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: source/
+          blacklist: tags.css
           css: true
           log_level: DEBUG
 

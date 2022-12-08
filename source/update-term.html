@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>Add Term Page</title>
+  <title>Update Term Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=650">
-  <link rel="stylesheet" href="src/pages/create-term/create-term.css">
+  <link rel="stylesheet" href="src/pages/update-term/update-term.css">
   <link rel="stylesheet" href="common.css">
   <link href="./src/assets/d_logo-circle.png" rel="icon" type="image/png" />
 
@@ -16,7 +16,7 @@
     <!-- VALIDTOR FIX: height="70px" -->
     <img class="logo" src="./src/assets/d_logo.png" alt="Home Image" height="70" onclick="jumpHomeHtml()">
     <div class="center">
-      <div class="title"><span data-attr="Add">Add</span><span data-attr="Term">Term</span></div>
+      <div class="title"><span data-attr="Edit">Edit</span><span data-attr="Term">Term</span></div>
     </div>
   </header>
 
@@ -30,12 +30,12 @@
         <input class="text-input" type="text" id="tags" placeholder="tag 1, tag 2, tag 3..." required
           oninvalid="this.setCustomValidity('Please enter term\'s tags')" oninput="setCustomValidity('')">
         <label>Short Description - optional</label>
-        <textarea class="text-input"   id="short-description"></textarea>
+        <textarea class="text-input" id="short-description"></textarea>
         <textarea id="tinyMCE-content"></textarea>
 
         <div class="button-container">
-          <input type="submit" value="Post" class="button update-button" id="create-button">
-          <input type="submit" value="Save as Draft" class="button draft-button" id="draft-button">
+          <input type="submit" value="Update" class="button update-button" id="update-button">
+          <input type="submit" value="Update Draft" class="button draft-button" id="draft-button">
           <button class="button" id="cancel-button">Cancel</button>
         </div>
       </form>
@@ -44,7 +44,7 @@
   <!-- VALIDTOR FIX: moved script into body -->
   <script src="src/common-scripts/redirection.js" type="module"></script>
   <script src="src/backend/dict.js" type="module"></script>
-  <script src="src/pages/create-term/create-term.js" type="module"></script>
+  <script src="src/pages/update-term/update-term.js" type="module"></script>
   <script src="https://cdn.tiny.cloud/1/6vkcg9dnziup80akw624o1njl83d23ih1plny2y5cqhg6sp7/tinymce/6/tinymce.min.js">
   </script>
 </body>

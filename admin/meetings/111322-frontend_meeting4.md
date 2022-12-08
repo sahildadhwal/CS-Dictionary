@@ -115,4 +115,4 @@ Work on the agenda.
     <li>Created webpage logo. It is shown below.</li>
 </ul>
 
-![image](../images/d_logo.png)
+![image](../images/d_logo-circle.png)
