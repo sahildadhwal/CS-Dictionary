@@ -1,8 +1,9 @@
 # 🍕 **The Pizza Party** 🍕
 ### **CSE 110 Team 2 Project.**
-<br>
 
+[Main Website](https://cs-dictionary.netlify.app/)
 
+[Dev Branch Deployment](https://dev--cs-dictionary.netlify.app/)
 
 # GitHub Actions
 
