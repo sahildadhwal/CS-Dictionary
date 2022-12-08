@@ -4,7 +4,7 @@ const { Browser } = require('puppeteer');
 describe('Basic user flow for Website', () => {
   // Visit Project Website
   beforeAll(async () => {
-    await page.goto('https://cs-dictionary.netlify.app/');
+    await page.goto('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/');
   });
   
   it('Make sure there are no terms on initial load', async () => {
