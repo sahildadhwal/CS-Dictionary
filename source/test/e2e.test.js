@@ -17,11 +17,11 @@ describe('Basic user flow for Website', () => {
     expect(button).not.toEqual(null);
     await button.click();
     await page.waitForNavigation();
-    expect(page.url()).toBe('https://cs-dictionary.netlify.app/create-term.html');
+    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/create-term.html');
   });
    
   it('Add a new term', async () => {
-    await page.goto('https://cs-dictionary.netlify.app/create-term.html');
+    await page.goto('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/create-term.html');
 
     await page.type('#term_name', 'Apple');
     await page.type('#tags', 'fruit, crisp');
@@ -30,13 +30,13 @@ describe('Basic user flow for Website', () => {
     await button2.click();
     await page.waitForNavigation();
 
-    expect(page.url()).toBe('https://cs-dictionary.netlify.app/home.html');
+    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/home.html');
     const recentlyAdded = await page.$$('.recently-added-elements>*');     
     expect(recentlyAdded.length).toBe(1);
   });
 
   it('Check term is displayed in recently added', async () => {
-    await page.goto('https://cs-dictionary.netlify.app/');
+    await page.goto('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/');
 
     // only one card in recents
     const termCards = await page.$$('.recently-added-elements>term-card');
@@ -70,7 +70,7 @@ describe('Basic user flow for Website', () => {
     const open = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")');
     await open.click();
     await page.waitForNavigation();
-    expect(page.url()).toBe('https://cs-dictionary.netlify.app/term-page.html');
+    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/term-page.html');
 
     const title = await page.evaluateHandle('document.querySelector("#term-title")');
     let titleText = await page.evaluate((el) => el.textContent, title);
@@ -92,7 +92,7 @@ describe('Basic user flow for Website', () => {
     await confirmDelete.click();
 
     await page.waitForNavigation();
-    expect(page.url()).toBe('https://cs-dictionary.netlify.app/home.html');
+    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/home.html');
     
     const termCards = await page.$$('term-card');
     expect(termCards.length).toBe(0);
