@@ -19,7 +19,7 @@ describe('Basic user flow for Website', () => {
     expect(button).not.toEqual(null);
     await button.click();
     await page.waitForNavigation();
-    expect(page.url()).toBe(baseUrl + 'create-term.html');
+    expect(page.url()).toBe(`${baseUrl}create-term.html`);
   });
    
   it('Add a new term', async () => {
@@ -32,7 +32,7 @@ describe('Basic user flow for Website', () => {
     await button2.click();
     await page.waitForNavigation();
 
-    expect(page.url()).toBe(baseUrl + 'term-page.html');
+    expect(page.url()).toBe(`${baseUrl}term-page.html`);
   });
 
   it('Check term is displayed in recently added', async () => {
