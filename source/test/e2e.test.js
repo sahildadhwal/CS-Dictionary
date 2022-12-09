@@ -1,10 +1,12 @@
 /// <reference types="jest" />
 const { Browser } = require('puppeteer');
 
+const baseUrl = 'https://cs-dictionary.netlify.app/';
+
 describe('Basic user flow for Website', () => {
   // Visit Project Website
   beforeAll(async () => {
-    await page.goto('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/');
+    await page.goto(baseUrl);
   });
   
   it('Make sure there are no terms on initial load', async () => {
@@ -12,32 +14,30 @@ describe('Basic user flow for Website', () => {
     expect(numRecentlyAdded).toEqual([{}]);
   });
 
-  it('Check that Add Term Button Changes URL', async () => {
+  it('Check that Add Term Button changes URL', async () => {
     const button = await page.$('.add-button');
     expect(button).not.toEqual(null);
     await button.click();
     await page.waitForNavigation();
-    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/create-term.html');
+    expect(page.url()).toBe(`${baseUrl}create-term.html`);
   });
    
   it('Add a new term', async () => {
-    await page.goto('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/create-term.html');
+    await page.goto(`${baseUrl}create-term.html`);
 
-    await page.type('#term_name', 'Apple');
+    await page.type('#term-name', 'Apple');
     await page.type('#tags', 'fruit, crisp');
-    await page.type('#short_description', 'fruit, crisp');
-    const button2 = await page.$('#create_button');
+    await page.type('#short-description', 'fruit, crisp');
+    const button2 = await page.$('#create-button');
     await button2.click();
     await page.waitForNavigation();
 
-    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/home.html');
-    const recentlyAdded = await page.$$('.recently-added-elements>*');     
-    expect(recentlyAdded.length).toBe(1);
+    expect(page.url()).toBe(`${baseUrl}term-page.html`);
   });
 
   it('Check term is displayed in recently added', async () => {
-    await page.goto('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/');
-
+    await page.goto(baseUrl);
+    
     // only one card in recents
     const termCards = await page.$$('.recently-added-elements>term-card');
     expect(termCards.length).toBe(1);                            
@@ -52,16 +52,16 @@ describe('Basic user flow for Website', () => {
     expect(description).toBe('\n        fruit, crisp\n      ');  
   });
 
-  it('Check popular tags are working', async () => {
-    // 1 in recents, 2 tags * 5 each, total 11
+  it('Check term is displayed in popular tags', async () => {
+    // term appears in recents, fruit tag, crisp tag
     const termCards = await page.$$('term-card');
-    expect(termCards.length).toBe(11);                           
+    expect(termCards.length).toBe(3);                           
 
-    const fruitTerm = await page.evaluateHandle('document.querySelector("div.tags-section > div > div > div:nth-child(2) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")');
+    const fruitTerm = await page.evaluateHandle('document.querySelector("div.tags-section > div > div:nth-child(2) > term-card").shadowRoot.querySelector("#term-name")');
     let fruitTermName = await page.evaluate((el) => el.textContent, fruitTerm);
     expect(fruitTermName).toBe('Apple');
 
-    const crispTerm = await page.evaluateHandle('document.querySelector("div.tags-section > div > div > div:nth-child(4) > term-card:nth-child(1)").shadowRoot.querySelector("#term-name")');
+    const crispTerm = await page.evaluateHandle('document.querySelector("div.tags-section > div > div:nth-child(4) > term-card").shadowRoot.querySelector("#term-name")');
     let crispTermName = await page.evaluate((el) => el.textContent, crispTerm);
     expect(crispTermName).toBe('Apple');
   });
@@ -70,7 +70,7 @@ describe('Basic user flow for Website', () => {
     const open = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")');
     await open.click();
     await page.waitForNavigation();
-    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/term-page.html');
+    expect(page.url()).toBe(`${baseUrl}term-page.html`);
 
     const title = await page.evaluateHandle('document.querySelector("#term-title")');
     let titleText = await page.evaluate((el) => el.textContent, title);
@@ -81,18 +81,52 @@ describe('Basic user flow for Website', () => {
     expect(descText).toBe('fruit, crisp');
   });
 
+  it('Check upate term', async () => {
+    // click update button
+    const updateButton = await page.$('#update-button');
+    await updateButton.click();
+
+    // wait for page load
+    await page.waitForNavigation();
+    expect(page.url()).toBe(`${baseUrl}update-term.html`);
+
+    // update tags and description
+    await page.type('#tags', ', red');
+    await page.type('#short-description', ', tasty');
+    const updateButton2 = await page.$('#update-button');
+    await updateButton2.click();
+
+    // check term-card count in home page
+    await page.goto(baseUrl);
+    const termCards = await page.$$('term-card');
+    expect(termCards.length).toBe(4); 
+
+    // check term description after update
+    const descriptionEl = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#description")');
+    let description = await page.evaluate((el) => el.textContent, descriptionEl);
+    expect(description).toBe('\n        fruit, crisp, tasty\n      '); 
+  });
+
   it('Check delete term', async () => {
+    await page.goto(baseUrl);
+
+    // open term
+    const open = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")');
+    await open.click();
+    await page.waitForNavigation();
+    expect(page.url()).toBe(`${baseUrl}term-page.html`);
+
     // click delete button
-    const deleteButton = await page.evaluateHandle('document.querySelector("body > main > div > button:nth-child(7)")');
+    const deleteButton = await page.$('#delete-button');
     await deleteButton.click();
 
     // wait for popup, then confirm delete
     await page.waitForSelector('#id01', {visible: true});
-    const confirmDelete = await page.evaluateHandle('document.querySelector("#id01 > form > div > div > button.deletebtn.modal-button")');
+    const confirmDelete = await page.$('#real-delete');
     await confirmDelete.click();
 
     await page.waitForNavigation();
-    expect(page.url()).toBe('https://638b3e4c97124e1b40637544--cs-dictionary.netlify.app/home.html');
+    expect(page.url()).toBe(`${baseUrl}home.html`);
     
     const termCards = await page.$$('term-card');
     expect(termCards.length).toBe(0);
