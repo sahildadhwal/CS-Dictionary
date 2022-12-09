@@ -13,7 +13,7 @@
 
 # Documentation
 
-[Documentation](https://cse110-fa22-group2.github.io/team2-fa22-cse110/out/index.html)
+[Documentation](https://cse110-fa22-group2.github.io/team2-fa22-cse110/doc/index.html)
 
 
 
