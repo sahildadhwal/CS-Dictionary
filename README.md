@@ -3,19 +3,15 @@
 
 [Main Website](https://cs-dictionary.netlify.app/)
 
-# GitHub Actions
+# Pipeline
 
-`main`: [![CI](https://github.com/cse110-fa22-group2/team2-fa22-cse110/actions/workflows/ci.yml/badge.svg)](https://github.com/cse110-fa22-group2/team2-fa22-cse110/actions/workflows/ci.yml)
+GitHub Actions for `main`: [![CI](https://github.com/cse110-fa22-group2/team2-fa22-cse110/actions/workflows/ci.yml/badge.svg)](https://github.com/cse110-fa22-group2/team2-fa22-cse110/actions/workflows/ci.yml)
 
-# CodeClimate
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/5709a82085e7d74cb6b1/maintainability)](https://codeclimate.com/github/cse110-fa22-group2/team2-fa22-cse110/maintainability)
+CodeClimate: [![Maintainability](https://api.codeclimate.com/v1/badges/5709a82085e7d74cb6b1/maintainability)](https://codeclimate.com/github/cse110-fa22-group2/team2-fa22-cse110/maintainability)
 
 # Documentation
 
 [Documentation](https://cse110-fa22-group2.github.io/team2-fa22-cse110/out/index.html)
-
-
 
 <!-- &nbsp; is the same as space " " -->
 # **&nbsp; &nbsp; Team Page &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Miro Board**
