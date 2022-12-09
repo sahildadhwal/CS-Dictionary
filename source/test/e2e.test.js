@@ -23,7 +23,7 @@ describe('Basic user flow for Website', () => {
   });
    
   it('Add a new term', async () => {
-    await page.goto(baseUrl + 'create-term.html');
+    await page.goto(`${baseUrl}create-term.html`);
 
     await page.type('#term-name', 'Apple');
     await page.type('#tags', 'fruit, crisp');
@@ -70,7 +70,7 @@ describe('Basic user flow for Website', () => {
     const open = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")');
     await open.click();
     await page.waitForNavigation();
-    expect(page.url()).toBe(baseUrl + 'term-page.html');
+    expect(page.url()).toBe(`${baseUrl}term-page.html`);
 
     const title = await page.evaluateHandle('document.querySelector("#term-title")');
     let titleText = await page.evaluate((el) => el.textContent, title);
@@ -88,20 +88,20 @@ describe('Basic user flow for Website', () => {
 
     // wait for page load
     await page.waitForNavigation();
-    expect(page.url()).toBe(baseUrl + "update-term.html");
+    expect(page.url()).toBe(`${baseUrl}update-term.html`);
 
-    //update tags and description
+    // update tags and description
     await page.type('#tags', ', red');
     await page.type('#short-description', ', tasty');
     const updateButton2 = await page.$('#update-button');
     await updateButton2.click();
 
-    //check term-card count in home page
+    // check term-card count in home page
     await page.goto(baseUrl);
     const termCards = await page.$$('term-card');
     expect(termCards.length).toBe(4); 
 
-    //check term description after update
+    // check term description after update
     const descriptionEl = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#description")');
     let description = await page.evaluate((el) => el.textContent, descriptionEl);
     expect(description).toBe('\n        fruit, crisp, tasty\n      '); 
@@ -114,7 +114,7 @@ describe('Basic user flow for Website', () => {
     const open = await page.evaluateHandle('document.querySelector("div.recently-added > div > term-card").shadowRoot.querySelector("#open_term")');
     await open.click();
     await page.waitForNavigation();
-    expect(page.url()).toBe(baseUrl + 'term-page.html');
+    expect(page.url()).toBe(`${baseUrl}term-page.html`);
 
     // click delete button
     const deleteButton = await page.$('#delete-button');
@@ -126,7 +126,7 @@ describe('Basic user flow for Website', () => {
     await confirmDelete.click();
 
     await page.waitForNavigation();
-    expect(page.url()).toBe(baseUrl + 'home.html');
+    expect(page.url()).toBe(`${baseUrl}home.html`);
     
     const termCards = await page.$$('term-card');
     expect(termCards.length).toBe(0);
