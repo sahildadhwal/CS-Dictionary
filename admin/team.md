@@ -3,7 +3,9 @@
 
 ## [*Team Status Video*](https://youtu.be/tpCWZWzKOt8)
 
-## [*Final Product Video*](https://youtu.be/E0aucEvoXBk)
+## [*Final Product Video(Public)*](https://youtu.be/E0aucEvoXBk)
+
+## [*Final Product Video(Private)*](https://youtu.be/Ma0O9H31Wvk)
 
 <!-- &nbsp; is the same as space " " -->
 # **&nbsp; &nbsp; Team Brand &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Team Logo**
