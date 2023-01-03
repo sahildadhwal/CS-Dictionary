@@ -1,6 +1,8 @@
 # 🍕 **The Pizza Party** 🍕
 ### **CSE 110 Team 2 Project.**
 
+[Link to Original Repo](https://github.com/cse110-fa22-group2)
+
 [Main Website](https://cs-dictionary.netlify.app/)
 
 # Pipeline
